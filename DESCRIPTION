@@ -1,0 +1,11 @@
+Package: slfhelper
+Type: Package
+Title: Useful functions for working with the Source Linkage Files
+Version: 0.1.0
+Author: James McMahon <j.mcmahon1@nhs.net>
+Maintainer: James McMahon <j.mcmahon1@nhs.net>
+Description: More about what it does (maybe more than one line)
+    Use four spaces when indenting paragraphs within the Description.
+License: CC0
+Encoding: UTF-8
+LazyData: true
