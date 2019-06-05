@@ -6,6 +6,12 @@ Author: James McMahon <j.mcmahon1@nhs.net>
 Maintainer: James McMahon <j.mcmahon1@nhs.net>
 Description: More about what it does (maybe more than one line)
     Use four spaces when indenting paragraphs within the Description.
-License: CC0
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
+Imports: 
+    fst,
+    stringr,
+    dplyr
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 6.1.1
