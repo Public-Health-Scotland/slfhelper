@@ -15,14 +15,12 @@ read_slf <- function(year, file_version, ...) {
   # This will handle numbers or strings of the form 201718 or 1718
   year <- stringr::str_extract(as.character(year), "\\d{2}\\d{2}$")
 
-
-  slf <-
-    fst::read_fst(
-      stringr::str_glue(
-        "/conf/hscdiip/01-Source-linkage-files/source-{file_version}-20{year}.fst"
-      ),
-      ...
+  file_path <-
+    stringr::str_glue(
+      "/conf/hscdiip/01-Source-linkage-files/source-{file_version}-file-20{year}.fst"
     )
+
+  slf <- fst::read_fst(file_path, ...)
 
   return(slf)
 }
@@ -36,8 +34,8 @@ read_slf <- function(year, file_version, ...) {
 #' @export
 #'
 #' @examples
-#' read__slf_episode("1718")
-#' read__slf_episode("1718",
+#' read_slf_episode("1718")
+#' read_slf_episode("1718",
 #' columns = c("anon_chi", "dob", "demographic_cohort"),
 #' from = 100000, to = 200000)
 read_slf_episode <- function(year, ...) {

@@ -1,24 +1,37 @@
 # slfhelper
 
 <!-- badges: start -->
+
 <!-- badges: end -->
 
-The goal of slfhelper is to ...
+The goal of slfhelper is to provide some easy to use functions which make working with the Source Linkage Files as painless and efficient as possible.
 
 ## Installation
 
-You can install the released version of slfhelper from [CRAN](https://CRAN.R-project.org) with:
+You can install slf by using the [devtools package](https://devtools.r-lib.org/)  in R:
 
 ``` r
-install.packages("slfhelper")
+devtools::install_github("Moohan/slfhelper")
 ```
 
-## Example
+Unless you jump through some hoops this may not work on the internal NSS network.
+However it should work on the [RStudio server](http://nssrstudio.csa.scot.nhs.uk/) which this package is designed to be ran on.
 
-This is a basic example which shows you how to solve a common problem:
+## Usage
+
+### Read a file
 
 ``` r
 library(slfhelper)
-## basic example code
+
+ep_1718 <- read_slf_episode("1718")
 ```
+
+### Match on CHI numbers to Anon_CHI (or vice versa)
+``` r
+library(slfhelper)
+
+cohort <- cohort %>% get_anon_chi()
+```
+
 
