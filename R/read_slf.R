@@ -15,14 +15,12 @@ read_slf <- function(year, file_version, ...) {
   # This will handle numbers or strings of the form 201718 or 1718
   year <- stringr::str_extract(as.character(year), "\\d{2}\\d{2}$")
 
-
-  slf <-
-    fst::read_fst(
-      stringr::str_glue(
-        "/conf/hscdiip/01-Source-linkage-files/source-{file_version}-20{year}.fst"
-      ),
-      ...
+  file_path <-
+    stringr::str_glue(
+      "/conf/hscdiip/01-Source-linkage-files/source-{file_version}-file-20{year}.fst"
     )
+
+  slf <- fst::read_fst(file_path, ...)
 
   return(slf)
 }
