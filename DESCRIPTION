@@ -12,6 +12,7 @@ LazyData: true
 Imports: 
     fst,
     stringr,
-    dplyr
+    dplyr,
+    magrittr
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.1
