@@ -11,10 +11,11 @@
 #' get_anon_chi(data, chi_var = "uniqueid")
 get_anon_chi <- function(data, chi_var = "chi") {
   return(data %>%
-           dplyr::left_join(
+           dplyr::left_join(dplyr::rename(
              fst::read_fst(
                "/conf/hscdiip/01-Source-linkage-files/CHI-to-Anon-lookup.fst"
              ),
-             by = c(chi_var = "chi")
-           ))
+             !!(chi_var) := "chi"
+           ),
+           by = "chi"))
 }
