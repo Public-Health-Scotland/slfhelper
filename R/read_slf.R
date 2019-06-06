@@ -1,3 +1,13 @@
+#' Read a Source Linkage File
+#'
+#' @param year Year of the file to be read
+#' @param file_version Version of the file (Individual / episode)
+#' @param ... other options to be passed to read_fst()
+#'
+#' @return a tibble
+#'
+#' @examples
+#' read_slf("1718", "episode")
 read_slf <- function(year, file_version, ...) {
   # Clean up year
 
