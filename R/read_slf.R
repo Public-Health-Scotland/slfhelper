@@ -1,6 +1,3 @@
-
-
-
 read_slf <- function(year, file_version, ...) {
   # Clean up year
 
@@ -20,10 +17,32 @@ read_slf <- function(year, file_version, ...) {
   return(slf)
 }
 
-read_episode <- function(year) {
-  read_slf(year = year, file_version = "episode")
+#' Read a Source Linkage episode file
+#'
+#' @param year of the file you would like to load
+#' @param ... other options to be passed to read_fst()
+#'
+#' @return a tibble
+#' @export
+#'
+#' @examples
+#' read__slf_episode("1718")
+#' read__slf_episode("1718", columns = c("anon_chi", "dob", "demographic_cohort"), from = 100000, to = 200000)
+read__slf_episode <- function(year, ...) {
+  return(read_slf(year = year, file_version = "episode"))
 }
 
-read_individual <- function(year) {
-  read_slf(year = year, file_version = "individual")
+#' Read a Source Linkage individual file
+#'
+#' @param year of the file you would like to load
+#' @param ... other options to be passed to read_fst()
+#'
+#' @return a tibble
+#' @export
+#'
+#' @examples
+#' read_slf_individual("1718")
+#' read_slf_individual("1718", columns = c("anon_chi", "dob", "hri_scot"), from = 100000, to = 200000))
+read__slf_individual <- function(year, ...) {
+  return(read_slf(year = year, file_version = "individual"))
 }
