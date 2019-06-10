@@ -18,4 +18,3 @@ get_chi <- function(data, anon_chi_var = "anon_chi") {
            ),
            by = "anon_chi"))
 }
-

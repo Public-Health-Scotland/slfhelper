@@ -16,8 +16,12 @@ read_slf <- function(year, file_version, ...) {
   year <- stringr::str_extract(as.character(year), "\\d{2}\\d{2}$")
 
   file_path <-
-    stringr::str_glue(
-      "/conf/hscdiip/01-Source-linkage-files/source-{file_version}-file-20{year}.fst"
+    paste0(
+      "/conf/hscdiip/01-Source-linkage-files/source-",
+      file_version,
+      "-file-20",
+      year,
+      ".fst"
     )
 
   slf <- fst::read_fst(file_path, ...)
