@@ -11,7 +11,6 @@ Encoding: UTF-8
 LazyData: true
 Imports: 
     fst,
-    stringr,
     dplyr,
     magrittr
 Roxygen: list(markdown = TRUE, roclets = c("collate","namespace", "rd", "vignette" ))
