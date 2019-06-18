@@ -13,7 +13,7 @@ read_slf <- function(year, file_version, ...) {
 
   # We want it in the format 1718
   # This will handle numbers or strings of the form 201718 or 1718
-  year <- stringr::str_extract(as.character(year), "\\d{2}\\d{2}$")
+  year <- format_year(year)
 
   file_path <-
     paste0(
@@ -28,6 +28,21 @@ read_slf <- function(year, file_version, ...) {
 
   return(slf)
 }
+
+#' Title
+#'
+#' @param year Year in any format
+#'
+#' @return Year correctly formatted as "CCYY"
+#'
+#' @examples
+#' format_year("2017/18")
+format_year <- function(year) {
+  year <- stringr::str_remove(year, "/")
+  year <- stringr::str_extract(as.character(year), "\\d{2}\\d{2}$")
+  return(year)
+}
+
 
 #' Read a Source Linkage episode file
 #'
