@@ -40,8 +40,9 @@ read_slf <- function(year, file_version, ...) {
 #' @examples
 #' read_slf_episode("1718")
 #' read_slf_episode("1718",
-#' columns = c("anon_chi", "dob", "demographic_cohort"),
-#' from = 100000, to = 200000)
+#'   columns = c("anon_chi", "dob", "demographic_cohort"),
+#'   from = 100000, to = 200000
+#' )
 read_slf_episode <- function(year, ...) {
   return(read_slf(year = year, file_version = "episode"))
 }

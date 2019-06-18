@@ -20,6 +20,7 @@ Read a Source Linkage episode file
 \examples{
 read_slf_episode("1718")
 read_slf_episode("1718",
-columns = c("anon_chi", "dob", "demographic_cohort"),
-from = 100000, to = 200000)
+  columns = c("anon_chi", "dob", "demographic_cohort"),
+  from = 100000, to = 200000
+)
 }
