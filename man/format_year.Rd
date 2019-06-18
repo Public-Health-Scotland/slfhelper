@@ -16,5 +16,5 @@ Year correctly formatted as "CCYY"
 Title
 }
 \examples{
-year <- format_year("2017/18")
+format_year("2017/18")
 }
