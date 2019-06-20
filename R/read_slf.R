@@ -31,7 +31,7 @@ read_slf <- function(year, file_version, partnership = NA_character_, ...) {
   return(slf)
 }
 
-#' Title
+#' Format Year parameter
 #'
 #' @param year Year in any format
 #'
