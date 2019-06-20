@@ -4,10 +4,12 @@
 \alias{read_slf_individual}
 \title{Read a Source Linkage individual file}
 \usage{
-read_slf_individual(year, ...)
+read_slf_individual(year, partnership = NA_character_, ...)
 }
 \arguments{
 \item{year}{of the file you would like to load}
+
+\item{partnership}{Optional specify Partnership to select}
 
 \item{...}{other options to be passed to read_fst()}
 }
