@@ -9,12 +9,12 @@
 #' @examples
 #' get_chi(data)
 get_chi <- function(data, anon_chi_var = "anon_chi") {
+  default_name <- "anon_chi"
   return(data %>%
     dplyr::left_join(
       fst::read_fst(
         "/conf/hscdiip/01-Source-linkage-files/Anon-to-CHI-lookup.fst"
-      ) %>%
-        dplyr::rename(!!(anon_chi_var) := "anon_chi"),
-      by = "anon_chi"
+      ),
+      by = setNames(default_name, anon_chi_var)
     ))
 }
