@@ -25,11 +25,14 @@ read_slf <- function(year, file_version, partnership = NA_character_, ...) {
       year,
       ".fst"
     )
-
+  # TODO wrap this with a furrr::future_map() then bind_rows() - to deal with multiple years
+  # TODO Add a filter to partnership here
   slf <- fst::read_fst(file_path, ...)
 
   return(slf)
 }
+
+
 
 #' Format Year parameter
 #'
@@ -44,6 +47,7 @@ format_year <- function(year) {
   year <- stringr::str_extract(as.character(year), "\\d{2}\\d{2}$")
   return(year)
 }
+
 
 
 #' Read a Source Linkage episode file
@@ -63,8 +67,12 @@ format_year <- function(year) {
 #'   from = 100000, to = 200000
 #' )
 read_slf_episode <- function(year, partnership = NA_character_, ...) {
+  # TODO add option to drop blank CHIs?
+  # TODO add a filter by recid option
   return(read_slf(year = year, file_version = "episode", partnership = partnership, ...))
 }
+
+
 
 #' Read a Source Linkage individual file
 #'
