@@ -2,7 +2,7 @@
 % Please edit documentation in R/read_slf.R
 \name{format_year}
 \alias{format_year}
-\title{Title}
+\title{Format Year parameter}
 \usage{
 format_year(year)
 }
@@ -13,7 +13,7 @@ format_year(year)
 Year correctly formatted as "CCYY"
 }
 \description{
-Title
+Format Year parameter
 }
 \examples{
 format_year("2017/18")
