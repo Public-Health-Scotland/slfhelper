@@ -4,7 +4,7 @@
 \alias{get_anon_chi}
 \title{Match on anon_chi to an object using CHI numbers}
 \usage{
-get_anon_chi(data, chi_var = "chi")
+get_anon_chi(data, chi_var = "chi", drop = TRUE)
 }
 \arguments{
 \item{data}{tibble or data frame}
