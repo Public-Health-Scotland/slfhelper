@@ -28,7 +28,7 @@ library(slfhelper)
 ep_1718 <- read_slf_episode("1718")
 
 # Read certain variables from an individual file
-# It's much faster to chose variables like this
+# It's much faster to choose variables like this
 indiv_1718 <- read_slf_individual("1718", columns = c("anon_chi", "hri_scot"))
 ```
 
