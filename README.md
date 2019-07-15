@@ -2,6 +2,8 @@
 
 <!-- badges: start -->
 
+[![Travis build status](https://travis-ci.org/Moohan/slfhelper.svg?branch=master)](https://travis-ci.org/Moohan/slfhelper)
+[![Codecov test coverage](https://codecov.io/gh/Moohan/slfhelper/branch/master/graph/badge.svg)](https://codecov.io/gh/Moohan/slfhelper?branch=master)
 <!-- badges: end -->
 
 The goal of slfhelper is to provide some easy to use functions which make working with the Source Linkage Files as painless and efficient as possible.
