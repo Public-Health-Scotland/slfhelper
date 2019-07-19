@@ -7,7 +7,7 @@
 read_slf(year, file_version, partnership = NA_character_, ...)
 }
 \arguments{
-\item{year}{Year of the file to be read}
+\item{year}{Year of the file to be readl you can specify multiple years which will then be returned as one file}
 
 \item{file_version}{Version of the file (Individual / episode)}
 
