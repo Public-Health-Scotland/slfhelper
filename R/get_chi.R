@@ -20,7 +20,11 @@ get_chi <- function(data, anon_chi_var = "anon_chi", drop = TRUE) {
     )
 
   if (drop) {
-    data <- data %>% dplyr::select(-{{anon_chi_var}})
+    data <- data %>% dplyr::select(-{
+      {
+        anon_chi_var
+      }
+    })
   }
 
   return(data)
