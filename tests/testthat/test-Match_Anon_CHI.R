@@ -1,6 +1,9 @@
 test_that("Match CHI to individual file", {
   # Read 100 records from indiv file
-  indiv_1718_small <- read_slf_individual("1718", columns = c("anon_chi"), from = 1, to = 100)
+  indiv_1718_small <- read_slf_individual("1718",
+    columns = c("anon_chi"),
+    from = 1, to = 100
+  )
   # Match on the chi
   indiv_1718_with_CHI <- indiv_1718_small %>% get_chi()
 
@@ -19,7 +22,11 @@ test_that("Match CHI to individual file", {
 test_that("Match CHI to episode file", {
   # Read 1000 records from ep file
   # Start at 100000 to avoid blank anon_chis
-  ep_1718_small <- read_slf_episode("1718", columns = c("anon_chi"), from = 100000, to = 101000)
+  ep_1718_small <- read_slf_episode("1718",
+    columns = c("anon_chi"),
+    from = 100000,
+    to = 101000
+  )
   # Match on the chi
   ep_1718_with_CHI <- ep_1718_small %>% get_chi()
 
@@ -55,9 +62,11 @@ test_that("Matching with a different name works", {
   ))
 
   # Match on anon_chi
-  cohort_with_anon <- cohort %>% get_anon_chi(chi_var = "upi_number")
+  cohort_with_anon <- cohort %>%
+    get_anon_chi(chi_var = "upi_number")
 
-  # Default behaviour is to drop the matching var we should now have an anon_chi var
+  # Default behaviour is to drop the matching var
+  # we should now have an anon_chi var
   expect_false("upi_number" %in% names(cohort_with_anon))
   expect_true("anon_chi" %in% names(cohort_with_anon))
 
