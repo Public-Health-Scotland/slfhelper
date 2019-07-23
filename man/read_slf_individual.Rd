@@ -8,7 +8,8 @@ read_slf_individual(year, columns = NULL, partnership = NA_character_,
   ...)
 }
 \arguments{
-\item{year}{Year of the file to be readl you can specify multiple years which will then be returned as one file}
+\item{year}{Year of the file to be readl you can specify multiple years
+which will then be returned as one file}
 
 \item{columns}{Optional a vector of column names}
 
@@ -24,6 +25,11 @@ Read a Source Linkage individual file
 }
 \examples{
 read_slf_individual("1718")
-read_slf_individual("1718", columns = c("anon_chi", "dob", "hri_scot"), from = 100000, to = 200000)
-read_slf_individual(c("1516", "1617", "1718", "1819"), columns = c("anon_chi", "dob", "hri_scot")
+read_slf_individual("1718",
+  columns = c("anon_chi", "dob", "hri_scot"),
+  from = 100000, to = 200000
+)
+read_slf_individual(c("1516", "1617", "1718", "1819"),
+  columns = c("anon_chi", "dob", "hri_scot")
+)
 }
