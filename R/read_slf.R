@@ -12,8 +12,15 @@
 #' read_slf("1718", "episode")
 read_slf <-
   function(year, file_version, partnership = NA_character_, ...) {
-    # Clean up year
 
+    # Define a function for filtering to a partnership
+    filter_partnership <- function(data, partnership) {
+      data <- data %>% filter(hscp2018 == partnership)
+
+      return(data)
+    }
+
+    # Clean up year
     # We want it in the format 1718
     # This will handle numbers or strings of the form 201718 or 1718
     year <- format_year(year)
@@ -27,13 +34,11 @@ read_slf <-
         ".fst"
       )
 
-    # Define a function for filtering to a partnership
-    filter_partnership <- function(data, partnership) {
-      return(data)
-    }
+    # Count how many files we are going to read
+    num_files <- length(file_path)
 
     # Check if there is more than one year
-    if (length(file_path) > 1) {
+    if (num_files > 1) {
 
       # Gather up any optional parameters which were supplied
       optional_params <- list(...)
@@ -47,7 +52,7 @@ read_slf <-
           append(
             param_list,
             list(as.list(
-              rep(list(optional_params[[i]]), 2)
+              rep(list(optional_params[[i]]), num_files)
             ))
           )
       }
@@ -59,11 +64,30 @@ read_slf <-
       # Pass the list of parameters to fst::read_fst through purrr
       slfs_list <- purrr::pmap(param_list, fst::read_fst)
 
+      # If a partnership is specified filter now
+      if (!(is.na(partnership))) {
+        partnership <- as.list(rep(
+          partnership,
+          num_files
+        ))
+
+        slfs_list <- purrr::map2(
+          slfs_list,
+          partnership,
+          filter_partnership
+        )
+      }
+
       # Bind the files which have been read together
       slf <- dplyr::bind_rows(slfs_list)
     } else {
       # Simple case for one year
       slf <- fst::read_fst(file_path, ...)
+
+      # If a partnership is specified filter now
+      if (!(is.na(partnership))) {
+        slf <- slf %>% filter_partnership(partnership)
+      }
     }
 
     return(slf)
