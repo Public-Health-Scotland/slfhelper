@@ -10,6 +10,8 @@ get_anon_chi(data, chi_var = "chi", drop = TRUE)
 \item{data}{tibble or data frame}
 
 \item{chi_var}{CHI variable: the name of the variable containg CHI (default is chi)}
+
+\item{drop}{Optional boolean indicating whether the existing chi_var should be dropped - default is TRUE}
 }
 \value{
 a tibble
