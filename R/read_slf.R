@@ -42,8 +42,14 @@ read_slf <-
       param_list <- list(as.list(file_path))
 
       # Add all the optional parameters together correctly
-      for(i in names(optional_params)){
-        param_list <- append(param_list, list(as.list(rep(list(optional_params[[i]]), 2))))
+      for (i in names(optional_params)) {
+        param_list <-
+          append(
+            param_list,
+            list(as.list(
+              rep(list(optional_params[[i]]), 2)
+            ))
+          )
       }
 
       # We now have a list which contains a list for each parameter supplied
@@ -65,7 +71,8 @@ read_slf <-
 
 #' Read a Source Linkage episode file
 #'
-#' @param year Year of the file to be readl you can specify multiple years which will then be returned as one file
+#' @param year Year of the file to be readl you can specify multiple years
+#' which will then be returned as one file
 #' @param columns Optional a vector of column names
 #' @param partnership Optional specify Partnership to select
 #' @param ... other options to be passed to read_fst()
@@ -76,9 +83,14 @@ read_slf <-
 #'
 #' @examples
 #' read_slf_episode("1718")
-#' read_slf_episode("1718", columns = c("anon_chi", "dob", "demographic_cohort"), from = 100000, to = 200000
+#' read_slf_episode("1718",
+#'   columns = c("anon_chi", "dob", "demographic_cohort"),
+#'   from = 100000, to = 200000
 #' )
-#' read_slf_episode(c("1516", "1617", "1718", "1819"), columns = c("anon_chi", "dob", "demographic_cohort")
+#'
+#' read_slf_episode(c("1516", "1617", "1718", "1819"),
+#'   columns = c("anon_chi", "dob", "demographic_cohort")
+#' )
 read_slf_episode <-
   function(year,
              columns = NULL,
@@ -100,7 +112,8 @@ read_slf_episode <-
 
 #' Read a Source Linkage individual file
 #'
-#' @param year Year of the file to be readl you can specify multiple years which will then be returned as one file
+#' @param year Year of the file to be readl you can specify multiple years
+#'   which will then be returned as one file
 #' @param columns Optional a vector of column names
 #' @param partnership Optional specify Partnership to select
 #' @param ... other options to be passed to read_fst()
@@ -110,8 +123,13 @@ read_slf_episode <-
 #'
 #' @examples
 #' read_slf_individual("1718")
-#' read_slf_individual("1718", columns = c("anon_chi", "dob", "hri_scot"), from = 100000, to = 200000)
-#' read_slf_individual(c("1516", "1617", "1718", "1819"), columns = c("anon_chi", "dob", "hri_scot")
+#' read_slf_individual("1718",
+#'   columns = c("anon_chi", "dob", "hri_scot"),
+#'   from = 100000, to = 200000
+#' )
+#' read_slf_individual(c("1516", "1617", "1718", "1819"),
+#'   columns = c("anon_chi", "dob", "hri_scot")
+#' )
 read_slf_individual <-
   function(year,
              columns = NULL,
@@ -127,17 +145,3 @@ read_slf_individual <-
       )
     )
   }
-
-#' Format Year parameter
-#'
-#' @param year Year in any format
-#'
-#' @return Year correctly formatted as "CCYY"
-#'
-#' @examples
-#' format_year("2017/18")
-format_year <- function(year) {
-  year <- stringr::str_remove(year, "/")
-  year <- stringr::str_extract(as.character(year), "\\d{2}\\d{2}$")
-  return(year)
-}
