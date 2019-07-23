@@ -2,6 +2,7 @@
 #'
 #' @param data tibble or data frame
 #' @param chi_var CHI variable: the name of the variable containg CHI (default is chi)
+#' @param drop Optional boolean indicating whether the existing chi_var should be dropped - default is TRUE
 #'
 #' @return a tibble
 #' @export
@@ -12,19 +13,19 @@
 get_anon_chi <- function(data, chi_var = "chi", drop = TRUE) {
   default_name <- "chi"
 
+  anon_chi_lookup <- fst::read_fst(
+    "/conf/hscdiip/01-Source-linkage-files/CHI-to-Anon-lookup.fst"
+  )
+
   data <- data %>%
     dplyr::left_join(
-      fst::read_fst(
-        "/conf/hscdiip/01-Source-linkage-files/CHI-to-Anon-lookup.fst"
-      ),
+      anon_chi_lookup,
       by = setNames(default_name, chi_var)
     )
+
   if (drop) {
-    data <- data %>% dplyr::select(-{
-      {
-        chi_var
-      }
-    })
+    data <- data %>%
+      dplyr::select(-{{ chi_var }})
   }
   return(data)
 }
