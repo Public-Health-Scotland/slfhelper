@@ -1,4 +1,4 @@
-#' Format Year parameter
+#' Format a year into the correct FY format
 #'
 #' @param year Year in any format
 #'

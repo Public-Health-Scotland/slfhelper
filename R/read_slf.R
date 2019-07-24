@@ -1,21 +1,21 @@
 #' Read a Source Linkage File
 #'
-#' @param year Year of the file to be readl you can specify multiple years which will then be returned as one file
-#' @param file_version Version of the file (Individual / episode)
-#' @param partnership Optional specify Partnership to select (not yet implemented)
+#' @param year Year of the file to be read, you can specify multiple years
+#'  which will then be returned as one file
+#' @param file_version Version of the file (individual / episode)
+#' @param partnership Optional specify Partnership to select
 #' @param ... other options to be passed to read_fst()
-#'
 #'
 #' @return a tibble
 #'
 #' @examples
 #' read_slf("1718", "episode")
 read_slf <-
-  function(year, file_version, partnership = NA_character_, ...) {
+  function(year, file_version, partnership = NA, ...) {
 
     # Define a function for filtering to a partnership
-    filter_partnership <- function(data, partnership) {
-      data <- data %>% filter(hscp2018 == partnership)
+    filter_partnership <- function(data, partnership, partnership_var = hscp2018) {
+      data <- data %>% filter({{ partnership_var }} == partnership)
 
       return(data)
     }
@@ -118,7 +118,7 @@ read_slf <-
 read_slf_episode <-
   function(year,
              columns = NULL,
-             partnership = NA_character_,
+             partnership = NA,
              ...) {
     # TODO add option to drop blank CHIs?
     # TODO add a filter by recid option
@@ -157,7 +157,7 @@ read_slf_episode <-
 read_slf_individual <-
   function(year,
              columns = NULL,
-             partnership = NA_character_,
+             partnership = NA,
              ...) {
     return(
       read_slf(

@@ -1,4 +1,4 @@
-#' Match on CHI numbers to an object using anon_chi
+#' Match on CHI numbers to a dataset using anon_chi
 #'
 #' @param data tibble or data frame
 #' @param anon_chi_var Anon CHI variable: the name of the variable containg anonymised CHI (default is anon_chi)
@@ -9,6 +9,7 @@
 #'
 #' @examples
 #' get_chi(data)
+#' get_chi(data, drop = FALSE)
 get_chi <- function(data, anon_chi_var = "anon_chi", drop = TRUE) {
   default_name <- "anon_chi"
 

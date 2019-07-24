@@ -4,14 +4,15 @@
 \alias{read_slf}
 \title{Read a Source Linkage File}
 \usage{
-read_slf(year, file_version, partnership = NA_character_, ...)
+read_slf(year, file_version, partnership = NA, ...)
 }
 \arguments{
-\item{year}{Year of the file to be readl you can specify multiple years which will then be returned as one file}
+\item{year}{Year of the file to be read, you can specify multiple years
+which will then be returned as one file}
 
-\item{file_version}{Version of the file (Individual / episode)}
+\item{file_version}{Version of the file (individual / episode)}
 
-\item{partnership}{Optional specify Partnership to select (not yet implemented)}
+\item{partnership}{Optional specify Partnership to select}
 
 \item{...}{other options to be passed to read_fst()}
 }
