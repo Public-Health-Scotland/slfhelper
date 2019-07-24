@@ -95,7 +95,7 @@ read_slf <-
 
 #' Read a Source Linkage episode file
 #'
-#' @param year Year of the file to be readl you can specify multiple years
+#' @param year Year of the file to be read you can specify multiple years
 #' which will then be returned as one file
 #' @param columns Optional a vector of column names
 #' @param partnership Optional specify Partnership to select
@@ -136,7 +136,7 @@ read_slf_episode <-
 
 #' Read a Source Linkage individual file
 #'
-#' @param year Year of the file to be readl you can specify multiple years
+#' @param year Year of the file to be read you can specify multiple years
 #'   which will then be returned as one file
 #' @param columns Optional a vector of column names
 #' @param partnership Optional specify Partnership to select
