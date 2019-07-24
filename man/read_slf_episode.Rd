@@ -7,7 +7,7 @@
 read_slf_episode(year, columns = NULL, partnership = NA, ...)
 }
 \arguments{
-\item{year}{Year of the file to be readl you can specify multiple years
+\item{year}{Year of the file to be read you can specify multiple years
 which will then be returned as one file}
 
 \item{columns}{Optional a vector of column names}

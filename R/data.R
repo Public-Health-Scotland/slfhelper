@@ -1,4 +1,4 @@
-#' Names of variables in the epsiode files
+#' Names of variables in the episode files
 #'
 #' @name ep_file_vars
 #' @docType data
