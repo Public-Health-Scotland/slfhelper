@@ -26,14 +26,24 @@ However it should work on the [RStudio server](http://nssrstudio.csa.scot.nhs.uk
 ``` r
 library(slfhelper)
 
+# Read a full episode file
 ep_1718 <- read_slf_episode("1718")
+
+# Read certain variables from an individual file
+# It's much faster to choose variables like this
+indiv_1718 <- read_slf_individual("1718", columns = c("anon_chi", "hri_scot"))
 ```
 
 ### Match on CHI numbers to Anon_CHI (or vice versa)
 ``` r
 library(slfhelper)
 
-cohort <- cohort %>% get_anon_chi()
+# Add real CHI numbers to a SLF
+ep_1718 <- read_slf_episode("1718") %>% get_chi()
+
+# Add anon_chi numbers to a cohort
+# Optionaly specifiy the name of the CHI variable
+cohort <- cohort %>% get_anon_chi(chi_var = "upi_number")
 ```
 
 
