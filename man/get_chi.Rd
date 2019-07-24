@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_chi.R
 \name{get_chi}
 \alias{get_chi}
-\title{Match on CHI numbers to an object using anon_chi}
+\title{Match on CHI numbers to a dataset using anon_chi}
 \usage{
 get_chi(data, anon_chi_var = "anon_chi", drop = TRUE)
 }
@@ -17,8 +17,9 @@ get_chi(data, anon_chi_var = "anon_chi", drop = TRUE)
 a tibble
 }
 \description{
-Match on CHI numbers to an object using anon_chi
+Match on CHI numbers to a dataset using anon_chi
 }
 \examples{
 get_chi(data)
+get_chi(data, drop = FALSE)
 }
