@@ -4,7 +4,7 @@
 \name{indiv_file_vars}
 \alias{indiv_file_vars}
 \title{Names of variables in the individual files}
-\format{An object of class \code{character} of length 155.}
+\format{An object of class \code{list} of length 155.}
 \usage{
 indiv_file_vars
 }
