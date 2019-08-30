@@ -1,11 +1,5 @@
 # slfhelper
 
-<!-- badges: start -->
-
-[![Travis build status](https://travis-ci.org/Moohan/slfhelper.svg?branch=master)](https://travis-ci.org/Moohan/slfhelper)
-[![Codecov test coverage](https://codecov.io/gh/Moohan/slfhelper/branch/master/graph/badge.svg)](https://codecov.io/gh/Moohan/slfhelper?branch=master)
-<!-- badges: end -->
-
 The goal of slfhelper is to provide some easy to use functions which make working with the Source Linkage Files as painless and efficient as possible.
 
 ## Installation
@@ -26,15 +20,38 @@ However it should work on the [RStudio server](http://nssrstudio.csa.scot.nhs.uk
 ``` r
 library(slfhelper)
 
-# Read a full episode file
+# Read a full file
 ep_1718 <- read_slf_episode("1718")
+indiv_1718 <- read_slf_individual("1718")
 
-# Read certain variables from an individual file
+# Read multiple years
+# This will use dplyr::bind_rows() and return the files added together as a single tibble
+episode_data <- read_slf_episode(c("1516", "1617", "1718", "1819"))
+
+# Read certain variables 
 # It's much faster to choose variables like this
 indiv_1718 <- read_slf_individual("1718", columns = c("anon_chi", "hri_scot"))
+
+# Read only data for a certain partnership (HSCP_2018 code)
+# Currently only works for a single partnership
+indiv_1718 <- read_slf_individual("1718", partnership = "S37000001") # Aberdeen City
+```
+All of the above options for reading files can be combined if required. 
+
+There are a few data files included in the package which should be useful.
+
+``` r
+# Get a list of the variables in a file
+slfhelper::ep_file_vars
+slfhelper::indiv_file_vars
+
+# See a lookup of Partnership names to HSCP_2018 codes
+
+hscp_lookup <- slfhelper::partnerships
 ```
 
 ### Match on CHI numbers to Anon_CHI (or vice versa)
+
 ``` r
 library(slfhelper)
 
