@@ -5,4 +5,3 @@ export(get_chi)
 export(read_slf_episode)
 export(read_slf_individual)
 importFrom(magrittr,"%>%")
-
