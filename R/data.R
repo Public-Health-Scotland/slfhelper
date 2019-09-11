@@ -19,3 +19,4 @@
 #' @docType data
 #' @keywords data
 "partnerships"
+
