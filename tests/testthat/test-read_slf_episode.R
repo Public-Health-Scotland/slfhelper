@@ -1,7 +1,7 @@
 test_that("Reads episode", {
   # Read file, pick a year at random
   year <- sample(c("1516", "1617", "1718", "1819"), 1)
-  ep_file <- read_slf_episode(year, from = 100000, to = 101000)
+  ep_file <- read_slf_episode(year, from = 10000, to = 10100)
 
   # Test for anything odd
   expect_type(ep_file, "list")
@@ -11,5 +11,5 @@ test_that("Reads episode", {
   expect_length(ep_file, 210)
 
   # Test for roughly correct number of rows
-  expect_equal(nrow(ep_file), 1001)
+  expect_equal(nrow(ep_file), 101)
 })
