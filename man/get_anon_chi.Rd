@@ -4,10 +4,10 @@
 \alias{get_anon_chi}
 \title{Match on anon_chi to a dataset using CHI numbers}
 \usage{
-get_anon_chi(data, chi_var = "chi", drop = TRUE)
+get_anon_chi(tibb, chi_var = "chi", drop = TRUE)
 }
 \arguments{
-\item{data}{tibble or data frame}
+\item{tibb}{tibble or data frame}
 
 \item{chi_var}{CHI variable: the name of the variable containing CHI (default is chi)}
 
