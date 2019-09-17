@@ -14,8 +14,8 @@ read_slf <-
   function(year, file_version, partnership = NA, ...) {
 
     # Define a function for filtering to a partnership
-    filter_partnership <- function(data, partnership, partnership_var = hscp2018) {
-      data <- data %>% dplyr::filter({{ partnership_var }} == partnership)
+    filter_partnership <- function(data, partnership) {
+      data <- data %>% dplyr::filter(hscp2018 == partnership)
 
       return(data)
     }
