@@ -15,7 +15,9 @@ test_that("Reads individual", {
 })
 
 test_that("column selection works", {
-  indiv_1718 <- read_slf_individual("1718", columns = c("anon_chi"), from = 1, to = 1000)
+  indiv_1718 <- read_slf_individual("1718",
+                                    columns = c("anon_chi"),
+                                    from = 1, to = 1000)
 
   # Test for anything odd
   expect_type(indiv_1718, "list")
@@ -54,4 +56,14 @@ test_that("read multiple years works", {
     dplyr::count(indiv, year),
     dplyr::tibble(year = c("1718", "1819"), n = c(100L, 100L))
   )
+})
+
+test_that("Partnership filtering works", {
+  indiv_1718_edinburgh <- read_slf_individual("1718",
+                                              partnership = "S37000012",
+                                              columns = c("hscp2018"))
+
+  expect_true(all(indiv_1718_edinburgh$hscp2018 == "S37000012"))
+  expect_equal(length(unique(indiv_1718_edinburgh$hscp2018)), 1)
+  expect_gte(nrow(indiv_1718_edinburgh), 10000)
 })
