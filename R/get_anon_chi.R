@@ -21,7 +21,7 @@ get_anon_chi <- function(data, chi_var = "chi", drop = TRUE) {
   data <- data %>%
     dplyr::left_join(
       anon_chi_lookup,
-      by = setNames(default_name, chi_var)
+      by = stats::setNames(default_name, chi_var)
     )
 
   if (drop) {
