@@ -6,8 +6,11 @@
 \alias{slfhelper-package}
 \title{slfhelper: Useful functions for working with the Source Linkage Files}
 \description{
-More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+This package provides a few helper functions for working with the
+    Source Linkage Files (SLFs). The functions are mainly focussed on making the 
+    first steps of analysis easier. They can read in and filter the files in an efficient
+    way using minimal syntax. If you find a bug or have any ideas for new funtions
+    or improvements get in touch or submit a pull request.
 }
 \seealso{
 Useful links:
