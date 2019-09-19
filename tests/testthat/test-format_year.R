@@ -8,4 +8,5 @@ test_that("Year formats correctly", {
   expect_equal(format_year("2017/18"), "1718")
 
   # Need to add more and develop the function to deal with them
+  # Deal with FY as a year e.g. 2017
 })
