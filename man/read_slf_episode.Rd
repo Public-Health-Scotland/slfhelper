@@ -4,7 +4,7 @@
 \alias{read_slf_episode}
 \title{Read a Source Linkage episode file}
 \usage{
-read_slf_episode(year, columns = NULL, partnership = NA, ...)
+read_slf_episode(year, columns = NULL, partnership = NULL, ...)
 }
 \arguments{
 \item{year}{Year of the file to be read you can specify multiple years
