@@ -4,7 +4,7 @@
 \alias{read_slf}
 \title{Read a Source Linkage File}
 \usage{
-read_slf(year, file_version, partnership = NA, ...)
+read_slf(year, file_version, partnership = NULL, ...)
 }
 \arguments{
 \item{year}{Year of the file to be read, you can specify multiple years
