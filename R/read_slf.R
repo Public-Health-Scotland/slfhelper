@@ -11,11 +11,11 @@
 #' @examples
 #' read_slf("1718", "episode")
 read_slf <-
-  function(year, file_version, partnership = NA, ...) {
+  function(year, file_version, partnership = NULL, ...) {
 
     # Define a function for filtering to a partnership
     filter_partnership <- function(data, partnership) {
-      data <- data %>% dplyr::filter(hscp2018 == partnership)
+      data <- data %>% dplyr::filter(hscp2018 %in% partnership)
 
       return(data)
     }
@@ -37,58 +37,49 @@ read_slf <-
     # Count how many files we are going to read
     num_files <- length(file_path)
 
-    # Check if there is more than one year
-    if (num_files > 1) {
+    # The following code is designed to deal with multiple years
+    # but works fine with a single year too
 
-      # Gather up any optional parameters which were supplied
-      optional_params <- list(...)
+    # Gather up any optional parameters which were supplied
+    optional_params <- list(...)
 
-      # Create a list of parameters, starting with the filepaths
-      param_list <- list(as.list(file_path))
+    # Create a list of parameters, starting with the filepaths
+    param_list <- list(as.list(file_path))
 
-      # Add all the optional parameters together correctly
-      for (i in names(optional_params)) {
-        param_list <-
-          append(
-            param_list,
-            list(as.list(
-              rep(list(optional_params[[i]]), num_files)
-            ))
-          )
-      }
-
-      # We now have a list which contains a list for each parameter supplied
-      # Give the inner lists names
-      names(param_list) <- c("path", names(optional_params))
-
-      # Pass the list of parameters to fst::read_fst through purrr
-      slfs_list <- purrr::pmap(param_list, fst::read_fst)
-
-      # If a partnership is specified filter now
-      if (!(is.na(partnership))) {
-        partnership <- as.list(rep(
-          partnership,
-          num_files
-        ))
-
-        slfs_list <- purrr::map2(
-          slfs_list,
-          partnership,
-          filter_partnership
+    # Add all the optional parameters together correctly
+    for (i in names(optional_params)) {
+      param_list <-
+        append(
+          param_list,
+          list(as.list(
+            rep(list(optional_params[[i]]), num_files)
+          ))
         )
-      }
-
-      # Bind the files which have been read together
-      slf <- dplyr::bind_rows(slfs_list)
-    } else {
-      # Simple case for one year
-      slf <- fst::read_fst(file_path, ...)
-
-      # If a partnership is specified filter now
-      if (!(is.na(partnership))) {
-        slf <- slf %>% filter_partnership(partnership)
-      }
     }
+
+    # We now have a list which contains a list for each parameter supplied
+    # Give the inner lists names
+    names(param_list) <- c("path", names(optional_params))
+
+    # Pass the list of parameters to fst::read_fst through purrr
+    slfs_list <- purrr::pmap(param_list, fst::read_fst)
+
+    # If a partnership is specified filter now
+    if (!(is.null(partnership))) {
+      partnership <- as.list(rep(
+        partnership,
+        num_files
+      ))
+
+      slfs_list <- purrr::map2(
+        slfs_list,
+        partnership,
+        filter_partnership
+      )
+    }
+
+    # Bind the files which have been read together
+    slf <- dplyr::bind_rows(slfs_list)
 
     return(slf)
   }
@@ -118,7 +109,7 @@ read_slf <-
 read_slf_episode <-
   function(year,
              columns = NULL,
-             partnership = NA,
+             partnership = NULL,
              ...) {
     # TODO add option to drop blank CHIs?
     # TODO add a filter by recid option
@@ -157,7 +148,7 @@ read_slf_episode <-
 read_slf_individual <-
   function(year,
              columns = NULL,
-             partnership = NA,
+             partnership = NULL,
              ...) {
     return(
       read_slf(
