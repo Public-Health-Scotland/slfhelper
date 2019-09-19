@@ -1,7 +1,7 @@
 Package: slfhelper
 Type: Package
 Title: Useful functions for working with the Source Linkage Files
-Version: 0.2.2
+Version: 0.2.2.9000
 Author: James McMahon <j.mcmahon1@nhs.net>
 Maintainer: James McMahon <j.mcmahon1@nhs.net>
 Description: This package provides a few helper functions for working with the
