@@ -16,8 +16,9 @@ test_that("Reads individual", {
 
 test_that("column selection works", {
   indiv_1718 <- read_slf_individual("1718",
-                                    columns = c("anon_chi"),
-                                    from = 1, to = 100)
+    columns = c("anon_chi"),
+    from = 1, to = 100
+  )
 
   # Test for anything odd
   expect_type(indiv_1718, "list")

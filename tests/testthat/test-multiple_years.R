@@ -1,9 +1,9 @@
 test_that("read multiple years works", {
   # Read in multiple years
   indiv <- read_slf_individual(c("1718", "1819"),
-                               columns = c("year", "anon_chi"),
-                               from = 1,
-                               to = 50
+    columns = c("year", "anon_chi"),
+    from = 1,
+    to = 50
   )
 
   # Test for anything odd
