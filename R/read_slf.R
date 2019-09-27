@@ -3,8 +3,8 @@
 #' @param year Year of the file to be read, you can specify multiple years
 #'  which will then be returned as one file
 #' @param file_version Version of the file (individual / episode)
-#' @param partnership Optional specify a partnership (hscp2018) or partnerships to select
-#' @param recid Optional specify a recid or recid to select
+#' @param partnerships Optional specify a partnership (hscp2018) or partnerships to select
+#' @param recids Optional specify a recid or recids to select
 #' @param ... other options to be passed to read_fst()
 #'
 #' @return a tibble
@@ -12,14 +12,7 @@
 #' @examples
 #' read_slf("1718", "episode")
 read_slf <-
-  function(year, file_version, partnership = NULL, recid = NULL, ...) {
-
-    # Define a function for filtering to a partnership
-    filter_partnership <- function(data, partnership) {
-      data <- data %>% dplyr::filter(hscp2018 %in% partnership)
-
-      return(data)
-    }
+  function(year, file_version, partnerships = NULL, recids = NULL, ...) {
 
     # Clean up year
     # We want it in the format 1718
@@ -65,17 +58,47 @@ read_slf <-
     # Pass the list of parameters to fst::read_fst through purrr
     slfs_list <- purrr::pmap(param_list, fst::read_fst)
 
-    # If a partnership is specified filter now
-    if (!(is.null(partnership))) {
-      partnership <- as.list(rep(
-        partnership,
+    # Define a function for filtering to a list of partnerships
+    filter_partnership <- function(tibb, partnerships) {
+      tibb <- tibb %>% dplyr::filter(hscp2018 %in% partnerships)
+
+      return(tibb)
+    }
+
+    # Define a function for filtering to a list of recids
+    filter_recid <- function(tibb, recids) {
+      tibb <- tibb %>% dplyr::filter(recid %in% recids)
+
+      return(tibb)
+    }
+
+    # If a partnership is specified filter first;
+    # With testing it seems to usually be faster if we do partnership
+    # filtering before recid filtering
+    if (!(is.null(partnerships))) {
+      partnerships <- as.list(rep(
+        partnerships,
         num_files
       ))
 
       slfs_list <- purrr::map2(
         slfs_list,
-        partnership,
+        partnerships,
         filter_partnership
+      )
+    }
+
+    # If a recid is specified filter now
+    if (!(is.null(recids))) {
+      recids <- as.list(rep(
+        recids,
+        num_files
+      ))
+
+      slfs_list <- purrr::map2(
+        slfs_list,
+        recids,
+        filter_recid
       )
     }
 
@@ -90,8 +113,8 @@ read_slf <-
 #' @param year Year of the file to be read you can specify multiple years
 #' which will then be returned as one file
 #' @param columns Optional a vector of column names
-#' @param partnership Optional specify a partnership (hscp2018) or partnerships to select
-#' @param recid Optional specify a recid or recid to select
+#' @param partnerships Optional specify a partnership (hscp2018) or partnerships to select
+#' @param recids Optional specify a recid or recids to select
 #' @param ... other options to be passed to read_fst()
 #'
 #'
@@ -109,14 +132,15 @@ read_slf <-
 #'   columns = c("anon_chi", "dob", "demographic_cohort")
 #' )
 read_slf_episode <-
-  function(year, columns = NULL, partnership = NULL, recid = NULL, ...) {
+  function(year, columns = NULL, partnerships = NULL, recids = NULL, ...) {
     # TODO add option to drop blank CHIs?
     # TODO add a filter by recid option
     return(
       read_slf(
         year = year,
         file_version = "episode",
-        partnership = partnership,
+        partnerships = partnerships,
+        recids = recids,
         columns = columns,
         ...
       )
@@ -129,8 +153,7 @@ read_slf_episode <-
 #' @param year Year of the file to be read you can specify multiple years
 #'   which will then be returned as one file
 #' @param columns Optional a vector of column names
-#' @param partnership Optional specify a partnership (hscp2018) or partnerships to select
-#' @param recid Optional specify a recid or recid to select
+#' @param partnerships Optional specify a partnership (hscp2018) or partnerships to select
 #' @param ... other options to be passed to read_fst()
 #'
 #'
@@ -147,12 +170,12 @@ read_slf_episode <-
 #'   columns = c("anon_chi", "dob", "hri_scot")
 #' )
 read_slf_individual <-
-  function(year, columns = NULL, partnership = NULL, recid = NULL, ...) {
+  function(year, columns = NULL, partnerships = NULL, ...) {
     return(
       read_slf(
         year = year,
         file_version = "individual",
-        partnership = partnership,
+        partnerships = partnerships,
         columns = columns,
         ...
       )
