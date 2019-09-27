@@ -8,7 +8,7 @@ test_that("Reads episode", {
   expect_named(ep_file)
 
   # Test for correct number of variables (will need updating)
-  expect_length(ep_file, 210)
+  expect_length(ep_file, 215)
 
   # Test for roughly correct number of rows
   expect_equal(nrow(ep_file), 11)
