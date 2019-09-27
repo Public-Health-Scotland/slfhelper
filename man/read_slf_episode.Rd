@@ -4,7 +4,8 @@
 \alias{read_slf_episode}
 \title{Read a Source Linkage episode file}
 \usage{
-read_slf_episode(year, columns = NULL, partnership = NULL, ...)
+read_slf_episode(year, columns = NULL, partnerships = NULL,
+  recids = NULL, ...)
 }
 \arguments{
 \item{year}{Year of the file to be read you can specify multiple years
@@ -12,7 +13,9 @@ which will then be returned as one file}
 
 \item{columns}{Optional a vector of column names}
 
-\item{partnership}{Optional specify Partnership to select}
+\item{partnerships}{Optional specify a partnership (hscp2018) or partnerships to select}
+
+\item{recids}{Optional specify a recid or recids to select}
 
 \item{...}{other options to be passed to read_fst()}
 }

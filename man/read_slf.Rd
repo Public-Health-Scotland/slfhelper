@@ -4,7 +4,7 @@
 \alias{read_slf}
 \title{Read a Source Linkage File}
 \usage{
-read_slf(year, file_version, partnership = NULL, ...)
+read_slf(year, file_version, partnerships = NULL, recids = NULL, ...)
 }
 \arguments{
 \item{year}{Year of the file to be read, you can specify multiple years
@@ -12,7 +12,9 @@ which will then be returned as one file}
 
 \item{file_version}{Version of the file (individual / episode)}
 
-\item{partnership}{Optional specify Partnership to select}
+\item{partnerships}{Optional specify a partnership (hscp2018) or partnerships to select}
+
+\item{recids}{Optional specify a recid or recids to select}
 
 \item{...}{other options to be passed to read_fst()}
 }
