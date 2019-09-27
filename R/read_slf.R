@@ -37,6 +37,21 @@ read_slf <-
     # Gather up any optional parameters which were supplied
     optional_params <- list(...)
 
+    # If the we are trying to filter by partnership or recid
+    # but the column wasn't selected we need to add it (and remove later)
+    remove_partnership_var <- FALSE
+    remove_recid_var <- FALSE
+    if ("columns" %in% names(optional_params)) {
+      if (!(is.null(partnerships)) & !("hscp2018" %in% optional_params$columns)) {
+        optional_params$columns <- c(optional_params$columns, "hscp2018")
+        remove_partnership_var <- TRUE
+      }
+      if (!(is.null(recids)) & file_version == "episode" & !("recid" %in% optional_params$columns)) {
+        optional_params$columns <- c(optional_params$columns, "recid")
+        remove_recid_var <- TRUE
+      }
+    }
+
     # Create a list of parameters, starting with the filepaths
     param_list <- list(as.list(file_path))
 
@@ -104,6 +119,14 @@ read_slf <-
 
     # Bind the files which have been read together
     slf <- dplyr::bind_rows(slfs_list)
+
+    # With testing it is faster to remove any extra columns after binding
+    if (remove_partnership_var) {
+      slf <- dplyr::select(slf, -hscp2018)
+    }
+    if (remove_recid_var) {
+      slf <- dplyr::select(slf, -recid)
+    }
 
     return(slf)
   }
