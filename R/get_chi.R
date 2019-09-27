@@ -8,8 +8,9 @@
 #' @export
 #'
 #' @examples
-#' get_chi(data)
-#' get_chi(data, drop = FALSE)
+#' slf_1718 <- read_slf("1718", "episode")
+#' get_chi(slf_1718)
+#' get_chi(slf_1718, drop = FALSE)
 get_chi <- function(tibb, anon_chi_var = "anon_chi", drop = TRUE) {
   default_name <- "anon_chi"
 

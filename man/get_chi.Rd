@@ -20,6 +20,7 @@ a tibble
 Match on CHI numbers to a dataset using anon_chi
 }
 \examples{
-get_chi(data)
-get_chi(data, drop = FALSE)
+slf_1718 <- read_slf("1718", "episode")
+get_chi(slf_1718)
+get_chi(slf_1718, drop = FALSE)
 }
