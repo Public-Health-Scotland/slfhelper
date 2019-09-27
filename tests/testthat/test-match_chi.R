@@ -25,7 +25,7 @@ test_that("Match CHI to episode file", {
   ep_1718_small <- read_slf_episode("1718",
     columns = c("anon_chi"),
     from = 100000,
-    to = 101000
+    to = 100100
   )
   # Match on the chi
   ep_1718_with_CHI <- ep_1718_small %>% get_chi()
