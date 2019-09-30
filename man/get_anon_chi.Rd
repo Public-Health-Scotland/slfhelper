@@ -20,7 +20,7 @@ a tibble
 Match on anon_chi to a dataset using CHI numbers
 }
 \examples{
-get_anon_chi(data)
-get_anon_chi(data, drop = FALSE)
-get_anon_chi(data, chi_var = "unique_id")
+get_anon_chi(chi_cohort)
+get_anon_chi(chi_cohort, drop = FALSE)
+get_anon_chi(chi_cohort, chi_var = "upi_number")
 }
