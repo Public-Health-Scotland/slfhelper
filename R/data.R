@@ -19,3 +19,12 @@
 #' @docType data
 #' @keywords data
 "partnerships"
+
+#' A tibble containing an example cohort of CHI numbers under different variabkle
+#' names. It is used for testing and to illustrate examples. It is likely that
+#' many of the 'chi numbers' are not valid.
+#'
+#' @name chi_cohort
+#' @docType data
+#' @keywords data
+"chi_cohort"
