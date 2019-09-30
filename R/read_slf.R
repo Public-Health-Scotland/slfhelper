@@ -8,9 +8,6 @@
 #' @param ... other options to be passed to read_fst()
 #'
 #' @return a tibble
-#'
-#' @examples
-#' read_slf("1718", "episode")
 read_slf <-
   function(year, file_version, partnerships = NULL, recids = NULL, ...) {
 

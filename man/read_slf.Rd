@@ -24,6 +24,3 @@ a tibble
 \description{
 Read a Source Linkage File
 }
-\examples{
-read_slf("1718", "episode")
-}
