@@ -24,6 +24,7 @@ test_that("Can select multiple recids", {
     from = 1,
     to = 10000
   )
+
   # Should only have Edinburgh or Glasgow city codes
   expect_true(all(ep_1718_acute$recid %in% c("01B", "02B", "04B")))
   # Should be exactly 2 unique codes
@@ -50,4 +51,23 @@ test_that("Can still do filtering if variable is not selected", {
 
   # Should have at least 100 records (checks we're not getting an empty file)
   expect_gte(nrow(ep_1718_acute), 100)
+})
+
+test_that("Still reads all variables if just filtering", {
+  ep_1718_01B <- read_slf_episode("1718",
+                                   recids = "01B",
+                                   from = 1,
+                                   to = 1000
+  )
+
+
+  # Should only have Edinburgh codes
+  expect_true(all(ep_1718_01B$recid == "01B"))
+  # Should only be one unique code
+  expect_equal(length(unique(ep_1718_01B$recid)), 1)
+  # Should have at least 100 records (checks we're not getting an empty file)
+  expect_gte(nrow(ep_1718_01B), 10)
+  # Should have all variables
+  expect_length(ep_1718_01B, 215)
+
 })

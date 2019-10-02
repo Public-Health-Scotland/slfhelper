@@ -4,7 +4,7 @@ test_that("Partnership filtering works", {
     partnerships = "S37000012",
     columns = c("hscp2018"),
     from = 1,
-    to = 10000
+    to = 1000
   )
 
   # Should only have Edinburgh codes
@@ -12,7 +12,7 @@ test_that("Partnership filtering works", {
   # Should only be one unique code
   expect_equal(length(unique(indiv_1718_edinburgh$hscp2018)), 1)
   # Should have at least 100 records (checks we're not getting an empty file)
-  expect_gte(nrow(indiv_1718_edinburgh), 100)
+  expect_gte(nrow(indiv_1718_edinburgh), 10)
 })
 
 
@@ -51,4 +51,23 @@ test_that("Can still do filtering if variable is not selected", {
 
   # Should have at least 100 records (checks we're not getting an empty file)
   expect_gte(nrow(indiv_1718_edinburgh), 100)
+})
+
+
+test_that("Still reads all variables if just filtering", {
+  indiv_1718_edinburgh <- read_slf_individual("1718",
+                                              partnerships = "S37000012",
+                                              from = 1,
+                                              to = 1000
+  )
+
+  # Should only have Edinburgh codes
+  expect_true(all(indiv_1718_edinburgh$hscp2018 == "S37000012"))
+  # Should only be one unique code
+  expect_equal(length(unique(indiv_1718_edinburgh$hscp2018)), 1)
+  # Should have at least 100 records (checks we're not getting an empty file)
+  expect_gte(nrow(indiv_1718_edinburgh), 10)
+  # Should have all variables
+  expect_length(indiv_1718_edinburgh, 161)
+
 })

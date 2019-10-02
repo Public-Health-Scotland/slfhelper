@@ -38,7 +38,7 @@ read_slf <-
     # but the column wasn't selected we need to add it (and remove later)
     remove_partnership_var <- FALSE
     remove_recid_var <- FALSE
-    if ("columns" %in% names(optional_params)) {
+    if (!(is.null(optional_params$columns))) {
       if (!(is.null(partnerships)) & !("hscp2018" %in% optional_params$columns)) {
         optional_params$columns <- c(optional_params$columns, "hscp2018")
         remove_partnership_var <- TRUE
