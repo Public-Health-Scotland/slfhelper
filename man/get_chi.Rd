@@ -9,9 +9,11 @@ get_chi(tibb, anon_chi_var = "anon_chi", drop = TRUE)
 \arguments{
 \item{tibb}{tibble or data frame}
 
-\item{anon_chi_var}{Anon CHI variable: the name of the variable containing anonymised CHI (default is anon_chi)}
+\item{anon_chi_var}{Anon CHI variable: the name of the variable
+containing anonymised CHI (default is anon_chi)}
 
-\item{drop}{Optional boolean indicating whether the existing anon_ch_var should be dropped - default is TRUE}
+\item{drop}{Optional boolean indicating whether the existing anon_ch_var
+should be dropped - default is TRUE}
 }
 \value{
 a tibble

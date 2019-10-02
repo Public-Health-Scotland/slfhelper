@@ -3,7 +3,8 @@
 #' @param year Year of the file to be read, you can specify multiple years
 #'  which will then be returned as one file
 #' @param file_version Version of the file (individual / episode)
-#' @param partnerships Optional specify a partnership (hscp2018) or partnerships to select
+#' @param partnerships Optional specify a partnership (hscp2018) or
+#' partnerships to select
 #' @param recids Optional specify a recid or recids to select
 #' @param ... other options to be passed to read_fst()
 #'
@@ -39,11 +40,13 @@ read_slf <-
     remove_partnership_var <- FALSE
     remove_recid_var <- FALSE
     if (!(is.null(optional_params$columns))) {
-      if (!(is.null(partnerships)) & !("hscp2018" %in% optional_params$columns)) {
+      if (!(is.null(partnerships)) &
+        !("hscp2018" %in% optional_params$columns)) {
         optional_params$columns <- c(optional_params$columns, "hscp2018")
         remove_partnership_var <- TRUE
       }
-      if (!(is.null(recids)) & file_version == "episode" & !("recid" %in% optional_params$columns)) {
+      if (!(is.null(recids)) & file_version == "episode" &
+        !("recid" %in% optional_params$columns)) {
         optional_params$columns <- c(optional_params$columns, "recid")
         remove_recid_var <- TRUE
       }
@@ -133,7 +136,8 @@ read_slf <-
 #' @param year Year of the file to be read you can specify multiple years
 #' which will then be returned as one file
 #' @param columns Optional a vector of column names
-#' @param partnerships Optional specify a partnership (hscp2018) or partnerships to select
+#' @param partnerships Optional specify a partnership (hscp2018) or
+#' partnerships to select
 #' @param recids Optional specify a recid or recids to select
 #' @param ... other options to be passed to read_fst()
 #'
@@ -173,7 +177,8 @@ read_slf_episode <-
 #' @param year Year of the file to be read you can specify multiple years
 #'   which will then be returned as one file
 #' @param columns Optional a vector of column names
-#' @param partnerships Optional specify a partnership (hscp2018) or partnerships to select
+#' @param partnerships Optional specify a partnership (hscp2018) or
+#' partnerships to select
 #' @param ... other options to be passed to read_fst()
 #'
 #'

@@ -56,9 +56,9 @@ test_that("Can still do filtering if variable is not selected", {
 
 test_that("Still reads all variables if just filtering", {
   indiv_1718_edinburgh <- read_slf_individual("1718",
-                                              partnerships = "S37000012",
-                                              from = 1,
-                                              to = 1000
+    partnerships = "S37000012",
+    from = 1,
+    to = 1000
   )
 
   # Should only have Edinburgh codes
@@ -69,5 +69,4 @@ test_that("Still reads all variables if just filtering", {
   expect_gte(nrow(indiv_1718_edinburgh), 10)
   # Should have all variables
   expect_length(indiv_1718_edinburgh, 161)
-
 })

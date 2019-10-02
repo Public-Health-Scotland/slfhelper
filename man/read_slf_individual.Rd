@@ -12,7 +12,8 @@ which will then be returned as one file}
 
 \item{columns}{Optional a vector of column names}
 
-\item{partnerships}{Optional specify a partnership (hscp2018) or partnerships to select}
+\item{partnerships}{Optional specify a partnership (hscp2018) or
+partnerships to select}
 
 \item{...}{other options to be passed to read_fst()}
 }

@@ -9,7 +9,7 @@
 This package provides a few helper functions for working with the
     Source Linkage Files (SLFs). The functions are mainly focussed on making the 
     first steps of analysis easier. They can read in and filter the files in an efficient
-    way using minimal syntax. If you find a bug or have any ideas for new funtions
+    way using minimal syntax. If you find a bug or have any ideas for new functions
     or improvements get in touch or submit a pull request.
 }
 \seealso{

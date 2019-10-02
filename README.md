@@ -1,17 +1,19 @@
 # slfhelper
 
-The goal of slfhelper is to provide some easy to use functions which make working with the Source Linkage Files as painless and efficient as possible.
+The goal of slfhelper is to provide some easy to use functions which make 
+working with the Source Linkage Files as painless and efficient as possible.
 
 ## Installation
 
-You can install slf by using the [devtools package](https://devtools.r-lib.org/)  in R:
+You can install slfhelper by using the [devtools package](https://devtools.r-lib.org/)  in R:
 
 ``` r
 devtools::install_github("Moohan/slfhelper")
 ```
 
 Unless you jump through some hoops this may not work on the internal NSS network.
-However it should work on the [RStudio server](http://nssrstudio.csa.scot.nhs.uk/) which this package is designed to be ran on.
+However it should work on the [RStudio server](http://nssrstudio.csa.scot.nhs.uk/)
+which this package is designed to be ran on.
 
 ## Usage
 
@@ -33,8 +35,12 @@ episode_data <- read_slf_episode(c("1516", "1617", "1718", "1819"))
 indiv_1718 <- read_slf_individual("1718", columns = c("anon_chi", "hri_scot"))
 
 # Read only data for a certain partnership (HSCP_2018 code)
-# Currently only works for a single partnership
-indiv_1718 <- read_slf_individual("1718", partnership = "S37000001") # Aberdeen City
+# This can be a single partnership or multiple by supplying a vector e.g. c(...)
+indiv_1718 <- read_slf_individual("1718", partnerships = "S37000001") # Aberdeen City
+
+# Read only data for a certain recid
+# This can be a single recid or multiple by supplying a vector e.g. c(...)
+ep_1718 <- read_slf_episode("1718", recid = c("01B", "GLS"))
 ```
 All of the above options for reading files can be combined if required. 
 
