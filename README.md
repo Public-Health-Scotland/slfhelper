@@ -5,10 +5,10 @@ working with the Source Linkage Files as painless and efficient as possible.
 
 ## Installation
 
-You can install slfhelper by using the [devtools package](https://devtools.r-lib.org/)  in R:
+You can install slfhelper by using the [remotes package](https://remotes.r-lib.org/)  in R:
 
 ``` r
-devtools::install_github("Moohan/slfhelper")
+remotes::install_github("Moohan/slfhelper")
 ```
 
 Unless you jump through some hoops this may not work on the internal NSS network.
