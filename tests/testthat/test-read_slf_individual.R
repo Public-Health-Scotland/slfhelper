@@ -1,17 +1,19 @@
 test_that("Reads individual", {
-  # Read file, pick a year at random
-  year <- sample(c("1516", "1617", "1718", "1819"), 1)
-  indiv_file <- read_slf_individual(year, from = 1, to = 100)
+  # Read file, test all years
+  years <- c("1516", "1617", "1718", "1819")
+  for (year in years) {
+    indiv_file <- read_slf_individual(year, from = 1, to = 100)
 
-  # Test for anything odd
-  expect_type(indiv_file, "list")
-  expect_named(indiv_file)
+    # Test for anything odd
+    expect_type(indiv_file, "list")
+    expect_named(indiv_file)
 
-  # Test for correct number of variables (will need updating)
-  expect_length(indiv_file, 162)
+    # Test for correct number of variables (will need updating)
+    expect_length(indiv_file, 162)
 
-  # Test for roughly correct number of rows
-  expect_equal(nrow(indiv_file), 100)
+    # Test for roughly correct number of rows
+    expect_equal(nrow(indiv_file), 100)
+  }
 })
 
 test_that("column selection works", {
