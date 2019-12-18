@@ -68,5 +68,5 @@ test_that("Still reads all variables if just filtering", {
   # Should have at least 100 records (checks we're not getting an empty file)
   expect_gte(nrow(ep_1718_acute), 10)
   # Should have all variables
-  expect_length(ep_1718_acute, 215)
+  expect_gte(length(ep_1718_acute), 200)
 })
