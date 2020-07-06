@@ -8,7 +8,7 @@ test_that("Reads individual", {
   expect_named(indiv_file)
 
   # Test for correct number of variables (will need updating)
-  expect_length(indiv_file, 161)
+  expect_length(indiv_file, 171)
 
   # Test for roughly correct number of rows
   expect_equal(nrow(indiv_file), 100)
