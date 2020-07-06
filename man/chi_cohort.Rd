@@ -6,7 +6,9 @@
 \title{A tibble containing an example cohort of CHI numbers under different variabkle
 names. It is used for testing and to illustrate examples. It is likely that
 many of the 'chi numbers' are not valid.}
-\format{An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 100 rows and 2 columns.}
+\format{
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 100 rows and 2 columns.
+}
 \usage{
 chi_cohort
 }
