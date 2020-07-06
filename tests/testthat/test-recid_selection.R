@@ -4,7 +4,7 @@ test_that("Recid filtering works", {
     recids = "01B",
     columns = c("recid"),
     from = 1,
-    to = 10000
+    to = 100000
   )
 
   # Should only have Edinburgh codes
@@ -22,7 +22,7 @@ test_that("Can select multiple recids", {
     recids = c("01B", "02B", "04B"),
     columns = c("recid"),
     from = 1,
-    to = 10000
+    to = 100000
   )
   # Should only have Edinburgh or Glasgow city codes
   expect_true(all(ep_1718_acute$recid %in% c("01B", "02B", "04B")))
@@ -39,7 +39,7 @@ test_that("Can still do filtering if variable is not selected", {
     recids = "01B",
     columns = c("sparra_end_fy"),
     from = 1,
-    to = 10000
+    to = 100000
   )
 
   # We shouldn't have the partnership variable
