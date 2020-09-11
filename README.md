@@ -8,11 +8,12 @@ working with the Source Linkage Files as painless and efficient as possible.
 You can install slfhelper by using the [remotes package](https://remotes.r-lib.org/)  in R:
 
 ``` r
-remotes::install_github("Moohan/slfhelper")
+install.packages("remotes")
+remotes::install_github("Public-Health-Scotland/slfhelper")
 ```
 
 Unless you jump through some hoops this may not work on the internal NSS network.
-However it should work on the [RStudio server](http://nssrstudio.csa.scot.nhs.uk/)
+However it should work on the [RStudio server](https://rstudio.nhsnss.scot.nhs.uk/)
 which this package is designed to be ran on.
 
 ## Usage
