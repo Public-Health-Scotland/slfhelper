@@ -5,7 +5,9 @@
 \alias{partnerships}
 \title{A tibble containing the names and codes (2018 configuration) of parterships
 to be used with the partnership parameter when reading files}
-\format{An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 31 rows and 2 columns.}
+\format{
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 31 rows and 2 columns.
+}
 \usage{
 partnerships
 }

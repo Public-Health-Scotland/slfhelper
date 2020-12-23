@@ -4,7 +4,9 @@
 \name{ep_file_vars}
 \alias{ep_file_vars}
 \title{Names of variables in the episode files}
-\format{An object of class \code{list} of length 223.}
+\format{
+An object of class \code{list} of length 234.
+}
 \usage{
 ep_file_vars
 }

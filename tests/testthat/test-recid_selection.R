@@ -3,8 +3,8 @@ test_that("Recid filtering works", {
   ep_1718_acute <- read_slf_episode("1718",
     recids = "01B",
     columns = c("recid"),
-    from = 1,
-    to = 10000
+    from = 1000,
+    to = 100000
   )
 
   # Should only have Edinburgh codes
@@ -21,8 +21,8 @@ test_that("Can select multiple recids", {
   ep_1718_acute <- read_slf_episode("1718",
     recids = c("01B", "02B", "04B"),
     columns = c("recid"),
-    from = 1,
-    to = 10000
+    from = 1000,
+    to = 100000
   )
 
   # Should only have Edinburgh or Glasgow city codes
@@ -39,8 +39,8 @@ test_that("Can still do filtering if variable is not selected", {
   ep_1718_acute <- read_slf_episode("1718",
     recids = "01B",
     columns = c("sparra_end_fy"),
-    from = 1,
-    to = 10000
+    from = 1000,
+    to = 100000
   )
 
   # We shouldn't have the partnership variable
@@ -56,17 +56,16 @@ test_that("Can still do filtering if variable is not selected", {
 test_that("Still reads all variables if just filtering", {
   ep_1718_acute <- read_slf_episode("1718",
     recids = "01B",
-    from = 1,
-    to = 1000
+    from = 1000,
+    to = 100000
   )
-
 
   # Should only have Edinburgh codes
   expect_true(all(ep_1718_acute$recid == "01B"))
   # Should only be one unique code
   expect_equal(length(unique(ep_1718_acute$recid)), 1)
   # Should have at least 100 records (checks we're not getting an empty file)
-  expect_gte(nrow(ep_1718_acute), 10)
+  expect_gte(nrow(ep_1718_acute), 100)
   # Should have all variables
   expect_gte(length(ep_1718_acute), 200)
 })
