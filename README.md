@@ -1,3 +1,8 @@
+  <!-- badges: start -->
+  [![Codecov test coverage](https://codecov.io/gh/Public-Health-Scotland/slfhelper/branch/master/graph/badge.svg)](https://codecov.io/gh/Public-Health-Scotland/slfhelper?branch=master)
+  <!-- badges: end -->
+
+
 # slfhelper
 
 The goal of slfhelper is to provide some easy to use functions which make 
