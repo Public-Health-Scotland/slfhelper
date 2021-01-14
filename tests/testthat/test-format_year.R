@@ -10,3 +10,8 @@ test_that("Year formats correctly", {
   # Need to add more and develop the function to deal with them
   # Deal with FY as a year e.g. 2017
 })
+
+check_formatted_year <- function(year) {format_year(year) %>% check_year()}
+test_that("Year check rejects clearly erronous years", {
+  expect_false(check_formatted_year("twenty-twenty"))
+})
