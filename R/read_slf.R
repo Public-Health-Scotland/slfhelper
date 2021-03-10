@@ -148,11 +148,14 @@ read_slf <-
 #' @examples
 #' read_slf_episode("1718",
 #'   columns = c("anon_chi", "dob", "demographic_cohort"),
-#'   from = 100000, to = 200000
+#'   from = 100000,
+#'   to = 101000
 #' )
 #'
-#' read_slf_episode(c("1516", "1617", "1718", "1819"),
-#'   columns = c("anon_chi", "dob", "demographic_cohort")
+#' read_slf_episode(c("1718", "1819"),
+#'   columns = c("anon_chi", "dob", "demographic_cohort"),
+#'   from = 100000,
+#'   to = 101000
 #' )
 read_slf_episode <-
   function(year, columns = NULL, partnerships = NULL, recids = NULL, ...) {
@@ -187,10 +190,12 @@ read_slf_episode <-
 #' @examples
 #' read_slf_individual("1718",
 #'   columns = c("anon_chi", "dob", "hri_scot"),
-#'   from = 100000, to = 200000
+#'   from = 100000, to = 101000
 #' )
-#' read_slf_individual(c("1516", "1617", "1718", "1819"),
-#'   columns = c("anon_chi", "dob", "hri_scot")
+#' read_slf_individual(c("1718", "1819"),
+#'   columns = c("anon_chi", "dob", "hri_scot"),
+#'   from = 100000,
+#'   to = 101000
 #' )
 read_slf_individual <-
   function(year, columns = NULL, partnerships = NULL, ...) {

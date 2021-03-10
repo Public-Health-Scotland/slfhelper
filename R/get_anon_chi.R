@@ -10,9 +10,8 @@
 #' @export
 #'
 #' @examples
-#' get_anon_chi(chi_cohort)
-#' get_anon_chi(chi_cohort, drop = FALSE)
-#' get_anon_chi(chi_cohort, chi_var = "upi_number")
+#' chi_cohort %>% get_anon_chi()
+#' chi_cohort %>% get_anon_chi(chi_var = "upi_number")
 get_anon_chi <- function(tibb, chi_var = "chi", drop = TRUE) {
   default_name <- "chi"
 
