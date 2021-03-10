@@ -24,7 +24,6 @@ a tibble
 Read a Source Linkage individual file
 }
 \examples{
-read_slf_individual("1718")
 read_slf_individual("1718",
   columns = c("anon_chi", "dob", "hri_scot"),
   from = 100000, to = 200000
