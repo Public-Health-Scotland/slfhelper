@@ -19,6 +19,7 @@ Imports:
     stringr (>= 1.2.0),
     magrittr (>= 1.5),
     purrr (>= 0.3.3),
+    rlang,
     stats
 Roxygen: list(markdown = TRUE, roclets = c("collate","namespace", "rd", "vignette" ))
 RoxygenNote: 7.1.1
