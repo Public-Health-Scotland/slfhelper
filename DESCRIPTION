@@ -1,9 +1,9 @@
 Package: slfhelper
 Type: Package
 Title: Useful functions for working with the Source Linkage Files
-Version: 0.5.0
-Author: James McMahon <j.mcmahon1@nhs.net>
-Maintainer: James McMahon <j.mcmahon1@nhs.net>
+Version: 0.5.1
+Author: James McMahon <james.mcmahon@phs.scot>
+Maintainer: James McMahon <james.mcmahon@phs.scot>
 Description: This package provides a few helper functions for working with the
     Source Linkage Files (SLFs). The functions are mainly focussed on making the 
     first steps of analysis easier. They can read in and filter the files in an efficient
@@ -19,13 +19,17 @@ Imports:
     stringr (>= 1.2.0),
     magrittr (>= 1.5),
     purrr (>= 0.3.3),
-    stats
+    rlang,
+    stats,
+    tibble
 Roxygen: list(markdown = TRUE, roclets = c("collate","namespace", "rd", "vignette" ))
 RoxygenNote: 7.1.1
 URL: https://github.com/Public-Health-Scotland/slfhelper
 BugReports: https://github.com/Public-Health-Scotland/slfhelper/issues
 Suggests: 
-    testthat (>= 2.3.1),
+    testthat (>= 3.0.0),
     covr,
     spelling
 Language: en-GB
+Config/testthat/edition: 3
+Config/testthat/parallel: true

@@ -15,8 +15,8 @@ This package provides a few helper functions for working with the
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/Moohan/slfhelper}
-  \item Report bugs at \url{https://github.com/Moohan/slfhelper/issues}
+  \item \url{https://github.com/Public-Health-Scotland/slfhelper}
+  \item Report bugs at \url{https://github.com/Public-Health-Scotland/slfhelper/issues}
 }
 
 }
