@@ -22,7 +22,7 @@ check_year <- function(year) {
 
   check <- FALSE
 
-  if (!stringr::str_detect(year, "^\\d{2}\\d{2}$")) {
+  if (!stringr::str_detect(year, "^\\d{2}\\d{2}$") | is.na(year)) {
     stop("An incorrect year was supplied\\n years should be supplied in the short financial year format e.g. '1718'")
   } else if (as.integer(substring(year, 1, 2)) + 1 != as.integer(substring(year, 3, 4))) {
     stop("An ambiguous year was supplied\\n years should be supplied in the short financial year format e.g. '1718'")
