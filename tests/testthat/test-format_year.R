@@ -12,6 +12,14 @@ test_that("Year formats correctly", {
 })
 
 check_formatted_year <- function(year) {format_year(year) %>% check_year()}
+test_that("Year check returns true for correct years", {
+  expect_true(check_formatted_year("1718"))
+})
+
 test_that("Year check rejects clearly erronous years", {
-  expect_false(check_formatted_year("twenty-twenty"))
+  expect_snapshot_error(check_formatted_year("twenty-twenty"))
+})
+
+test_that("Year check rejects ambiguous years", {
+  expect_snapshot_error(check_formatted_year("2017"))
 })
