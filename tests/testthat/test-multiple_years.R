@@ -18,7 +18,7 @@ test_that("read multiple years works", {
 
   # Test that we have 50 rows from each year
   expect_equal(
-    dplyr::count(indiv, year) %>% tibble::as_tibble(),
-    dplyr::tibble(year = c("1718", "1819"), n = c(50L, 50L))
+    dplyr::count(indiv, year),
+    data.frame(year = c("1718", "1819"), n = c(50L, 50L), stringsAsFactors = F)
   )
 })

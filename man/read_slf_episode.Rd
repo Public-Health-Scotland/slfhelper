@@ -12,7 +12,8 @@ which will then be returned as one file}
 
 \item{columns}{Optional a vector of column names}
 
-\item{partnerships}{Optional specify a partnership (hscp2018) or partnerships to select}
+\item{partnerships}{Optional specify a partnership (hscp2018) or
+partnerships to select}
 
 \item{recids}{Optional specify a recid or recids to select}
 
@@ -25,13 +26,15 @@ a tibble
 Read a Source Linkage episode file
 }
 \examples{
-read_slf_episode("1718")
 read_slf_episode("1718",
   columns = c("anon_chi", "dob", "demographic_cohort"),
-  from = 100000, to = 200000
+  from = 100000,
+  to = 101000
 )
 
-read_slf_episode(c("1516", "1617", "1718", "1819"),
-  columns = c("anon_chi", "dob", "demographic_cohort")
+read_slf_episode(c("1718", "1819"),
+  columns = c("anon_chi", "dob", "demographic_cohort"),
+  from = 100000,
+  to = 101000
 )
 }

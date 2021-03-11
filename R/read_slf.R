@@ -3,11 +3,13 @@
 #' @param year Year of the file to be read, you can specify multiple years
 #'  which will then be returned as one file
 #' @param file_version Version of the file (individual / episode)
-#' @param partnerships Optional specify a partnership (hscp2018) or partnerships to select
+#' @param partnerships Optional specify a partnership (hscp2018) or
+#' partnerships to select
 #' @param recids Optional specify a recid or recids to select
 #' @param ... other options to be passed to read_fst()
 #'
 #' @return a tibble
+#' @importFrom rlang .data
 read_slf <-
   function(year, file_version, partnerships = NULL, recids = NULL, ...) {
 
@@ -38,12 +40,14 @@ read_slf <-
     # but the column wasn't selected we need to add it (and remove later)
     remove_partnership_var <- FALSE
     remove_recid_var <- FALSE
-    if ("columns" %in% names(optional_params)) {
-      if (!(is.null(partnerships)) & !("hscp2018" %in% optional_params$columns)) {
+    if (!(is.null(optional_params$columns))) {
+      if (!(is.null(partnerships)) &
+        !("hscp2018" %in% optional_params$columns)) {
         optional_params$columns <- c(optional_params$columns, "hscp2018")
         remove_partnership_var <- TRUE
       }
-      if (!(is.null(recids)) & file_version == "episode" & !("recid" %in% optional_params$columns)) {
+      if (!(is.null(recids)) & file_version == "episode" &
+        !("recid" %in% optional_params$columns)) {
         optional_params$columns <- c(optional_params$columns, "recid")
         remove_recid_var <- TRUE
       }
@@ -72,14 +76,14 @@ read_slf <-
 
     # Define a function for filtering to a list of partnerships
     filter_partnership <- function(tibb, partnerships) {
-      tibb <- tibb %>% dplyr::filter(hscp2018 %in% partnerships)
+      tibb <- tibb %>% dplyr::filter(.data$hscp2018 %in% partnerships)
 
       return(tibb)
     }
 
     # Define a function for filtering to a list of recids
     filter_recid <- function(tibb, recids) {
-      tibb <- tibb %>% dplyr::filter(recid %in% recids)
+      tibb <- tibb %>% dplyr::filter(.data$recid %in% recids)
 
       return(tibb)
     }
@@ -119,10 +123,10 @@ read_slf <-
 
     # With testing it is faster to remove any extra columns after binding
     if (remove_partnership_var) {
-      slf <- dplyr::select(slf, -hscp2018)
+      slf <- dplyr::select(slf, -.data$hscp2018)
     }
     if (remove_recid_var) {
-      slf <- dplyr::select(slf, -recid)
+      slf <- dplyr::select(slf, -.data$recid)
     }
 
     return(slf)
@@ -133,7 +137,8 @@ read_slf <-
 #' @param year Year of the file to be read you can specify multiple years
 #' which will then be returned as one file
 #' @param columns Optional a vector of column names
-#' @param partnerships Optional specify a partnership (hscp2018) or partnerships to select
+#' @param partnerships Optional specify a partnership (hscp2018) or
+#' partnerships to select
 #' @param recids Optional specify a recid or recids to select
 #' @param ... other options to be passed to read_fst()
 #'
@@ -142,14 +147,16 @@ read_slf <-
 #' @export
 #'
 #' @examples
-#' read_slf_episode("1718")
 #' read_slf_episode("1718",
 #'   columns = c("anon_chi", "dob", "demographic_cohort"),
-#'   from = 100000, to = 200000
+#'   from = 100000,
+#'   to = 101000
 #' )
 #'
-#' read_slf_episode(c("1516", "1617", "1718", "1819"),
-#'   columns = c("anon_chi", "dob", "demographic_cohort")
+#' read_slf_episode(c("1718", "1819"),
+#'   columns = c("anon_chi", "dob", "demographic_cohort"),
+#'   from = 100000,
+#'   to = 101000
 #' )
 read_slf_episode <-
   function(year, columns = NULL, partnerships = NULL, recids = NULL, ...) {
@@ -173,7 +180,8 @@ read_slf_episode <-
 #' @param year Year of the file to be read you can specify multiple years
 #'   which will then be returned as one file
 #' @param columns Optional a vector of column names
-#' @param partnerships Optional specify a partnership (hscp2018) or partnerships to select
+#' @param partnerships Optional specify a partnership (hscp2018) or
+#' partnerships to select
 #' @param ... other options to be passed to read_fst()
 #'
 #'
@@ -181,13 +189,14 @@ read_slf_episode <-
 #' @export
 #'
 #' @examples
-#' read_slf_individual("1718")
 #' read_slf_individual("1718",
 #'   columns = c("anon_chi", "dob", "hri_scot"),
-#'   from = 100000, to = 200000
+#'   from = 100000, to = 101000
 #' )
-#' read_slf_individual(c("1516", "1617", "1718", "1819"),
-#'   columns = c("anon_chi", "dob", "hri_scot")
+#' read_slf_individual(c("1718", "1819"),
+#'   columns = c("anon_chi", "dob", "hri_scot"),
+#'   from = 100000,
+#'   to = 101000
 #' )
 read_slf_individual <-
   function(year, columns = NULL, partnerships = NULL, ...) {

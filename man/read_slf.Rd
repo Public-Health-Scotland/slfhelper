@@ -12,7 +12,8 @@ which will then be returned as one file}
 
 \item{file_version}{Version of the file (individual / episode)}
 
-\item{partnerships}{Optional specify a partnership (hscp2018) or partnerships to select}
+\item{partnerships}{Optional specify a partnership (hscp2018) or
+partnerships to select}
 
 \item{recids}{Optional specify a recid or recids to select}
 

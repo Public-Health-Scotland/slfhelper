@@ -1,8 +1,10 @@
 #' Match on CHI numbers to a dataset using anon_chi
 #'
 #' @param tibb tibble or data frame
-#' @param anon_chi_var Anon CHI variable: the name of the variable containing anonymised CHI (default is anon_chi)
-#' @param drop Optional boolean indicating whether the existing anon_ch_var should be dropped - default is TRUE
+#' @param anon_chi_var Anon CHI variable: the name of the variable
+#' containing anonymised CHI (default is anon_chi)
+#' @param drop Optional boolean indicating whether the existing anon_ch_var
+#' should be dropped - default is TRUE
 #'
 #' @return a tibble
 #' @export
