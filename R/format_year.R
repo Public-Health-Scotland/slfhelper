@@ -22,17 +22,20 @@ check_year <- function(year) {
 
   check <- FALSE
 
-  if (!stringr::str_detect(year, "^\\d{2}\\d{2}$") | is.na(year)) {
-    stop("An incorrect year was supplied\\n years should be supplied in the short financial year format e.g. '1718'")
-  } else if (as.integer(substring(year, 1, 2)) + 1 != as.integer(substring(year, 3, 4))) {
-    stop("An ambiguous year was supplied\\n years should be supplied in the short financial year format e.g. '1718'")
+  formatted_year <- format_year(year)
+
+  if (!stringr::str_detect(formatted_year, "^\\d{2}\\d{2}$") | is.na(formatted_year)) {
+    stop(stringr::str_glue("Invalid year:'{year}' was supplied.\\n Years should be supplied in the short financial year format e.g. '1718'"))
+  } else if (as.integer(substring(formatted_year, 1, 2)) + 1 != as.integer(substring(formatted_year, 3, 4))) {
+    stop(stringr::str_glue("Ambiguous year:'{year}' was supplied.\\n Years should be supplied in the short financial year format e.g. '1718'"))
+  } else if (formatted_year < min_year) {
+    stop(stringr::str_glue("Invalid year:'{year}' was supplied. \\nThe oldest file available is 20{min_year}."))
   }
 
 
   check <- dplyr::case_when(
-    year >= min_year ~ TRUE,
-    TRUE ~ FALSE
-  )
+    formatted_year >= min_full_years ~ TRUE,
+    formatted_year >= min_year ~ FALSE)
 
 
   return(check)
