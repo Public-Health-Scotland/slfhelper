@@ -16,7 +16,6 @@ format_year <- function(year) {
 #'
 #' @return TRUE if pass otherwise an error message
 check_year <- function(year) {
-
   min_full_years <- "1415"
   min_year <- "1213"
 
@@ -24,12 +23,34 @@ check_year <- function(year) {
 
   formatted_year <- format_year(year)
 
-  if (!stringr::str_detect(formatted_year, "^\\d{2}\\d{2}$") | is.na(formatted_year)) {
-    stop(stringr::str_glue("Invalid year:'{year}' was supplied.\\n Years should be supplied in the short financial year format e.g. '1718'"))
-  } else if (as.integer(substring(formatted_year, 1, 2)) + 1 != as.integer(substring(formatted_year, 3, 4))) {
-    stop(stringr::str_glue("Ambiguous year:'{year}' was supplied.\\n Years should be supplied in the short financial year format e.g. '1718'"))
+  if (!stringr::str_detect(
+    formatted_year,
+    "^\\d{2}\\d{2}$"
+  ) |
+    is.na(formatted_year)) {
+    stop(
+      stringr::str_glue(
+        "Invalid year:'{year}' was supplied.
+        \\n Years should be supplied in the short financial year format
+        e.g. '1718'"
+      )
+    )
+  } else if (as.integer(substring(formatted_year, 1, 2)) + 1
+  != as.integer(substring(formatted_year, 3, 4))) {
+    stop(
+      stringr::str_glue(
+        "Ambiguous year:'{year}' was supplied.
+        \\n Years should be supplied in the short financial year format
+        e.g. '1718'"
+      )
+    )
   } else if (formatted_year < min_year) {
-    stop(stringr::str_glue("Invalid year:'{year}' was supplied. \\nThe oldest file available is 20{min_year}."))
+    stop(
+      stringr::str_glue(
+        "Invalid year:'{year}' was supplied.
+        \\nThe oldest file available is 20{min_year}."
+      )
+    )
   }
 
 
