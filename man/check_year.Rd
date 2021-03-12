@@ -7,10 +7,12 @@
 check_year(year)
 }
 \arguments{
-\item{year}{A year in the short FY format use \code{format_year()}}
+\item{year}{A year in any format.
+It will be converted to short FY using \code{format_year()}}
 }
 \value{
-TRUE if pass otherwise an error message
+\code{TRUE} if the year is valid and a newer year, \code{FALSE} for any
+older but still valid years. Otherwise throws an error.
 }
 \description{
 Check the year(s) supplied are valid

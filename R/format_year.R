@@ -1,9 +1,8 @@
-#' Format a year into the correct FY format
+#' Format a year into the correct short FY format
 #'
 #' @param year Year in any format
 #'
-#' @return Year correctly formatted as "CCYY"
-#'
+#' @return Year correctly formatted into short FY e.g. '1718'
 format_year <- function(year) {
   year <- stringr::str_remove(year, "/")
   year <- stringr::str_extract(as.character(year), "\\d{2}\\d{2}$")
@@ -12,9 +11,11 @@ format_year <- function(year) {
 
 #' Check the year(s) supplied are valid
 #'
-#' @param year A year in the short FY format use `format_year()`
+#' @param year A year in any format.
+#' It will be converted to short FY using `format_year()`
 #'
-#' @return TRUE if pass otherwise an error message
+#' @return `TRUE` if the year is valid and a newer year, `FALSE` for any
+#' older but still valid years. Otherwise throws an error.
 check_year <- function(year) {
   min_full_years <- "1415"
   min_year <- "1213"
@@ -56,9 +57,9 @@ check_year <- function(year) {
 
   check <- dplyr::case_when(
     formatted_year >= min_full_years ~ TRUE,
-    formatted_year >= min_year ~ FALSE)
+    formatted_year >= min_year ~ FALSE
+  )
 
 
   return(check)
 }
-
