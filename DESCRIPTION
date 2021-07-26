@@ -2,7 +2,7 @@ Package: slfhelper
 Type: Package
 Title: Useful functions for working with the Source Linkage Files
 Version: 0.5.2
-Authors@R: person("James", "McMahon", email = "james.mcmahon@phs.scot", role = c("cre", "aut")))
+Authors@R: person("James", "McMahon", email = "james.mcmahon@phs.scot", role = c("cre", "aut"))
 Description: This package provides a few helper functions for working with the
     Source Linkage Files (SLFs). The functions are mainly focussed on making the 
     first steps of analysis easier. They can read in and filter the files in an efficient
