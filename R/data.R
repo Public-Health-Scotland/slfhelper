@@ -12,7 +12,7 @@
 #' @keywords data
 "indiv_file_vars"
 
-#' A tibble containing the names and codes (2018 configuration) of parterships
+#' A tibble containing the names and codes (2018 configuration) of partnerships
 #' to be used with the partnership parameter when reading files
 #'
 #' @name partnerships

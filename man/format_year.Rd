@@ -2,7 +2,7 @@
 % Please edit documentation in R/format_year.R
 \name{format_year}
 \alias{format_year}
-\title{Format a year into the correct FY format}
+\title{Format a year into the correct short FY format}
 \usage{
 format_year(year)
 }
@@ -10,8 +10,8 @@ format_year(year)
 \item{year}{Year in any format}
 }
 \value{
-Year correctly formatted as "CCYY"
+Year correctly formatted into short FY e.g. '1718'
 }
 \description{
-Format a year into the correct FY format
+Format a year into the correct short FY format
 }
