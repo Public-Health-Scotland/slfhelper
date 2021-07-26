@@ -3,7 +3,7 @@
 \docType{data}
 \name{partnerships}
 \alias{partnerships}
-\title{A tibble containing the names and codes (2018 configuration) of parterships
+\title{A tibble containing the names and codes (2018 configuration) of partnerships
 to be used with the partnership parameter when reading files}
 \format{
 An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 31 rows and 2 columns.
@@ -12,7 +12,7 @@ An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) w
 partnerships
 }
 \description{
-A tibble containing the names and codes (2018 configuration) of parterships
+A tibble containing the names and codes (2018 configuration) of partnerships
 to be used with the partnership parameter when reading files
 }
 \keyword{data}

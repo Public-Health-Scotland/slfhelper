@@ -12,7 +12,7 @@ get_anon_chi(tibb, chi_var = "chi", drop = TRUE)
 \item{chi_var}{CHI variable: the name of the variable containing CHI
 (default is chi)}
 
-\item{drop}{Optional boolean indicating whether the existing chi_var
+\item{drop}{Optional boolean indicating whether the existing \code{chi_var}
 should be dropped - default is TRUE}
 }
 \value{
