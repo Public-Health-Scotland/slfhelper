@@ -1,9 +1,9 @@
 Package: slfhelper
 Type: Package
 Title: Useful functions for working with the Source Linkage Files
-Version: 0.5.1
 Author: James McMahon <james.mcmahon@phs.scot>
 Maintainer: James McMahon <james.mcmahon@phs.scot>
+Version: 0.5.2
 Description: This package provides a few helper functions for working with the
     Source Linkage Files (SLFs). The functions are mainly focussed on making the 
     first steps of analysis easier. They can read in and filter the files in an efficient
