@@ -20,4 +20,8 @@ Useful links:
 }
 
 }
+\author{
+\strong{Maintainer}: James McMahon \email{james.mcmahon@phs.scot}
+
+}
 \keyword{internal}
