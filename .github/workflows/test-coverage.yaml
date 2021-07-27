@@ -1,12 +1,12 @@
 on:
   push:
     branches:
-      - main
-      - master
+      - production
+      - development
   pull_request:
     branches:
-      - main
-      - master
+      - production
+      - development
 
 name: test-coverage
 
