@@ -24,11 +24,8 @@ test_that("Can select multiple recids", {
     from = 1000,
     to = 100000
   )
-
-  # Should only have Edinburgh or Glasgow city codes
-  expect_true(all(ep_1718_acute$recid %in% c("01B", "02B", "04B")))
-  # Should be exactly 2 unique codes
-  expect_equal(length(unique(ep_1718_acute$recid)), 3)
+  # Should only have SMRA 1, 2 and 4
+  expect_equal(sort(unique(ep_1718_acute$recid)), c("01B", "02B", "04B"))
   # Should have at least 100 records (checks we're not getting an empty file)
   expect_gte(nrow(ep_1718_acute), 100)
 })
@@ -43,11 +40,11 @@ test_that("Can still do filtering if variable is not selected", {
     to = 100000
   )
 
-  # We shouldn't have the partnership variable
+  # We shouldn't have the recid variable
   expect_false("recid" %in% names(ep_1718_acute))
 
   # Should still have the variables we picked
-  expect_true("sparra_end_fy" %in% names(ep_1718_acute))
+  expect_equal(names(ep_1718_acute), "sparra_end_fy")
 
   # Should have at least 100 records (checks we're not getting an empty file)
   expect_gte(nrow(ep_1718_acute), 100)
