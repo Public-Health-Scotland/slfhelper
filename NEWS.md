@@ -1,4 +1,6 @@
-# slfhelper (development version)
+# slfhelper 0.6.0
+
+* Fix bug with selecting partnerships/recids when also selecting multiple years (#13) (#14)
 
 # slfhelper 0.5.3
 
