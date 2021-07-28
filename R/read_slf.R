@@ -74,47 +74,23 @@ read_slf <-
     # Pass the list of parameters to fst::read_fst through purrr
     slfs_list <- purrr::pmap(param_list, fst::read_fst)
 
-    # Define a function for filtering to a list of partnerships
-    filter_partnership <- function(tibb, partnerships) {
-      tibb <- tibb %>% dplyr::filter(.data$hscp2018 %in% partnerships)
 
-      return(tibb)
-    }
-
-    # Define a function for filtering to a list of recids
-    filter_recid <- function(tibb, recids) {
-      tibb <- tibb %>% dplyr::filter(.data$recid %in% recids)
-
-      return(tibb)
-    }
 
     # If a partnership is specified filter first;
     # With testing it seems to usually be faster if we do partnership
     # filtering before recid filtering
     if (!(is.null(partnerships))) {
-      partnerships <- as.list(rep(
-        partnerships,
-        num_files
-      ))
-
-      slfs_list <- purrr::map2(
+      slfs_list <- purrr::map(
         slfs_list,
-        partnerships,
-        filter_partnership
+        ~ dplyr::filter(.x, .x$hscp2018 %in% partnerships)
       )
     }
 
     # If a recid is specified filter now
     if (!(is.null(recids))) {
-      recids <- as.list(rep(
-        recids,
-        num_files
-      ))
-
-      slfs_list <- purrr::map2(
+      slfs_list <- purrr::map(
         slfs_list,
-        recids,
-        filter_recid
+        ~ dplyr::filter(.x, .x$recid %in% recids)
       )
     }
 
