@@ -32,13 +32,11 @@ install.packages("remotes")
 remotes::install_github("Public-Health-Scotland/slfhelper")
 ```
 
-Unless you jump through some hoops this may not work on the internal NSS network.
-However it should work on the [RStudio server](https://rstudio.nhsnss.scot.nhs.uk/)
-which this package is designed to be ran on.
-
 ## Usage
 
 ### Read a file
+
+**Note:** Reading a full file is quite slow, we would always recommend doing a column selection to only keep the variables which you need for your analysis. Just doing this will dramatically speed up the read-time.
 
 ```{r}
 library(slfhelper)
