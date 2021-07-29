@@ -27,7 +27,7 @@ working with the Source Linkage Files as painless and efficient as possible.
 
 You can install slfhelper by using the [remotes package](https://remotes.r-lib.org/) in R:
 
-```{r}
+```{r package_install}
 install.packages("remotes")
 remotes::install_github("Public-Health-Scotland/slfhelper")
 ```
@@ -38,7 +38,7 @@ remotes::install_github("Public-Health-Scotland/slfhelper")
 
 **Note:** Reading a full file is quite slow, we would always recommend doing a column selection to only keep the variables which you need for your analysis. Just doing this will dramatically speed up the read-time.
 
-```{r}
+```{r read_files}
 library(slfhelper)
 
 # Read a full file
@@ -66,7 +66,7 @@ All of the above options for reading files can be combined if required.
 
 There are a few data files included in the package which should be useful.
 
-```{r}
+```{r helper_data}
 # Get a list of the variables in a file
 slfhelper::ep_file_vars
 slfhelper::indiv_file_vars
@@ -78,7 +78,7 @@ hscp_lookup <- slfhelper::partnerships
 
 ### Match on CHI numbers to Anon_CHI (or vice versa)
 
-```{r}
+```{r chi_matching}
 library(slfhelper)
 
 # Add real CHI numbers to a SLF
