@@ -20,14 +20,13 @@ knitr::opts_chunk$set(
 
 # slfhelper
 
-The goal of slfhelper is to provide some easy to use functions which make 
-working with the Source Linkage Files as painless and efficient as possible.
+The goal of slfhelper is to provide some easy to use functions that make working with the Source Linkage Files as painless and efficient as possible.
 
 ## Installation
 
-You can install slfhelper by using the [remotes package](https://remotes.r-lib.org/) in R:
+You can install slfhelper from GitHub with the [remotes package](https://remotes.r-lib.org/).
 
-```{r}
+```{r package_install}
 install.packages("remotes")
 remotes::install_github("Public-Health-Scotland/slfhelper")
 ```
@@ -36,9 +35,9 @@ remotes::install_github("Public-Health-Scotland/slfhelper")
 
 ### Read a file
 
-**Note:** Reading a full file is quite slow, we would always recommend doing a column selection to only keep the variables which you need for your analysis. Just doing this will dramatically speed up the read-time.
+**Note:** Reading a full file is quite slow, we would always recommend doing a column selection to only keep the variables that you need for your analysis. Just doing this will dramatically speed up the read-time.
 
-```{r}
+```{r read_files}
 library(slfhelper)
 
 # Read a full file
@@ -49,7 +48,7 @@ indiv_1718 <- read_slf_individual("1718")
 # This will use dplyr::bind_rows() and return the files added together as a single tibble
 episode_data <- read_slf_episode(c("1516", "1617", "1718", "1819"))
 
-# Read certain variables 
+# Read certain variables
 # It's much faster to choose variables like this
 indiv_1718 <- read_slf_individual("1718", columns = c("anon_chi", "hri_scot"))
 
@@ -66,7 +65,7 @@ All of the above options for reading files can be combined if required.
 
 There are a few data files included in the package which should be useful.
 
-```{r}
+```{r helper_data}
 # Get a list of the variables in a file
 slfhelper::ep_file_vars
 slfhelper::indiv_file_vars
@@ -78,16 +77,17 @@ hscp_lookup <- slfhelper::partnerships
 
 ### Match on CHI numbers to Anon_CHI (or vice versa)
 
-```{r}
+```{r chi_matching}
 library(slfhelper)
 
 # Add real CHI numbers to a SLF
-ep_1718 <- read_slf_episode("1718") %>% get_chi()
+ep_1718 <- read_slf_individual(c("1718", "1819", "1920"),
+  columns = c("year", "anon_chi", "demographic_cohort")
+) %>%
+  get_chi()
 
 # Add anon_chi numbers to a cohort
 # Optionaly specifiy the name of the CHI variable
-cohort <- cohort %>% get_anon_chi(chi_var = "upi_number")
+cohort <- cohort %>% 
+  get_anon_chi(chi_var = "upi_number")
 ```
-
-
-
