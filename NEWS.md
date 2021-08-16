@@ -2,6 +2,7 @@
 
 * Add check for server and hscdiip access on package load.
 * Update variable lists.
+* Add a recid lookup for use with the `recid` filtering parameter.
 
 # slfhelper 0.6.0
 
