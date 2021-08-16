@@ -1,46 +1,45 @@
 get_variable_names <- function(type, year) {
   if (type == "episode") {
-    file_vars <- read_slf_episode(
+    variable_names <- read_slf_episode(
       year = year,
-      from = 1,
-      to = 1
+      from = 1L,
+      to = 1L
     ) %>%
       names() %>%
       as.list()
   } else if (type == "individual") {
-    file_vars <- read_slf_individual(
+    variable_names <- read_slf_individual(
       year = year,
-      from = 1,
-      to = 1
+      from = 1L,
+      to = 1L
     ) %>%
       names() %>%
       as.list()
   }
 
-  return(file_vars)
+  return(variable_names)
 }
 
-years <- c("1415", "1516", "1617", "1718", "1819", "1920", "2021")
 
 test_that("episode file vars match the vars list", {
+  # These should be identical (names, order etc.)
+  expect_setequal(get_variable_names("episode", "1415"), ep_file_vars)
+  expect_setequal(get_variable_names("episode", "1516"), ep_file_vars)
+  expect_setequal(get_variable_names("episode", "1617"), ep_file_vars)
+  expect_setequal(get_variable_names("episode", "1718"), ep_file_vars)
+  expect_setequal(get_variable_names("episode", "1819"), ep_file_vars)
+  expect_setequal(get_variable_names("episode", "1920"), ep_file_vars)
+  expect_setequal(get_variable_names("episode", "2021"), ep_file_vars)
 
-  # Get the list of episode file variables
-  data_vars <- ep_file_vars
-
-  for (year in years) {
-    # Compare the variables in the current episode files to the list
-    # These should be identical (names, order etc.)
-    expect_identical(data_vars, get_variable_names("episode", year))
-  }
 })
 
 test_that("individual file vars match the vars list", {
-  # Get the list of individual file variables
-  data_vars <- indiv_file_vars
-
-  for (year in years) {
-    # Compare the variables in the current episode files to the list
-    # These should be identical (names, order etc.)
-    expect_identical(data_vars, get_variable_names("individual", year))
-  }
+  # These should be identical (names, order etc.)
+  expect_setequal(get_variable_names("individual", "1415"), indiv_file_vars)
+  expect_setequal(get_variable_names("individual", "1516"), indiv_file_vars)
+  expect_setequal(get_variable_names("individual", "1617"), indiv_file_vars)
+  expect_setequal(get_variable_names("individual", "1718"), indiv_file_vars)
+  expect_setequal(get_variable_names("individual", "1819"), indiv_file_vars)
+  expect_setequal(get_variable_names("individual", "1920"), indiv_file_vars)
+  expect_setequal(get_variable_names("individual", "2021"), indiv_file_vars)
 })

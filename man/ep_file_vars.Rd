@@ -3,14 +3,15 @@
 \docType{data}
 \name{ep_file_vars}
 \alias{ep_file_vars}
-\title{Names of variables in the episode files}
+\title{Episode file variables}
 \format{
-An object of class \code{list} of length 234.
+An object of class \code{list} of length 238.
 }
 \usage{
 ep_file_vars
 }
 \description{
-Names of variables in the episode files
+The names of the variables in the episode files,
+in the correct order.
 }
 \keyword{data}

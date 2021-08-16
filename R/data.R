@@ -1,11 +1,17 @@
-#' Names of variables in the episode files
+#' Episode file variables
+#'
+#' The names of the variables in the episode files,
+#' in the correct order.
 #'
 #' @name ep_file_vars
 #' @docType data
 #' @keywords data
 "ep_file_vars"
 
-#' Names of variables in the individual files
+#' Individual file variables
+#'
+#' The names of the variables in the individual files,
+#' in the correct order.
 #'
 #' @name indiv_file_vars
 #' @docType data

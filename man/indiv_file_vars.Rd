@@ -3,14 +3,15 @@
 \docType{data}
 \name{indiv_file_vars}
 \alias{indiv_file_vars}
-\title{Names of variables in the individual files}
+\title{Individual file variables}
 \format{
-An object of class \code{list} of length 171.
+An object of class \code{list} of length 177.
 }
 \usage{
 indiv_file_vars
 }
 \description{
-Names of variables in the individual files
+The names of the variables in the individual files,
+in the correct order.
 }
 \keyword{data}
