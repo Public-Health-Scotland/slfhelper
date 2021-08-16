@@ -1,5 +1,7 @@
 # slfhelper (development version)
 
+* Add check for server and hscdiip access on package load.
+
 # slfhelper 0.6.0
 
 * Fix bug with selecting partnerships/recids when also selecting multiple years (#13) (#14)

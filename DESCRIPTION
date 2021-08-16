@@ -20,7 +20,8 @@ Imports:
     purrr (>= 0.3.3),
     rlang,
     stats,
-    tibble
+    tibble,
+    rstudioapi
 Roxygen: list(markdown = TRUE, roclets = c("collate","namespace", "rd", "vignette" ))
 RoxygenNote: 7.1.1
 URL: https://github.com/Public-Health-Scotland/slfhelper
