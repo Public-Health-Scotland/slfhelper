@@ -3,16 +3,19 @@
 \docType{data}
 \name{partnerships}
 \alias{partnerships}
-\title{A tibble containing the names and codes (2018 configuration) of partnerships
-to be used with the partnership parameter when reading files}
+\title{HSCP name / code lookup}
 \format{
-An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 31 rows and 2 columns.
+A \link[tibble:tibble-package]{tibble} with 31 rows and 2 variables:
+\describe{
+\item{partnership_name}{The offical name of the Partnership}
+\item{hscp2018}{The hscp2018 standard code S370000??}
+}
 }
 \usage{
 partnerships
 }
 \description{
-A tibble containing the names and codes (2018 configuration) of partnerships
-to be used with the partnership parameter when reading files
+A \link[tibble:tibble-package]{tibble} containing the names and codes (hscp2018 configuration) of partnerships.
+To be used with the \code{partnership} parameter when reading files.
 }
 \keyword{data}

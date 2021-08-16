@@ -18,9 +18,16 @@
 #' @keywords data
 "indiv_file_vars"
 
-#' A tibble containing the names and codes (2018 configuration) of partnerships
-#' to be used with the partnership parameter when reading files
+#' HSCP name / code lookup
 #'
+#' A [tibble][tibble::tibble-package] containing the names and codes (hscp2018 configuration) of partnerships.
+#' To be used with the \code{partnership} parameter when reading files.
+#'
+#' @format A [tibble][tibble::tibble-package] with 31 rows and 2 variables:
+#' \describe{
+#'   \item{partnership_name}{The official name of the Partnership}
+#'   \item{hscp2018}{The hscp2018 standard code S370000??}
+#' }
 #' @name partnerships
 #' @docType data
 #' @keywords data
