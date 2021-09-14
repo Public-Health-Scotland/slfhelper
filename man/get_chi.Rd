@@ -16,7 +16,7 @@ containing anonymised CHI (default is anon_chi)}
 should be dropped - default is TRUE}
 }
 \value{
-a tibble
+a \link[tibble:tibble-package]{tibble}
 }
 \description{
 Match on CHI numbers to a dataset using anon_chi

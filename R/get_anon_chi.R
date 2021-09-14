@@ -6,7 +6,7 @@
 #' @param drop Optional boolean indicating whether the existing `chi_var`
 #' should be dropped - default is TRUE
 #'
-#' @return a tibble
+#' @return a [tibble][tibble::tibble-package]
 #' @export
 #'
 #' @examples

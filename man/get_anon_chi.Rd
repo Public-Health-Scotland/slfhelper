@@ -16,7 +16,7 @@ get_anon_chi(tibb, chi_var = "chi", drop = TRUE)
 should be dropped - default is TRUE}
 }
 \value{
-a tibble
+a \link[tibble:tibble-package]{tibble}
 }
 \description{
 Match on anon_chi to a dataset using CHI numbers

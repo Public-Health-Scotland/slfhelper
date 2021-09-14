@@ -120,7 +120,13 @@
     <p>Read a Source Linkage File</p>
     </div>
 
-    <pre class="usage"><span class='fu'>read_slf</span><span class='op'>(</span><span class='va'>year</span>, <span class='va'>file_version</span>, partnerships <span class='op'>=</span> <span class='cn'>NULL</span>, recids <span class='op'>=</span> <span class='cn'>NULL</span>, <span class='va'>...</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>read_slf</span><span class='op'>(</span>
+  <span class='va'>year</span>,
+  file_version <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"episode"</span>, <span class='st'>"individual"</span><span class='op'>)</span>,
+  partnerships <span class='op'>=</span> <span class='cn'>NULL</span>,
+  recids <span class='op'>=</span> <span class='cn'>NULL</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -151,7 +157,7 @@ partnerships to select</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a tibble</p>
+    <p>a <a href='https://tibble.tidyverse.org/reference/tibble-package.html'>tibble</a></p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

@@ -4,7 +4,13 @@
 \alias{read_slf}
 \title{Read a Source Linkage File}
 \usage{
-read_slf(year, file_version, partnerships = NULL, recids = NULL, ...)
+read_slf(
+  year,
+  file_version = c("episode", "individual"),
+  partnerships = NULL,
+  recids = NULL,
+  ...
+)
 }
 \arguments{
 \item{year}{Year of the file to be read, you can specify multiple years
@@ -20,7 +26,7 @@ partnerships to select}
 \item{...}{other options to be passed to read_fst()}
 }
 \value{
-a tibble
+a \link[tibble:tibble-package]{tibble}
 }
 \description{
 Read a Source Linkage File

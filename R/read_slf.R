@@ -8,24 +8,12 @@
 #' @param recids Optional specify a recid or recids to select
 #' @param ... other options to be passed to read_fst()
 #'
-#' @return a tibble
+#' @return a [tibble][tibble::tibble-package]
 #' @importFrom rlang .data
 read_slf <-
-  function(year, file_version, partnerships = NULL, recids = NULL, ...) {
+  function(year, file_version = c("episode", "individual"), partnerships = NULL, recids = NULL, ...) {
 
-    # Clean up year
-    # We want it in the format 1718
-    # This will handle numbers or strings of the form 201718 or 1718
-    year <- format_year(year)
-
-    file_path <-
-      paste0(
-        "/conf/hscdiip/01-Source-linkage-files/source-",
-        file_version,
-        "-file-20",
-        year,
-        ".fst"
-      )
+    file_path <- gen_file_path(year, file_version)
 
     # Count how many files we are going to read
     num_files <- length(file_path)
@@ -119,7 +107,7 @@ read_slf <-
 #' @param ... other options to be passed to read_fst()
 #'
 #'
-#' @return a tibble
+#' @return a [tibble][tibble::tibble-package]
 #' @export
 #'
 #' @examples
@@ -163,7 +151,7 @@ read_slf_episode <-
 #' @param ... other options to be passed to read_fst()
 #'
 #'
-#' @return a tibble
+#' @return a [tibble][tibble::tibble-package]
 #' @export
 #'
 #' @examples
