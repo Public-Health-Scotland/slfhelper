@@ -123,6 +123,7 @@ read_slf <-
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' read_slf_episode("1718",
 #'   columns = c("anon_chi", "dob", "demographic_cohort"),
 #'   from = 100000,
@@ -134,6 +135,7 @@ read_slf <-
 #'   from = 100000,
 #'   to = 101000
 #' )
+#' }
 read_slf_episode <-
   function(year, columns = NULL, partnerships = NULL, recids = NULL, ...) {
     # TODO add option to drop blank CHIs?
@@ -165,6 +167,7 @@ read_slf_episode <-
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' read_slf_individual("1718",
 #'   columns = c("anon_chi", "dob", "hri_scot"),
 #'   from = 100000, to = 101000
@@ -174,6 +177,7 @@ read_slf_episode <-
 #'   from = 100000,
 #'   to = 101000
 #' )
+#' }
 read_slf_individual <-
   function(year, columns = NULL, partnerships = NULL, ...) {
     return(

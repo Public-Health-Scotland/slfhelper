@@ -22,7 +22,9 @@ a tibble
 Match on CHI numbers to a dataset using anon_chi
 }
 \examples{
+\dontrun{
 slf_1718 <- read_slf_individual("1718", from = 1, to = 100)
 get_chi(slf_1718)
 get_chi(slf_1718, drop = FALSE)
+}
 }

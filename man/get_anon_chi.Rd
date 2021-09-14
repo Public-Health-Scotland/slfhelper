@@ -22,6 +22,8 @@ a tibble
 Match on anon_chi to a dataset using CHI numbers
 }
 \examples{
+\dontrun{
 chi_cohort \%>\% get_anon_chi()
 chi_cohort \%>\% get_anon_chi(chi_var = "upi_number")
+}
 }
