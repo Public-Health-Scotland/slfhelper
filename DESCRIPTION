@@ -18,7 +18,7 @@ License: MIT + file LICENSE
 URL: https://github.com/Public-Health-Scotland/slfhelper
 BugReports: https://github.com/Public-Health-Scotland/slfhelper/issues
 Depends: 
-    R (>= 3.5.1)
+    R (>= 3.5)
 Imports: 
     dplyr (>= 1.0.0),
     fst (>= 0.9.0),
