@@ -7,7 +7,7 @@
 \format{
 A \link[tibble:tibble-package]{tibble} with 31 rows and 2 variables:
 \describe{
-\item{partnership_name}{The offical name of the Partnership}
+\item{partnership_name}{The official name of the Partnership}
 \item{hscp2018}{The hscp2018 standard code S370000??}
 }
 }
