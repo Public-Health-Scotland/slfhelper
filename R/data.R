@@ -20,7 +20,8 @@
 
 #' HSCP name / code lookup
 #'
-#' A [tibble][tibble::tibble-package] containing the names and codes (hscp2018 configuration) of partnerships.
+#' A [tibble][tibble::tibble-package]
+#' containing the names and codes (hscp2018 configuration) of partnerships.
 #' To be used with the \code{partnership} parameter when reading files.
 #'
 #' @format A [tibble][tibble::tibble-package] with 31 rows and 2 variables:
@@ -35,7 +36,8 @@
 
 #' Recid name / description lookup
 #'
-#' A [tibble][tibble::tibble-package] containing the names and description of the recids.
+#' A [tibble][tibble::tibble-package]
+#' containing the names and description of the recids.
 #' To be used with the \code{recid} parameter when reading the episode files.
 #'
 #' @format A [tibble][tibble::tibble-package] with 18 rows and 2 variables:

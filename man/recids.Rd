@@ -15,7 +15,8 @@ A \link[tibble:tibble-package]{tibble} with 18 rows and 2 variables:
 recids
 }
 \description{
-A \link[tibble:tibble-package]{tibble} containing the names and description of the recids.
+A \link[tibble:tibble-package]{tibble}
+containing the names and description of the recids.
 To be used with the \code{recid} parameter when reading the episode files.
 }
 \keyword{data}
