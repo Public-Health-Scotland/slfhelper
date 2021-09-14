@@ -146,35 +146,11 @@ should be dropped - default is TRUE</p></td>
     <p>a tibble</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>chi_cohort</span> <span class='op'>%&gt;%</span> <span class='fu'>get_anon_chi</span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 100 × 2</span>
-#&gt;    upi_number anon_chi
-#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   
-#&gt; <span style='color: #BCBCBC;'> 1</span> 1601657887 <span style='color: #BB0000;'>NA</span>      
-#&gt; <span style='color: #BCBCBC;'> 2</span> 1300268807 <span style='color: #BB0000;'>NA</span>      
-#&gt; <span style='color: #BCBCBC;'> 3</span> 2211961792 <span style='color: #BB0000;'>NA</span>      
-#&gt; <span style='color: #BCBCBC;'> 4</span> 3901867672 <span style='color: #BB0000;'>NA</span>      
-#&gt; <span style='color: #BCBCBC;'> 5</span> 1601849622 <span style='color: #BB0000;'>NA</span>      
-#&gt; <span style='color: #BCBCBC;'> 6</span> 3212799161 <span style='color: #BB0000;'>NA</span>      
-#&gt; <span style='color: #BCBCBC;'> 7</span> 3110343431 <span style='color: #BB0000;'>NA</span>      
-#&gt; <span style='color: #BCBCBC;'> 8</span> 2402784591 <span style='color: #BB0000;'>NA</span>      
-#&gt; <span style='color: #BCBCBC;'> 9</span> 2800079831 <span style='color: #BB0000;'>NA</span>      
-#&gt; <span style='color: #BCBCBC;'>10</span> 0511851600 <span style='color: #BB0000;'>NA</span>      
-#&gt; <span style='color: #949494;'># … with 90 more rows</span></div><div class='input'><span class='va'>chi_cohort</span> <span class='op'>%&gt;%</span> <span class='fu'>get_anon_chi</span><span class='op'>(</span>chi_var <span class='op'>=</span> <span class='st'>"upi_number"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 100 × 2</span>
-#&gt;    chi        anon_chi
-#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   
-#&gt; <span style='color: #BCBCBC;'> 1</span> 2601211618 <span style='color: #BB0000;'>NA</span>      
-#&gt; <span style='color: #BCBCBC;'> 2</span> 2210680631 <span style='color: #BB0000;'>NA</span>      
-#&gt; <span style='color: #BCBCBC;'> 3</span> 1410920754 <span style='color: #BB0000;'>NA</span>      
-#&gt; <span style='color: #BCBCBC;'> 4</span> 3112358158 <span style='color: #BB0000;'>NA</span>      
-#&gt; <span style='color: #BCBCBC;'> 5</span> 0112418156 <span style='color: #BB0000;'>NA</span>      
-#&gt; <span style='color: #BCBCBC;'> 6</span> 0612732243 <span style='color: #BB0000;'>NA</span>      
-#&gt; <span style='color: #BCBCBC;'> 7</span> 2310474015 <span style='color: #BB0000;'>NA</span>      
-#&gt; <span style='color: #BCBCBC;'> 8</span> 2411063698 <span style='color: #BB0000;'>NA</span>      
-#&gt; <span style='color: #BCBCBC;'> 9</span> 3801112374 <span style='color: #BB0000;'>NA</span>      
-#&gt; <span style='color: #BCBCBC;'>10</span> 2311161233 <span style='color: #BB0000;'>NA</span>      
-#&gt; <span style='color: #949494;'># … with 90 more rows</span></div></pre>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='va'>chi_cohort</span> <span class='op'>%&gt;%</span> <span class='fu'>get_anon_chi</span><span class='op'>(</span><span class='op'>)</span>
+<span class='va'>chi_cohort</span> <span class='op'>%&gt;%</span> <span class='fu'>get_anon_chi</span><span class='op'>(</span>chi_var <span class='op'>=</span> <span class='st'>"upi_number"</span><span class='op'>)</span>
+<span class='op'>}</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
