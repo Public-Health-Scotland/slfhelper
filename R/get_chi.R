@@ -10,9 +10,11 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' slf_1718 <- read_slf_individual("1718", from = 1, to = 100)
 #' get_chi(slf_1718)
 #' get_chi(slf_1718, drop = FALSE)
+#' }
 get_chi <- function(tibb, anon_chi_var = "anon_chi", drop = TRUE) {
   default_name <- "anon_chi"
 

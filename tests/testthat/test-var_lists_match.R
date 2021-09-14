@@ -30,7 +30,6 @@ test_that("episode file vars match the vars list", {
   expect_setequal(get_variable_names("episode", "1819"), ep_file_vars)
   expect_setequal(get_variable_names("episode", "1920"), ep_file_vars)
   expect_setequal(get_variable_names("episode", "2021"), ep_file_vars)
-
 })
 
 test_that("individual file vars match the vars list", {

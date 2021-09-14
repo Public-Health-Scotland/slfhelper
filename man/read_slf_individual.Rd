@@ -24,6 +24,7 @@ a tibble
 Read a Source Linkage individual file
 }
 \examples{
+\dontrun{
 read_slf_individual("1718",
   columns = c("anon_chi", "dob", "hri_scot"),
   from = 100000, to = 101000
@@ -33,4 +34,5 @@ read_slf_individual(c("1718", "1819"),
   from = 100000,
   to = 101000
 )
+}
 }

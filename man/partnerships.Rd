@@ -15,7 +15,8 @@ A \link[tibble:tibble-package]{tibble} with 31 rows and 2 variables:
 partnerships
 }
 \description{
-A \link[tibble:tibble-package]{tibble} containing the names and codes (hscp2018 configuration) of partnerships.
+A \link[tibble:tibble-package]{tibble}
+containing the names and codes (hscp2018 configuration) of partnerships.
 To be used with the \code{partnership} parameter when reading files.
 }
 \keyword{data}
