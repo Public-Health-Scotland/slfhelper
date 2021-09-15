@@ -32,6 +32,7 @@ Imports:
     tibble
 Suggests:
     covr,
+    phsmethods,
     spelling,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3

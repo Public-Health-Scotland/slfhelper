@@ -17,6 +17,24 @@
 get_anon_chi <- function(tibb, chi_var = "chi", drop = TRUE) {
   default_name <- "chi"
 
+  # Optional code, if the user has phsmethods installed check the CHIs with it.
+  if (requireNamespace("phsmethods", quietly = TRUE)) {
+    checked_chi <- phsmethods::chi_check(dplyr::pull(chi_cohort, {{ chi_var }}))
+
+    which_invalid <- which(checked_chi != "Valid CHI")
+    n_invalid <- length(which_invalid)
+
+    if (n_invalid > 10) {
+      rlang::warn("More than 10 of the CHIs supplied look invalid, you should check them with phsmethods::chi_check()")
+    } else if (n_invalid > 0) {
+      rlang::inform("Some of the CHI numbers supplied look invalid according to phsmethods::chi_check()")
+      print(tibble::tibble(
+        {{ chi_var }} := dplyr::pull(chi_cohort, {{ chi_var }})[which_invalid],
+        reason = checked_chi[which_invalid]
+      ))
+    }
+  }
+
   anon_chi_lookup <- fst::read_fst(
     "/conf/hscdiip/01-Source-linkage-files/CHI-to-Anon-lookup.fst"
   )
