@@ -26,6 +26,7 @@ a tibble
 Read a Source Linkage episode file
 }
 \examples{
+\dontrun{
 read_slf_episode("1718",
   columns = c("anon_chi", "dob", "demographic_cohort"),
   from = 100000,
@@ -37,4 +38,5 @@ read_slf_episode(c("1718", "1819"),
   from = 100000,
   to = 101000
 )
+}
 }
