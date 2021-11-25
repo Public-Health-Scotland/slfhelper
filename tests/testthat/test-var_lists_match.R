@@ -5,16 +5,14 @@ get_variable_names <- function(type, year) {
       from = 1,
       to = 1
     ) %>%
-      names() %>%
-      as.list()
+      names()
   } else if (type == "individual") {
     file_vars <- read_slf_individual(
       year = year,
       from = 1,
       to = 1
     ) %>%
-      names() %>%
-      as.list()
+      names()
   }
 
   return(file_vars)

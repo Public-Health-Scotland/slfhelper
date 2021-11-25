@@ -1,3 +1,7 @@
+# slfhelper 0.7.0
+
+* `ep_file_vars` and `indiv_file_vars` updated with the latest variable names. These now also return a character vector instead of a list.
+
 # slfhelper 0.6.0
 
 * Fix bug with selecting partnerships/recids when also selecting multiple years (#13) (#14)
