@@ -1,4 +1,4 @@
-#' Generate a SLF file path
+#' Generate a Source Linkage File, file path
 #'
 #' @param year Year of the file to be read, you can specify multiple years
 #'  which will then be returned as one file
@@ -15,7 +15,8 @@ gen_file_path <- function(year, file_version) {
 
   file_path <-
     fs::path(
-      "/conf", "hscdiip", "01-Source-linkage-files", file_name
+      "/conf", "hscdiip", "01-Source-linkage-files", file_name,
+      ext = "fst"
     )
 
   return(file_path)

@@ -2,7 +2,7 @@
 % Please edit documentation in R/gen_file_path.R
 \name{gen_file_path}
 \alias{gen_file_path}
-\title{Generate a SLF file path}
+\title{Generate a Source Linkage File, file path}
 \usage{
 gen_file_path(year, file_version)
 }
@@ -16,5 +16,5 @@ which will then be returned as one file}
 a \link[fs:fs-package]{fs_path} object
 }
 \description{
-Generate a SLF file path
+Generate a Source Linkage File, file path
 }

@@ -20,14 +20,18 @@ test_that("Produces single individual file path", {
 })
 
 test_that("Produces correct episode file paths for multiple years", {
-  path <- gen_file_path(c("1415",
-                          "1516",
-                          "1617",
-                          "1718",
-                          "1819",
-                          "1920",
-                          "2021"),
-                        "episode")
+  path <- gen_file_path(
+    c(
+      "1415",
+      "1516",
+      "1617",
+      "1718",
+      "1819",
+      "1920",
+      "2021"
+    ),
+    "episode"
+  )
 
   expect_identical(path, fs::path(c(
     "/conf/hscdiip/01-Source-linkage-files/source-episode-file-201415.fst",
@@ -45,14 +49,18 @@ test_that("Produces correct episode file paths for multiple years", {
 })
 
 test_that("Produces correct individual file paths for multiple years", {
-  path <- gen_file_path(c("1415",
-                          "1516",
-                          "1617",
-                          "1718",
-                          "1819",
-                          "1920",
-                          "2021"),
-                        "individual")
+  path <- gen_file_path(
+    c(
+      "1415",
+      "1516",
+      "1617",
+      "1718",
+      "1819",
+      "1920",
+      "2021"
+    ),
+    "individual"
+  )
 
   expect_identical(path, fs::path(c(
     "/conf/hscdiip/01-Source-linkage-files/source-individual-file-201415.fst",
