@@ -7,7 +7,7 @@ test_that("read multiple years works for individual file", {
   )
 
   # Test for anything odd
-  expect_type(indiv, "list")
+  expect_s3_class(indiv, "tbl_df")
 
   # Test for the existance of the correct variables
   expect_named(indiv, c("year", "anon_chi"))
@@ -19,7 +19,7 @@ test_that("read multiple years works for individual file", {
   # Test that we have 50 rows from each year
   expect_equal(
     dplyr::count(indiv, year),
-    data.frame(year = c("1718", "1819"), n = c(50L, 50L), stringsAsFactors = F)
+    tibble::tibble(year = c("1718", "1819"), n = c(50L, 50L))
   )
 })
 
@@ -32,7 +32,7 @@ test_that("read multiple years works for episode file", {
   )
 
   # Test for anything odd
-  expect_type(ep, "list")
+  expect_s3_class(ep, "tbl_df")
 
   # Test for the existance of the correct variables
   expect_named(ep, c("year", "anon_chi"))
@@ -44,6 +44,6 @@ test_that("read multiple years works for episode file", {
   # Test that we have 50 rows from each year
   expect_equal(
     dplyr::count(ep, year),
-    data.frame(year = c("1718", "1819"), n = c(50L, 50L), stringsAsFactors = F)
+    tibble::tibble(year = c("1718", "1819"), n = c(50L, 50L))
   )
 })

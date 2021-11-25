@@ -20,7 +20,7 @@ partnerships to select}
 \item{...}{other options to be passed to read_fst()}
 }
 \value{
-a tibble
+a \link[tibble:tibble-package]{tibble}
 }
 \description{
 Read a Source Linkage episode file

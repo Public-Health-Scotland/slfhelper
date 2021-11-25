@@ -8,7 +8,7 @@
 #' @param recids Optional specify a recid or recids to select
 #' @param ... other options to be passed to read_fst()
 #'
-#' @return a tibble
+#' @return a [tibble][tibble::tibble-package]
 #' @importFrom rlang .data
 read_slf <-
   function(year, file_version, partnerships = NULL, recids = NULL, ...) {
@@ -105,6 +105,9 @@ read_slf <-
       slf <- dplyr::select(slf, -.data$recid)
     }
 
+    # Return the data as a tibble
+    slf <- tibble::as_tibble(slf, .name_repair = "minimal")
+
     return(slf)
   }
 
@@ -119,7 +122,7 @@ read_slf <-
 #' @param ... other options to be passed to read_fst()
 #'
 #'
-#' @return a tibble
+#' @return a [tibble][tibble::tibble-package]
 #' @export
 #'
 #' @examples
@@ -163,7 +166,7 @@ read_slf_episode <-
 #' @param ... other options to be passed to read_fst()
 #'
 #'
-#' @return a tibble
+#' @return a [tibble][tibble::tibble-package]
 #' @export
 #'
 #' @examples

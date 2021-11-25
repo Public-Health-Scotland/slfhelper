@@ -12,7 +12,7 @@
 #' @keywords data
 "indiv_file_vars"
 
-#' A tibble containing the names and codes (2018 configuration) of partnerships
+#' A [tibble][tibble::tibble-package] containing the names and codes (2018 configuration) of partnerships
 #' to be used with the partnership parameter when reading files
 #'
 #' @name partnerships
@@ -20,7 +20,7 @@
 #' @keywords data
 "partnerships"
 
-#' A tibble containing an example cohort of CHI numbers under different
+#' A [tibble][tibble::tibble-package] containing an example cohort of CHI numbers under different
 #' variable names. It is used for testing and to illustrate examples.
 #' It is likely that many of the 'chi numbers' are not valid.
 #'
