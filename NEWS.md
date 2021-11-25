@@ -6,6 +6,7 @@
 
 # slfhelper 0.7.0
 
+* Now depends on R >= 3.5
 * `ep_file_vars` and `indiv_file_vars` updated with the latest variable names. These now also return a character vector instead of a list.
 * `read_slf_` now returns a [tibble][tibble::tibble-package] 
 
