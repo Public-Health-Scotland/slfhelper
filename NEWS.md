@@ -1,9 +1,8 @@
 # slfhelper (development version)
 
 * Add check for server and hscdiip access on package load.
-* Update variable lists.
 * Add a recid lookup for use with the `recid` filtering parameter.
-* When using `get_anon_chi()` it will now use `phsmethods::chi_check` (if avaliable) and warn if a lot of CHIs look invalid.
+* When using `get_anon_chi()` it will now use `phsmethods::chi_check` (if available) and warn if a lot of CHI numbers return as invalid.
 
 # slfhelper 0.7.0
 

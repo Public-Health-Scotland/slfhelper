@@ -12,7 +12,6 @@
 #' @importFrom rlang .data
 read_slf <-
   function(year, file_version = c("episode", "individual"), partnerships = NULL, recids = NULL, ...) {
-
     file_path <- gen_file_path(year, file_version)
 
     # Count how many files we are going to read

@@ -6,6 +6,8 @@
 #' @param drop Optional boolean indicating whether the existing `chi_var`
 #' should be dropped - default is TRUE
 #'
+#' @importFrom rlang :=
+#'
 #' @return a [tibble][tibble::tibble-package]
 #' @export
 #'
