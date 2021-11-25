@@ -11,6 +11,7 @@ This package provides a few helper functions for working with the Source Linkage
 \seealso{
 Useful links:
 \itemize{
+  \item \url{https://public-health-scotland.github.io/slfhelper/}
   \item \url{https://github.com/Public-Health-Scotland/slfhelper}
   \item Report bugs at \url{https://github.com/Public-Health-Scotland/slfhelper/issues}
 }
