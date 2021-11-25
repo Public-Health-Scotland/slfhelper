@@ -6,16 +6,12 @@
 \alias{slfhelper-package}
 \title{slfhelper: Useful functions for working with the Source Linkage Files}
 \description{
-This package provides a few helper functions for working with
-    the Source Linkage Files (SLFs). The functions are mainly focussed on
-    making the first steps of analysis easier. They can read in and filter
-    the files in an efficient way using minimal syntax. If you find a bug
-    or have any ideas for new functions or improvements get in touch or
-    submit a pull request.
+This package provides a few helper functions for working with the Source Linkage Files (SLFs). The functions are mainly focussed on making the first steps of analysis easier. They can read in and filter the files in an efficient way using minimal syntax. If you find a bug or have any ideas for new functions or improvements get in touch or submit a pull request.
 }
 \seealso{
 Useful links:
 \itemize{
+  \item \url{https://public-health-scotland.github.io/slfhelper/}
   \item \url{https://github.com/Public-Health-Scotland/slfhelper}
   \item Report bugs at \url{https://github.com/Public-Health-Scotland/slfhelper/issues}
 }

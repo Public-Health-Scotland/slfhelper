@@ -1,6 +1,6 @@
 #' Match on CHI numbers to a dataset using anon_chi
 #'
-#' @param data tibble or data frame
+#' @param data a [tibble][tibble::tibble-package] or data frame
 #' @param anon_chi_var Anon CHI variable: the name of the variable
 #' containing anonymised CHI (default is anon_chi)
 #' @param drop Optional boolean indicating whether the existing `anon_chi_var`

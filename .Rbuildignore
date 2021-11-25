@@ -5,7 +5,8 @@
 ^codecov\.yml$
 ^\.github$
 ^README\.Rmd$
-^data-raw$
 ^_pkgdown\.yml$
 ^docs$
 ^pkgdown$
+^data-raw$
+

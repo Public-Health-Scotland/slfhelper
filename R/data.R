@@ -18,6 +18,7 @@
 #' @keywords data
 "indiv_file_vars"
 
+
 #' HSCP name / code lookup
 #'
 #' A [tibble][tibble::tibble-package]
@@ -50,7 +51,7 @@
 #' @keywords data
 "recids"
 
-#' A tibble containing an example cohort of CHI numbers under different
+#' A [tibble][tibble::tibble-package] containing an example cohort of CHI numbers under different
 #' variable names. It is used for testing and to illustrate examples.
 #' It is likely that many of the 'chi numbers' are not valid.
 #'

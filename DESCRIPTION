@@ -1,12 +1,9 @@
 Type: Package
 Package: slfhelper
 Title: Useful functions for working with the Source Linkage Files
-Version: 0.6.0.9000
-Authors@R:
-    person(given = "James",
-           family = "McMahon",
-           role = c("aut", "cre"),
-           email = "james.mcmahon@phs.scot",
+Version: 0.7.0
+Authors@R: 
+    person("James", "McMahon", , "james.mcmahon@phs.scot", role = c("cre", "aut"),
            comment = c(ORCID = "0000-0002-5380-2029"))
 Description: This package provides a few helper functions for working with
     the Source Linkage Files (SLFs). The functions are mainly focussed on
@@ -15,11 +12,12 @@ Description: This package provides a few helper functions for working with
     or have any ideas for new functions or improvements get in touch or
     submit a pull request.
 License: MIT + file LICENSE
-URL: https://github.com/Public-Health-Scotland/slfhelper
+URL: https://public-health-scotland.github.io/slfhelper/,
+    https://github.com/Public-Health-Scotland/slfhelper
 BugReports: https://github.com/Public-Health-Scotland/slfhelper/issues
-Depends:
-    R (>= 3.5)
-Imports:
+Depends: 
+    R (>= 3.5.0)
+Imports: 
     dplyr (>= 1.0.0),
     fs,
     fst (>= 0.9.0),

@@ -4,16 +4,16 @@
 \alias{get_anon_chi}
 \title{Match on anon_chi to a dataset using CHI numbers}
 \usage{
-get_anon_chi(data, chi_var = "chi", drop = TRUE)
+get_anon_chi(chi_cohort, chi_var = "chi", drop = TRUE)
 }
 \arguments{
+\item{chi_cohort}{a \link[tibble:tibble-package]{tibble} or data frame}
+
 \item{chi_var}{CHI variable: the name of the variable containing CHI
 (default is chi)}
 
 \item{drop}{Optional boolean indicating whether the existing \code{chi_var}
 should be dropped - default is TRUE}
-
-\item{chi_cohort}{tibble or data frame}
 }
 \value{
 a \link[tibble:tibble-package]{tibble}

@@ -1,6 +1,6 @@
 #' Match on anon_chi to a dataset using CHI numbers
 #'
-#' @param chi_cohort tibble or data frame
+#' @param chi_cohort a [tibble][tibble::tibble-package] or data frame
 #' @param chi_var CHI variable: the name of the variable containing CHI
 #' (default is chi)
 #' @param drop Optional boolean indicating whether the existing `chi_var`
@@ -14,7 +14,7 @@
 #' chi_cohort %>% get_anon_chi()
 #' chi_cohort %>% get_anon_chi(chi_var = "upi_number")
 #' }
-get_anon_chi <- function(data, chi_var = "chi", drop = TRUE) {
+get_anon_chi <- function(chi_cohort, chi_var = "chi", drop = TRUE) {
   default_name <- "chi"
 
   # Optional code, if the user has phsmethods installed check the CHIs with it.
@@ -39,15 +39,15 @@ get_anon_chi <- function(data, chi_var = "chi", drop = TRUE) {
     "/conf/hscdiip/01-Source-linkage-files/CHI-to-Anon-lookup.fst"
   )
 
-  data <- data %>%
+  chi_cohort <- chi_cohort %>%
     dplyr::left_join(
       anon_chi_lookup,
       by = stats::setNames(default_name, chi_var)
     )
 
   if (drop) {
-    data <- data %>%
+    chi_cohort <- chi_cohort %>%
       dplyr::select(-{{ chi_var }})
   }
-  return(data)
+  return(chi_cohort)
 }

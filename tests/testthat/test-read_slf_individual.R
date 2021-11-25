@@ -5,14 +5,14 @@ test_that("Reads individual file correctly", {
     indiv_file <- read_slf_individual(year, from = 1, to = 100)
 
     # Test for anything odd
-    expect_type(indiv_file, "list")
+    expect_s3_class(indiv_file, "tbl_df")
     expect_named(indiv_file)
 
-    # Test for correct number of variables (will need updating)
-    expect_length(indiv_file, 171)
-
-    # Test for roughly correct number of rows
+    # Test for the correct number of rows
     expect_equal(nrow(indiv_file), 100)
+
+    # Test for correct number of variables (will need updating)
+    expect_length(indiv_file, 180)
   }
 })
 

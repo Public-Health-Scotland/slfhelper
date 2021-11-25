@@ -93,6 +93,9 @@ read_slf <-
       slf <- dplyr::select(slf, -.data$recid)
     }
 
+    # Return the data as a tibble
+    slf <- tibble::as_tibble(slf, .name_repair = "minimal")
+
     return(slf)
   }
 
