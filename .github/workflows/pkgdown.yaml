@@ -27,7 +27,7 @@ jobs:
           needs: website
 
       - name: Install phsmethods
-        run: Rscript -e 'remotes::install_github("Public-Health-Scotland/phsmethods"'
+        run: Rscript -e 'remotes::install_github("Public-Health-Scotland/phsmethods)"'
         
       - name: Deploy package
         run: |
