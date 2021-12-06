@@ -23,12 +23,9 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v1
         with:
-          extra-packages: pkgdown, remotes
+          extra-packages: pkgdown
           needs: website
 
-      - name: Install phsmethods
-        run: Rscript -e 'remotes::install_github("Public-Health-Scotland/phsmethods)"'
-        
       - name: Deploy package
         run: |
           git config --local user.name "$GITHUB_ACTOR"

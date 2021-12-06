@@ -30,8 +30,11 @@ Imports:
     tibble
 Suggests:
     covr,
+    phsmethods,
     spelling,
     testthat (>= 3.0.0)
+Remotes: 
+    Public-Health-Scotland/phsmethods
 Config/testthat/edition: 3
 Config/testthat/parallel: true
 Encoding: UTF-8
