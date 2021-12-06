@@ -24,6 +24,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -36,18 +38,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">slfhelper</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.7.0.9000</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="reference/index.html">Reference</a>
 </li>
@@ -57,7 +53,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/Public-Health-Scotland/slfhelper/">
+  <a href="https://github.com/Public-Health-Scotland/slfhelper/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -74,103 +70,121 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="slfhelper" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#slfhelper" class="anchor"></a>slfhelper</h1></div>
-<p>The goal of slfhelper is to provide some easy to use functions which make working with the Source Linkage Files as painless and efficient as possible.</p>
-<div id="installation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h2>
-<p>You can install slfhelper by using the <a href="https://remotes.r-lib.org/">remotes package</a> in R:</p>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span>
-<span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"Public-Health-Scotland/slfhelper"</span><span class="op">)</span></code></pre></div>
-<p>Unless you jump through some hoops this may not work on the internal NSS network. However it should work on the <a href="https://rstudio.nhsnss.scot.nhs.uk/">RStudio server</a> which this package is designed to be ran on.</p>
+
+
+<div class="section level1">
+<div class="page-header"><h1 id="slfhelper">slfhelper<a class="anchor" aria-label="anchor" href="#slfhelper"></a>
+</h1></div>
+<p>The goal of slfhelper is to provide some easy to use functions that make working with the Source Linkage Files as painless and efficient as possible.</p>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
+<p>You can install slfhelper from GitHub with the <a href="https://remotes.r-lib.org/" class="external-link">remotes package</a>.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">install.packages</span>(<span class="st">"remotes"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2"></a>remotes<span class="op">::</span><span class="kw">install_github</span>(<span class="st">"Public-Health-Scotland/slfhelper"</span>)</span></code></pre></div>
 </div>
-<div id="usage" class="section level2">
-<h2 class="hasAnchor">
-<a href="#usage" class="anchor"></a>Usage</h2>
-<div id="read-a-file" class="section level3">
-<h3 class="hasAnchor">
-<a href="#read-a-file" class="anchor"></a>Read a file</h3>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://public-health-scotland.github.io/slfhelper/">slfhelper</a></span><span class="op">)</span>
-
-<span class="co"># Read a full file</span>
-<span class="va">ep_1718</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/read_slf_episode.html">read_slf_episode</a></span><span class="op">(</span><span class="st">"1718"</span><span class="op">)</span>
-<span class="va">indiv_1718</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/read_slf_individual.html">read_slf_individual</a></span><span class="op">(</span><span class="st">"1718"</span><span class="op">)</span>
-
-<span class="co"># Read multiple years</span>
-<span class="co"># This will use dplyr::bind_rows() and return the files added together as a single tibble</span>
-<span class="va">episode_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/read_slf_episode.html">read_slf_episode</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"1516"</span>, <span class="st">"1617"</span>, <span class="st">"1718"</span>, <span class="st">"1819"</span><span class="op">)</span><span class="op">)</span>
-
-<span class="co"># Read certain variables </span>
-<span class="co"># It's much faster to choose variables like this</span>
-<span class="va">indiv_1718</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/read_slf_individual.html">read_slf_individual</a></span><span class="op">(</span><span class="st">"1718"</span>, columns <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"anon_chi"</span>, <span class="st">"hri_scot"</span><span class="op">)</span><span class="op">)</span>
-
-<span class="co"># Read only data for a certain partnership (HSCP_2018 code)</span>
-<span class="co"># This can be a single partnership or multiple by supplying a vector e.g. c(...)</span>
-<span class="va">indiv_1718</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/read_slf_individual.html">read_slf_individual</a></span><span class="op">(</span><span class="st">"1718"</span>, partnerships <span class="op">=</span> <span class="st">"S37000001"</span><span class="op">)</span> <span class="co"># Aberdeen City</span>
-
-<span class="co"># Read only data for a certain recid</span>
-<span class="co"># This can be a single recid or multiple by supplying a vector e.g. c(...)</span>
-<span class="va">ep_1718</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/read_slf_episode.html">read_slf_episode</a></span><span class="op">(</span><span class="st">"1718"</span>, recid <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"01B"</span>, <span class="st">"GLS"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="section level2">
+<h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
+</h2>
+<div class="section level3">
+<h3 id="read-a-file">Read a file<a class="anchor" aria-label="anchor" href="#read-a-file"></a>
+</h3>
+<p><strong>Note:</strong> Reading a full file is quite slow, we would always recommend doing a column selection to only keep the variables that you need for your analysis. Just doing this will dramatically speed up the read-time.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">library</span>(slfhelper)</span>
+<span id="cb2-2"><a href="#cb2-2"></a></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="co"># Read a full file</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a>ep_<span class="dv">1718</span> &lt;-<span class="st"> </span><span class="kw">read_slf_episode</span>(<span class="st">"1718"</span>)</span>
+<span id="cb2-5"><a href="#cb2-5"></a>indiv_<span class="dv">1718</span> &lt;-<span class="st"> </span><span class="kw">read_slf_individual</span>(<span class="st">"1718"</span>)</span>
+<span id="cb2-6"><a href="#cb2-6"></a></span>
+<span id="cb2-7"><a href="#cb2-7"></a><span class="co"># Read multiple years</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a><span class="co"># This will use dplyr::bind_rows() and return the files added together as a single tibble</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a>episode_data &lt;-<span class="st"> </span><span class="kw">read_slf_episode</span>(<span class="kw">c</span>(<span class="st">"1516"</span>, <span class="st">"1617"</span>, <span class="st">"1718"</span>, <span class="st">"1819"</span>))</span>
+<span id="cb2-10"><a href="#cb2-10"></a></span>
+<span id="cb2-11"><a href="#cb2-11"></a><span class="co"># Read certain variables</span></span>
+<span id="cb2-12"><a href="#cb2-12"></a><span class="co"># It's much faster to choose variables like this</span></span>
+<span id="cb2-13"><a href="#cb2-13"></a>indiv_<span class="dv">1718</span> &lt;-<span class="st"> </span><span class="kw">read_slf_individual</span>(<span class="st">"1718"</span>, <span class="dt">columns =</span> <span class="kw">c</span>(<span class="st">"anon_chi"</span>, <span class="st">"hri_scot"</span>))</span>
+<span id="cb2-14"><a href="#cb2-14"></a></span>
+<span id="cb2-15"><a href="#cb2-15"></a><span class="co"># Read only data for a certain partnership (HSCP_2018 code)</span></span>
+<span id="cb2-16"><a href="#cb2-16"></a><span class="co"># This can be a single partnership or multiple by supplying a vector e.g. c(...)</span></span>
+<span id="cb2-17"><a href="#cb2-17"></a>indiv_<span class="dv">1718</span> &lt;-<span class="st"> </span><span class="kw">read_slf_individual</span>(<span class="st">"1718"</span>, <span class="dt">partnerships =</span> <span class="st">"S37000001"</span>) <span class="co"># Aberdeen City</span></span>
+<span id="cb2-18"><a href="#cb2-18"></a></span>
+<span id="cb2-19"><a href="#cb2-19"></a><span class="co"># Read only data for a certain recid</span></span>
+<span id="cb2-20"><a href="#cb2-20"></a><span class="co"># This can be a single recid or multiple by supplying a vector e.g. c(...)</span></span>
+<span id="cb2-21"><a href="#cb2-21"></a>ep_<span class="dv">1718</span> &lt;-<span class="st"> </span><span class="kw">read_slf_episode</span>(<span class="st">"1718"</span>, <span class="dt">recid =</span> <span class="kw">c</span>(<span class="st">"01B"</span>, <span class="st">"GLS"</span>))</span></code></pre></div>
 <p>All of the above options for reading files can be combined if required.</p>
 <p>There are a few data files included in the package which should be useful.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Get a list of the variables in a file</span>
-<span class="fu">slfhelper</span><span class="fu">::</span><span class="va"><a href="reference/ep_file_vars.html">ep_file_vars</a></span>
-<span class="fu">slfhelper</span><span class="fu">::</span><span class="va"><a href="reference/indiv_file_vars.html">indiv_file_vars</a></span>
-
-<span class="co"># See a lookup of Partnership names to HSCP_2018 codes</span>
-
-<span class="va">hscp_lookup</span> <span class="op">&lt;-</span> <span class="fu">slfhelper</span><span class="fu">::</span><span class="va"><a href="reference/partnerships.html">partnerships</a></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># Get a list of the variables in a file</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a>slfhelper<span class="op">::</span>ep_file_vars</span>
+<span id="cb3-3"><a href="#cb3-3"></a>slfhelper<span class="op">::</span>indiv_file_vars</span>
+<span id="cb3-4"><a href="#cb3-4"></a></span>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="co"># See a lookup of Partnership names to HSCP_2018 codes</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a></span>
+<span id="cb3-7"><a href="#cb3-7"></a>hscp_lookup &lt;-<span class="st"> </span>slfhelper<span class="op">::</span>partnerships</span></code></pre></div>
 </div>
-<div id="match-on-chi-numbers-to-anon_chi-or-vice-versa" class="section level3">
-<h3 class="hasAnchor">
-<a href="#match-on-chi-numbers-to-anon_chi-or-vice-versa" class="anchor"></a>Match on CHI numbers to Anon_CHI (or vice versa)</h3>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://public-health-scotland.github.io/slfhelper/">slfhelper</a></span><span class="op">)</span>
+<div class="section level3">
+<h3 id="match-on-chi-numbers-to-anon_chi-or-vice-versa">Match on CHI numbers to Anon_CHI (or vice versa)<a class="anchor" aria-label="anchor" href="#match-on-chi-numbers-to-anon_chi-or-vice-versa"></a>
+</h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">library</span>(slfhelper)</span>
+<span id="cb4-2"><a href="#cb4-2"></a></span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="co"># Add real CHI numbers to a SLF</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a>ep_<span class="dv">1718</span> &lt;-<span class="st"> </span><span class="kw">read_slf_individual</span>(<span class="kw">c</span>(<span class="st">"1718"</span>, <span class="st">"1819"</span>, <span class="st">"1920"</span>),</span>
+<span id="cb4-5"><a href="#cb4-5"></a>  <span class="dt">columns =</span> <span class="kw">c</span>(<span class="st">"year"</span>, <span class="st">"anon_chi"</span>, <span class="st">"demographic_cohort"</span>)</span>
+<span id="cb4-6"><a href="#cb4-6"></a>) <span class="op">%&gt;%</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a><span class="st">  </span><span class="kw">get_chi</span>()</span>
+<span id="cb4-8"><a href="#cb4-8"></a></span>
+<span id="cb4-9"><a href="#cb4-9"></a><span class="co"># Add anon_chi numbers to a cohort</span></span>
+<span id="cb4-10"><a href="#cb4-10"></a><span class="co"># Optionaly specifiy the name of the CHI variable</span></span>
+<span id="cb4-11"><a href="#cb4-11"></a>cohort &lt;-<span class="st"> </span>cohort <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb4-12"><a href="#cb4-12"></a><span class="st">  </span><span class="kw">get_anon_chi</span>(<span class="dt">chi_var =</span> <span class="st">"upi_number"</span>)</span></code></pre></div>
+</div>
+</div>
+</div>
 
-<span class="co"># Add real CHI numbers to a SLF</span>
-<span class="va">ep_1718</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/read_slf_episode.html">read_slf_episode</a></span><span class="op">(</span><span class="st">"1718"</span><span class="op">)</span> <span class="op"><a href="reference/%&gt;%.html">%&gt;%</a></span> <span class="fu"><a href="reference/get_chi.html">get_chi</a></span><span class="op">(</span><span class="op">)</span>
-
-<span class="co"># Add anon_chi numbers to a cohort</span>
-<span class="co"># Optionaly specifiy the name of the CHI variable</span>
-<span class="va">cohort</span> <span class="op">&lt;-</span> <span class="va">cohort</span> <span class="op"><a href="reference/%&gt;%.html">%&gt;%</a></span> <span class="fu"><a href="reference/get_anon_chi.html">get_anon_chi</a></span><span class="op">(</span>chi_var <span class="op">=</span> <span class="st">"upi_number"</span><span class="op">)</span></code></pre></div>
-</div>
-</div>
-</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
-<h2>Links</h2>
+<h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Browse source code at <br><a href="https://github.com/Public-Health-Scotland/slfhelper/">https://​github.com/​Public-Health-Scotland/​slfhelper/​</a>
-</li>
-<li>Report a bug at <br><a href="https://github.com/Public-Health-Scotland/slfhelper/issues">https://​github.com/​Public-Health-Scotland/​slfhelper/​issues</a>
-</li>
+<li><a href="https://github.com/Public-Health-Scotland/slfhelper/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/Public-Health-Scotland/slfhelper/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
+
 <div class="license">
-<h2>License</h2>
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
 <li><a href="LICENSE.html">Full license</a></li>
-<li><small><a href="https://opensource.org/licenses/mit-license.php">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a></small></li>
+<li><small><a href="https://opensource.org/licenses/mit-license.php" class="external-link">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a></small></li>
 </ul>
 </div>
+
 <div class="community">
-<h2>Community</h2>
+<h2 data-toc-skip>Community</h2>
 <ul class="list-unstyled">
 <li><a href="CONTRIBUTING.html">Contributing guide</a></li>
 <li><a href="CODE_OF_CONDUCT.html">Code of conduct</a></li>
 </ul>
 </div>
-<div class="developers">
-<h2>Developers</h2>
+
+<div class="citation">
+<h2 data-toc-skip>Citation</h2>
 <ul class="list-unstyled">
-<li>James McMahon <br><small class="roles"> Maintainer, author </small> <a href="https://orcid.org/0000-0002-5380-2029" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li><a href="authors.html#citation">Citing slfhelper</a></li>
+</ul>
+</div>
+
+<div class="developers">
+<h2 data-toc-skip>Developers</h2>
+<ul class="list-unstyled">
+<li>James McMahon <br><small class="roles"> Maintainer, author </small> <a href="https://orcid.org/0000-0002-5380-2029" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+</ul>
+</div>
+
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://github.com/Public-Health-Scotland/slfhelper/releases/latest" class="external-link"><img src="https://img.shields.io/github/v/release/Public-Health-Scotland/slfhelper" alt="GitHub release (latest by date)"></a></li>
 </ul>
 </div>
 
@@ -179,11 +193,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by James McMahon.</p>
+  <p></p>
+<p>Developed by James McMahon.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
 </div>
 
       </footer>
@@ -191,6 +207,8 @@
 
   
 
+
+  
 
   </body>
 </html>
