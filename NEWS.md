@@ -3,6 +3,7 @@
 * Add check for server and hscdiip access on package load.
 * Add a recid lookup for use with the `recid` filtering parameter.
 * When using `get_anon_chi()` it will now use `phsmethods::chi_check` (if available) and warn if a lot of CHI numbers return as invalid.
+* Update variable lists for new Home Care related variables.
 
 # slfhelper 0.7.0
 

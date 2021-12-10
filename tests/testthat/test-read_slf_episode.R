@@ -12,6 +12,6 @@ test_that("Reads episode file correctly", {
     expect_equal(nrow(ep_file), 11)
 
     # Test for correct number of variables (will need updating)
-    expect_length(ep_file, 239)
+    expect_length(ep_file, 243)
   }
 })
