@@ -1,4 +1,4 @@
-# slfhelper (development version)
+# slfhelper 0.7.1
 
 * Add check for server and hscdiip access on package load.
 * Add a recid lookup for use with the `recid` filtering parameter.
