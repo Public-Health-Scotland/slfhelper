@@ -1,8 +1,11 @@
 test_that("Matching with a different name works", {
   # Use the example chi cohort included
+
+  # Check for warning because of invalid CHIs
+  expect_warning(get_anon_chi(chi_cohort, chi_var = "upi_number"))
+
   # Match on anon_chi
-  cohort_with_anon <- chi_cohort %>%
-    get_anon_chi(chi_var = "upi_number")
+  cohort_with_anon <- suppressWarnings(get_anon_chi(chi_cohort, chi_var = "upi_number"))
 
   # Default behaviour is to drop the matching var
   # we should now have an anon_chi var
