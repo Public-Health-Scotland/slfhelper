@@ -1,7 +1,7 @@
 Type: Package
 Package: slfhelper
 Title: Useful functions for working with the Source Linkage Files
-Version: 0.7.1
+Version: 0.7.1.9000
 Authors@R: 
     person("James", "McMahon", , "james.mcmahon@phs.scot", role = c("cre", "aut"),
            comment = c(ORCID = "0000-0002-5380-2029"))
