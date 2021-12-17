@@ -1,0 +1,109 @@
+---
+title: "Using variable packs"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Using variable packs}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Selecting only specified variables
+
+It is recommended to only choose the variables you need when reading in a Source Linkage File. This can be achieved by specifying a `column` argument to the relevant `read_slf_` function.
+
+This will result in the data being read in much faster as well as being easy to work with. The full episode and individual files have 200+ and 100+ variables respectively!
+
+```{r load-package, include=FALSE}
+library(slfhelper)
+```
+
+```{r column-example, eval=FALSE}
+library(slfhelper)
+
+ep_data <- read_slf_episode(year = 1920, columns = c("year", "anon_chi", "recid"))
+
+indiv_data <- read_slf_individual(year = 1920, columns = c("year", "anon_chi", "nsu"))
+```
+
+## Looking up variable names
+
+To help with the task of picking which variables you might need for your analysis, as well as getting the spelling correct, we provide lists of the variable names in the package.
+
+```{r get-var-names}
+# Show the first few variables from the episode file
+head(ep_file_vars)
+
+# Do the same for the individual file
+head(indiv_file_vars)
+```
+
+
+## Variable packs
+
+This is great but it can still be a lot of effort and copy/pasting every time, especially if you need quite a few variables for your analysis.
+
+To assist with this, there are a number of 'variable packs', these are groups of variables which would commonly be needed together which can be accessed with a simple name. Currently there are four packs; `demog_vars`, `ltc_vars`, `ep_file_bedday_vars` and `ep_file_cost_vars`. Let's see what they contain.
+
+### Demographic variables 
+These are demographic variables which are specific to CHI and can be used with episode or individual file.
+
+```{r demog-pack}
+demog_vars
+```
+
+### Long Term Condition (LTC) variables 
+These are the Long Term Condition flag variables which are specific to CHI and can be used with episode or individual file.
+
+```{r ltc-pack}
+ltc_vars
+```
+
+### Bedday variables
+These are variables detailing beddays, they are specific to an episode and can only be used with the episode file.
+```{r bedday-pack}
+ep_file_bedday_vars
+```
+
+### Cost variables
+These are variables detailing costs, they are specific to an episode and can only be used with the episode file.
+```{r cost-pack}
+ep_file_cost_vars
+```
+
+
+## Using variable packs
+These variable packs can be used in the column selection to simplify your code substantially.
+
+For example to take some demographic data and LTC flags from the individual file.
+```{r use-ltc-indiv, eval=FALSE}
+library(slfhelper)
+
+indiv_ltc_data <- read_slf_individual(year = 1920, columns = c("year", demog_vars, ltc_vars))
+```
+
+
+Or to get bedday information about Acute records from the episode file.
+```{r use-beddays, eval=FALSE}
+library(slfhelper)
+
+acute_beddays <- read_slf_episode(
+  year = 1920,
+  columns = c("year", "anon_chi", "hbtreatcode", "recid", ep_file_bedday_vars, "cij_pattype"),
+  recid = c("01B", "GLS")
+)
+```
+
+## Conclusion
+
+You should be using the `column` argument when reading in data to increase the read speed, and reduce the amount of data you are loading into R. `slfhelper` provides a number of helpers to make picking and using the variables you need easier.
+
+If you would like any changes made to any existing packs, please [open an issue on GitHub](https://github.com/Public-Health-Scotland/slfhelper/issues).
+
+If you would like to suggest any additional variable packs, either [open an issue](https://github.com/Public-Health-Scotland/slfhelper/issues), or even [submit a pull request](https://usethis.r-lib.org/articles/pr-functions.html)!
