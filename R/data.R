@@ -18,6 +18,15 @@
 #' @keywords data
 "indiv_file_vars"
 
+#' Demographic variables
+#'
+#' A vector containing the names of the demographic variables.
+#'
+#' @name demog_vars
+#' @docType data
+#' @keywords data
+"demog_vars"
+
 
 #' HSCP name / code lookup
 #'
