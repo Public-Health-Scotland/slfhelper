@@ -1,5 +1,7 @@
 # slfhelper (development version)
 
+* Add a number of 'variable packs' for easily selecting sets of variables: `demog_vars`, `ltc_vars`,  `ep_file_bedday_vars` and `ep_file_cost_vars`.
+
 # slfhelper 0.7.1
 
 * Add check for server and hscdiip access on package load.
