@@ -34,7 +34,7 @@ test_that("select recids and partnerships", {
     partnerships = "S37000012",
     recid = "01B",
     from = 1000,
-    to = 100000
+    to = 200000
   )
 
   expect_equal(names(edi_acute), c("year", "anon_chi", "recid", "hscp2018"))
@@ -47,7 +47,7 @@ test_that("select recids and partnerships", {
     partnerships = c("S37000012", "S37000015"),
     recid = "01B",
     from = 1000,
-    to = 100000
+    to = 200000
   )
 
   expect_equal(
@@ -66,7 +66,7 @@ test_that("select recids and partnerships", {
     partnerships = "S37000012",
     recids = c("01B", "02B", "04B", "GLS"),
     from = 1000,
-    to = 100000
+    to = 200000
   )
 
   expect_equal(names(edi_hosp), c("year", "anon_chi", "recid", "hscp2018"))
@@ -79,7 +79,7 @@ test_that("select recids and partnerships", {
     partnerships = c("S37000012", "S37000015"),
     recids = c("01B", "02B", "04B", "GLS"),
     from = 1000,
-    to = 100000
+    to = 200000
   )
 
   expect_equal(names(edi_gla_hosp), c("year", "anon_chi", "recid", "hscp2018"))
