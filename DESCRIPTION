@@ -30,9 +30,13 @@ Imports:
     tibble
 Suggests:
     covr,
+    knitr,
     phsmethods,
+    rmarkdown,
     spelling,
     testthat (>= 3.0.0)
+VignetteBuilder: 
+    knitr
 Remotes: 
     Public-Health-Scotland/phsmethods
 Config/testthat/edition: 3
