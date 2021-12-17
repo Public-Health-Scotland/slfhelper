@@ -27,13 +27,13 @@ read_slf <-
     # but the column wasn't selected we need to add it (and remove later)
     remove_partnership_var <- FALSE
     remove_recid_var <- FALSE
-    if (!(is.null(optional_params$columns))) {
-      if (!(is.null(partnerships)) &
+    if (!is.null(optional_params$columns)) {
+      if (!is.null(partnerships) &
         !("hscp2018" %in% optional_params$columns)) {
         optional_params$columns <- c(optional_params$columns, "hscp2018")
         remove_partnership_var <- TRUE
       }
-      if (!(is.null(recids)) & file_version == "episode" &
+      if (!is.null(recids) & file_version == "episode" &
         !("recid" %in% optional_params$columns)) {
         optional_params$columns <- c(optional_params$columns, "recid")
         remove_recid_var <- TRUE
@@ -66,7 +66,7 @@ read_slf <-
     # If a partnership is specified filter first;
     # With testing it seems to usually be faster if we do partnership
     # filtering before recid filtering
-    if (!(is.null(partnerships))) {
+    if (!is.null(partnerships)) {
       slfs_list <- purrr::map(
         slfs_list,
         ~ dplyr::filter(.x, .x$hscp2018 %in% partnerships)
@@ -74,7 +74,7 @@ read_slf <-
     }
 
     # If a recid is specified filter now
-    if (!(is.null(recids))) {
+    if (!is.null(recids)) {
       slfs_list <- purrr::map(
         slfs_list,
         ~ dplyr::filter(.x, .x$recid %in% recids)
