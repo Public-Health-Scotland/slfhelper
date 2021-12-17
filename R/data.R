@@ -27,6 +27,16 @@
 #' @keywords data
 "demog_vars"
 
+#' LTC variables
+#'
+#' A vector containing the names of the
+#' Long Term Condition (LTC) variables.
+#'
+#' @name ltc_vars
+#' @docType data
+#' @keywords data
+"ltc_vars"
+
 
 #' HSCP name / code lookup
 #'
