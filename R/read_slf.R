@@ -134,9 +134,9 @@ read_slf_episode <-
       read_slf(
         year = year,
         file_version = "episode",
-        partnerships = partnerships,
-        recids = recids,
-        columns = columns,
+        partnerships = unique(partnerships),
+        recids = unique(recids),
+        columns = unique(columns),
         ...
       )
     )
@@ -174,8 +174,8 @@ read_slf_individual <-
       read_slf(
         year = year,
         file_version = "individual",
-        partnerships = partnerships,
-        columns = columns,
+        partnerships = unique(partnerships),
+        columns = unique(columns),
         ...
       )
     )
