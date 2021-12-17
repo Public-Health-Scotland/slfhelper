@@ -37,6 +37,17 @@
 #' @keywords data
 "ltc_vars"
 
+#' Episode file bedday variables
+#'
+#' A vector containing the names of the
+#' bedday related variables in the
+#' episode file.
+#'
+#' @name ep_file_bedday_vars
+#' @docType data
+#' @keywords data
+"ep_file_bedday_vars"
+
 
 #' HSCP name / code lookup
 #'
