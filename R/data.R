@@ -48,6 +48,16 @@
 #' @keywords data
 "ep_file_bedday_vars"
 
+#' Episode file cost variables
+#'
+#' A vector containing the names of the
+#' cost related variables in the
+#' episode file.
+#'
+#' @name ep_file_cost_vars
+#' @docType data
+#' @keywords data
+"ep_file_cost_vars"
 
 #' HSCP name / code lookup
 #'
