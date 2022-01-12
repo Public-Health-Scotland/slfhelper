@@ -52,6 +52,10 @@ your analysis. Just doing this will dramatically speed up the read-time.
     # This can be a single recid or multiple by supplying a vector e.g. c(...)
     ep_1718 <- read_slf_episode("1718", recid = c("01B", "GLS"))
 
+    #single recid filtering
+    ep_1718_recid_04B <- read_slf_episode("1718",
+      recid = "04B")
+
 All of the above options for reading files can be combined if required.
 
 There are a few data files included in the package which should be
@@ -70,12 +74,46 @@ useful.
     library(slfhelper)
 
     # Add real CHI numbers to a SLF
-    ep_1718 <- read_slf_individual(c("1718", "1819", "1920"),
+    ep_1718 <- read_slf_episode(c("1718", "1819", "1920"),
       columns = c("year", "anon_chi", "demographic_cohort")
     ) %>%
       get_chi()
 
-    # Add anon_chi numbers to a cohort
-    # Optionaly specifiy the name of the CHI variable
-    cohort <- cohort %>% 
+    # Change chi numbers from data above back to anon_chi
+    ep_1718_anon <- ep_1718 %>% 
+      get_anon_chi(chi_var = "chi")
+
+    # Optionally specifiy the name of the CHI variable on a cohort of CHI's
+    # Generate a sample which should contain at least some valid CHIs
+    set.seed(1)
+    n <- 100
+    # Make one column upi_number and one chi
+    chi_cohort <- dplyr::tibble(
+      upi_number = paste0(
+        round(runif(n, min = 0, max = 3)),
+        round(runif(n, min = 0, max = 9)),
+        round(runif(n, min = 0, max = 1)),
+        round(runif(n, min = 0, max = 2)),
+        round(runif(n, min = 0, max = 9)),
+        round(runif(n, min = 0, max = 9)),
+        round(runif(n, min = 0, max = 9)),
+        round(runif(n, min = 0, max = 9)),
+        round(runif(n, min = 0, max = 9)),
+        round(runif(n, min = 0, max = 9))
+      ), chi = paste0(
+        round(runif(n, min = 0, max = 3)),
+        round(runif(n, min = 0, max = 9)),
+        round(runif(n, min = 0, max = 1)),
+        round(runif(n, min = 0, max = 2)),
+        round(runif(n, min = 0, max = 9)),
+        round(runif(n, min = 0, max = 9)),
+        round(runif(n, min = 0, max = 9)),
+        round(runif(n, min = 0, max = 9)),
+        round(runif(n, min = 0, max = 9)),
+        round(runif(n, min = 0, max = 9))
+      )
+    )
+
+    # Add anon_chi to cohort sample
+    chi_cohort <- chi_cohort %>% 
       get_anon_chi(chi_var = "upi_number")
