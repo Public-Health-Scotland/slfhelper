@@ -7,6 +7,7 @@ test_that("episode file vars match the vars list", {
   expect_identical(names(read_slf_episode("1819", from = 1, to = 1)), ep_file_vars)
   expect_identical(names(read_slf_episode("1920", from = 1, to = 1)), ep_file_vars)
   expect_identical(names(read_slf_episode("2021", from = 1, to = 1)), ep_file_vars)
+  expect_identical(names(read_slf_episode("2122", from = 1, to = 1)), ep_file_vars)
 })
 
 test_that("individual file vars match the vars list", {
@@ -18,4 +19,5 @@ test_that("individual file vars match the vars list", {
   expect_identical(names(read_slf_individual("1819", from = 1, to = 1)), indiv_file_vars)
   expect_identical(names(read_slf_individual("1920", from = 1, to = 1)), indiv_file_vars)
   expect_identical(names(read_slf_individual("2021", from = 1, to = 1)), indiv_file_vars)
+  expect_identical(names(read_slf_individual("2122", from = 1, to = 1)), indiv_file_vars)
 })
