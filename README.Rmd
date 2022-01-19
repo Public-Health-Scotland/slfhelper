@@ -92,41 +92,10 @@ ep_1718 <- read_slf_episode(c("1718", "1819", "1920"),
   get_chi()
 
 # Change chi numbers from data above back to anon_chi
-ep_1718_anon <- ep_1718 %>% 
+ep_1718_anon <- ep_1718 %>%
   get_anon_chi(chi_var = "chi")
 
-# Optionally specifiy the name of the CHI variable on a cohort of CHI's
-# Generate a sample which should contain at least some valid CHIs
-set.seed(1)
-n <- 100
-# Make one column upi_number and one chi
-chi_cohort <- dplyr::tibble(
-  upi_number = paste0(
-    round(runif(n, min = 0, max = 3)),
-    round(runif(n, min = 0, max = 9)),
-    round(runif(n, min = 0, max = 1)),
-    round(runif(n, min = 0, max = 2)),
-    round(runif(n, min = 0, max = 9)),
-    round(runif(n, min = 0, max = 9)),
-    round(runif(n, min = 0, max = 9)),
-    round(runif(n, min = 0, max = 9)),
-    round(runif(n, min = 0, max = 9)),
-    round(runif(n, min = 0, max = 9))
-  ), chi = paste0(
-    round(runif(n, min = 0, max = 3)),
-    round(runif(n, min = 0, max = 9)),
-    round(runif(n, min = 0, max = 1)),
-    round(runif(n, min = 0, max = 2)),
-    round(runif(n, min = 0, max = 9)),
-    round(runif(n, min = 0, max = 9)),
-    round(runif(n, min = 0, max = 9)),
-    round(runif(n, min = 0, max = 9)),
-    round(runif(n, min = 0, max = 9)),
-    round(runif(n, min = 0, max = 9))
-  )
-)
-
 # Add anon_chi to cohort sample
-chi_cohort <- chi_cohort %>% 
+chi_cohort <- chi_cohort %>%
   get_anon_chi(chi_var = "upi_number")
 ```
