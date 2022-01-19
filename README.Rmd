@@ -60,10 +60,10 @@ indiv_1718 <- read_slf_individual("1718", partnerships = "S37000001") # Aberdeen
 # This can be a single recid or multiple by supplying a vector e.g. c(...)
 ep_1718 <- read_slf_episode("1718", recid = c("01B", "GLS"))
 
-#single recid filtering
+# single recid filtering
 ep_1718_recid_04B <- read_slf_episode("1718",
-  recid = "04B")
-
+  recid = "04B"
+)
 ```
 
 All of the above options for reading files can be combined if required. 
