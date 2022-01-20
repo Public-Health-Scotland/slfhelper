@@ -115,7 +115,12 @@
 <span id="cb2-18"><a href="#cb2-18"></a></span>
 <span id="cb2-19"><a href="#cb2-19"></a><span class="co"># Read only data for a certain recid</span></span>
 <span id="cb2-20"><a href="#cb2-20"></a><span class="co"># This can be a single recid or multiple by supplying a vector e.g. c(...)</span></span>
-<span id="cb2-21"><a href="#cb2-21"></a>ep_<span class="dv">1718</span> &lt;-<span class="st"> </span><span class="kw">read_slf_episode</span>(<span class="st">"1718"</span>, <span class="dt">recid =</span> <span class="kw">c</span>(<span class="st">"01B"</span>, <span class="st">"GLS"</span>))</span></code></pre></div>
+<span id="cb2-21"><a href="#cb2-21"></a>ep_<span class="dv">1718</span> &lt;-<span class="st"> </span><span class="kw">read_slf_episode</span>(<span class="st">"1718"</span>, <span class="dt">recid =</span> <span class="kw">c</span>(<span class="st">"01B"</span>, <span class="st">"GLS"</span>))</span>
+<span id="cb2-22"><a href="#cb2-22"></a></span>
+<span id="cb2-23"><a href="#cb2-23"></a><span class="co"># single recid filtering</span></span>
+<span id="cb2-24"><a href="#cb2-24"></a>ep_<span class="dv">1718</span>_recid_04B &lt;-<span class="st"> </span><span class="kw">read_slf_episode</span>(<span class="st">"1718"</span>,</span>
+<span id="cb2-25"><a href="#cb2-25"></a>  <span class="dt">recid =</span> <span class="st">"04B"</span></span>
+<span id="cb2-26"><a href="#cb2-26"></a>)</span></code></pre></div>
 <p>All of the above options for reading files can be combined if required.</p>
 <p>There are a few data files included in the package which should be useful.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># Get a list of the variables in a file</span></span>
@@ -132,15 +137,18 @@
 <div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">library</span>(slfhelper)</span>
 <span id="cb4-2"><a href="#cb4-2"></a></span>
 <span id="cb4-3"><a href="#cb4-3"></a><span class="co"># Add real CHI numbers to a SLF</span></span>
-<span id="cb4-4"><a href="#cb4-4"></a>ep_<span class="dv">1718</span> &lt;-<span class="st"> </span><span class="kw">read_slf_individual</span>(<span class="kw">c</span>(<span class="st">"1718"</span>, <span class="st">"1819"</span>, <span class="st">"1920"</span>),</span>
+<span id="cb4-4"><a href="#cb4-4"></a>ep_<span class="dv">1718</span> &lt;-<span class="st"> </span><span class="kw">read_slf_episode</span>(<span class="kw">c</span>(<span class="st">"1718"</span>, <span class="st">"1819"</span>, <span class="st">"1920"</span>),</span>
 <span id="cb4-5"><a href="#cb4-5"></a>  <span class="dt">columns =</span> <span class="kw">c</span>(<span class="st">"year"</span>, <span class="st">"anon_chi"</span>, <span class="st">"demographic_cohort"</span>)</span>
 <span id="cb4-6"><a href="#cb4-6"></a>) <span class="op">%&gt;%</span></span>
 <span id="cb4-7"><a href="#cb4-7"></a><span class="st">  </span><span class="kw">get_chi</span>()</span>
 <span id="cb4-8"><a href="#cb4-8"></a></span>
-<span id="cb4-9"><a href="#cb4-9"></a><span class="co"># Add anon_chi numbers to a cohort</span></span>
-<span id="cb4-10"><a href="#cb4-10"></a><span class="co"># Optionaly specifiy the name of the CHI variable</span></span>
-<span id="cb4-11"><a href="#cb4-11"></a>cohort &lt;-<span class="st"> </span>cohort <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb4-12"><a href="#cb4-12"></a><span class="st">  </span><span class="kw">get_anon_chi</span>(<span class="dt">chi_var =</span> <span class="st">"upi_number"</span>)</span></code></pre></div>
+<span id="cb4-9"><a href="#cb4-9"></a><span class="co"># Change chi numbers from data above back to anon_chi</span></span>
+<span id="cb4-10"><a href="#cb4-10"></a>ep_<span class="dv">1718</span>_anon &lt;-<span class="st"> </span>ep_<span class="dv">1718</span> <span class="op">%&gt;%</span></span>
+<span id="cb4-11"><a href="#cb4-11"></a><span class="st">  </span><span class="kw">get_anon_chi</span>(<span class="dt">chi_var =</span> <span class="st">"chi"</span>)</span>
+<span id="cb4-12"><a href="#cb4-12"></a></span>
+<span id="cb4-13"><a href="#cb4-13"></a><span class="co"># Add anon_chi to cohort sample</span></span>
+<span id="cb4-14"><a href="#cb4-14"></a>chi_cohort &lt;-<span class="st"> </span>chi_cohort <span class="op">%&gt;%</span></span>
+<span id="cb4-15"><a href="#cb4-15"></a><span class="st">  </span><span class="kw">get_anon_chi</span>(<span class="dt">chi_var =</span> <span class="st">"upi_number"</span>)</span></code></pre></div>
 </div>
 </div>
 </div>
