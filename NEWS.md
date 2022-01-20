@@ -1,4 +1,4 @@
-# slfhelper (development version)
+# slfhelper 0.8.0
 
 * Add a number of 'variable packs' for easily selecting sets of variables: `demog_vars`, `ltc_vars`,  `ep_file_bedday_vars` and `ep_file_cost_vars`.
 * Add a new vignette introducing variable packs.
