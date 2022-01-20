@@ -1,7 +1,7 @@
 Type: Package
 Package: slfhelper
 Title: Useful functions for working with the Source Linkage Files
-Version: 0.7.1
+Version: 0.8.0
 Authors@R: 
     person("James", "McMahon", , "james.mcmahon@phs.scot", role = c("cre", "aut"),
            comment = c(ORCID = "0000-0002-5380-2029"))
@@ -30,9 +30,13 @@ Imports:
     tibble
 Suggests:
     covr,
+    knitr,
     phsmethods,
+    rmarkdown,
     spelling,
     testthat (>= 3.0.0)
+VignetteBuilder: 
+    knitr
 Remotes: 
     Public-Health-Scotland/phsmethods
 Config/testthat/edition: 3

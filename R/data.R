@@ -18,6 +18,46 @@
 #' @keywords data
 "indiv_file_vars"
 
+#' Demographic variables
+#'
+#' A vector containing the names of the demographic variables.
+#'
+#' @name demog_vars
+#' @docType data
+#' @keywords data
+"demog_vars"
+
+#' LTC variables
+#'
+#' A vector containing the names of the
+#' Long Term Condition (LTC) variables.
+#'
+#' @name ltc_vars
+#' @docType data
+#' @keywords data
+"ltc_vars"
+
+#' Episode file bedday variables
+#'
+#' A vector containing the names of the
+#' bedday related variables in the
+#' episode file.
+#'
+#' @name ep_file_bedday_vars
+#' @docType data
+#' @keywords data
+"ep_file_bedday_vars"
+
+#' Episode file cost variables
+#'
+#' A vector containing the names of the
+#' cost related variables in the
+#' episode file.
+#'
+#' @name ep_file_cost_vars
+#' @docType data
+#' @keywords data
+"ep_file_cost_vars"
 
 #' HSCP name / code lookup
 #'
@@ -51,8 +91,9 @@
 #' @keywords data
 "recids"
 
-#' A [tibble][tibble::tibble-package] containing an example cohort of CHI numbers under different
-#' variable names. It is used for testing and to illustrate examples.
+#' A [tibble][tibble::tibble-package] containing an example
+#' cohort of CHI numbers under different variable names.
+#' It is used for testing and to illustrate examples.
 #' It is likely that many of the 'chi numbers' are not valid.
 #'
 #' @name chi_cohort

@@ -3,8 +3,9 @@
 \docType{data}
 \name{chi_cohort}
 \alias{chi_cohort}
-\title{A \link[tibble:tibble-package]{tibble} containing an example cohort of CHI numbers under different
-variable names. It is used for testing and to illustrate examples.
+\title{A \link[tibble:tibble-package]{tibble} containing an example
+cohort of CHI numbers under different variable names.
+It is used for testing and to illustrate examples.
 It is likely that many of the 'chi numbers' are not valid.}
 \format{
 An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 100 rows and 2 columns.
@@ -13,8 +14,9 @@ An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) w
 chi_cohort
 }
 \description{
-A \link[tibble:tibble-package]{tibble} containing an example cohort of CHI numbers under different
-variable names. It is used for testing and to illustrate examples.
+A \link[tibble:tibble-package]{tibble} containing an example
+cohort of CHI numbers under different variable names.
+It is used for testing and to illustrate examples.
 It is likely that many of the 'chi numbers' are not valid.
 }
 \keyword{data}
