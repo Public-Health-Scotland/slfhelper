@@ -3,7 +3,7 @@ test_that("select years and recid", {
     columns = c("year", "anon_chi", "recid", "keydate1_dateformat"),
     recids = "01B",
     from = 1000,
-    to = 100000
+    to = 200000
   )
 
   expect_equal(
@@ -17,7 +17,7 @@ test_that("select years and recid", {
     columns = c("year", "anon_chi", "recid", "keydate1_dateformat"),
     recids = c("01B", "02B", "04B", "GLS"),
     from = 1000,
-    to = 100000
+    to = 200000
   )
 
   expect_equal(
@@ -95,7 +95,7 @@ test_that("all selections", {
     partnerships = c("S37000012", "S37000015"),
     recids = c("01B", "02B", "04B", "GLS"),
     from = 1000,
-    to = 100000
+    to = 200000
   )
 
   expect_equal(
