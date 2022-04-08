@@ -27,9 +27,12 @@ get_anon_chi <- function(chi_cohort, chi_var = "chi", drop = TRUE) {
     n_invalid <- length(which_invalid)
 
     if (n_invalid > 10) {
-      rlang::warn("More than 10 of the CHIs supplied look invalid, you should check them with phsmethods::chi_check()")
+      cli::cli_warn(c(
+        "More than 10 of the CHIs supplied look invalid,",
+        "you should check them with {.fn phsmethods::chi_check}"
+      ))
     } else if (n_invalid > 0) {
-      rlang::inform("Some of the CHI numbers supplied look invalid according to phsmethods::chi_check()")
+      cli::cli_alert_warning("Some of the CHI numbers supplied look invalid according to {.fn phsmethods::chi_check}")
       print(tibble::tibble(
         {{ chi_var }} := dplyr::pull(chi_cohort, {{ chi_var }})[which_invalid],
         reason = checked_chi[which_invalid]

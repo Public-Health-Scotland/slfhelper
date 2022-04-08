@@ -5,31 +5,31 @@ check_on_server <- function() {
   on_server <- rstudioapi::versionInfo()$mode == "server"
 
   if (!on_server) {
-    warning(c(
+    cli::cli_warn(c(
       "It looks like you are not on the PHS RStudio server.",
-      "\nThis is a requirement for this package.",
-      "\nGo to: https://rstudio.nhsnss.scot.nhs.uk/"
+      "This is a requirement for this package, go to:",
+      ">" = "{.url https://rstudio.nhsnss.scot.nhs.uk/}"
     ))
   }
 
   return(on_server)
 }
 
-#' Check if user is in hscdiip
+#' Check if the current user is in a UNIX group
 #'
-#' @param group The group to check
+#' @param group The group to check, default is hscdiip
 #'
 #' @return Boolean
-check_has_access <- function(group) {
+check_has_access <- function(group = "hscdiip") {
   has_access <- grepl(
     paste0("\\b", group, "\\b"),
     system("groups", intern = TRUE)
   )
 
   if (!has_access) {
-    warning(c(
-      "It looks like you don't have the relevant access,",
-      "access to UNIX hscdiip is required."
+    cli::cli_warn(c(
+      "You might not have the relevant access.",
+      "i" = "Access to UNIX {group} is required."
     ))
   }
 
