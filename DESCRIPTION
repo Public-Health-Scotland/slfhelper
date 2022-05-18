@@ -22,13 +22,16 @@ Imports:
     dplyr (>= 1.0.0),
     fs,
     fst (>= 0.9.0),
+    glue,
+    lifecycle,
     magrittr (>= 1.5),
     purrr (>= 0.3.3),
     rlang,
     rstudioapi,
     stats,
     stringr (>= 1.2.0),
-    tibble
+    tibble,
+    withr
 Suggests:
     covr,
     knitr,

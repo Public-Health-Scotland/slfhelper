@@ -11,7 +11,7 @@ gen_file_path <- function(year, file_version) {
   # This will handle numbers or strings of the form 201718 or 1718
   year <- format_year(year)
 
-  file_name <- stringr::str_glue("source-{file_version}-file-20{year}")
+  file_name <- glue("source-{file_version}-file-20{year}")
 
   file_path <-
     fs::path(
