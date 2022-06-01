@@ -45,6 +45,7 @@ Remotes:
     Public-Health-Scotland/phsmethods
 Config/testthat/edition: 3
 Config/testthat/parallel: true
+Config/testthat/start-first: match*
 Encoding: UTF-8
 Language: en-GB
 LazyData: true
