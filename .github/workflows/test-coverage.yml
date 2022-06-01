@@ -3,7 +3,6 @@
 on:
   push:
     branches: [production, development]
-  pull_request:
 
 name: test-coverage
 
