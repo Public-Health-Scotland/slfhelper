@@ -37,12 +37,6 @@ jobs:
    - name: Style package functions
      run: Rscript -e 'styler::style_pkg()'
 
-   - name: Style production scripts
-     run: Rscript -e 'styler::style_dir("Production_scripts/")'
-
-   - name: Style other scripts
-     run: Rscript -e 'styler::style_dir("Make_R_files/")'
-
    - uses: stefanzweifel/git-auto-commit-action@v4
      with:
       commit_message: Style with {styler} (GitHub action)
