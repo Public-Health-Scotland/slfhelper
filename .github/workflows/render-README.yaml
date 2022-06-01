@@ -6,7 +6,7 @@ on:
 jobs:
   render:
     name: Render README
-    runs-on: macOS-latest
+    runs-on: ubuntu-latest
     env:
       GITHUB_PAT: ${{ secrets.SLFHELPER_TOKEN_ADMIN }}
     steps:
