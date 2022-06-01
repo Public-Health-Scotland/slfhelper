@@ -20,5 +20,10 @@ Useful links:
 \author{
 \strong{Maintainer}: James McMahon \email{james.mcmahon@phs.scot} (\href{https://orcid.org/0000-0002-5380-2029}{ORCID})
 
+Other contributors:
+\itemize{
+  \item Public Health Scotland \email{phs.source@phs.scot} [copyright holder]
+}
+
 }
 \keyword{internal}
