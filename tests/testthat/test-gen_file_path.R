@@ -8,8 +8,6 @@ test_that("Produces single episode file path", {
   ))
 
   expect_identical(fs::path_ext(path), "fst")
-
-  expect_true(fs::file_exists(path))
 })
 
 
@@ -23,8 +21,6 @@ test_that("Produces single individual file path", {
   ))
 
   expect_identical(fs::path_ext(path), "fst")
-
-  expect_true(fs::file_exists(path))
 })
 
 test_that("Produces correct episode file paths for multiple years", {
@@ -52,8 +48,6 @@ test_that("Produces correct episode file paths for multiple years", {
   )))
 
   expect_identical(fs::path_ext(path), rep_len("fst", length(path)))
-
-  expect_true(all(fs::file_exists(path)))
 })
 
 test_that("Produces correct individual file paths for multiple years", {
@@ -81,6 +75,4 @@ test_that("Produces correct individual file paths for multiple years", {
   )))
 
   expect_identical(fs::path_ext(path), rep_len("fst", length(path)))
-
-  expect_true(all(fs::file_exists(path)))
 })
