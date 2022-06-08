@@ -1,3 +1,6 @@
+skip_on_ci()
+
+
 test_that("episode file vars match the vars list", {
   # These should be identical (names, order etc.)
   expect_named(read_slf_episode("1415", from = 1, to = 1), ep_file_vars)

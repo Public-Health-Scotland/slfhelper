@@ -1,3 +1,6 @@
+skip_on_ci()
+
+
 test_that("select years and recid", {
   acute_only <- read_slf_episode(c("1718", "1819"),
     columns = c("year", "anon_chi", "recid", "keydate1_dateformat"),

@@ -1,3 +1,6 @@
+skip_on_ci()
+
+
 test_that("Partnership filtering works", {
   # Read in a bit of a file selecting only Edinburgh
   indiv_1718_edinburgh <- read_slf_individual("1718",

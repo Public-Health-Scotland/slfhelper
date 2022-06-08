@@ -1,3 +1,6 @@
+skip_on_ci()
+
+
 test_that("Reads episode file correctly", {
   # Read file, test all years
   years <- c("1415", "1516", "1617", "1718", "1819", "1920", "2021", "2122")

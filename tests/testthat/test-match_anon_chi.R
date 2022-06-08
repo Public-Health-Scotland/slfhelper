@@ -1,3 +1,6 @@
+skip_on_ci()
+
+
 test_that("Matching with a different name works", {
   # Use the example chi cohort included
 

@@ -1,3 +1,6 @@
+skip_on_ci()
+
+
 test_that("Match CHI to individual file", {
   # Read 100 records from individual file
   indiv_1718_small <- read_slf_individual("1718",
