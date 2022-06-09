@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/Public-Health-Scotland/slfhelper)](https://github.com/Public-Health-Scotland/slfhelper/releases/latest)
 [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![R-CMD-check](https://github.com/Public-Health-Scotland/slfhelper/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Public-Health-Scotland/slfhelper/actions/workflows/R-CMD-check.yaml)
-[![test-coverage](https://github.com/Public-Health-Scotland/slfhelper/actions/workflows/test-coverage.yaml/badge.svg)](https://github.com/Public-Health-Scotland/slfhelper/actions/workflows/test-coverage.yaml)
+[![codecov](https://codecov.io/gh/Public-Health-Scotland/slfhelper/branch/production/graph/badge.svg?token=ev2n04MPNG)](https://codecov.io/gh/Public-Health-Scotland/slfhelper)
 <!-- badges: end -->
 
 # slfhelper
