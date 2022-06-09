@@ -1,28 +1,32 @@
+
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 <!-- badges: start -->
 
 [![GitHub release (latest by
 date)](https://img.shields.io/github/v/release/Public-Health-Scotland/slfhelper)](https://github.com/Public-Health-Scotland/slfhelper/releases/latest)
+[![Lifecycle:
+stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
+[![R-CMD-check](https://github.com/Public-Health-Scotland/slfhelper/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Public-Health-Scotland/slfhelper/actions/workflows/R-CMD-check.yaml)
+[![test-coverage](https://github.com/Public-Health-Scotland/slfhelper/actions/workflows/test-coverage.yaml/badge.svg)](https://github.com/Public-Health-Scotland/slfhelper/actions/workflows/test-coverage.yaml)
 <!-- badges: end -->
 
-slfhelper
-=========
+# slfhelper
 
 The goal of slfhelper is to provide some easy to use functions that make
 working with the Source Linkage Files as painless and efficient as
 possible.
 
-Installation
-------------
+## Installation
 
 You can install slfhelper from GitHub with the [remotes
 package](https://remotes.r-lib.org/).
 
-    install.packages("remotes")
-    remotes::install_github("Public-Health-Scotland/slfhelper")
+``` r
+install.packages("remotes")
+remotes::install_github("Public-Health-Scotland/slfhelper")
+```
 
-Usage
------
+## Usage
 
 ### Read a file
 
@@ -30,60 +34,68 @@ Usage
 doing a column selection to only keep the variables that you need for
 your analysis. Just doing this will dramatically speed up the read-time.
 
-    library(slfhelper)
+We provide some data snippets to help with the column selection and
+filtering.
 
-    # Read a full file
-    ep_1718 <- read_slf_episode("1718")
-    indiv_1718 <- read_slf_individual("1718")
+``` r
+library(slfhelper)
 
-    # Read multiple years
-    # This will use dplyr::bind_rows() and return the files added together as a single tibble
-    episode_data <- read_slf_episode(c("1516", "1617", "1718", "1819"))
+# Get a list of the variables in a file
+ep_file_vars
+indiv_file_vars
 
-    # Read certain variables
-    # It's much faster to choose variables like this
-    indiv_1718 <- read_slf_individual("1718", columns = c("anon_chi", "hri_scot"))
+# See a lookup of Partnership names to HSCP_2018 codes
+View(partnerships)
 
-    # Read only data for a certain partnership (HSCP_2018 code)
-    # This can be a single partnership or multiple by supplying a vector e.g. c(...)
-    indiv_1718 <- read_slf_individual("1718", partnerships = "S37000001") # Aberdeen City
+# See a list with descriptions for the recids
+View(recids)
+```
 
-    # Read only data for a certain recid
-    # This can be a single recid or multiple by supplying a vector e.g. c(...)
-    ep_1718 <- read_slf_episode("1718", recid = c("01B", "GLS"))
+``` r
+library(slfhelper)
 
-    # single recid filtering
-    ep_1718_recid_04B <- read_slf_episode("1718",
-      recid = "04B"
-    )
+# Read a full file
+ep_1718 <- read_slf_episode("1718")
+indiv_1718 <- read_slf_individual("1718")
 
-All of the above options for reading files can be combined if required.
+# Read multiple years
+# This will use dplyr::bind_rows() and return the files added together as a single tibble
+episode_data <- read_slf_episode(c("1516", "1617", "1718", "1819"))
 
-There are a few data files included in the package which should be
-useful.
+# Read certain variables
+# It's much faster to choose variables like this
+indiv_1718 <- read_slf_individual("1718", columns = c("anon_chi", "hri_scot"))
 
-    # Get a list of the variables in a file
-    slfhelper::ep_file_vars
-    slfhelper::indiv_file_vars
+# Read only data for a certain partnership (HSCP_2018 code)
+# This can be a single partnership or multiple by supplying a vector e.g. c(...)
+indiv_1718 <- read_slf_individual("1718", partnerships = "S37000001") # Aberdeen City
 
-    # See a lookup of Partnership names to HSCP_2018 codes
+# Read only data for a certain recid
+# This can be a single recid or multiple by supplying a vector e.g. c(...)
+ep_1718 <- read_slf_episode("1718", recid = c("01B", "GLS"))
 
-    hscp_lookup <- slfhelper::partnerships
+# single recid filtering
+ep_1718_recid_04B <- read_slf_episode("1718", recid = "04B")
+```
 
-### Match on CHI numbers to Anon\_CHI (or vice versa)
+Any of the above options for reading files can be combined if required.
 
-    library(slfhelper)
+### Match on CHI numbers to Anon_CHI (or vice versa)
 
-    # Add real CHI numbers to a SLF
-    ep_1718 <- read_slf_episode(c("1718", "1819", "1920"),
-      columns = c("year", "anon_chi", "demographic_cohort")
-    ) %>%
-      get_chi()
+``` r
+library(slfhelper)
 
-    # Change chi numbers from data above back to anon_chi
-    ep_1718_anon <- ep_1718 %>%
-      get_anon_chi(chi_var = "chi")
+# Add real CHI numbers to a SLF
+ep_1718 <- read_slf_episode(c("1718", "1819", "1920"),
+  columns = c("year", "anon_chi", "demographic_cohort")
+) %>%
+  get_chi()
 
-    # Add anon_chi to cohort sample
-    chi_cohort <- chi_cohort %>%
-      get_anon_chi(chi_var = "upi_number")
+# Change chi numbers from data above back to anon_chi
+ep_1718_anon <- ep_1718 %>%
+  get_anon_chi(chi_var = "chi")
+
+# Add anon_chi to cohort sample
+chi_cohort <- chi_cohort %>%
+  get_anon_chi(chi_var = "upi_number")
+```
