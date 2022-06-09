@@ -40,6 +40,23 @@ remotes::install_github("Public-Health-Scotland/slfhelper")
 
 **Note:** Reading a full file is quite slow, we would always recommend doing a column selection to only keep the variables that you need for your analysis. Just doing this will dramatically speed up the read-time.
 
+We provide some data snippets to help with the column selection and filtering.
+
+```{r helper_data}
+library(slfhelper)
+
+# Get a list of the variables in a file
+ep_file_vars
+indiv_file_vars
+
+# See a lookup of Partnership names to HSCP_2018 codes
+View(partnerships)
+
+# See a list with descriptions for the recids
+View(recids)
+```
+
+
 ```{r read_files}
 library(slfhelper)
 
@@ -64,24 +81,10 @@ indiv_1718 <- read_slf_individual("1718", partnerships = "S37000001") # Aberdeen
 ep_1718 <- read_slf_episode("1718", recid = c("01B", "GLS"))
 
 # single recid filtering
-ep_1718_recid_04B <- read_slf_episode("1718",
-  recid = "04B"
-)
+ep_1718_recid_04B <- read_slf_episode("1718", recid = "04B")
 ```
 
-All of the above options for reading files can be combined if required. 
-
-There are a few data files included in the package which should be useful.
-
-```{r helper_data}
-# Get a list of the variables in a file
-slfhelper::ep_file_vars
-slfhelper::indiv_file_vars
-
-# See a lookup of Partnership names to HSCP_2018 codes
-
-hscp_lookup <- slfhelper::partnerships
-```
+Any of the above options for reading files can be combined if required. 
 
 ### Match on CHI numbers to Anon_CHI (or vice versa)
 
