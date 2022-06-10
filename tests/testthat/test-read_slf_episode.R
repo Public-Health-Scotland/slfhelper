@@ -1,3 +1,6 @@
+skip_on_ci()
+
+
 test_that("Reads episode file correctly", {
   # Read file, test all years
   years <- c("1415", "1516", "1617", "1718", "1819", "1920", "2021", "2122")
@@ -12,6 +15,6 @@ test_that("Reads episode file correctly", {
     expect_equal(nrow(ep_file), 11)
 
     # Test for correct number of variables (will need updating)
-    expect_length(ep_file, 243)
+    expect_length(ep_file, 247)
   }
 })

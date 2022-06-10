@@ -2,16 +2,16 @@
 % Please edit documentation in R/zzz.R
 \name{check_has_access}
 \alias{check_has_access}
-\title{Check if user is in hscdiip}
+\title{Check if the current user is in a UNIX group}
 \usage{
-check_has_access(group)
+check_has_access(group = "hscdiip")
 }
 \arguments{
-\item{group}{The group to check}
+\item{group}{The group to check, default is hscdiip}
 }
 \value{
 Boolean
 }
 \description{
-Check if user is in hscdiip
+Check if the current user is in a UNIX group
 }

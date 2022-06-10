@@ -1,3 +1,6 @@
+skip_on_ci()
+
+
 test_that("Recid filtering works", {
   # Read in a bit of a file selecting only Edinburgh
   ep_1718_acute <- read_slf_episode("1718",

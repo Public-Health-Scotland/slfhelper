@@ -1,3 +1,6 @@
+skip_on_ci()
+
+
 test_that("read multiple years works for individual file", {
   # Read in multiple years
   indiv <- read_slf_individual(c("1718", "1819"),

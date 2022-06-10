@@ -1,3 +1,6 @@
+skip_on_ci()
+
+
 test_that("Reads individual file correctly", {
   # Read file, test all years
   years <- years <- c("1415", "1516", "1617", "1718", "1819", "1920", "2021", "2122")
@@ -12,7 +15,7 @@ test_that("Reads individual file correctly", {
     expect_equal(nrow(indiv_file), 100)
 
     # Test for correct number of variables (will need updating)
-    expect_length(indiv_file, 185)
+    expect_length(indiv_file, 189)
   }
 })
 
