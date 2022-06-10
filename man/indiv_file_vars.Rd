@@ -5,7 +5,7 @@
 \alias{indiv_file_vars}
 \title{Individual file variables}
 \format{
-An object of class \code{character} of length 185.
+An object of class \code{character} of length 189.
 }
 \usage{
 indiv_file_vars
