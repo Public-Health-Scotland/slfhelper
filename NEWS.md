@@ -1,4 +1,4 @@
-# slfhelper (development version)
+# slfhelper 0.8.1
 
 * Use `{cli}` for nicer error messages and warning.
 
