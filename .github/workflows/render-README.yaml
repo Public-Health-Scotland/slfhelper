@@ -40,3 +40,6 @@ jobs:
           delete-branch: true
           title: Automated re-knit of the README
           labels: documentation,Maintainance
+          assignees: ${{ github.actor }}
+          reviewers: ${{ github.actor }}
+          
