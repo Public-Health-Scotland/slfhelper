@@ -27,11 +27,14 @@ The goal of slfhelper is to provide some easy to use functions that make working
 
 ## Installation
 
-You can install slfhelper from GitHub with the [remotes package](https://remotes.r-lib.org/).
+The preffered method of installation is to use the [`{pak}` package](https://pak.r-lib.org/), which does an excellent job of handling the errors which sometimes occur. 
+
+This is preferred over the [`{remotes}` package](https://remotes.r-lib.org/) which we used to recommend. `remotes::install_github("Public-Health-Scotland/slfhelper")` still works but there have been issues reported with it failing to properly install dependencies.
 
 ```{r package_install}
-install.packages("remotes")
-remotes::install_github("Public-Health-Scotland/slfhelper")
+install.packages("pak")
+
+pak::pak("Public-Health-Scotland/slfhelper")
 ```
 
 ## Usage
