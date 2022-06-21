@@ -3,7 +3,7 @@ pkgdown: 2.0.4
 pkgdown_sha: ~
 articles:
   variable-packs: variable-packs.html
-last_built: 2022-06-21T12:29Z
+last_built: 2022-06-21T12:37Z
 urls:
   reference: https://public-health-scotland.github.io/slfhelper/reference
   article: https://public-health-scotland.github.io/slfhelper/articles
