@@ -7,7 +7,7 @@ date)](https://img.shields.io/github/v/release/Public-Health-Scotland/slfhelper)
 [![Lifecycle:
 stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![R-CMD-check](https://github.com/Public-Health-Scotland/slfhelper/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Public-Health-Scotland/slfhelper/actions/workflows/R-CMD-check.yaml)
-[![test-coverage](https://github.com/Public-Health-Scotland/slfhelper/actions/workflows/test-coverage.yaml/badge.svg)](https://github.com/Public-Health-Scotland/slfhelper/actions/workflows/test-coverage.yaml)
+[![codecov](https://codecov.io/gh/Public-Health-Scotland/slfhelper/branch/production/graph/badge.svg?token=ev2n04MPNG)](https://codecov.io/gh/Public-Health-Scotland/slfhelper)
 <!-- badges: end -->
 
 # slfhelper
@@ -18,12 +18,20 @@ possible.
 
 ## Installation
 
-You can install slfhelper from GitHub with the [remotes
-package](https://remotes.r-lib.org/).
+The preffered method of installation is to use the [`{pak}`
+package](https://pak.r-lib.org/), which does an excellent job of
+handling the errors which sometimes occur.
+
+This is preferred over the [`{remotes}`
+package](https://remotes.r-lib.org/) which we used to recommend.
+`remotes::install_github("Public-Health-Scotland/slfhelper")` still
+works but there have been issues reported with it failing to properly
+install dependencies.
 
 ``` r
-install.packages("remotes")
-remotes::install_github("Public-Health-Scotland/slfhelper")
+install.packages("pak")
+
+pak::pak("Public-Health-Scotland/slfhelper")
 ```
 
 ## Usage
