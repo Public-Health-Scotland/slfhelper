@@ -12,18 +12,18 @@ stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://
 
 # slfhelper
 
-The goal of slfhelper is to provide some easy to use functions that make
+The goal of slfhelper is to provide some easy-to-use functions that make
 working with the Source Linkage Files as painless and efficient as
 possible.
 
 ## Installation
 
-The preffered method of installation is to use the [`{pak}`
+The preferred method of installation is to use the [{`pak`}
 package](https://pak.r-lib.org/), which does an excellent job of
 handling the errors which sometimes occur.
 
-This is preferred over the [`{remotes}`
-package](https://remotes.r-lib.org/) which we used to recommend.
+We previously recommended [{`remotes`}
+package](https://remotes.r-lib.org/),
 `remotes::install_github("Public-Health-Scotland/slfhelper")` still
 works but there have been issues reported with it failing to properly
 install dependencies.
