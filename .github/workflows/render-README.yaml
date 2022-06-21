@@ -36,4 +36,5 @@ jobs:
         with:
           commit_message: Render `README.md` after changes to the `.Rmd` version (GitHub action)
           file_pattern: README.md
-          token: ${{ secrets.SLFHELPER_TOKEN_ADMIN }}
+          branch: render_readme
+          create_branch: true
