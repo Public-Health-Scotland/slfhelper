@@ -1,9 +1,9 @@
-pandoc: 2.14.2
-pkgdown: 2.0.4
+pandoc: 2.19.2
+pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
   variable-packs: variable-packs.html
-last_built: 2022-06-21T13:21Z
+last_built: 2023-02-07T17:15Z
 urls:
   reference: https://public-health-scotland.github.io/slfhelper/reference
   article: https://public-health-scotland.github.io/slfhelper/articles

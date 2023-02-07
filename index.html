@@ -13,10 +13,10 @@
     submit a pull request.">
 <title>Useful functions for working with the Source Linkage Files • slfhelper</title>
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet">
-<script src="deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link href="deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet">
+<script src="deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Useful functions for working with the Source Linkage Files">
+<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Useful functions for working with the Source Linkage Files">
 <meta property="og:description" content="This package provides a few helper functions for working with
     the Source Linkage Files (SLFs). The functions are mainly focussed on
     making the first steps of analysis easier. They can read in and filter
@@ -87,9 +87,9 @@
 <p>The preferred method of installation is to use the <a href="https://pak.r-lib.org/" class="external-link">{<code>pak</code>} package</a>, which does an excellent job of handling the errors which sometimes occur.</p>
 <p>We previously recommended <a href="https://remotes.r-lib.org/" class="external-link">{<code>remotes</code>} package</a>, <code>remotes::install_github("Public-Health-Scotland/slfhelper")</code> still works but there have been issues reported with it failing to properly install dependencies.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"pak"</span><span class="op">)</span>
-
-<span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="http://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="st">"Public-Health-Scotland/slfhelper"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"pak"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="http://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="st">"Public-Health-Scotland/slfhelper"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
@@ -100,63 +100,63 @@
 <p><strong>Note:</strong> Reading a full file is quite slow, we would always recommend doing a column selection to only keep the variables that you need for your analysis. Just doing this will dramatically speed up the read-time.</p>
 <p>We provide some data snippets to help with the column selection and filtering.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://public-health-scotland.github.io/slfhelper/">slfhelper</a></span><span class="op">)</span>
-
-<span class="co"># Get a list of the variables in a file</span>
-<span class="va">ep_file_vars</span>
-<span class="va">indiv_file_vars</span>
-
-<span class="co"># See a lookup of Partnership names to HSCP_2018 codes</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/View.html" class="external-link">View</a></span><span class="op">(</span><span class="va">partnerships</span><span class="op">)</span>
-
-<span class="co"># See a list with descriptions for the recids</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/View.html" class="external-link">View</a></span><span class="op">(</span><span class="va">recids</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://public-health-scotland.github.io/slfhelper/">slfhelper</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Get a list of the variables in a file</span></span>
+<span><span class="va">ep_file_vars</span></span>
+<span><span class="va">indiv_file_vars</span></span>
+<span></span>
+<span><span class="co"># See a lookup of Partnership names to HSCP_2018 codes</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/View.html" class="external-link">View</a></span><span class="op">(</span><span class="va">partnerships</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># See a list with descriptions for the recids</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/View.html" class="external-link">View</a></span><span class="op">(</span><span class="va">recids</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://public-health-scotland.github.io/slfhelper/">slfhelper</a></span><span class="op">)</span>
-
-<span class="co"># Read a full file</span>
-<span class="va">ep_1718</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/read_slf_episode.html">read_slf_episode</a></span><span class="op">(</span><span class="st">"1718"</span><span class="op">)</span>
-<span class="va">indiv_1718</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/read_slf_individual.html">read_slf_individual</a></span><span class="op">(</span><span class="st">"1718"</span><span class="op">)</span>
-
-<span class="co"># Read multiple years</span>
-<span class="co"># This will use dplyr::bind_rows() and return the files added together as a single tibble</span>
-<span class="va">episode_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/read_slf_episode.html">read_slf_episode</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"1516"</span>, <span class="st">"1617"</span>, <span class="st">"1718"</span>, <span class="st">"1819"</span><span class="op">)</span><span class="op">)</span>
-
-<span class="co"># Read certain variables</span>
-<span class="co"># It's much faster to choose variables like this</span>
-<span class="va">indiv_1718</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/read_slf_individual.html">read_slf_individual</a></span><span class="op">(</span><span class="st">"1718"</span>, columns <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"anon_chi"</span>, <span class="st">"hri_scot"</span><span class="op">)</span><span class="op">)</span>
-
-<span class="co"># Read only data for a certain partnership (HSCP_2018 code)</span>
-<span class="co"># This can be a single partnership or multiple by supplying a vector e.g. c(...)</span>
-<span class="va">indiv_1718</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/read_slf_individual.html">read_slf_individual</a></span><span class="op">(</span><span class="st">"1718"</span>, partnerships <span class="op">=</span> <span class="st">"S37000001"</span><span class="op">)</span> <span class="co"># Aberdeen City</span>
-
-<span class="co"># Read only data for a certain recid</span>
-<span class="co"># This can be a single recid or multiple by supplying a vector e.g. c(...)</span>
-<span class="va">ep_1718</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/read_slf_episode.html">read_slf_episode</a></span><span class="op">(</span><span class="st">"1718"</span>, recid <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"01B"</span>, <span class="st">"GLS"</span><span class="op">)</span><span class="op">)</span>
-
-<span class="co"># single recid filtering</span>
-<span class="va">ep_1718_recid_04B</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/read_slf_episode.html">read_slf_episode</a></span><span class="op">(</span><span class="st">"1718"</span>, recid <span class="op">=</span> <span class="st">"04B"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://public-health-scotland.github.io/slfhelper/">slfhelper</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Read a full file</span></span>
+<span><span class="va">ep_1718</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/read_slf_episode.html">read_slf_episode</a></span><span class="op">(</span><span class="st">"1718"</span><span class="op">)</span></span>
+<span><span class="va">indiv_1718</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/read_slf_individual.html">read_slf_individual</a></span><span class="op">(</span><span class="st">"1718"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Read multiple years</span></span>
+<span><span class="co"># This will use dplyr::bind_rows() and return the files added together as a single tibble</span></span>
+<span><span class="va">episode_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/read_slf_episode.html">read_slf_episode</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"1516"</span>, <span class="st">"1617"</span>, <span class="st">"1718"</span>, <span class="st">"1819"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Read certain variables</span></span>
+<span><span class="co"># It's much faster to choose variables like this</span></span>
+<span><span class="va">indiv_1718</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/read_slf_individual.html">read_slf_individual</a></span><span class="op">(</span><span class="st">"1718"</span>, columns <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"anon_chi"</span>, <span class="st">"hri_scot"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Read only data for a certain partnership (HSCP_2018 code)</span></span>
+<span><span class="co"># This can be a single partnership or multiple by supplying a vector e.g. c(...)</span></span>
+<span><span class="va">indiv_1718</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/read_slf_individual.html">read_slf_individual</a></span><span class="op">(</span><span class="st">"1718"</span>, partnerships <span class="op">=</span> <span class="st">"S37000001"</span><span class="op">)</span> <span class="co"># Aberdeen City</span></span>
+<span></span>
+<span><span class="co"># Read only data for a certain recid</span></span>
+<span><span class="co"># This can be a single recid or multiple by supplying a vector e.g. c(...)</span></span>
+<span><span class="va">ep_1718</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/read_slf_episode.html">read_slf_episode</a></span><span class="op">(</span><span class="st">"1718"</span>, recid <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"01B"</span>, <span class="st">"GLS"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># single recid filtering</span></span>
+<span><span class="va">ep_1718_recid_04B</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/read_slf_episode.html">read_slf_episode</a></span><span class="op">(</span><span class="st">"1718"</span>, recid <span class="op">=</span> <span class="st">"04B"</span><span class="op">)</span></span></code></pre></div>
 <p>Any of the above options for reading files can be combined if required.</p>
 </div>
 <div class="section level3">
 <h3 id="match-on-chi-numbers-to-anon_chi-or-vice-versa">Match on CHI numbers to Anon_CHI (or vice versa)<a class="anchor" aria-label="anchor" href="#match-on-chi-numbers-to-anon_chi-or-vice-versa"></a>
 </h3>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://public-health-scotland.github.io/slfhelper/">slfhelper</a></span><span class="op">)</span>
-
-<span class="co"># Add real CHI numbers to a SLF</span>
-<span class="va">ep_1718</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/read_slf_episode.html">read_slf_episode</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"1718"</span>, <span class="st">"1819"</span>, <span class="st">"1920"</span><span class="op">)</span>,
-  columns <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"year"</span>, <span class="st">"anon_chi"</span>, <span class="st">"demographic_cohort"</span><span class="op">)</span>
-<span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="reference/get_chi.html">get_chi</a></span><span class="op">(</span><span class="op">)</span>
-
-<span class="co"># Change chi numbers from data above back to anon_chi</span>
-<span class="va">ep_1718_anon</span> <span class="op">&lt;-</span> <span class="va">ep_1718</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="reference/get_anon_chi.html">get_anon_chi</a></span><span class="op">(</span>chi_var <span class="op">=</span> <span class="st">"chi"</span><span class="op">)</span>
-
-<span class="co"># Add anon_chi to cohort sample</span>
-<span class="va">chi_cohort</span> <span class="op">&lt;-</span> <span class="va">chi_cohort</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="reference/get_anon_chi.html">get_anon_chi</a></span><span class="op">(</span>chi_var <span class="op">=</span> <span class="st">"upi_number"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://public-health-scotland.github.io/slfhelper/">slfhelper</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Add real CHI numbers to a SLF</span></span>
+<span><span class="va">ep_1718</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/read_slf_episode.html">read_slf_episode</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"1718"</span>, <span class="st">"1819"</span>, <span class="st">"1920"</span><span class="op">)</span>,</span>
+<span>  columns <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"year"</span>, <span class="st">"anon_chi"</span>, <span class="st">"demographic_cohort"</span><span class="op">)</span></span>
+<span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="reference/get_chi.html">get_chi</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Change chi numbers from data above back to anon_chi</span></span>
+<span><span class="va">ep_1718_anon</span> <span class="op">&lt;-</span> <span class="va">ep_1718</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="reference/get_anon_chi.html">get_anon_chi</a></span><span class="op">(</span>chi_var <span class="op">=</span> <span class="st">"chi"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Add anon_chi to cohort sample</span></span>
+<span><span class="va">chi_cohort</span> <span class="op">&lt;-</span> <span class="va">chi_cohort</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="reference/get_anon_chi.html">get_anon_chi</a></span><span class="op">(</span>chi_var <span class="op">=</span> <span class="st">"upi_number"</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
 </div>
@@ -182,6 +182,7 @@
 <ul class="list-unstyled">
 <li><a href="CONTRIBUTING.html">Contributing guide</a></li>
 <li><a href="CODE_OF_CONDUCT.html">Code of conduct</a></li>
+<li><a href="SUPPORT.html">Getting help</a></li>
 </ul>
 </div>
 
@@ -221,7 +222,7 @@
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
     </footer>
