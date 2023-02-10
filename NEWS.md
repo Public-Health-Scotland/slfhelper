@@ -1,3 +1,7 @@
+# slfhelper 0.8.2
+
+* `ep_file_vars` and `indiv_file_vars` updated with correct variables. 
+
 # slfhelper 0.8.1
 
 * Use `{cli}` for nicer error messages and warning.

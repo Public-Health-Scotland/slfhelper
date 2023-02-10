@@ -5,7 +5,7 @@
 \alias{ep_file_vars}
 \title{Episode file variables}
 \format{
-An object of class \code{character} of length 247.
+An object of class \code{character} of length 246.
 }
 \usage{
 ep_file_vars
