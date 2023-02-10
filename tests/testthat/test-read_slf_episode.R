@@ -1,9 +1,19 @@
 skip_on_ci()
 
+# Read file, test all years
+years <- c(
+  "1415",
+  "1516",
+  "1617",
+  "1718",
+  "1819",
+  "1920",
+  "2021",
+  "2122",
+  "2223"
+)
 
 test_that("Reads episode file correctly", {
-  # Read file, test all years
-  years <- c("1415", "1516", "1617", "1718", "1819", "1920", "2021", "2122")
   for (year in years) {
     ep_file <- read_slf_episode(year, from = 100, to = 110)
 
