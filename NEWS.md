@@ -1,4 +1,4 @@
-# slfhelper (development version)
+# slfhelper 0.8.2
 
 # slfhelper 0.8.1
 
