@@ -7,10 +7,11 @@ test_that("Match CHI to individual file", {
     columns = c("anon_chi"),
     from = 1, to = 100
   )
+
   # Match on the chi
   indiv_1718_with_chi <- indiv_1718_small %>% get_chi()
 
-  # Catch anything wierd
+  # Catch anything weird
   expect_type(indiv_1718_with_chi, "list")
 
   # Default behaviour is to drop the anon_chi we should now have a chi var
@@ -30,6 +31,7 @@ test_that("Match CHI to episode file", {
     from = 100000,
     to = 100100
   )
+
   # Match on the chi
   ep_1718_with_chi <- ep_1718_small %>% get_chi()
 

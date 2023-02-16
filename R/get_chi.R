@@ -16,16 +16,16 @@
 #' get_chi(slf_1718, drop = FALSE)
 #' }
 get_chi <- function(data, anon_chi_var = "anon_chi", drop = TRUE) {
-  default_name <- "anon_chi"
 
-  chi_lookup <- fst::read_fst(
-    "/conf/hscdiip/01-Source-linkage-files/Anon-to-CHI-lookup.fst"
-  )
+    lookup <- tibble::tibble(
+      anon_chi = unique(data[[anon_chi_var]])
+    ) %>%
+      dplyr::mutate(chi = unname(convert_anon_chi_to_chi(.data$anon_chi)))
 
   data <- data %>%
     dplyr::left_join(
-      chi_lookup,
-      by = stats::setNames(default_name, anon_chi_var)
+      lookup,
+      by = stats::setNames("anon_chi", anon_chi_var)
     )
 
   if (drop) {
@@ -35,3 +35,11 @@ get_chi <- function(data, anon_chi_var = "anon_chi", drop = TRUE) {
 
   return(data)
 }
+
+convert_anon_chi_to_chi <- Vectorize(function(anon_chi) {
+  chi <- openssl::base64_decode(anon_chi) %>%
+    substr(2, 2) %>%
+    paste0(collapse = "")
+
+  return(chi)
+})
