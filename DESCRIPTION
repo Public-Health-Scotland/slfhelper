@@ -1,7 +1,7 @@
 Type: Package
 Package: slfhelper
 Title: Useful functions for working with the Source Linkage Files
-Version: 0.8.2
+Version: 0.8.2.9000
 Authors@R: c(
     person("Public Health Scotland", , , "phs.source@phs.scot", role = "cph"),
     person("James", "McMahon", , "james.mcmahon@phs.scot", role = c("cre", "aut"),
