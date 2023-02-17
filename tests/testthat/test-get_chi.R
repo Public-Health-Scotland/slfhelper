@@ -1,5 +1,29 @@
-skip_on_ci()
+test_that("Can get CHI numbers for an arbitrary set of anon_chi numbers", {
+  data <- tibble::tibble(
+    anon_chi = c(
+      "MjYwMTIxMTYxOA==",
+      "MjIxMDY4MDYzMQ==",
+      "MTQxMDkyMDc1NA==",
+      "MzExMjM1ODE1OA==",
+      "MDExMjQxODE1Ng==",
+      "MDYxMjczMjI0Mw==",
+      "MjMxMDQ3NDAxNQ==",
+      "MjQxMTA2MzY5OA==",
+      "MzgwMTExMjM3NA==",
+      "MjMxMTE2MTIzMw=="
+    )
+  )
 
+  data %>%
+    get_chi() %>%
+    expect_snapshot()
+
+  data %>%
+    get_chi(drop = FALSE) %>%
+    expect_snapshot()
+})
+
+skip_on_ci()
 
 test_that("Match CHI to individual file", {
   # Read 100 records from individual file
