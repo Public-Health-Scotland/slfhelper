@@ -45,12 +45,12 @@ get_anon_chi <- function(chi_cohort, chi_var = "chi", drop = TRUE) {
     }
   }
 
-    lookup <- tibble::tibble(
-      chi = unique(chi_cohort[[chi_var]])
-    ) %>%
-      dplyr::mutate(
-        anon_chi = purrr::map_chr(.data$chi, openssl::base64_encode)
-      )
+  lookup <- tibble::tibble(
+    chi = unique(chi_cohort[[chi_var]])
+  ) %>%
+    dplyr::mutate(
+      anon_chi = purrr::map_chr(.data$chi, openssl::base64_encode)
+    )
 
   chi_cohort <- chi_cohort %>%
     dplyr::left_join(

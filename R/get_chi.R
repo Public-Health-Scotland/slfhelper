@@ -16,11 +16,10 @@
 #' get_chi(slf_1718, drop = FALSE)
 #' }
 get_chi <- function(data, anon_chi_var = "anon_chi", drop = TRUE) {
-
-    lookup <- tibble::tibble(
-      anon_chi = unique(data[[anon_chi_var]])
-    ) %>%
-      dplyr::mutate(chi = unname(convert_anon_chi_to_chi(.data$anon_chi)))
+  lookup <- tibble::tibble(
+    anon_chi = unique(data[[anon_chi_var]])
+  ) %>%
+    dplyr::mutate(chi = unname(convert_anon_chi_to_chi(.data$anon_chi)))
 
   data <- data %>%
     dplyr::left_join(
