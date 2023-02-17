@@ -1,14 +1,13 @@
-skip_on_ci()
-
-
 test_that("Matching with a different name works", {
   # Use the example chi cohort included
 
   # Match on anon_chi
-  cohort_with_anon <- suppressWarnings(get_anon_chi(chi_cohort, chi_var = "upi_number"))
+  cohort_with_anon <- suppressWarnings(
+    get_anon_chi(chi_cohort, chi_var = "upi_number")
+  )
 
-  # Default behaviour is to drop the matching var
-  # we should now have an anon_chi var
+  # Default behaviour is to drop the matching variable
+  # we should now have an anon_chi variable
   expect_false("upi_number" %in% names(cohort_with_anon))
   expect_true("anon_chi" %in% names(cohort_with_anon))
 

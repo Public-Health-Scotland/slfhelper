@@ -17,13 +17,16 @@
 #' chi_cohort %>% get_anon_chi(chi_var = "upi_number")
 #' }
 get_anon_chi <- function(chi_cohort, chi_var = "chi", drop = TRUE) {
-  default_name <- "chi"
-
   # Optional code, if the user has phsmethods installed check the CHIs with it.
-  if (requireNamespace("phsmethods", quietly = TRUE)) {
-    checked_chi <- phsmethods::chi_check(dplyr::pull(chi_cohort, {{ chi_var }}))
+  if (rlang::is_installed("phsmethods")) {
+    checked_chi <- phsmethods::chi_check(
+      dplyr::pull(chi_cohort, {{ chi_var }})
+    )
 
-    which_invalid <- which(checked_chi != "Valid CHI")
+    which_invalid <- which(
+      !(checked_chi %in% c("Valid CHI", "Missing (Blank)", "Missing (NA)"))
+    )
+
     n_invalid <- length(which_invalid)
 
     if (n_invalid > 10) {
@@ -32,7 +35,9 @@ get_anon_chi <- function(chi_cohort, chi_var = "chi", drop = TRUE) {
         "you should check them with {.fn phsmethods::chi_check}"
       ))
     } else if (n_invalid > 0) {
-      cli::cli_alert_warning("Some of the CHI numbers supplied look invalid according to {.fn phsmethods::chi_check}")
+      cli::cli_alert_warning(
+        "Some of the CHI numbers supplied look invalid according to {.fn phsmethods::chi_check}"
+      )
       print(tibble::tibble(
         {{ chi_var }} := dplyr::pull(chi_cohort, {{ chi_var }})[which_invalid],
         reason = checked_chi[which_invalid]
@@ -40,19 +45,23 @@ get_anon_chi <- function(chi_cohort, chi_var = "chi", drop = TRUE) {
     }
   }
 
-  anon_chi_lookup <- fst::read_fst(
-    "/conf/hscdiip/01-Source-linkage-files/CHI-to-Anon-lookup.fst"
-  )
+  lookup <- tibble::tibble(
+    chi = unique(chi_cohort[[chi_var]])
+  ) %>%
+    dplyr::mutate(
+      anon_chi = purrr::map_chr(.data$chi, openssl::base64_encode)
+    )
 
   chi_cohort <- chi_cohort %>%
     dplyr::left_join(
-      anon_chi_lookup,
-      by = stats::setNames(default_name, chi_var)
+      lookup,
+      by = stats::setNames("chi", chi_var)
     )
 
   if (drop) {
     chi_cohort <- chi_cohort %>%
       dplyr::select(-{{ chi_var }})
   }
+
   return(chi_cohort)
 }
