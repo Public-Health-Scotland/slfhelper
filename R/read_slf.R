@@ -86,10 +86,10 @@ read_slf <-
 
     # With testing it is faster to remove any extra columns after binding
     if (remove_partnership_var) {
-      slf <- dplyr::select(slf, -.data$hscp2018)
+      slf <- dplyr::select(slf, -"hscp2018")
     }
     if (remove_recid_var) {
-      slf <- dplyr::select(slf, -.data$recid)
+      slf <- dplyr::select(slf, -"recid")
     }
 
     # Return the data as a tibble
