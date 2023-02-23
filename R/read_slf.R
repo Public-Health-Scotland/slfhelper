@@ -130,16 +130,26 @@ read_slf_episode <-
   function(year, columns = NULL, partnerships = NULL, recids = NULL, ...) {
     # TODO add option to drop blank CHIs?
     # TODO add a filter by recid option
-    return(
-      read_slf(
-        year = year,
-        file_version = "episode",
-        partnerships = unique(partnerships),
-        recids = unique(recids),
-        columns = unique(columns),
-        ...
-      )
+
+    columns <- unique(columns)
+
+    slf_episode_data <- tryCatch(
+      {
+        read_slf(
+          year = year,
+          file_version = "episode",
+          partnerships = unique(partnerships),
+          recids = unique(recids),
+          columns = columns,
+          ...
+        )
+      },
+      error = function(cnd) {
+        check_variable_names(columns, slfhelper::ep_file_vars, cnd = cnd)
+      }
     )
+
+    return(slf_episode_data)
   }
 
 
@@ -170,13 +180,23 @@ read_slf_episode <-
 #' }
 read_slf_individual <-
   function(year, columns = NULL, partnerships = NULL, ...) {
-    return(
-      read_slf(
-        year = year,
-        file_version = "individual",
-        partnerships = unique(partnerships),
-        columns = unique(columns),
-        ...
+    columns <- unique(columns)
+
+    slf_individual_data <-
+      tryCatch(
+        {
+          read_slf(
+            year = year,
+            file_version = "individual",
+            partnerships = unique(partnerships),
+            columns = columns,
+            ...
+          )
+        },
+        error = function(cnd) {
+          check_variable_names(columns, slfhelper::indiv_file_vars, cnd = cnd)
+        }
       )
-    )
+
+    return(slf_individual_data)
   }
