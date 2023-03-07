@@ -2,6 +2,7 @@
 
 * [`{openssl}`](https://cran.r-project.org/web/packages/openssl/index.html) is now required.
 * `get_chi()` and `get_anon_chi()` are now much faster (>100X) and use significantly less memory.
+* The `year` parameter is now checked early in the process, and if an invalid year is supplied the error message should be much more informative.
 
 # slfhelper 0.8.2
 
