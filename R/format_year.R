@@ -4,9 +4,11 @@
 #'
 #' @return Year correctly formatted into short FY e.g. '1718'
 format_year <- function(year) {
-  year <- stringr::str_remove(year, "/")
-  year <- stringr::str_extract(as.character(year), "\\d{2}\\d{2}$")
-  return(year)
+  formatted_year <- as.character(year) %>%
+    stringr::str_remove("/") %>%
+    stringr::str_extract("[1-9][0-9]{3}$")
+
+  return(formatted_year)
 }
 
 #' Check the year(s) supplied are valid
