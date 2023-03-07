@@ -7,8 +7,9 @@
 check_year(year)
 }
 \arguments{
-\item{year}{A year in any format.
-It will be converted to short FY using \code{format_year()}}
+\item{year}{Year of the file to be read, you can specify multiple years
+which will then be returned as one file. It will be converted to short FY
+using \code{\link[=format_year]{format_year()}}.}
 }
 \value{
 \code{TRUE} if the year is valid and a newer year, \code{FALSE} for any

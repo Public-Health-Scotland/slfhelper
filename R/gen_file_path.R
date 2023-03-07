@@ -1,8 +1,6 @@
 #' Generate a Source Linkage File, file path
 #'
-#' @param year Year of the file to be read, you can specify multiple years
-#'  which will then be returned as one file
-#' @param file_version Version of the file (individual / episode)
+#' @inheritParams read_slf
 #'
 #' @return a [fs_path][fs::fs-package] object
 gen_file_path <- function(year, file_version) {

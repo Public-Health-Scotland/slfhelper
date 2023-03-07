@@ -7,15 +7,14 @@
 read_slf_individual(year, columns = NULL, partnerships = NULL, ...)
 }
 \arguments{
-\item{year}{Year of the file to be read you can specify multiple years
-which will then be returned as one file}
-
-\item{columns}{Optional a vector of column names}
+\item{year}{Year of the file to be read, you can specify multiple years
+which will then be returned as one file. It will be converted to short FY
+using \code{\link[=format_year]{format_year()}}.}
 
 \item{partnerships}{Optional specify a partnership (hscp2018) or
 partnerships to select}
 
-\item{...}{other options to be passed to read_fst()}
+\item{...}{other options to be passed to \code{\link[fst:write_fst]{fst::read_fst()}}}
 }
 \value{
 a \link[tibble:tibble-package]{tibble}

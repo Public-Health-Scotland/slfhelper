@@ -7,7 +7,9 @@
 format_year(year)
 }
 \arguments{
-\item{year}{Year in any format}
+\item{year}{Year of the file to be read, you can specify multiple years
+which will then be returned as one file. It will be converted to short FY
+using \code{\link[=format_year]{format_year()}}.}
 }
 \value{
 Year correctly formatted into short FY e.g. '1718'

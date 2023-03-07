@@ -1,12 +1,13 @@
 #' Read a Source Linkage File
 #'
 #' @param year Year of the file to be read, you can specify multiple years
-#'  which will then be returned as one file
+#'  which will then be returned as one file. It will be converted to short FY
+#'  using [format_year()].
 #' @param file_version Version of the file (individual / episode)
 #' @param partnerships Optional specify a partnership (hscp2018) or
 #' partnerships to select
 #' @param recids Optional specify a recid or recids to select
-#' @param ... other options to be passed to read_fst()
+#' @param ... other options to be passed to [fst::read_fst()]
 #'
 #' @return a [tibble][tibble::tibble-package]
 #' @importFrom rlang .data
@@ -100,14 +101,7 @@ read_slf <-
 
 #' Read a Source Linkage episode file
 #'
-#' @param year Year of the file to be read you can specify multiple years
-#' which will then be returned as one file
-#' @param columns Optional a vector of column names
-#' @param partnerships Optional specify a partnership (hscp2018) or
-#' partnerships to select
-#' @param recids Optional specify a recid or recids to select
-#' @param ... other options to be passed to read_fst()
-#'
+#' @inheritParams read_slf
 #'
 #' @return a [tibble][tibble::tibble-package]
 #' @export
@@ -145,13 +139,7 @@ read_slf_episode <-
 
 #' Read a Source Linkage individual file
 #'
-#' @param year Year of the file to be read you can specify multiple years
-#'   which will then be returned as one file
-#' @param columns Optional a vector of column names
-#' @param partnerships Optional specify a partnership (hscp2018) or
-#' partnerships to select
-#' @param ... other options to be passed to read_fst()
-#'
+#' @inheritParams read_slf
 #'
 #' @return a [tibble][tibble::tibble-package]
 #' @export

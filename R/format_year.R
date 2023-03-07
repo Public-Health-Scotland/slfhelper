@@ -1,6 +1,6 @@
 #' Format a year into the correct short FY format
 #'
-#' @param year Year in any format
+#' @inheritParams gen_file_path
 #'
 #' @return Year correctly formatted into short FY e.g. '1718'
 format_year <- function(year) {
@@ -11,8 +11,7 @@ format_year <- function(year) {
 
 #' Check the year(s) supplied are valid
 #'
-#' @param year A year in any format.
-#' It will be converted to short FY using `format_year()`
+#' @inheritParams gen_file_path
 #'
 #' @return `TRUE` if the year is valid and a newer year, `FALSE` for any
 #' older but still valid years. Otherwise throws an error.

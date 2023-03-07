@@ -8,7 +8,8 @@ gen_file_path(year, file_version)
 }
 \arguments{
 \item{year}{Year of the file to be read, you can specify multiple years
-which will then be returned as one file}
+which will then be returned as one file. It will be converted to short FY
+using \code{\link[=format_year]{format_year()}}.}
 
 \item{file_version}{Version of the file (individual / episode)}
 }
