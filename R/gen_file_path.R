@@ -22,11 +22,13 @@ gen_file_path <- function(
 
   file_name <- glue("source-{file_version}-file-20{year}")
 
-  file_path <-
-    fs::path(
-      "/conf", "hscdiip", "01-Source-linkage-files", file_name,
-      ext = "fst"
-    )
+  file_path <- fs::path(
+    "/conf",
+    "hscdiip",
+    "01-Source-linkage-files",
+    file_name,
+    ext = "fst"
+  )
 
   return(file_path)
 }
