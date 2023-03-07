@@ -4,12 +4,15 @@
 \alias{check_year}
 \title{Check the year(s) supplied are valid}
 \usage{
-check_year(year)
+check_year(year, call)
 }
 \arguments{
 \item{year}{Year of the file to be read, you can specify multiple years
 which will then be returned as one file. It will be converted to short FY
 using \code{\link[=format_year]{format_year()}}.}
+
+\item{call}{Supply environment from the top-level function to make any error
+messages more useful.}
 }
 \value{
 \code{TRUE} if the year is valid and a newer year, \code{FALSE} for any
