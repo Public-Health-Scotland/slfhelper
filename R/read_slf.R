@@ -13,7 +13,6 @@
 #' @importFrom rlang .data
 read_slf <-
   function(year, file_version = c("episode", "individual"), partnerships = NULL, recids = NULL, ...) {
-
     # Count how many files we are going to read
     num_files <- length(file_path)
 
@@ -38,11 +37,11 @@ read_slf <-
         optional_params$columns <- c(optional_params$columns, "recid")
         remove_recid_var <- TRUE
       }
-  file_path <- gen_file_path(
-    year,
-    file_version,
-    call = rlang::caller_env()
-  )
+      file_path <- gen_file_path(
+        year,
+        file_version,
+        call = rlang::caller_env()
+      )
     }
 
     # Create a list of parameters, starting with the filepaths

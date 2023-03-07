@@ -1,4 +1,3 @@
-
 test_that("Year check returns TRUE for correct newer years", {
   expect_true(check_year("1718"))
   expect_true(check_year("17/18"))
