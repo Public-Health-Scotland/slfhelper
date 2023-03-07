@@ -102,6 +102,7 @@ read_slf <-
 #' Read a Source Linkage episode file
 #'
 #' @inheritParams read_slf
+#' @inheritParams fst::read_fst
 #'
 #' @return a [tibble][tibble::tibble-package]
 #' @export
@@ -140,6 +141,7 @@ read_slf_episode <-
 #' Read a Source Linkage individual file
 #'
 #' @inheritParams read_slf
+#' @inheritParams fst::read_fst
 #'
 #' @return a [tibble][tibble::tibble-package]
 #' @export

@@ -11,6 +11,8 @@ read_slf_individual(year, columns = NULL, partnerships = NULL, ...)
 which will then be returned as one file. It will be converted to short FY
 using \code{\link[=format_year]{format_year()}}.}
 
+\item{columns}{Column names to read. The default is to read all columns.}
+
 \item{partnerships}{Optional specify a partnership (hscp2018) or
 partnerships to select}
 
