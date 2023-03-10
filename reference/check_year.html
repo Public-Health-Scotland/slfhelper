@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">slfhelper</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -47,7 +47,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Check the year(s) supplied are valid</h1>
-      <small class="dont-index">Source: <a href="https://github.com/Public-Health-Scotland/slfhelper/blob/HEAD/R/format_year.R" class="external-link"><code>R/format_year.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/Public-Health-Scotland/slfhelper/blob/HEAD/R/check_year.R" class="external-link"><code>R/check_year.R</code></a></small>
       <div class="d-none name"><code>check_year.Rd</code></div>
     </div>
 
@@ -57,14 +57,20 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">check_year</span><span class="op">(</span><span class="va">year</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">check_year</span><span class="op">(</span><span class="va">year</span>, <span class="va">call</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>year</dt>
-<dd><p>A year in any format.
-It will be converted to short FY using <code><a href="format_year.html">format_year()</a></code></p></dd>
+<dd><p>Year of the file to be read, you can specify multiple years
+which will then be returned as one file. It will be converted to short FY
+using <code><a href="format_year.html">format_year()</a></code>.</p></dd>
+
+
+<dt>call</dt>
+<dd><p>Supply environment from the top-level function to make any error
+messages more useful.</p></dd>
 
 </dl></div>
     <div class="section level2">

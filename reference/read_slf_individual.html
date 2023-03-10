@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">slfhelper</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -63,12 +63,13 @@
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>year</dt>
-<dd><p>Year of the file to be read you can specify multiple years
-which will then be returned as one file</p></dd>
+<dd><p>Year of the file to be read, you can specify multiple years
+which will then be returned as one file. It will be converted to short FY
+using <code><a href="format_year.html">format_year()</a></code>.</p></dd>
 
 
 <dt>columns</dt>
-<dd><p>Optional a vector of column names</p></dd>
+<dd><p>Column names to read. The default is to read all columns.</p></dd>
 
 
 <dt>partnerships</dt>
@@ -77,7 +78,7 @@ partnerships to select</p></dd>
 
 
 <dt>...</dt>
-<dd><p>other options to be passed to read_fst()</p></dd>
+<dd><p>other options to be passed to <code><a href="http://www.fstpackage.org/reference/write_fst.html" class="external-link">fst::read_fst()</a></code></p></dd>
 
 </dl></div>
     <div class="section level2">
