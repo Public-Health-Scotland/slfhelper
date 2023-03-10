@@ -1,28 +1,36 @@
 skip_on_ci()
 
+variable_names <- function(year, file_version = c("episode", "individual")) {
+  if (file_version == "episode") {
+    variable_names <- names(read_slf_episode(year, from = 1L, to = 1L))
+  } else if (file_version == "individual") {
+    variable_names <- names(read_slf_individual(year, from = 1L, to = 1L))
+  }
+}
+
 
 test_that("episode file vars match the vars list", {
   # These should be identical (names, order etc.)
-  expect_named(read_slf_episode("1415", from = 1, to = 1), ep_file_vars)
-  expect_named(read_slf_episode("1516", from = 1, to = 1), ep_file_vars)
-  expect_named(read_slf_episode("1617", from = 1, to = 1), ep_file_vars)
-  expect_named(read_slf_episode("1718", from = 1, to = 1), ep_file_vars)
-  expect_named(read_slf_episode("1819", from = 1, to = 1), ep_file_vars)
-  expect_named(read_slf_episode("1920", from = 1, to = 1), ep_file_vars)
-  expect_named(read_slf_episode("2021", from = 1, to = 1), ep_file_vars)
-  expect_named(read_slf_episode("2122", from = 1, to = 1), ep_file_vars)
-  expect_named(read_slf_episode("2223", from = 1, to = 1), ep_file_vars)
+  expect_equal(variable_names("1415", "episode"), ep_file_vars)
+  expect_equal(variable_names("1516", "episode"), ep_file_vars)
+  expect_equal(variable_names("1617", "episode"), ep_file_vars)
+  expect_equal(variable_names("1718", "episode"), ep_file_vars)
+  expect_equal(variable_names("1819", "episode"), ep_file_vars)
+  expect_equal(variable_names("1920", "episode"), ep_file_vars)
+  expect_equal(variable_names("2021", "episode"), ep_file_vars)
+  expect_equal(variable_names("2122", "episode"), ep_file_vars)
+  expect_equal(variable_names("2223", "episode"), ep_file_vars)
 })
 
 test_that("individual file vars match the vars list", {
   # These should be identical (names, order etc.)
-  expect_named(read_slf_individual("1415", from = 1, to = 1), indiv_file_vars)
-  expect_named(read_slf_individual("1516", from = 1, to = 1), indiv_file_vars)
-  expect_named(read_slf_individual("1617", from = 1, to = 1), indiv_file_vars)
-  expect_named(read_slf_individual("1718", from = 1, to = 1), indiv_file_vars)
-  expect_named(read_slf_individual("1819", from = 1, to = 1), indiv_file_vars)
-  expect_named(read_slf_individual("1920", from = 1, to = 1), indiv_file_vars)
-  expect_named(read_slf_individual("2021", from = 1, to = 1), indiv_file_vars)
-  expect_named(read_slf_individual("2122", from = 1, to = 1), indiv_file_vars)
-  expect_named(read_slf_individual("2223", from = 1, to = 1), indiv_file_vars)
+  expect_equal(variable_names("1415", "individual"), indiv_file_vars)
+  expect_equal(variable_names("1516", "individual"), indiv_file_vars)
+  expect_equal(variable_names("1617", "individual"), indiv_file_vars)
+  expect_equal(variable_names("1718", "individual"), indiv_file_vars)
+  expect_equal(variable_names("1819", "individual"), indiv_file_vars)
+  expect_equal(variable_names("1920", "individual"), indiv_file_vars)
+  expect_equal(variable_names("2021", "individual"), indiv_file_vars)
+  expect_equal(variable_names("2122", "individual"), indiv_file_vars)
+  expect_equal(variable_names("2223", "individual"), indiv_file_vars)
 })
