@@ -1,4 +1,4 @@
-# slfhelper (development version)
+# slfhelper 0.9.0
 
 * [`{openssl}`](https://cran.r-project.org/web/packages/openssl/index.html) is now required.
 * `get_chi()` and `get_anon_chi()` are now much faster (>100X) and use significantly less memory.
