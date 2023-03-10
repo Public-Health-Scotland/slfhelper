@@ -32,7 +32,7 @@ test_that("column selection works", {
   # Test for correct number of variables
   expect_length(indiv_1718, 1)
 
-  # Test for the existance of the anon_chi var
+  # Test for the existence of the anon_chi var
   expect_named(indiv_1718, "anon_chi")
 
   # Test for roughly correct number of rows
