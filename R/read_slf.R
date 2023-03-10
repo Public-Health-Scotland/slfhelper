@@ -19,7 +19,8 @@ read_slf <- function(
     ...) {
   file_path <- gen_file_path(
     year,
-    file_version
+    file_version,
+    call = rlang::caller_env()
   )
 
   # Count how many files we are going to read
@@ -129,13 +130,11 @@ read_slf <- function(
 #' )
 #' }
 read_slf_episode <-
-  function(
-      year,
-      columns = NULL,
-      partnerships = NULL,
-      recids = NULL,
-      ...
-  ) {
+  function(year,
+           columns = NULL,
+           partnerships = NULL,
+           recids = NULL,
+           ...) {
     # TODO add option to drop blank CHIs?
     # TODO add a filter by recid option
     return(
@@ -172,12 +171,10 @@ read_slf_episode <-
 #' )
 #' }
 read_slf_individual <-
-  function(
-      year,
-      columns = NULL,
-      partnerships = NULL,
-      ...
-  ) {
+  function(year,
+           columns = NULL,
+           partnerships = NULL,
+           ...) {
     return(
       read_slf(
         year = year,
