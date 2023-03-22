@@ -69,14 +69,18 @@ indiv_1718 <- read_slf_individual(year = "1718", columns = c("anon_chi", "hri_sc
 
 # Read multiple years
 # This will use dplyr::bind_rows() and return the files added together as a single tibble
-episode_data <- read_slf_episode(year = c("1516", "1617", "1718", "1819"),
-                                 columns = c("anon_chi", "yearstay"))
+episode_data <- read_slf_episode(
+  year = c("1516", "1617", "1718", "1819"),
+  columns = c("anon_chi", "yearstay")
+)
 
 # Read only data for a certain partnership (HSCP_2018 code)
 # This can be a single partnership or multiple by supplying a vector e.g. c(...)
-indiv_1718 <- read_slf_individual(year = "1718", 
-                                  partnerships = "S37000001", # Aberdeen City
-                                  columns = c("anon_chi", "hri_scot"))
+indiv_1718 <- read_slf_individual(
+  year = "1718",
+  partnerships = "S37000001", # Aberdeen City
+  columns = c("anon_chi", "hri_scot")
+)
 
 # Read only data for a certain recid
 # This can be a single recid or multiple by supplying a vector e.g. c(...)
