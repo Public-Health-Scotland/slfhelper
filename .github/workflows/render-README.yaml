@@ -35,7 +35,7 @@ jobs:
 
       - name: Commit and create a Pull Request on production
         if: ${{ github.ref == 'refs/heads/production' }}
-        uses: peter-evans/create-pull-request@v4
+        uses: peter-evans/create-pull-request@v5
         with:
           commit-message: "Render `README.md` after changes to the `.Rmd` version"
           branch: render_readme
