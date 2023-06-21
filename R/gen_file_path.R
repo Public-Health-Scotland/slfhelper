@@ -20,7 +20,7 @@ gen_file_path <- function(
   }
   year <- format_year(year)
 
-  file_name <- glue("source-{file_version}-file-20{year}")
+  file_name <- stringr::str_glue("source-{file_version}-file-20{year}")
 
   file_path <- fs::path(
     "/conf",

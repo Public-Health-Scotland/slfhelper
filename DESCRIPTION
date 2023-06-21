@@ -24,7 +24,6 @@ Imports:
     dplyr (>= 1.0.0),
     fs (>= 1.5.2),
     fst (>= 0.9.8),
-    glue (>= 1.6.2),
     lifecycle,
     magrittr (>= 2.0.3),
     openssl,
