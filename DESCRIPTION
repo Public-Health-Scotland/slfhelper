@@ -20,27 +20,27 @@ BugReports: https://github.com/Public-Health-Scotland/slfhelper/issues
 Depends: 
     R (>= 3.5.0)
 Imports: 
-    cli (>= 3.3.0),
-    dplyr (>= 1.0.0),
-    fs (>= 1.5.2),
+    cli (>= 3.6.1),
+    dplyr (>= 1.1.2),
+    fs (>= 1.6.2),
     fst (>= 0.9.8),
-    lifecycle,
+    lifecycle (>= 1.0.3),
     magrittr (>= 2.0.3),
-    openssl,
-    purrr (>= 0.3.3),
-    rlang (>= 1.0.2),
-    rstudioapi,
+    openssl (>= 2.0.6),
+    purrr (>= 1.0.1),
+    rlang (>= 1.1.1),
+    rstudioapi (>= 0.14),
     stats,
-    stringr (>= 1.2.0),
-    tibble,
-    withr
+    stringr (>= 1.5.0),
+    tibble (>= 3.2.1),
+    withr (>= 2.5.0)
 Suggests:
     covr (>= 3.5.1),
     knitr (>= 1.39),
-    testthat (>= 3.1.4),
     phsmethods (>= 0.2.1),
     rmarkdown (>= 2.14),
-    spelling (>= 2.2)
+    spelling (>= 2.2),
+    testthat (>= 3.1.4)
 VignetteBuilder: 
     knitr
 Remotes: 
