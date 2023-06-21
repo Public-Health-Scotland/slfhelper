@@ -20,6 +20,7 @@ BugReports: https://github.com/Public-Health-Scotland/slfhelper/issues
 Depends: 
     R (>= 3.5.0)
 Imports: 
+    arrow (>= 12.0.1),
     cli (>= 3.6.1),
     dplyr (>= 1.1.2),
     fs (>= 1.6.2),
