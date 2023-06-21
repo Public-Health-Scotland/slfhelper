@@ -1,3 +1,5 @@
+# slfhelper 0.10.0
+
 # slfhelper 0.9.0
 
 * [`{openssl}`](https://cran.r-project.org/web/packages/openssl/index.html) is now required.
