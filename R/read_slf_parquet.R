@@ -84,6 +84,7 @@ read_slf_parquet <- function(
 #'
 #' @inherit read_slf_episode
 #' @inheritParams read_slf_parquet
+#' @export
 read_slf_episode_parquet <- function(
     year,
     col_select = NULL,
@@ -119,6 +120,7 @@ read_slf_episode_parquet <- function(
 #'
 #' @inherit read_slf_individual
 #' @inheritParams read_slf_parquet
+#' @export
 read_slf_individual_parquet <-
   function(year,
            col_select = NULL,
