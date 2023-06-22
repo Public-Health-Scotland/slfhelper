@@ -4,9 +4,11 @@
 #'
 #' @inherit read_slf
 #' @inheritParams gen_file_path
+#' @inheritParams arrow::read_parquet
 read_slf_parquet <- function(
     year,
     col_select = NULL,
+    as_data_frame = TRUE,
     file_version = c("episode", "individual"),
     partnerships = NULL,
     recids = NULL,
@@ -71,11 +73,22 @@ read_slf_parquet <- function(
         slf_table <- dplyr::select(slf_table, -"recid")
       }
 
-      return(dplyr::collect(slf_table))
+      return(slf_table)
     }
   )
 
-  return(purrr::list_rbind(slf_table))
+  # Collapse the list to a single Arrow Table object
+  if (length(slf_table) == 1) {
+    slf_table <- slf_table[[1]]
+  } else {
+    slf_table <- purrr::reduce(slf_table, dplyr::union_all)
+  }
+
+  if (as_data_frame) {
+    return(dplyr::collect(slf_table))
+  } else {
+    return(slf_table)
+  }
 }
 
 #' Read a Source Linkage episode file (parquet)
