@@ -7,6 +7,7 @@
 read_slf_parquet(
   year,
   col_select = NULL,
+  as_data_frame = TRUE,
   file_version = c("episode", "individual"),
   partnerships = NULL,
   recids = NULL,
@@ -17,6 +18,14 @@ read_slf_parquet(
 \item{year}{Year of the file to be read, you can specify multiple years
 which will then be returned as one file. It will be converted to short FY
 using \code{\link[=format_year]{format_year()}}.}
+
+\item{col_select}{A character vector of column names to keep, as in the
+"select" argument to \code{data.table::fread()}, or a
+\link[tidyselect:eval_select]{tidy selection specification}
+of columns, as used in \code{dplyr::select()}.}
+
+\item{as_data_frame}{Should the function return a \code{data.frame} (default) or
+an Arrow \link[arrow]{Table}?}
 
 \item{file_version}{Version of the file (individual / episode)}
 
