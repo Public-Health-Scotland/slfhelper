@@ -156,8 +156,7 @@ read_slf_individual_parquet <-
         file_version = "individual",
         partnerships = unique(partnerships),
         col_select = unique(col_select),
-        dev = TRUE,
-        ...
+        dev = TRUE
       )
     )
   }
