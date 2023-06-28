@@ -30,9 +30,40 @@ gen_file_path <- function(
   }
   year <- format_year(year)
 
-  file_name <- stringr::str_glue("source-{file_version}-file-20{year}")
-
-  if (dev) {
+  if (!dev) {
+    file_path <- fs::path(
+      "/",
+      "conf",
+      "hscdiip",
+      "01-Source-linkage-files",
+      stringr::str_glue("source-{file_version}-file-20{year}"),
+      ext = ext
+    )
+  } else if (dev) {
+    if (!check_has_access(group = "sourcedev")) {
+      cli::cli_abort(
+        c("x" = "You must have access to {.path /conf/sourcedev} to use the
+        in-development version of the files. If you think this is a mistake,
+        please contact the SLF team."),
+        call = rlang::env_parent()
+      )
+    }
+    dev_file_message <- c("i" = "You are using the in-development version of the SLFs.")
+    if (check_has_access(group = "hscdiip_sl")) {
+      cli::cli_inform(
+        message = dev_file_message,
+        call = call,
+        .frequency = "once",
+        .frequency_id = "dev_files"
+      )
+    } else {
+      cli::cli_warn(
+        message = dev_file_message,
+        call = call,
+        .frequency = "once",
+        .frequency_id = "dev_files"
+      )
+    }
     file_path <- fs::path(
       "/",
       "conf",
@@ -40,15 +71,6 @@ gen_file_path <- function(
       "Source_Linkage_File_Updates",
       year,
       stringr::str_glue("source-{file_version}-file-{year}"),
-      ext = ext
-    )
-  } else {
-    file_path <- fs::path(
-      "/",
-      "conf",
-      "hscdiip",
-      "01-Source-linkage-files",
-      stringr::str_glue("source-{file_version}-file-20{year}"),
       ext = ext
     )
   }
