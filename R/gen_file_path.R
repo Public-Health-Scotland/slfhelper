@@ -16,12 +16,16 @@ gen_file_path <- function(
     call,
     dev = FALSE,
     ext = "fst") {
+  file_version <- match.arg(file_version, c("episode", "individual"))
+  ext <- match.arg(ext, c("fst", "parquet"))
+
   # Clean up year
   # We want it in the format 1718
   # This will handle numbers or strings of the form 201718 or 1718
   if (!all(check_year(year, call = call))) {
     cli::cli_alert_info(
-      "{.val {year}} is no longer updated and the data should be treated with caution."
+      "{.val {year}} is no longer updated and the data should be treated with
+      caution."
     )
   }
   year <- format_year(year)
