@@ -35,7 +35,7 @@ read_slf_parquet <- function(
   if (!is.null(col_select)) {
     if (!is.null(partnerships) &
       !("hscp2018" %in% col_select)) {
-      col_select <- c(col_select, "hscp2018")
+      col_select <- c(col_select, "hscp2019")
       remove_partnership_var <- TRUE
     }
     if (!is.null(recids) & file_version == "episode" &
@@ -50,7 +50,7 @@ read_slf_parquet <- function(
     function(file_path) {
       slf_table <- arrow::read_parquet(
         file = file_path,
-        col_select = arrow::all_of(col_select),
+        col_select = !!col_select,
         as_data_frame = FALSE
       )
 
@@ -63,11 +63,11 @@ read_slf_parquet <- function(
       if (!is.null(partnerships)) {
         slf_table <- dplyr::filter(
           slf_table,
-          .data$partnership %in% partnerships
+          .data$hscp2019 %in% partnerships
         )
       }
       if (remove_partnership_var) {
-        slf_table <- dplyr::select(slf_table, -"hscp2018")
+        slf_table <- dplyr::select(slf_table, -"hscp2019")
       }
       if (remove_recid_var) {
         slf_table <- dplyr::select(slf_table, -"recid")
