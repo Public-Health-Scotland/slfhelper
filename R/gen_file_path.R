@@ -36,7 +36,7 @@ gen_file_path <- function(
       "conf",
       "hscdiip",
       "01-Source-linkage-files",
-      stringr::str_glue("source-{file_version}-file-20{year}"),
+      stringr::str_glue("source-{file_version}-file-{year}"),
       ext = ext
     )
   } else if (dev) {
