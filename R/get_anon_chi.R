@@ -41,10 +41,12 @@ get_anon_chi <- function(chi_cohort, chi_var = "chi", drop = TRUE, check = TRUE)
         cli::cli_alert_warning(
           "Some of the CHI numbers supplied look invalid according to {.fn phsmethods::chi_check}"
         )
-        print(tibble::tibble(
+        print(
+          tibble::tibble(
           {{ chi_var }} := dplyr::pull(chi_cohort, {{ chi_var }})[which_invalid],
           reason = checked_chi[which_invalid]
-        ))
+        )
+        )
       }
     }
   }
