@@ -5,6 +5,7 @@ on:
     branches: [production]
   pull_request:
     branches: [production, development]
+  merge_group:
 
 name: R-CMD-check
 
