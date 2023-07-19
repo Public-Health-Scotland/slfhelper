@@ -39,7 +39,7 @@ get_anon_chi <- function(chi_cohort, chi_var = "chi", drop = TRUE, check = TRUE)
         ))
       } else if (n_invalid > 0) {
         cli::cli_alert_warning(
-          "Some of the CHI numbers supplied look invalid according to {.fn phsmethods::chi_check}"
+          "{n_invalid} CHI number{?s} {?is/are} invalid according to {.fn phsmethods::chi_check}."
         )
         print(
           tibble::tibble(
