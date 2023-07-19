@@ -25,7 +25,8 @@ get_chi <- function(data, anon_chi_var = "anon_chi", drop = TRUE) {
     dplyr::left_join(
       lookup,
       by = stats::setNames("anon_chi", anon_chi_var)
-    )
+    ) %>%
+  dplyr::relocate(chi, .after = {{ anon_chi_var }})
 
   if (drop) {
     data <- data %>%
