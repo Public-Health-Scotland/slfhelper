@@ -50,7 +50,7 @@ get_anon_chi <- function(chi_cohort, chi_var = "chi", drop = TRUE) {
   ) %>%
     dplyr::mutate(
       anon_chi = purrr::map_chr(.data$chi, openssl::base64_encode),
-      .after = {{chi_var}}
+      .after = {{ chi_var }}
     )
 
   chi_cohort <- chi_cohort %>%
