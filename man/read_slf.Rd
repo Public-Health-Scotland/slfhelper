@@ -7,9 +7,11 @@
 read_slf(
   year,
   file_version = c("episode", "individual"),
+  dev = FALSE,
+  col_select = NULL,
+  as_data_frame = TRUE,
   partnerships = NULL,
-  recids = NULL,
-  ...
+  recids = NULL
 )
 }
 \arguments{
@@ -17,17 +19,28 @@ read_slf(
 which will then be returned as one file. It will be converted to short FY
 using \code{\link[=format_year]{format_year()}}.}
 
-\item{file_version}{Version of the file (individual / episode)}
+\item{file_version}{Version of the file (individual / episode).}
+
+\item{dev}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}} Whether to get the file from
+the development area (\verb{/conf/sourcedev/Source_Linkage_File_Updates}). The
+default (\code{FALSE}) will get the production file from the usual area.}
+
+\item{col_select}{A character vector of column names to keep, as in the
+"select" argument to \code{data.table::fread()}, or a
+\link[tidyselect:eval_select]{tidy selection specification}
+of columns, as used in \code{dplyr::select()}.}
+
+\item{as_data_frame}{Should the function return a \code{data.frame} (default) or
+an Arrow \link[arrow]{Table}?}
 
 \item{partnerships}{Optional specify a partnership (hscp2018) or
-partnerships to select}
+partnerships to select.}
 
-\item{recids}{Optional specify a recid or recids to select}
-
-\item{...}{other options to be passed to \code{\link[fst:write_fst]{fst::read_fst()}}}
+\item{recids}{Optional specify a recid or recids to select.}
 }
 \value{
-a \link[tibble:tibble-package]{tibble}
+The requested SLF data as a \link[tibble:tibble-package]{tibble} or an
+\link[arrow:arrow-package]{Arrow Table}.
 }
 \description{
 Read a Source Linkage File

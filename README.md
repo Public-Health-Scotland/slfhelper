@@ -61,13 +61,13 @@ library(slfhelper)
 
 # Read certain variables
 # It's much faster to choose variables like this
-indiv_1718 <- read_slf_individual(year = "1718", columns = c("anon_chi", "hri_scot"))
+indiv_1718 <- read_slf_individual(year = "1718", col_select = c("anon_chi", "hri_scot"))
 
 # Read multiple years
 # This will use dplyr::bind_rows() and return the files added together as a single tibble
 episode_data <- read_slf_episode(
   year = c("1516", "1617", "1718", "1819"),
-  columns = c("anon_chi", "yearstay")
+  col_select = c("anon_chi", "yearstay")
 )
 
 # Read only data for a certain partnership (HSCP_2018 code)
@@ -75,12 +75,12 @@ episode_data <- read_slf_episode(
 indiv_1718 <- read_slf_individual(
   year = "1718",
   partnerships = "S37000001", # Aberdeen City
-  columns = c("anon_chi", "hri_scot")
+  col_select = c("anon_chi", "hri_scot")
 )
 
 # Read only data for a certain recid
 # This can be a single recid or multiple by supplying a vector e.g. c(...)
-ep_1718 <- read_slf_episode("1718", recid = c("01B", "GLS"), columns = c("anon_chi", "yearstay"))
+ep_1718 <- read_slf_episode("1718", recid = c("01B", "GLS"), col_select = c("anon_chi", "yearstay"))
 ```
 
 The above options for reading files can (and should) be combined if
@@ -93,7 +93,7 @@ library(slfhelper)
 
 # Add real CHI numbers to a SLF
 ep_1718 <- read_slf_episode(c("1718", "1819", "1920"),
-  columns = c("year", "anon_chi", "demographic_cohort")
+  col_select = c("year", "anon_chi", "demographic_cohort")
 ) %>%
   get_chi()
 
