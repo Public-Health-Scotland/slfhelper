@@ -43,9 +43,9 @@ get_anon_chi <- function(chi_cohort, chi_var = "chi", drop = TRUE, check = TRUE)
         )
         print(
           tibble::tibble(
-          {{ chi_var }} := dplyr::pull(chi_cohort, {{ chi_var }})[which_invalid],
-          reason = checked_chi[which_invalid]
-        )
+            {{ chi_var }} := dplyr::pull(chi_cohort, {{ chi_var }})[which_invalid],
+            reason = checked_chi[which_invalid]
+          )
         )
       }
     }
