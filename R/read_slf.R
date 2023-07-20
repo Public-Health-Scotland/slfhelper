@@ -75,13 +75,11 @@ read_slf <- function(
   slf_table <- purrr::map(
     file_path,
     function(file_path) {
-        slf_table <- arrow::read_parquet(
-          file = file_path,
-          col_select = !!col_select,
-          as_data_frame = FALSE
-        )
-    }
-  )
+      slf_table <- arrow::read_parquet(
+        file = file_path,
+        col_select = !!col_select,
+        as_data_frame = FALSE
+      )
 
       if (!is.null(recids)) {
         slf_table <- dplyr::filter(
