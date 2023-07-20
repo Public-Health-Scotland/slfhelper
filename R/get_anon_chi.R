@@ -61,7 +61,7 @@ get_anon_chi <- function(chi_cohort, chi_var = "chi", drop = TRUE, check = TRUE)
       lookup,
       by = stats::setNames("chi", chi_var)
     ) %>%
-    dplyr::relocate(anon_chi, .after = {{ chi_var }})
+    dplyr::relocate("anon_chi", .after = {{ chi_var }})
 
   if (drop) {
     chi_cohort <- chi_cohort %>%
