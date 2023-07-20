@@ -32,6 +32,9 @@ an Arrow \link[arrow]{Table}?}
 \item{dev}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}} Whether to get the file from
 the development area (\verb{/conf/sourcedev/Source_Linkage_File_Updates}). The
 default (\code{FALSE}) will get the production file from the usual area.}
+
+\item{columns}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} \code{columns} is no
+longer used, use \code{col_select} instead.}
 }
 \value{
 The requested SLF data as a \link[tibble:tibble-package]{tibble} or an

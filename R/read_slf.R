@@ -10,7 +10,11 @@
 #' @param dev `r lifecycle::badge("experimental")` Whether to get the file from
 #' the development area (`/conf/sourcedev/Source_Linkage_File_Updates`). The
 #' default (`FALSE`) will get the production file from the usual area.
+#'
 #' @inheritParams arrow::read_parquet
+#'
+#' @param columns `r lifecycle::badge("deprecated")` `columns` is no
+#'   longer used, use `col_select` instead.
 #'
 #' @return The requested SLF data as a [tibble][tibble::tibble-package] or an
 #' [Arrow Table][arrow::arrow-package].
@@ -20,6 +24,7 @@ read_slf <- function(
     file_version = c("episode", "individual"),
     dev = FALSE,
     col_select = NULL,
+    columns = lifecycle::deprecated(),
     as_data_frame = TRUE,
     partnerships = NULL,
     recids = NULL) {
