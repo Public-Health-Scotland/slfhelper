@@ -49,17 +49,6 @@ read_slf <- function(
     )
   }
 
-  # If we're looking at the dev version of the file swap anon_chi for chi
-  if (dev && !is.null(col_select) && "anon_chi" %in% col_select) {
-    col_select[which(col_select == "anon_chi")] <- "chi"
-    cli::cli_inform(
-      c("i" = "{.val anon_chi} has been replaced with {.val chi}
-                        in {.arg col_select} as you requested the development
-                        file."),
-      call = rlang::caller_env()
-    )
-  }
-
   # If the we are trying to filter by partnership or recid
   # but the column wasn't selected we need to add it (and remove later)
   remove_partnership_var <- FALSE
