@@ -16,9 +16,9 @@ using \code{\link[=format_year]{format_year()}}.}
 \item{call}{Supply environment from the top-level function to make any error
 messages more useful.}
 
-\item{dev}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}} Whether to get the file from
-the development area (\verb{/conf/sourcedev/Source_Linkage_File_Updates}). The
-default (\code{FALSE}) will get the production file from the usual area.}
+\item{dev}{Whether to get the file from the development area
+(\verb{/conf/sourcedev/Source_Linkage_File_Updates}).
+The default (\code{FALSE}) will get the production file from the usual area.}
 
 \item{ext}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#questioning}{\figure{lifecycle-questioning.svg}{options: alt='[Questioning]'}}}{\strong{[Questioning]}} The file extension to read.}
 }
