@@ -11,7 +11,7 @@ check_on_server <- function() {
         "This is a requirement for this package, go to:",
         ">" = "{.url https://pwb.publichealthscotland.org/}"
       ),
-      call = rlang::env_parent()
+      call = rlang::caller_env()
     )
   }
 
@@ -49,7 +49,7 @@ check_has_access <- function(group = "hscdiip") {
             ">" = "email {.email phs.source@phs.scot} and request access to
             {.value UNIX hscdiip}."
           ),
-          call = rlang::env_parent()
+          call = rlang::caller_env()
         )
       }
     }
