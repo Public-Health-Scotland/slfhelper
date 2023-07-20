@@ -10,7 +10,7 @@ read_slf_episode(
   partnerships = NULL,
   recids = NULL,
   as_data_frame = TRUE,
-  dev = TRUE,
+  dev = FALSE,
   columns = lifecycle::deprecated()
 )
 }
