@@ -75,18 +75,13 @@ read_slf <- function(
   slf_table <- purrr::map(
     file_path,
     function(file_path) {
-      if (is.null(col_select)) {
         slf_table <- arrow::read_parquet(
           file = file_path,
+          col_select = !!col_select,
           as_data_frame = FALSE
         )
-      } else {
-        slf_table <- arrow::read_parquet(
-          file = file_path,
-          col_select = arrow::all_of(col_select),
-          as_data_frame = FALSE
-        )
-      }
+    }
+  )
 
       if (!is.null(recids)) {
         slf_table <- dplyr::filter(
@@ -97,7 +92,7 @@ read_slf <- function(
       if (!is.null(partnerships)) {
         slf_table <- dplyr::filter(
           slf_table,
-          .data$partnership %in% partnerships
+          .data$hscp2018 %in% partnerships
         )
       }
       if (remove_partnership_var) {
