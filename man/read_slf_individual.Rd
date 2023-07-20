@@ -9,7 +9,7 @@ read_slf_individual(
   col_select = NULL,
   partnerships = NULL,
   as_data_frame = TRUE,
-  dev = TRUE,
+  dev = FALSE,
   columns = lifecycle::deprecated()
 )
 }
