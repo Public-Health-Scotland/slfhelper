@@ -145,7 +145,7 @@ read_slf_episode <- function(
     partnerships = NULL,
     recids = NULL,
     as_data_frame = TRUE,
-    dev = TRUE,
+    dev = FALSE,
     columns = lifecycle::deprecated()) {
   if (lifecycle::is_present(columns)) {
     lifecycle::deprecate_soft(
@@ -191,7 +191,7 @@ read_slf_individual <- function(
     col_select = NULL,
     partnerships = NULL,
     as_data_frame = TRUE,
-    dev = TRUE,
+    dev = FALSE,
     columns = lifecycle::deprecated()) {
   if (lifecycle::is_present(columns)) {
     lifecycle::deprecate_soft(
