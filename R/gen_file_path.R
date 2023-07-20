@@ -4,8 +4,8 @@
 #'
 #' @param call Supply environment from the top-level function to make any error
 #' messages more useful.
-#' @param dev `r lifecycle::badge("experimental")` Whether to get the file from
-#' the development area (`/conf/sourcedev/Source_Linkage_File_Updates`).
+#' @param dev Whether to get the file from the development area
+#' (`/conf/sourcedev/Source_Linkage_File_Updates`).
 #' The default (`FALSE`) will get the production file from the usual area.
 #' @param ext `r lifecycle::badge("questioning")` The file extension to read.
 #'
@@ -31,13 +31,11 @@ gen_file_path <- function(
   year <- format_year(year)
 
   if (!dev) {
-    file_path <- fs::path(
+    file_dir <- fs::path(
       "/",
       "conf",
       "hscdiip",
-      "01-Source-linkage-files",
-      stringr::str_glue("source-{file_version}-file-{year}"),
-      ext = ext
+      "01-Source-linkage-files"
     )
   } else if (dev) {
     if (!check_has_access(group = "sourcedev")) {
@@ -45,7 +43,7 @@ gen_file_path <- function(
         c("x" = "You must have access to {.path /conf/sourcedev} to use the
         in-development version of the files. If you think this is a mistake,
         please contact the SLF team."),
-        call = rlang::env_parent()
+        call = call
       )
     }
     dev_file_message <- c("i" = "You are using the in-development version of the SLFs.")
@@ -64,16 +62,20 @@ gen_file_path <- function(
         .frequency_id = "dev_files"
       )
     }
-    file_path <- fs::path(
+    file_dir <- fs::path(
       "/",
       "conf",
       "sourcedev",
       "Source_Linkage_File_Updates",
-      year,
-      stringr::str_glue("source-{file_version}-file-{year}"),
-      ext = ext
+      year
     )
   }
+
+  file_path <- fs::path(
+    file_dir,
+    stringr::str_glue("source-{file_version}-file-{year}"),
+    ext = ext
+  )
 
   return(file_path)
 }
