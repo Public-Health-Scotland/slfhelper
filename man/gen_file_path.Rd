@@ -4,7 +4,7 @@
 \alias{gen_file_path}
 \title{Generate a Source Linkage File, file path}
 \usage{
-gen_file_path(year, file_version, call, dev = FALSE, ext = "fst")
+gen_file_path(year, file_version, call, dev = FALSE, ext = "parquet")
 }
 \arguments{
 \item{year}{Year of the file to be read, you can specify multiple years
