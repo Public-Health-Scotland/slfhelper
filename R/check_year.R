@@ -6,7 +6,7 @@
 #' older but still valid years. Otherwise throws an error.
 check_year <- function(year, call) {
   min_full_years <- "1415"
-  min_year <- "1213"
+  min_year <- "1112"
 
   check <- FALSE
 
