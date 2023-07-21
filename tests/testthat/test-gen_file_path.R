@@ -4,10 +4,10 @@ test_that("Produces single episode file path", {
   expect_equal(path, fs::path(
     "/conf/hscdiip",
     "01-Source-linkage-files",
-    "source-episode-file-1718.fst"
+    "source-episode-file-1718.parquet"
   ))
 
-  expect_equal(fs::path_ext(path), "fst")
+  expect_equal(fs::path_ext(path), "parquet")
 })
 
 
@@ -17,10 +17,10 @@ test_that("Produces single individual file path", {
   expect_equal(path, fs::path(
     "/conf/hscdiip",
     "01-Source-linkage-files",
-    "source-individual-file-1718.fst"
+    "source-individual-file-1718.parquet"
   ))
 
-  expect_equal(fs::path_ext(path), "fst")
+  expect_equal(fs::path_ext(path), "parquet")
 })
 
 test_that("Produces correct episode file paths for multiple years", {
@@ -40,17 +40,17 @@ test_that("Produces correct episode file paths for multiple years", {
   expect_equal(
     path,
     fs::path(c(
-      "/conf/hscdiip/01-Source-linkage-files/source-episode-file-1415.fst",
-      "/conf/hscdiip/01-Source-linkage-files/source-episode-file-1516.fst",
-      "/conf/hscdiip/01-Source-linkage-files/source-episode-file-1617.fst",
-      "/conf/hscdiip/01-Source-linkage-files/source-episode-file-1718.fst",
-      "/conf/hscdiip/01-Source-linkage-files/source-episode-file-1819.fst",
-      "/conf/hscdiip/01-Source-linkage-files/source-episode-file-1920.fst",
-      "/conf/hscdiip/01-Source-linkage-files/source-episode-file-2021.fst"
+      "/conf/hscdiip/01-Source-linkage-files/source-episode-file-1415.parquet",
+      "/conf/hscdiip/01-Source-linkage-files/source-episode-file-1516.parquet",
+      "/conf/hscdiip/01-Source-linkage-files/source-episode-file-1617.parquet",
+      "/conf/hscdiip/01-Source-linkage-files/source-episode-file-1718.parquet",
+      "/conf/hscdiip/01-Source-linkage-files/source-episode-file-1819.parquet",
+      "/conf/hscdiip/01-Source-linkage-files/source-episode-file-1920.parquet",
+      "/conf/hscdiip/01-Source-linkage-files/source-episode-file-2021.parquet"
     ))
   )
 
-  expect_equal(fs::path_ext(path), rep_len("fst", length(path)))
+  expect_equal(fs::path_ext(path), rep_len("parquet", length(path)))
 })
 
 test_that("Produces correct individual file paths for multiple years", {
@@ -70,15 +70,15 @@ test_that("Produces correct individual file paths for multiple years", {
   expect_equal(
     path,
     fs::path(c(
-      "/conf/hscdiip/01-Source-linkage-files/source-individual-file-1415.fst",
-      "/conf/hscdiip/01-Source-linkage-files/source-individual-file-1516.fst",
-      "/conf/hscdiip/01-Source-linkage-files/source-individual-file-1617.fst",
-      "/conf/hscdiip/01-Source-linkage-files/source-individual-file-1718.fst",
-      "/conf/hscdiip/01-Source-linkage-files/source-individual-file-1819.fst",
-      "/conf/hscdiip/01-Source-linkage-files/source-individual-file-1920.fst",
-      "/conf/hscdiip/01-Source-linkage-files/source-individual-file-2021.fst"
+      "/conf/hscdiip/01-Source-linkage-files/source-individual-file-1415.parquet",
+      "/conf/hscdiip/01-Source-linkage-files/source-individual-file-1516.parquet",
+      "/conf/hscdiip/01-Source-linkage-files/source-individual-file-1617.parquet",
+      "/conf/hscdiip/01-Source-linkage-files/source-individual-file-1718.parquet",
+      "/conf/hscdiip/01-Source-linkage-files/source-individual-file-1819.parquet",
+      "/conf/hscdiip/01-Source-linkage-files/source-individual-file-1920.parquet",
+      "/conf/hscdiip/01-Source-linkage-files/source-individual-file-2021.parquet"
     ))
   )
 
-  expect_equal(fs::path_ext(path), rep_len("fst", length(path)))
+  expect_equal(fs::path_ext(path), rep_len("parquet", length(path)))
 })
