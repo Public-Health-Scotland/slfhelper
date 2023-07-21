@@ -15,7 +15,7 @@ gen_file_path <- function(
     file_version,
     call,
     dev = FALSE,
-    ext = "fst") {
+    ext = "parquet") {
   file_version <- match.arg(file_version, c("episode", "individual"))
   ext <- match.arg(ext, c("fst", "parquet"))
 
