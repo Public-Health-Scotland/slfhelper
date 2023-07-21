@@ -4,7 +4,7 @@ skip_on_ci()
 test_that("read multiple years works for individual file", {
   # Read in multiple years
   indiv <- read_slf_individual(c("1718", "1819"),
-    columns = c("year", "anon_chi"),
+    col_select = c("year", "anon_chi"),
     from = 1,
     to = 50
   )
@@ -29,7 +29,7 @@ test_that("read multiple years works for individual file", {
 test_that("read multiple years works for episode file", {
   # Read in multiple years
   ep <- read_slf_episode(c("1718", "1819"),
-    columns = c("year", "anon_chi"),
+    col_select = c("year", "anon_chi"),
     from = 1,
     to = 50
   )

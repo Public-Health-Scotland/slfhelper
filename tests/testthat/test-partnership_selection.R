@@ -5,7 +5,7 @@ test_that("Partnership filtering works", {
   # Read in a bit of a file selecting only Edinburgh
   indiv_1718_edinburgh <- read_slf_individual("1718",
     partnerships = "S37000012",
-    columns = c("hscp2018"),
+    col_select = c("hscp2018"),
     from = 1,
     to = 1000
   )
@@ -23,7 +23,7 @@ test_that("Can select multiple partnerships", {
   # Read in a bit of a file selecting Edinburgh and Glasgow
   indiv_1718_edi_gla <- read_slf_individual("1718",
     partnerships = c("S37000012", "S37000015"),
-    columns = c("hscp2018"),
+    col_select = c("hscp2018"),
     from = 1,
     to = 10000
   )
@@ -41,7 +41,7 @@ test_that("Can still do filtering if variable is not selected", {
   # Don't choose to read the partnership variable
   indiv_1718_edinburgh <- read_slf_individual("1718",
     partnerships = "S37000012",
-    columns = c("hri_scot"),
+    col_select = c("hri_scot"),
     from = 1,
     to = 10000
   )

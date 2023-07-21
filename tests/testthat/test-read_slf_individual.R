@@ -21,7 +21,7 @@ test_that("Reads individual file correctly", {
 
 test_that("column selection works", {
   indiv_1718 <- read_slf_individual("1718",
-    columns = c("anon_chi"),
+    col_select = c("anon_chi"),
     from = 1, to = 100
   )
 
