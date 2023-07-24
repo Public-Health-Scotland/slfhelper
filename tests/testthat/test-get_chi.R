@@ -26,11 +26,13 @@ test_that("Can get CHI numbers for an arbitrary set of anon_chi numbers", {
 skip_on_ci()
 
 test_that("Match CHI to individual file", {
+  set.seed(50)
+
   # Read 100 records from individual file
   indiv_1718_small <- read_slf_individual("1718",
-    columns = c("anon_chi"),
-    from = 1, to = 100
-  )
+    col_select = c("anon_chi")
+  ) %>%
+    dplyr::slice_sample(n = 100)
 
   # Match on the chi
   indiv_1718_with_chi <- indiv_1718_small %>% get_chi()
@@ -48,13 +50,13 @@ test_that("Match CHI to individual file", {
 })
 
 test_that("Match CHI to episode file", {
-  # Read 1000 records from ep file
-  # Start at 100000 to avoid blank anon_chis
+  set.seed(50)
+
+  # Read 100 records from ep file
   ep_1718_small <- read_slf_episode("1718",
-    columns = c("anon_chi"),
-    from = 100000,
-    to = 100100
-  )
+    col_select = c("anon_chi")
+  ) %>%
+    dplyr::slice_sample(n = 100)
 
   # Match on the chi
   ep_1718_with_chi <- ep_1718_small %>% get_chi()
