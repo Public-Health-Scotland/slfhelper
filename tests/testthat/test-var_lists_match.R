@@ -2,9 +2,15 @@ skip_on_ci()
 
 variable_names <- function(year, file_version = c("episode", "individual")) {
   if (file_version == "episode") {
-    variable_names <- names(read_slf_episode(year, from = 1L, to = 1L))
+    set.seed(50)
+
+    variable_names <- names(read_slf_episode(year) %>%
+      dplyr::slice_sample(n = 1))
   } else if (file_version == "individual") {
-    variable_names <- names(read_slf_individual(year, from = 1L, to = 1L))
+    set.seed(50)
+
+    variable_names <- names(read_slf_individual(year) %>%
+      dplyr::slice_sample(n = 1))
   }
 }
 
