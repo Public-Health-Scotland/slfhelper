@@ -5,7 +5,8 @@ test_that("Reads individual file correctly", {
   # Read file, test all years
   years <- years <- c("1415", "1516", "1617", "1718", "1819", "1920", "2021", "2122")
   for (year in years) {
-    indiv_file <- read_slf_individual(year, from = 1, to = 100)
+    indiv_file <- read_slf_individual(year)  %>%
+      dplyr::slice_sample(n = 100)
 
     # Test for anything odd
     expect_s3_class(indiv_file, "tbl_df")
@@ -15,15 +16,15 @@ test_that("Reads individual file correctly", {
     expect_equal(nrow(indiv_file), 100)
 
     # Test for correct number of variables (will need updating)
-    expect_length(indiv_file, 189)
+    expect_length(indiv_file, 184)
   }
 })
 
 test_that("column selection works", {
   indiv_1718 <- read_slf_individual("1718",
-    col_select = c("anon_chi"),
-    from = 1, to = 100
-  )
+    col_select = c("anon_chi")
+  ) %>%
+    dplyr::slice_sample(n = 100)
 
   # Test for anything odd
   expect_type(indiv_1718, "list")

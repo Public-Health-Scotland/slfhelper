@@ -14,7 +14,11 @@ years <- c(
 )
 
 for (year in years) {
-  ep_file <- read_slf_episode(year, from = 100, to = 110)
+
+  set.seed(50)
+
+  ep_file <- read_slf_episode(year)  %>%
+    dplyr::slice_sample(n = 110)
 
   test_that("Reads episode file correctly", {
     # Test for anything odd
@@ -22,11 +26,11 @@ for (year in years) {
     expect_named(ep_file)
 
     # Test for the correct number of rows
-    expect_equal(nrow(ep_file), 11)
+    expect_equal(nrow(ep_file), 110)
   })
 
   test_that("Episode file has the expected number of variables", {
     # Test for correct number of variables (will need updating)
-    expect_length(ep_file, 246)
+    expect_length(ep_file, 241)
   })
 }
