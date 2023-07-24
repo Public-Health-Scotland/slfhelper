@@ -2,7 +2,6 @@ skip_on_ci()
 
 
 test_that("read multiple years works for individual file", {
-
   set.seed(50)
 
   # Read in multiple years
@@ -29,7 +28,6 @@ test_that("read multiple years works for individual file", {
 })
 
 test_that("read multiple years works for episode file", {
-
   set.seed(50)
 
   # Read in multiple years

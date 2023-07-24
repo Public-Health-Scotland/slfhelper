@@ -2,7 +2,6 @@ skip_on_ci()
 
 
 test_that("select years and recid", {
-
   set.seed(50)
 
   acute_only <- read_slf_episode(c("1718", "1819"),
@@ -33,7 +32,6 @@ test_that("select years and recid", {
 })
 
 test_that("select recids and partnerships", {
-
   set.seed(50)
 
   edi_acute <- read_slf_episode("1718",
@@ -93,7 +91,6 @@ test_that("select recids and partnerships", {
 
 
 test_that("all selections", {
-
   set.seed(50)
 
   edi_gla_hosp_2_year <- read_slf_episode(c("1718", "1819"),
