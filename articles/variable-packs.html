@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">slfhelper</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.10.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -106,12 +106,13 @@ of the variable names in the package.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Show the first few variables from the episode file</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">ep_file_vars</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "year"                "recid"               "record_keydate1"    </span></span>
-<span><span class="co">#&gt; [4] "record_keydate2"     "keydate1_dateformat" "keydate2_dateformat"</span></span>
+<span><span class="co">#&gt; [1] "year"            "recid"           "record_keydate1" "record_keydate2"</span></span>
+<span><span class="co">#&gt; [5] "smrtype"         "gender"</span></span>
 <span></span>
 <span><span class="co"># Do the same for the individual file</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">indiv_file_vars</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "year"     "anon_chi" "gender"   "dob"      "age"      "postcode"</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "anon_chi"        "gender"          "postcode"        "dob"            </span></span>
+<span><span class="co">#&gt; [5] "gpprac"          "ch_cis_episodes"</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="variable-packs">Variable packs<a class="anchor" aria-label="anchor" href="#variable-packs"></a>

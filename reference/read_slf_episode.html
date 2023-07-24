@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">slfhelper</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.10.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -57,7 +57,15 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">read_slf_episode</span><span class="op">(</span><span class="va">year</span>, columns <span class="op">=</span> <span class="cn">NULL</span>, partnerships <span class="op">=</span> <span class="cn">NULL</span>, recids <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">read_slf_episode</span><span class="op">(</span></span>
+<span>  <span class="va">year</span>,</span>
+<span>  col_select <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  partnerships <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  recids <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  as_data_frame <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  dev <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  columns <span class="op">=</span> <span class="fu">lifecycle</span><span class="fu">::</span><span class="fu"><a href="https://lifecycle.r-lib.org/reference/deprecated.html" class="external-link">deprecated</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -68,45 +76,56 @@ which will then be returned as one file. It will be converted to short FY
 using <code><a href="format_year.html">format_year()</a></code>.</p></dd>
 
 
-<dt>columns</dt>
-<dd><p>Column names to read. The default is to read all columns.</p></dd>
+<dt>col_select</dt>
+<dd><p>A character vector of column names to keep, as in the
+"select" argument to <code>data.table::fread()</code>, or a
+<a href="https://tidyselect.r-lib.org/reference/eval_select.html" class="external-link">tidy selection specification</a>
+of columns, as used in <code><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">dplyr::select()</a></code>.</p></dd>
 
 
 <dt>partnerships</dt>
 <dd><p>Optional specify a partnership (hscp2018) or
-partnerships to select</p></dd>
+partnerships to select.</p></dd>
 
 
 <dt>recids</dt>
-<dd><p>Optional specify a recid or recids to select</p></dd>
+<dd><p>Optional specify a recid or recids to select.</p></dd>
 
 
-<dt>...</dt>
-<dd><p>other options to be passed to <code><a href="http://www.fstpackage.org/reference/write_fst.html" class="external-link">fst::read_fst()</a></code></p></dd>
+<dt>as_data_frame</dt>
+<dd><p>Should the function return a <code>data.frame</code> (default) or
+an Arrow <a href="https://arrow.apache.org/docs/r/reference/Table.html" class="external-link">Table</a>?</p></dd>
+
+
+<dt>dev</dt>
+<dd><p><a href="https://lifecycle.r-lib.org/articles/stages.html#experimental" class="external-link"><img src="figures/lifecycle-experimental.svg" alt="[Experimental]"></a> Whether to get the file from
+the development area (<code>/conf/sourcedev/Source_Linkage_File_Updates</code>). The
+default (<code>FALSE</code>) will get the production file from the usual area.</p></dd>
+
+
+<dt>columns</dt>
+<dd><p><a href="https://lifecycle.r-lib.org/articles/stages.html#deprecated" class="external-link"><img src="figures/lifecycle-deprecated.svg" alt="[Deprecated]"></a> <code>columns</code> is no
+longer used, use <code>col_select</code> instead.</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p>a <a href="https://tibble.tidyverse.org/reference/tibble-package.html" class="external-link">tibble</a></p>
-
-
+<p>The requested SLF data as a <a href="https://tibble.tidyverse.org/reference/tibble-package.html" class="external-link">tibble</a> or an
+<a href="https://arrow.apache.org/docs/r/reference/arrow-package.html" class="external-link">Arrow Table</a>.</p>
     </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span><span class="fu">read_slf_episode</span><span class="op">(</span><span class="st">"1718"</span>,</span></span>
-<span class="r-in"><span>  columns <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"anon_chi"</span>, <span class="st">"dob"</span>, <span class="st">"demographic_cohort"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>  from <span class="op">=</span> <span class="fl">100000</span>,</span></span>
-<span class="r-in"><span>  to <span class="op">=</span> <span class="fl">101000</span></span></span>
+<span class="r-in"><span>  col_select <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"anon_chi"</span>, <span class="st">"dob"</span>, <span class="st">"demographic_cohort"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">read_slf_episode</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"1718"</span>, <span class="st">"1819"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>  columns <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"anon_chi"</span>, <span class="st">"dob"</span>, <span class="st">"demographic_cohort"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>  from <span class="op">=</span> <span class="fl">100000</span>,</span></span>
-<span class="r-in"><span>  to <span class="op">=</span> <span class="fl">101000</span></span></span>
+<span class="r-in"><span>  col_select <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"anon_chi"</span>, <span class="st">"dob"</span>, <span class="st">"demographic_cohort"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  as_data_frame <span class="op">=</span> <span class="cn">FALSE</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>

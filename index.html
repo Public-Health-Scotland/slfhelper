@@ -36,7 +36,7 @@
     
     <a class="navbar-brand me-2" href="index.html">slfhelper</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.10.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -117,13 +117,13 @@
 <span></span>
 <span><span class="co"># Read certain variables</span></span>
 <span><span class="co"># It's much faster to choose variables like this</span></span>
-<span><span class="va">indiv_1718</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/read_slf_individual.html">read_slf_individual</a></span><span class="op">(</span>year <span class="op">=</span> <span class="st">"1718"</span>, columns <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"anon_chi"</span>, <span class="st">"hri_scot"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">indiv_1718</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/read_slf_individual.html">read_slf_individual</a></span><span class="op">(</span>year <span class="op">=</span> <span class="st">"1718"</span>, col_select <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"anon_chi"</span>, <span class="st">"hri_scot"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Read multiple years</span></span>
 <span><span class="co"># This will use dplyr::bind_rows() and return the files added together as a single tibble</span></span>
 <span><span class="va">episode_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/read_slf_episode.html">read_slf_episode</a></span><span class="op">(</span></span>
 <span>  year <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"1516"</span>, <span class="st">"1617"</span>, <span class="st">"1718"</span>, <span class="st">"1819"</span><span class="op">)</span>,</span>
-<span>  columns <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"anon_chi"</span>, <span class="st">"yearstay"</span><span class="op">)</span></span>
+<span>  col_select <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"anon_chi"</span>, <span class="st">"yearstay"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Read only data for a certain partnership (HSCP_2018 code)</span></span>
@@ -131,12 +131,12 @@
 <span><span class="va">indiv_1718</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/read_slf_individual.html">read_slf_individual</a></span><span class="op">(</span></span>
 <span>  year <span class="op">=</span> <span class="st">"1718"</span>,</span>
 <span>  partnerships <span class="op">=</span> <span class="st">"S37000001"</span>, <span class="co"># Aberdeen City</span></span>
-<span>  columns <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"anon_chi"</span>, <span class="st">"hri_scot"</span><span class="op">)</span></span>
+<span>  col_select <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"anon_chi"</span>, <span class="st">"hri_scot"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Read only data for a certain recid</span></span>
 <span><span class="co"># This can be a single recid or multiple by supplying a vector e.g. c(...)</span></span>
-<span><span class="va">ep_1718</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/read_slf_episode.html">read_slf_episode</a></span><span class="op">(</span><span class="st">"1718"</span>, recid <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"01B"</span>, <span class="st">"GLS"</span><span class="op">)</span>, columns <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"anon_chi"</span>, <span class="st">"yearstay"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">ep_1718</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/read_slf_episode.html">read_slf_episode</a></span><span class="op">(</span><span class="st">"1718"</span>, recid <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"01B"</span>, <span class="st">"GLS"</span><span class="op">)</span>, col_select <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"anon_chi"</span>, <span class="st">"yearstay"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>The above options for reading files can (and should) be combined if required.</p>
 </div>
 <div class="section level3">
@@ -147,7 +147,7 @@
 <span></span>
 <span><span class="co"># Add real CHI numbers to a SLF</span></span>
 <span><span class="va">ep_1718</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/read_slf_episode.html">read_slf_episode</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"1718"</span>, <span class="st">"1819"</span>, <span class="st">"1920"</span><span class="op">)</span>,</span>
-<span>  columns <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"year"</span>, <span class="st">"anon_chi"</span>, <span class="st">"demographic_cohort"</span><span class="op">)</span></span>
+<span>  col_select <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"year"</span>, <span class="st">"anon_chi"</span>, <span class="st">"demographic_cohort"</span><span class="op">)</span></span>
 <span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="reference/get_chi.html">get_chi</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
