@@ -4,11 +4,9 @@
 #'
 #' @return `TRUE` if the year is valid and a newer year, `FALSE` for any
 #' older but still valid years. Otherwise throws an error.
-check_year <- function(year, call) {
-  min_full_years <- "1415"
-  min_year <- "1213"
-
-  check <- FALSE
+check_year <- function(year, call = rlang::caller_env()) {
+  min_full_year <- "1415"
+  min_year <- "1112"
 
   formatted_year <- format_year(year)
 
@@ -40,8 +38,9 @@ check_year <- function(year, call) {
   }
 
   check <- dplyr::case_when(
-    formatted_year >= min_full_years ~ TRUE,
-    formatted_year >= min_year ~ FALSE
+    formatted_year >= min_full_year ~ TRUE,
+    formatted_year >= min_year ~ FALSE,
+    .default = FALSE
   )
 
   return(check)
