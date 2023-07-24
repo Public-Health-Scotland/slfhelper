@@ -28,16 +28,16 @@
 
 # Year check rejects out of bounds years
 
-    The year "1112" is not valid.
-    i The oldest valid `year` is "1213".
+    The year "1011" is not valid.
+    i The oldest valid `year` is "1112".
 
 ---
 
     The year "10/11" is not valid.
-    i The oldest valid `year` is "1213".
+    i The oldest valid `year` is "1112".
 
 ---
 
-    The year "2011/12" is not valid.
-    i The oldest valid `year` is "1213".
+    The year "2010/11" is not valid.
+    i The oldest valid `year` is "1112".
 
