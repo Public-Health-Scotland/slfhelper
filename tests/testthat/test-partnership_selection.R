@@ -2,13 +2,14 @@ skip_on_ci()
 
 
 test_that("Partnership filtering works", {
+  set.seed(50)
+
   # Read in a bit of a file selecting only Edinburgh
   indiv_1718_edinburgh <- read_slf_individual("1718",
     partnerships = "S37000012",
-    columns = c("hscp2018"),
-    from = 1,
-    to = 1000
-  )
+    col_select = c("hscp2018")
+  ) %>%
+    dplyr::slice_sample(n = 1000)
 
   # Should only have Edinburgh codes
   expect_true(all(indiv_1718_edinburgh$hscp2018 == "S37000012"))
@@ -20,13 +21,14 @@ test_that("Partnership filtering works", {
 
 
 test_that("Can select multiple partnerships", {
+  set.seed(50)
+
   # Read in a bit of a file selecting Edinburgh and Glasgow
   indiv_1718_edi_gla <- read_slf_individual("1718",
     partnerships = c("S37000012", "S37000015"),
-    columns = c("hscp2018"),
-    from = 1,
-    to = 10000
-  )
+    col_select = c("hscp2018")
+  ) %>%
+    dplyr::slice_sample(n = 1000)
   # Should only have Edinburgh or Glasgow city codes
   expect_true(all(indiv_1718_edi_gla$hscp2018 == "S37000012" |
     indiv_1718_edi_gla$hscp2018 == "S37000015"))
@@ -37,14 +39,15 @@ test_that("Can select multiple partnerships", {
 })
 
 test_that("Can still do filtering if variable is not selected", {
+  set.seed(50)
+
   # Read in a bit of a file selecting only Edinburgh
   # Don't choose to read the partnership variable
   indiv_1718_edinburgh <- read_slf_individual("1718",
     partnerships = "S37000012",
-    columns = c("hri_scot"),
-    from = 1,
-    to = 10000
-  )
+    col_select = c("hri_scot")
+  ) %>%
+    dplyr::slice_sample(n = 1000)
 
   # We shouldn't have the partnership variable
   expect_false("hscp2018" %in% names(indiv_1718_edinburgh))
@@ -58,11 +61,12 @@ test_that("Can still do filtering if variable is not selected", {
 
 
 test_that("Still reads all variables if just filtering", {
+  set.seed(50)
+
   indiv_1718_edinburgh <- read_slf_individual("1718",
-    partnerships = "S37000012",
-    from = 1,
-    to = 1000
-  )
+    partnerships = "S37000012"
+  ) %>%
+    dplyr::slice_sample(n = 1000)
 
   # Should only have Edinburgh codes
   expect_true(all(indiv_1718_edinburgh$hscp2018 == "S37000012"))

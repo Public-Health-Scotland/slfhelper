@@ -4,20 +4,26 @@
 \alias{gen_file_path}
 \title{Generate a Source Linkage File, file path}
 \usage{
-gen_file_path(year, file_version, call)
+gen_file_path(year, file_version, call, dev = FALSE, ext = "parquet")
 }
 \arguments{
 \item{year}{Year of the file to be read, you can specify multiple years
 which will then be returned as one file. It will be converted to short FY
 using \code{\link[=format_year]{format_year()}}.}
 
-\item{file_version}{Version of the file (individual / episode)}
+\item{file_version}{Version of the file (individual / episode).}
 
 \item{call}{Supply environment from the top-level function to make any error
 messages more useful.}
+
+\item{dev}{Whether to get the file from the development area
+(\verb{/conf/sourcedev/Source_Linkage_File_Updates}).
+The default (\code{FALSE}) will get the production file from the usual area.}
+
+\item{ext}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#questioning}{\figure{lifecycle-questioning.svg}{options: alt='[Questioning]'}}}{\strong{[Questioning]}} The file extension to read.}
 }
 \value{
-a \link[fs:fs-package]{fs_path} object
+a \link[fs:fs-package]{fs_path} object.
 }
 \description{
 Generate a Source Linkage File, file path

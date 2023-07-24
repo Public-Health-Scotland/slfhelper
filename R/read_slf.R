@@ -3,185 +3,201 @@
 #' @param year Year of the file to be read, you can specify multiple years
 #'  which will then be returned as one file. It will be converted to short FY
 #'  using [format_year()].
-#' @param file_version Version of the file (individual / episode)
+#' @param file_version Version of the file (individual / episode).
 #' @param partnerships Optional specify a partnership (hscp2018) or
-#' partnerships to select
-#' @param recids Optional specify a recid or recids to select
-#' @param ... other options to be passed to [fst::read_fst()]
+#' partnerships to select.
+#' @param recids Optional specify a recid or recids to select.
+#' @param dev `r lifecycle::badge("experimental")` Whether to get the file from
+#' the development area (`/conf/sourcedev/Source_Linkage_File_Updates`). The
+#' default (`FALSE`) will get the production file from the usual area.
 #'
-#' @return a [tibble][tibble::tibble-package]
+#' @inheritParams arrow::read_parquet
+#'
+#' @param columns `r lifecycle::badge("deprecated")` `columns` is no
+#'   longer used, use `col_select` instead.
+#'
+#' @return The requested SLF data as a [tibble][tibble::tibble-package] or an
+#' [Arrow Table][arrow::arrow-package].
 #' @importFrom rlang .data
 read_slf <- function(
     year,
     file_version = c("episode", "individual"),
+    dev = FALSE,
+    col_select = NULL,
+    columns = lifecycle::deprecated(),
+    as_data_frame = TRUE,
     partnerships = NULL,
-    recids = NULL,
-    ...) {
+    recids = NULL) {
   file_path <- gen_file_path(
     year,
     file_version,
-    call = rlang::caller_env()
+    call = rlang::caller_env(),
+    dev = dev,
+    ext = "parquet"
   )
 
-  # Count how many files we are going to read
-  num_files <- length(file_path)
+  files_exist <- fs::file_access(file_path, "read")
 
-  # The following code is designed to deal with multiple years
-  # but works fine with a single year too
-
-  # Gather up any optional parameters which were supplied
-  optional_params <- list(...)
+  if (!all(files_exist)) {
+    cli::cli_abort(
+      c(
+        "x" = "{?The/Some of the} {cli::qty(length(year))} file{?s} you
+        requested don't exist or you don't have permission to read {?it/them}.",
+        ">" = "Please check: {.file {names(files_exist[!files_exist])}}"
+      ),
+      call = rlang::caller_env()
+    )
+  }
 
   # If the we are trying to filter by partnership or recid
   # but the column wasn't selected we need to add it (and remove later)
   remove_partnership_var <- FALSE
   remove_recid_var <- FALSE
-  if (!is.null(optional_params$columns)) {
+  if (!is.null(col_select)) {
     if (!is.null(partnerships) &
-      !("hscp2018" %in% optional_params$columns)) {
-      optional_params$columns <- c(optional_params$columns, "hscp2018")
+      !("hscp2018" %in% col_select)) {
+      col_select <- c(col_select, "hscp2018")
       remove_partnership_var <- TRUE
     }
     if (!is.null(recids) & file_version == "episode" &
-      !("recid" %in% optional_params$columns)) {
-      optional_params$columns <- c(optional_params$columns, "recid")
+      !("recid" %in% col_select)) {
+      col_select <- c(col_select, "recid")
       remove_recid_var <- TRUE
     }
   }
 
-  # Create a list of parameters, starting with the filepaths
-  param_list <- list(as.list(file_path))
-
-  # Add all the optional parameters together correctly
-  for (i in names(optional_params)) {
-    param_list <-
-      append(
-        param_list,
-        list(as.list(
-          rep(list(optional_params[[i]]), num_files)
-        ))
+  slf_table <- purrr::map(
+    file_path,
+    function(file_path) {
+      slf_table <- arrow::read_parquet(
+        file = file_path,
+        col_select = !!col_select,
+        as_data_frame = FALSE
       )
+
+      if (!is.null(recids)) {
+        slf_table <- dplyr::filter(
+          slf_table,
+          .data$recid %in% recids
+        )
+      }
+      if (!is.null(partnerships)) {
+        slf_table <- dplyr::filter(
+          slf_table,
+          .data$hscp2018 %in% partnerships
+        )
+      }
+      if (remove_partnership_var) {
+        slf_table <- dplyr::select(slf_table, -"hscp2018")
+      }
+      if (remove_recid_var) {
+        slf_table <- dplyr::select(slf_table, -"recid")
+      }
+
+      return(slf_table)
+    }
+  )
+
+  # Collapse the list to a single Arrow Table object
+  if (length(slf_table) == 1) {
+    slf_table <- slf_table[[1]]
+  } else {
+    slf_table <- purrr::reduce(slf_table, dplyr::union_all)
   }
 
-  # We now have a list which contains a list for each parameter supplied
-  # Give the inner lists names
-  names(param_list) <- c("path", names(optional_params))
-
-  # Pass the list of parameters to fst::read_fst through purrr
-  slfs_list <- purrr::pmap(param_list, fst::read_fst)
-
-
-
-  # If a partnership is specified filter first;
-  # With testing it seems to usually be faster if we do partnership
-  # filtering before recid filtering
-  if (!is.null(partnerships)) {
-    slfs_list <- purrr::map(
-      slfs_list,
-      ~ dplyr::filter(.x, .x$hscp2018 %in% partnerships)
-    )
+  if (as_data_frame) {
+    return(dplyr::collect(slf_table))
+  } else {
+    return(slf_table)
   }
-
-  # If a recid is specified filter now
-  if (!is.null(recids)) {
-    slfs_list <- purrr::map(
-      slfs_list,
-      ~ dplyr::filter(.x, .x$recid %in% recids)
-    )
-  }
-
-  # Bind the files which have been read together
-  slf <- dplyr::bind_rows(slfs_list)
-
-  # With testing it is faster to remove any extra columns after binding
-  if (remove_partnership_var) {
-    slf <- dplyr::select(slf, -"hscp2018")
-  }
-  if (remove_recid_var) {
-    slf <- dplyr::select(slf, -"recid")
-  }
-
-  # Return the data as a tibble
-  slf <- tibble::as_tibble(slf, .name_repair = "minimal")
-
-  return(slf)
 }
 
 #' Read a Source Linkage episode file
 #'
-#' @inheritParams read_slf
-#' @inheritParams fst::read_fst
-#'
-#' @return a [tibble][tibble::tibble-package]
+#' @inherit read_slf
 #' @export
 #'
 #' @examples
 #' \dontrun{
 #' read_slf_episode("1718",
-#'   columns = c("anon_chi", "dob", "demographic_cohort"),
-#'   from = 100000,
-#'   to = 101000
+#'   col_select = c("anon_chi", "dob", "demographic_cohort")
 #' )
 #'
 #' read_slf_episode(c("1718", "1819"),
-#'   columns = c("anon_chi", "dob", "demographic_cohort"),
-#'   from = 100000,
-#'   to = 101000
+#'   col_select = c("anon_chi", "dob", "demographic_cohort"),
+#'   as_data_frame = FALSE
 #' )
 #' }
-read_slf_episode <-
-  function(year,
-           columns = NULL,
-           partnerships = NULL,
-           recids = NULL,
-           ...) {
-    # TODO add option to drop blank CHIs?
-    # TODO add a filter by recid option
-    return(
-      read_slf(
-        year = year,
-        file_version = "episode",
-        partnerships = unique(partnerships),
-        recids = unique(recids),
-        columns = unique(columns),
-        ...
-      )
+read_slf_episode <- function(
+    year,
+    col_select = NULL,
+    partnerships = NULL,
+    recids = NULL,
+    as_data_frame = TRUE,
+    dev = FALSE,
+    columns = lifecycle::deprecated()) {
+  if (lifecycle::is_present(columns)) {
+    lifecycle::deprecate_soft(
+      "0.10.0",
+      "read_slf_episode(columns)",
+      "read_slf_episode(col_select)"
     )
+    col_select <- columns
   }
-
+  # TODO add option to drop blank CHIs?
+  # TODO add a filter by recid option
+  return(
+    read_slf(
+      year = year,
+      col_select = unique(col_select),
+      file_version = "episode",
+      partnerships = unique(partnerships),
+      recids = unique(recids),
+      as_data_frame = as_data_frame,
+      dev = dev
+    )
+  )
+}
 
 #' Read a Source Linkage individual file
 #'
-#' @inheritParams read_slf
-#' @inheritParams fst::read_fst
+#' @inherit read_slf
 #'
-#' @return a [tibble][tibble::tibble-package]
 #' @export
 #'
 #' @examples
 #' \dontrun{
 #' read_slf_individual("1718",
-#'   columns = c("anon_chi", "dob", "hri_scot"),
-#'   from = 100000, to = 101000
+#'   col_select = c("anon_chi", "dob", "hri_scot")
 #' )
 #' read_slf_individual(c("1718", "1819"),
-#'   columns = c("anon_chi", "dob", "hri_scot"),
-#'   from = 100000,
-#'   to = 101000
+#'   col_select = c("anon_chi", "dob", "hri_scot"),
+#'   as_data_frame = FALSE
 #' )
 #' }
-read_slf_individual <-
-  function(year,
-           columns = NULL,
-           partnerships = NULL,
-           ...) {
-    return(
-      read_slf(
-        year = year,
-        file_version = "individual",
-        partnerships = unique(partnerships),
-        columns = unique(columns),
-        ...
-      )
+read_slf_individual <- function(
+    year,
+    col_select = NULL,
+    partnerships = NULL,
+    as_data_frame = TRUE,
+    dev = FALSE,
+    columns = lifecycle::deprecated()) {
+  if (lifecycle::is_present(columns)) {
+    lifecycle::deprecate_soft(
+      "0.10.0",
+      "read_slf_individual(columns)",
+      "read_slf_individual(col_select)"
     )
+    col_select <- columns
   }
+  return(
+    read_slf(
+      year = year,
+      col_select = unique(col_select),
+      file_version = "individual",
+      partnerships = unique(partnerships),
+      as_data_frame = as_data_frame,
+      dev = dev
+    )
+  )
+}

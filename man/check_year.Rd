@@ -4,7 +4,7 @@
 \alias{check_year}
 \title{Check the year(s) supplied are valid}
 \usage{
-check_year(year, call)
+check_year(year, call = rlang::caller_env())
 }
 \arguments{
 \item{year}{Year of the file to be read, you can specify multiple years

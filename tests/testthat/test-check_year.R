@@ -26,7 +26,7 @@ test_that("Year check rejects ambiguous years", {
 })
 
 test_that("Year check rejects out of bounds years", {
-  expect_snapshot_error(check_year("1112"))
+  expect_snapshot_error(check_year("1011"))
   expect_snapshot_error(check_year("10/11"))
-  expect_snapshot_error(check_year("2011/12"))
+  expect_snapshot_error(check_year("2010/11"))
 })

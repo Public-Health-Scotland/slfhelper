@@ -3,8 +3,6 @@
 on:
   push:
     paths: ["R/**"]
-  pull_request:
-    paths: ["R/**"]
 
 name: Document
 
@@ -34,8 +32,20 @@ jobs:
         run: roxygen2::roxygenise()
         shell: Rscript {0}
 
-      - name: Commit and push changes
+      - name: Commit and create a Pull Request on development
+        if: ${{ github.ref == 'refs/heads/development' }}
+        uses: peter-evans/create-pull-request@v4
+        with:
+          commit-message: "Update documentation"
+          branch: document_development
+          delete-branch: true
+          title: Additional documentation for the development branch
+          labels: documentation,Maintainance
+          assignees: ${{ github.actor }}
+          reviewers: ${{ github.actor }}
+
+      - name: Commit and push changes on all other branches
+        if: ${{ github.ref != 'refs/heads/development' }}
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
-         commit_message: Update documentation (GitHub action)
-         file_pattern: man/* NAMESPACE
+          commit_message: "Update documentation"

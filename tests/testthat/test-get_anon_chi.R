@@ -15,3 +15,10 @@ test_that("Matching with a different name works", {
   expect_equal(nrow(cohort_with_anon), nrow(chi_cohort))
   expect_equal(length(cohort_with_anon), length(chi_cohort))
 })
+
+test_that("Missing or blank CHIs match correctly", {
+  data <- tibble::tibble(chi = c("", NA_character_))
+
+  expect_snapshot(get_anon_chi(data))
+  expect_snapshot(get_anon_chi(data, drop = FALSE))
+})

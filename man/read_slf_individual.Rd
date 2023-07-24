@@ -4,22 +4,41 @@
 \alias{read_slf_individual}
 \title{Read a Source Linkage individual file}
 \usage{
-read_slf_individual(year, columns = NULL, partnerships = NULL, ...)
+read_slf_individual(
+  year,
+  col_select = NULL,
+  partnerships = NULL,
+  as_data_frame = TRUE,
+  dev = FALSE,
+  columns = lifecycle::deprecated()
+)
 }
 \arguments{
 \item{year}{Year of the file to be read, you can specify multiple years
 which will then be returned as one file. It will be converted to short FY
 using \code{\link[=format_year]{format_year()}}.}
 
-\item{columns}{Column names to read. The default is to read all columns.}
+\item{col_select}{A character vector of column names to keep, as in the
+"select" argument to \code{data.table::fread()}, or a
+\link[tidyselect:eval_select]{tidy selection specification}
+of columns, as used in \code{dplyr::select()}.}
 
 \item{partnerships}{Optional specify a partnership (hscp2018) or
-partnerships to select}
+partnerships to select.}
 
-\item{...}{other options to be passed to \code{\link[fst:write_fst]{fst::read_fst()}}}
+\item{as_data_frame}{Should the function return a \code{data.frame} (default) or
+an Arrow \link[arrow]{Table}?}
+
+\item{dev}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}} Whether to get the file from
+the development area (\verb{/conf/sourcedev/Source_Linkage_File_Updates}). The
+default (\code{FALSE}) will get the production file from the usual area.}
+
+\item{columns}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} \code{columns} is no
+longer used, use \code{col_select} instead.}
 }
 \value{
-a \link[tibble:tibble-package]{tibble}
+The requested SLF data as a \link[tibble:tibble-package]{tibble} or an
+\link[arrow:arrow-package]{Arrow Table}.
 }
 \description{
 Read a Source Linkage individual file
@@ -27,13 +46,11 @@ Read a Source Linkage individual file
 \examples{
 \dontrun{
 read_slf_individual("1718",
-  columns = c("anon_chi", "dob", "hri_scot"),
-  from = 100000, to = 101000
+  col_select = c("anon_chi", "dob", "hri_scot")
 )
 read_slf_individual(c("1718", "1819"),
-  columns = c("anon_chi", "dob", "hri_scot"),
-  from = 100000,
-  to = 101000
+  col_select = c("anon_chi", "dob", "hri_scot"),
+  as_data_frame = FALSE
 )
 }
 }

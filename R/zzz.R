@@ -5,11 +5,14 @@ check_on_server <- function() {
   on_server <- rstudioapi::versionInfo()$mode == "server"
 
   if (!on_server) {
-    cli::cli_warn(c(
-      "It looks like you are not on the PHS RStudio server.",
-      "This is a requirement for this package, go to:",
-      ">" = "{.url https://rstudio.nhsnss.scot.nhs.uk/}"
-    ))
+    cli::cli_warn(
+      c(
+        "!" = "You are not using RStudio on the PHS Posit Workbench environment.",
+        "This is a requirement for this package, go to:",
+        ">" = "{.url https://pwb.publichealthscotland.org/}"
+      ),
+      call = rlang::caller_env()
+    )
   }
 
   return(on_server)
@@ -22,16 +25,14 @@ check_on_server <- function() {
 #' @return Boolean
 check_has_access <- function(group = "hscdiip") {
   has_access <- grepl(
-    paste0("\\b", group, "\\b"),
-    system("groups", intern = TRUE)
+    group,
+    system2(
+      command = "groups",
+      args = Sys.getenv("USER"),
+      stdout = TRUE
+    ),
+    fixed = TRUE
   )
-
-  if (!has_access) {
-    cli::cli_warn(c(
-      "You might not have the relevant access.",
-      "i" = "Access to UNIX {group} is required."
-    ))
-  }
 
   return(has_access)
 }
@@ -39,7 +40,18 @@ check_has_access <- function(group = "hscdiip") {
 .onLoad <- function(libname, pkgname) {
   if (interactive()) {
     if (check_on_server()) {
-      check_has_access(group = "hscdiip")
+      if (!check_has_access(group = "hscdiip")) {
+        cli::cli_warn(
+          c(
+            "x" = "Access to {.path /conf/hscdiip} is required to use the
+            Source Linkage Files, it looks like you don't have the correct
+            permissions.",
+            ">" = "email {.email phs.source@phs.scot} and request access to
+            {.value UNIX hscdiip}."
+          ),
+          call = rlang::caller_env()
+        )
+      }
     }
   }
 }

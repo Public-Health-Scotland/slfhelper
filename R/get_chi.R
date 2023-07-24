@@ -11,7 +11,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' slf_1718 <- read_slf_individual("1718", from = 1, to = 100)
+#' slf_1718 <- read_slf_individual("1718")
 #' get_chi(slf_1718)
 #' get_chi(slf_1718, drop = FALSE)
 #' }
@@ -19,13 +19,14 @@ get_chi <- function(data, anon_chi_var = "anon_chi", drop = TRUE) {
   lookup <- tibble::tibble(
     anon_chi = unique(data[[anon_chi_var]])
   ) %>%
-    dplyr::mutate(chi = unname(convert_anon_chi_to_chi(.data$anon_chi)))
+    dplyr::mutate(chi = convert_anon_chi_to_chi(.data$anon_chi))
 
   data <- data %>%
     dplyr::left_join(
       lookup,
       by = stats::setNames("anon_chi", anon_chi_var)
-    )
+    ) %>%
+    dplyr::relocate("chi", .after = {{ anon_chi_var }})
 
   if (drop) {
     data <- data %>%
@@ -35,10 +36,17 @@ get_chi <- function(data, anon_chi_var = "anon_chi", drop = TRUE) {
   return(data)
 }
 
-convert_anon_chi_to_chi <- Vectorize(function(anon_chi) {
-  chi <- openssl::base64_decode(anon_chi) %>%
-    substr(2, 2) %>%
-    paste0(collapse = "")
+convert_anon_chi_to_chi <- function(anon_chi) {
+  chi <- purrr::map_chr(
+    anon_chi,
+    ~ dplyr::case_match(.x,
+      NA_character_ ~ NA_character_,
+      "" ~ "",
+      .default = openssl::base64_decode(.x) %>%
+        substr(2, 2) %>%
+        paste0(collapse = "")
+    )
+  )
 
   return(chi)
-})
+}
