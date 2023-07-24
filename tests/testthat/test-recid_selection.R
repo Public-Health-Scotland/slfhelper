@@ -2,7 +2,6 @@ skip_on_ci()
 
 
 test_that("Recid filtering works", {
-
   set.seed(50)
 
   # Read in a bit of a file selecting only Edinburgh
@@ -22,7 +21,6 @@ test_that("Recid filtering works", {
 
 
 test_that("Can select multiple recids", {
-
   set.seed(50)
 
   # Read in a bit of a file selecting Edinburgh and Glasgow
@@ -39,7 +37,6 @@ test_that("Can select multiple recids", {
 })
 
 test_that("Can still do filtering if variable is not selected", {
-
   set.seed(50)
 
   # Read in a bit of a file selecting only Edinburgh
@@ -61,7 +58,6 @@ test_that("Can still do filtering if variable is not selected", {
 })
 
 test_that("Still reads all variables if just filtering", {
-
   set.seed(50)
 
   ep_1718_acute <- read_slf_episode("1718",

@@ -2,7 +2,6 @@ skip_on_ci()
 
 
 test_that("Partnership filtering works", {
-
   set.seed(50)
 
   # Read in a bit of a file selecting only Edinburgh
@@ -22,7 +21,6 @@ test_that("Partnership filtering works", {
 
 
 test_that("Can select multiple partnerships", {
-
   set.seed(50)
 
   # Read in a bit of a file selecting Edinburgh and Glasgow
@@ -41,7 +39,6 @@ test_that("Can select multiple partnerships", {
 })
 
 test_that("Can still do filtering if variable is not selected", {
-
   set.seed(50)
 
   # Read in a bit of a file selecting only Edinburgh
@@ -64,7 +61,6 @@ test_that("Can still do filtering if variable is not selected", {
 
 
 test_that("Still reads all variables if just filtering", {
-
   set.seed(50)
 
   indiv_1718_edinburgh <- read_slf_individual("1718",

@@ -14,10 +14,9 @@ years <- c(
 )
 
 for (year in years) {
-
   set.seed(50)
 
-  ep_file <- read_slf_episode(year)  %>%
+  ep_file <- read_slf_episode(year) %>%
     dplyr::slice_sample(n = 110)
 
   test_that("Reads episode file correctly", {

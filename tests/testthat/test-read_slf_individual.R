@@ -5,7 +5,7 @@ test_that("Reads individual file correctly", {
   # Read file, test all years
   years <- years <- c("1415", "1516", "1617", "1718", "1819", "1920", "2021", "2122")
   for (year in years) {
-    indiv_file <- read_slf_individual(year)  %>%
+    indiv_file <- read_slf_individual(year) %>%
       dplyr::slice_sample(n = 100)
 
     # Test for anything odd
