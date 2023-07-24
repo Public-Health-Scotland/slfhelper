@@ -2,6 +2,7 @@
 
 * [`{glue}`](https://glue.tidyverse.org/) is no longer a dependency as the required functionality can be provided by [`stringr::str_glue()](https://stringr.tidyverse.org/reference/str_glue.html).
 * Dependency versions have been updated to the latest.
+* `get_chi()` and `get_anon_chi()` now properly match missing (`NA`) and blank (`""`) values.
 
 # slfhelper 0.9.0
 

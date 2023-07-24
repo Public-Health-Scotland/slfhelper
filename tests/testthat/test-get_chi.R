@@ -10,17 +10,15 @@ test_that("Can get CHI numbers for an arbitrary set of anon_chi numbers", {
       "MjMxMDQ3NDAxNQ==",
       "MjQxMTA2MzY5OA==",
       "MzgwMTExMjM3NA==",
-      "MjMxMTE2MTIzMw=="
+      "MjMxMTE2MTIzMw==",
+      "",
+      NA_character_
     )
   )
 
-  data %>%
-    get_chi() %>%
-    expect_snapshot()
+  expect_snapshot(get_chi(data))
 
-  data %>%
-    get_chi(drop = FALSE) %>%
-    expect_snapshot()
+  expect_snapshot(get_chi(data, drop = FALSE))
 })
 
 skip_on_ci()
