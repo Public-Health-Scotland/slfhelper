@@ -45,7 +45,7 @@ test_that("Can still do filtering if variable is not selected", {
   # Don't choose to read the partnership variable
   indiv_1718_edinburgh <- read_slf_individual("1718",
     partnerships = "S37000012",
-    col_select = c("hri_scot")
+    col_select = c("anon_chi")
   ) %>%
     dplyr::slice_sample(n = 1000)
 
@@ -53,7 +53,7 @@ test_that("Can still do filtering if variable is not selected", {
   expect_false("hscp2018" %in% names(indiv_1718_edinburgh))
 
   # Should still have the variables we picked
-  expect_true("hri_scot" %in% names(indiv_1718_edinburgh))
+  expect_true("anon_chi" %in% names(indiv_1718_edinburgh))
 
   # Should have at least 100 records (checks we're not getting an empty file)
   expect_gte(nrow(indiv_1718_edinburgh), 100)
