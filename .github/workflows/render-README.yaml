@@ -47,6 +47,6 @@ jobs:
 
       - name: Commit and push changes on all other branches
         if: ${{ github.ref != 'refs/heads/production' }}
-        uses: stefanzweifel/git-auto-commit-action@v4
+        uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "Render `README.md` after changes to the `.Rmd` version"
