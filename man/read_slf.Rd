@@ -34,7 +34,7 @@ of columns, as used in \code{dplyr::select()}.}
 \item{columns}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} \code{columns} is no
 longer used, use \code{col_select} instead.}
 
-\item{as_data_frame}{Should the function return a \code{data.frame} (default) or
+\item{as_data_frame}{Should the function return a \code{tibble} (default) or
 an Arrow \link[arrow]{Table}?}
 
 \item{partnerships}{Optional specify a partnership (hscp2018) or
