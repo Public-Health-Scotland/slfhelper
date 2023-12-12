@@ -32,7 +32,7 @@
     
     <a class="navbar-brand me-2" href="index.html">slfhelper</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.10.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.10.0.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -76,12 +76,15 @@
 <div class="section level1">
 <div class="page-header"><h1 id="slfhelper">slfhelper<a class="anchor" aria-label="anchor" href="#slfhelper"></a>
 </h1></div>
-<p>The goal of slfhelper is to provide some easy-to-use functions that make working with the Source Linkage Files as painless and efficient as possible.</p>
+<p>The goal of slfhelper is to provide some easy-to-use functions that make working with the Source Linkage Files as painless and efficient as possible. It is only intended for use by PHS employees and will only work on the PHS R infrastructure.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>The preferred method of installation is to use the <a href="https://pak.r-lib.org/" class="external-link">{<code>pak</code>} package</a>, which does an excellent job of handling the errors which sometimes occur.</p>
+<p>The simplest way to install to the PHS Posit Workbench environment is to use the <a href="https://ppm.publichealthscotland.org/client/#/repos/3/packages/slfhelper" class="external-link">PHS Package Manager</a>, this will be the default setting and means you can install <code>slfhelper</code> as you would any other package.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"slfhelper"</span><span class="op">)</span></span></code></pre></div>
+<p>If this doesn’t work you can install it directly from GitHub, there are a number of ways to do this, we recommend the <a href="https://pak.r-lib.org/" class="external-link">{<code>pak</code>} package</a>.</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Install pak (if needed)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"pak"</span><span class="op">)</span></span>
 <span></span>
@@ -94,9 +97,9 @@
 <div class="section level3">
 <h3 id="read-a-file">Read a file<a class="anchor" aria-label="anchor" href="#read-a-file"></a>
 </h3>
-<p><strong>Note:</strong> Reading a full file is quite slow and will use a lot of memory, we would always recommend doing a column selection to only keep the variables that you need for your analysis. Just doing this will dramatically speed up the read-time.</p>
-<p>We provide some data snippets to help with the column selection and filtering.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<p><strong>Note:</strong> Reading a full file is quite slow and will use a lot of memory, we would always recommend doing a column selection to only keep the variables that you need for your analysis. Just doing this will dramatically speed up the read time.</p>
+<p>We provide some data snippets to help with column selection and filtering.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://public-health-scotland.github.io/slfhelper/">slfhelper</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Get a list of the variables in a file</span></span>
@@ -108,7 +111,7 @@
 <span></span>
 <span><span class="co"># See a list with descriptions for the recids</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/View.html" class="external-link">View</a></span><span class="op">(</span><span class="va">recids</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://public-health-scotland.github.io/slfhelper/">slfhelper</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Read certain variables</span></span>
@@ -138,7 +141,7 @@
 <div class="section level3">
 <h3 id="match-on-chi-numbers-to-anon_chi-or-vice-versa">Match on CHI numbers to Anon_CHI (or vice versa)<a class="anchor" aria-label="anchor" href="#match-on-chi-numbers-to-anon_chi-or-vice-versa"></a>
 </h3>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://public-health-scotland.github.io/slfhelper/">slfhelper</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Add real CHI numbers to a SLF</span></span>
@@ -147,11 +150,11 @@
 <span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="reference/get_chi.html">get_chi</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># Change chi numbers from data above back to anon_chi</span></span>
+<span><span class="co"># Change chi numbers from the data above back to anon_chi</span></span>
 <span><span class="va">ep_1718_anon</span> <span class="op">&lt;-</span> <span class="va">ep_1718</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="reference/get_anon_chi.html">get_anon_chi</a></span><span class="op">(</span>chi_var <span class="op">=</span> <span class="st">"chi"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># Add anon_chi to cohort sample</span></span>
+<span><span class="co"># Add anon_chi to the cohort sample</span></span>
 <span><span class="va">chi_cohort</span> <span class="op">&lt;-</span> <span class="va">chi_cohort</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="reference/get_anon_chi.html">get_anon_chi</a></span><span class="op">(</span>chi_var <span class="op">=</span> <span class="st">"upi_number"</span><span class="op">)</span></span></code></pre></div>
 </div>
