@@ -18,7 +18,7 @@ test_that("read multiple years works for individual file", {
   expect_length(indiv, 2)
 
   # Test for the correct number of rows (50 * 2)
-  expect_equal(nrow(indiv), 50)
+  expect_equal(nrow(indiv), 100)
 
   # This test keeps failing as the rows are not equal to 50, e.g 29 and 21
   # # Test that we have 50 rows from each year
@@ -45,7 +45,7 @@ test_that("read multiple years works for episode file", {
   expect_length(ep, 2)
 
   # Test for the correct number of rows (50 * 2)
-  expect_equal(nrow(ep), 50)
+  expect_equal(nrow(ep), 100)
 
   # This test keeps failing as the rows are not equal to 50, e.g 29 and 21
   # # Test that we have 50 rows from each year
