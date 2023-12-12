@@ -14,13 +14,24 @@ stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://
 
 The goal of slfhelper is to provide some easy-to-use functions that make
 working with the Source Linkage Files as painless and efficient as
-possible.
+possible. It is only intended for use by PHS employees and will only
+work on the PHS R infrastructure.
 
 ## Installation
 
-The preferred method of installation is to use the [{`pak`}
-package](https://pak.r-lib.org/), which does an excellent job of
-handling the errors which sometimes occur.
+The simplest way to install to the PHS Posit Workbench environment is to
+use the [PHS Package
+Manager](https://ppm.publichealthscotland.org/client/#/repos/3/packages/slfhelper),
+this will be the default setting and means you can install `slfhelper`
+as you would any other package.
+
+``` r
+install.packages("slfhelper")
+```
+
+If this doesn’t work you can install it directly from GitHub, there are
+a number of ways to do this, we recommend the [{`pak`}
+package](https://pak.r-lib.org/).
 
 ``` r
 # Install pak (if needed)
@@ -37,9 +48,9 @@ pak::pak("Public-Health-Scotland/slfhelper")
 **Note:** Reading a full file is quite slow and will use a lot of
 memory, we would always recommend doing a column selection to only keep
 the variables that you need for your analysis. Just doing this will
-dramatically speed up the read-time.
+dramatically speed up the read time.
 
-We provide some data snippets to help with the column selection and
+We provide some data snippets to help with column selection and
 filtering.
 
 ``` r
@@ -97,11 +108,11 @@ ep_1718 <- read_slf_episode(c("1718", "1819", "1920"),
 ) %>%
   get_chi()
 
-# Change chi numbers from data above back to anon_chi
+# Change chi numbers from the data above back to anon_chi
 ep_1718_anon <- ep_1718 %>%
   get_anon_chi(chi_var = "chi")
 
-# Add anon_chi to cohort sample
+# Add anon_chi to the cohort sample
 chi_cohort <- chi_cohort %>%
   get_anon_chi(chi_var = "upi_number")
 ```
