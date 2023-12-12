@@ -16,7 +16,7 @@ test_that("Reads individual file correctly", {
     expect_equal(nrow(indiv_file), 100)
 
     # Test for correct number of variables (will need updating)
-    expect_length(indiv_file, 184)
+    expect_length(indiv_file, 180)
   }
 })
 
