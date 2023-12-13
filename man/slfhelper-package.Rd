@@ -6,7 +6,7 @@
 \alias{slfhelper-package}
 \title{slfhelper: Useful functions for working with the Source Linkage Files}
 \description{
-This package provides a few helper functions for working with the Source Linkage Files (SLFs). The functions are mainly focussed on making the first steps of analysis easier. They can read in and filter the files in an efficient way using minimal syntax. If you find a bug or have any ideas for new functions or improvements get in touch or submit a pull request.
+This package provides helper functions for working with the Source Linkage Files (SLFs). The functions are mainly focused on making the first steps of analysis easier. They can read and filter the files efficiently using minimal code.
 }
 \seealso{
 Useful links:
@@ -18,7 +18,12 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: James McMahon \email{james.mcmahon@phs.scot} (\href{https://orcid.org/0000-0002-5380-2029}{ORCID})
+\strong{Maintainer}: Megan McNicol \email{megan.mcnicol2@phs.scot}
+
+Authors:
+\itemize{
+  \item James McMahon \email{james.mcmahon@phs.scot} (\href{https://orcid.org/0000-0002-5380-2029}{ORCID})
+}
 
 Other contributors:
 \itemize{

@@ -1,7 +1,7 @@
 Type: Package
 Package: slfhelper
 Title: Useful functions for working with the Source Linkage Files
-Version: 0.10.0
+Version: 0.10.0.9000
 Authors@R: c(
     person("Public Health Scotland", , , "phs.source@phs.scot", role = "cph"),
     person("James", "McMahon", , "james.mcmahon@phs.scot", role = c("aut"),
@@ -46,6 +46,7 @@ VignetteBuilder:
 Remotes: 
     Public-Health-Scotland/phsmethods
 Config/testthat/edition: 3
+Config/testthat/parallel: true
 Encoding: UTF-8
 Language: en-GB
 LazyData: true
