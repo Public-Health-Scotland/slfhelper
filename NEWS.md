@@ -1,8 +1,12 @@
+# slfhelper (development version)
+
 # slfhelper 0.10.0
 
 * [`{glue}`](https://glue.tidyverse.org/) is no longer a dependency as the required functionality can be provided by [`stringr::str_glue()](https://stringr.tidyverse.org/reference/str_glue.html).
 * Dependency versions have been updated to the latest.
 * `get_chi()` and `get_anon_chi()` now properly match missing (`NA`) and blank (`""`) values.
+* slfhelper now defaults to using the `.parquet` file versions, old versions of slfhelper will no longer work.
+* There is now a `dev` parameter available when using the `read_slf_*` functions which allows reading the file from the development environment.
 
 # slfhelper 0.9.0
 
