@@ -46,7 +46,7 @@ jobs:
         shell: Rscript {0}
 
       - name: Cache styler
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ${{ steps.styler-location.outputs.location }}
           key: ${{ runner.os }}-styler-${{ github.sha }}
@@ -60,7 +60,7 @@ jobs:
 
       - name: Commit and create a Pull Request on development
         if: ${{ github.ref == 'refs/heads/development' }}
-        uses: peter-evans/create-pull-request@v5
+        uses: peter-evans/create-pull-request@v6
         with:
           commit-message: "Style package"
           branch: document_development
