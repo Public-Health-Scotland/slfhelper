@@ -60,7 +60,7 @@ jobs:
 
       - name: Commit and create a Pull Request on development
         if: ${{ github.ref == 'refs/heads/development' }}
-        uses: peter-evans/create-pull-request@v5
+        uses: peter-evans/create-pull-request@v6
         with:
           commit-message: "Style package"
           branch: document_development
