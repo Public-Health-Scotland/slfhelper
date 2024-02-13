@@ -65,6 +65,31 @@ View(partnerships)
 
 # See a list with descriptions for the recids
 View(recids)
+
+# See a list of Long term conditions
+View(ltc_vars)
+
+# See a list of bedday related variables
+View(ep_file_bedday_vars)
+
+# See a list of cost related variables
+View(ep_file_cost_vars)
+```
+
+``` r
+library(slfhelper)
+
+# Read a group of variables e.g. LTCs (arth, asthma, atrialfib etc)
+# A nice 'catch all' for reading in all of the LTC variables
+ep_1718 <- read_slf_episode("1718", col_select = c("anon_chi", ltc_vars))
+
+# Read in a group of variables e.g. bedday related variables (yearstay, stay, apr_beddays etc)
+# A 'catch all' for reading in bedday related variables
+ep_1819 <- read_slf_episode("1819", col_select = c("anon_chi", ep_file_bedday_vars))
+
+# Read in a group of variables e.g. cost related variables (cost_total_net, apr_cost)
+# A 'catch all' for reading in cos related variables
+ep_1920 <- read_slf_episode("1920", col_select = c("anon_chi", ep_file_cost_vars))
 ```
 
 ``` r
