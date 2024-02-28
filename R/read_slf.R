@@ -146,17 +146,27 @@ read_slf_episode <- function(
   }
   # TODO add option to drop blank CHIs?
   # TODO add a filter by recid option
-  return(
-    read_slf(
-      year = year,
-      col_select = unique(col_select),
-      file_version = "episode",
-      partnerships = unique(partnerships),
-      recids = unique(recids),
-      as_data_frame = as_data_frame,
-      dev = dev
-    )
+
+  data = read_slf(
+    year = year,
+    col_select = unique(col_select),
+    file_version = "episode",
+    partnerships = unique(partnerships),
+    recids = unique(recids),
+    as_data_frame = as_data_frame,
+    dev = dev
   )
+
+  if ("keytime1" %in% col_select) {
+    data = data %>%
+      dplyr::mutate(keytime1 = hms::as_hms(keytime1))
+  }
+  if ("keytime2" %in% col_select) {
+    data = data %>%
+      dplyr::mutate(keytime2 = hms::as_hms(keytime2))
+  }
+
+  return(data)
 }
 
 #' Read a Source Linkage individual file
