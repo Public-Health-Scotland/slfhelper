@@ -147,7 +147,7 @@ read_slf_episode <- function(
   # TODO add option to drop blank CHIs?
   # TODO add a filter by recid option
 
-  data = read_slf(
+  data <- read_slf(
     year = year,
     col_select = unique(col_select),
     file_version = "episode",
@@ -158,11 +158,11 @@ read_slf_episode <- function(
   )
 
   if ("keytime1" %in% col_select) {
-    data = data %>%
+    data <- data %>%
       dplyr::mutate(.data$keytime1 = hms::as_hms(.data$keytime1))
   }
   if ("keytime2" %in% col_select) {
-    data = data %>%
+    data <- data %>%
       dplyr::mutate(.data$keytime2 = hms::as_hms(.data$keytime2))
   }
 
