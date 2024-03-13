@@ -157,13 +157,13 @@ read_slf_episode <- function(
     dev = dev
   )
 
-  if ("keytime1" %in% col_select) {
+  if ("keytime1" %in% colnames(data)) {
     data <- data %>%
-      dplyr::mutate(.data$keytime1 = hms::as_hms(.data$keytime1))
+      dplyr::mutate(keytime1 = hms::as_hms(.data$keytime1))
   }
-  if ("keytime2" %in% col_select) {
+  if ("keytime2" %in% colnames(data)) {
     data <- data %>%
-      dplyr::mutate(.data$keytime2 = hms::as_hms(.data$keytime2))
+      dplyr::mutate(keytime2 = hms::as_hms(.data$keytime2))
   }
 
   return(data)
