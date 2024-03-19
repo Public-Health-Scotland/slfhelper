@@ -24,6 +24,7 @@ Imports:
     dplyr (>= 1.1.2),
     fs (>= 1.6.2),
     fst (>= 0.9.8),
+    hms,
     lifecycle (>= 1.0.3),
     magrittr (>= 2.0.3),
     openssl (>= 2.0.6),
@@ -52,4 +53,4 @@ Language: en-GB
 LazyData: true
 Roxygen: list(markdown = TRUE, roclets = c("collate","namespace", "rd",
     "vignette" ))
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.1
