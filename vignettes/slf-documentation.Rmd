@@ -89,23 +89,25 @@ Using arrow’s ‘Arrow Table’ feature, you can speed up analysis efficiently
 Planned and unplanned beddays in Scotland
 ```{r}
 # Filter for year of interest
-slf_extract <- read_slf_episode(c( "1819", "1920"),
-                                # Select recids of interest
-                                recids = c("01B", "GLS", "04B"),
-                                # Select columns
-                                col_select = c("year", "anon_chi", "recid", 
-                                               "yearstay", "age", "cij_pattype"), 
-                                # return an arrow table
-                                as_data_frame = FALSE) %>%
+slf_extract <- read_slf_episode(c("1819", "1920"),
+  # Select recids of interest
+  recids = c("01B", "GLS", "04B"),
+  # Select columns
+  col_select = c(
+    "year", "anon_chi", "recid",
+    "yearstay", "age", "cij_pattype"
+  ),
+  # return an arrow table
+  as_data_frame = FALSE
+) %>%
   # Filter for non-elective and elective episodes
-  filter(cij_pattype == "Non-Elective" | cij_pattype == "Elective") %>% 
+  filter(cij_pattype == "Non-Elective" | cij_pattype == "Elective") %>%
   # Group by year and cij_pattype for analysis
   group_by(year, cij_pattype) %>%
   # summarise bedday totals
-  summarise(beddays = sum(yearstay)) %>% 
-  # collect the arrow table 
+  summarise(beddays = sum(yearstay)) %>%
+  # collect the arrow table
   dplyr::collect()
-
 ```
 
 
@@ -116,26 +118,28 @@ slf_extract <- read_slf_episode(c( "1819", "1920"),
 Produce a table to compare A&E Attendances for the following age groups (0-17, 18-64, 65-74, 75-84, 85+) for 2018/19 in East Lothian HSCP.
 ```{r}
 # read in data required from slf individual file - filter for year 2018/19
-el_1819 <- read_slf_individual(year = "1819", 
-                               # select variables needed
-                               col_select = c("age", "ae_attendances"), 
-                               # filter partnership for East Lothian 
-                               partnerships = "S37000010")
+el_1819 <- read_slf_individual(
+  year = "1819",
+  # select variables needed
+  col_select = c("age", "ae_attendances"),
+  # filter partnership for East Lothian
+  partnerships = "S37000010"
+)
 
 # create age bands
 age_labs <- c("0-17", "18-64", "65-74", "75-84", "85+") # create age labels
 
 # create age group variable
 el_1819 <- el_1819 %>%
-  mutate(age_group = cut(age, 
-                         breaks=c(-1, 17, 64, 74, 84, 150), labels=age_labs))
+  mutate(age_group = cut(age,
+    breaks = c(-1, 17, 64, 74, 84, 150), labels = age_labs
+  ))
 
 # produce summary table
 output_table_1 <- el_1819 %>%
   group_by(age_group) %>%
-  summarise(attendances=sum(ae_attendances)) %>%
+  summarise(attendances = sum(ae_attendances)) %>%
   ungroup()
-
 ```
 
 
@@ -145,64 +149,75 @@ Create a table to compare the number of outpatient attendances (SMR00) broken do
 
 ```{r}
 # read in specialty lookup with names
-spec_lookup <- 
-  read_csv("/conf/linkage/output/lookups/Unicode/National Reference Files/Specialty.csv") %>% 
-         select(spec = Speccode,
-                spec_name = Description)
+spec_lookup <-
+  read_csv("/conf/linkage/output/lookups/Unicode/National Reference Files/Specialty.csv") %>%
+  select(
+    spec = Speccode,
+    spec_name = Description
+  )
 
 # read in data required from slf episode file - filter year = 2017/18
-op_1718 <- read_slf_episode(year = "1718", 
-                            # select columns
-                            col_select = c("recid", "gender", "spec"), 
-                            # filter on recid for outpatients
-                            recids = "00B")
+op_1718 <- read_slf_episode(
+  year = "1718",
+  # select columns
+  col_select = c("recid", "gender", "spec"),
+  # filter on recid for outpatients
+  recids = "00B"
+)
 
 # produce output
 output_table_2 <- op_1718 %>%
   # get counts by specialty and gender
   count(spec, gender) %>%
   # exclude those with no gender recorded
-  filter(gender==1 | gender==2) %>%
+  filter(gender == 1 | gender == 2) %>%
   # recode gender into M/F
-  mutate(gender = recode(as.character(gender), '1' = "Male", '2' = "Female")) %>%
+  mutate(gender = recode(as.character(gender), "1" = "Male", "2" = "Female")) %>%
   # move gender to separate columns
-  pivot_wider(names_from = gender, values_from=n) %>%
+  pivot_wider(names_from = gender, values_from = n) %>%
   # match on specialty names
   left_join(spec_lookup) %>%
   # reorder variables
   select(spec, spec_name, Male, Female)
-
 ```
 
 3. Hospital admissions & beddays by HB of residence. 
 
 Produce a table to compare the number of admissions, bed days and average length of stay (split into elective and non-elective) by Health Board of Residence in 2018/19.
 ```{r}
-# Read in names for Health Boards 
-hb_lookup <- 
+# Read in names for Health Boards
+hb_lookup <-
   read_csv("/conf/linkage/output/lookups/Unicode/Geography/Scottish Postcode Directory/Codes and Names/Health Board Area 2019 Lookup.csv") %>%
-  select(hb2019 = HealthBoardArea2019Code,
-         hb_desc = HealthBoardArea2019Name)
+  select(
+    hb2019 = HealthBoardArea2019Code,
+    hb_desc = HealthBoardArea2019Name
+  )
 
 # read in data required from slf individual file - filter for 2018/19
-indiv_1819 <- read_slf_individual(year = "1819",
-                                  # Select columns of interest
-                                  col_select = c("hb2019", "cij_el", "cij_non_el",
-                                              "acute_el_inpatient_beddays",
-                                              "mh_el_inpatient_beddays",
-                                              "gls_el_inpatient_beddays",
-                                              "acute_non_el_inpatient_beddays",
-                                              "mh_non_el_inpatient_beddays",
-                                              "gls_non_el_inpatient_beddays"))
+indiv_1819 <- read_slf_individual(
+  year = "1819",
+  # Select columns of interest
+  col_select = c(
+    "hb2019", "cij_el", "cij_non_el",
+    "acute_el_inpatient_beddays",
+    "mh_el_inpatient_beddays",
+    "gls_el_inpatient_beddays",
+    "acute_non_el_inpatient_beddays",
+    "mh_non_el_inpatient_beddays",
+    "gls_non_el_inpatient_beddays"
+  )
+)
 
 
 # calculate total bed days and add on HB names
 indiv_1819_inc_totals <- indiv_1819 %>%
   # calculate overall bed days
-  mutate(elective_beddays = acute_el_inpatient_beddays + mh_el_inpatient_beddays +
-                            gls_el_inpatient_beddays,
-         non_elective_beddays = acute_non_el_inpatient_beddays + mh_non_el_inpatient_beddays +
-                                gls_non_el_inpatient_beddays) %>%
+  mutate(
+    elective_beddays = acute_el_inpatient_beddays + mh_el_inpatient_beddays +
+      gls_el_inpatient_beddays,
+    non_elective_beddays = acute_non_el_inpatient_beddays + mh_non_el_inpatient_beddays +
+      gls_non_el_inpatient_beddays
+  ) %>%
   # match on HB name
   left_join(hb_lookup)
 
@@ -211,14 +226,17 @@ output_table_3 <- indiv_1819_inc_totals %>%
   # group by HB of residence
   group_by(hb2019, hb_desc) %>%
   # produce summary table
-  summarise(elective_adm = sum(cij_el),
-            non_elective_adm = sum(cij_non_el),
-            elective_beddays = sum(elective_beddays),
-            non_elective_beddays = sum(non_elective_beddays)) %>%
+  summarise(
+    elective_adm = sum(cij_el),
+    non_elective_adm = sum(cij_non_el),
+    elective_beddays = sum(elective_beddays),
+    non_elective_beddays = sum(non_elective_beddays)
+  ) %>%
   # calculate average length of stay
-  mutate(elective_alos = elective_beddays/elective_adm,
-         non_elective_alos = non_elective_beddays/non_elective_adm)
-
+  mutate(
+    elective_alos = elective_beddays / elective_adm,
+    non_elective_alos = non_elective_beddays / non_elective_adm
+  )
 ```
 
 4. GP Out of Hours Consulations in South Ayrshire. 
@@ -226,22 +244,23 @@ output_table_3 <- indiv_1819_inc_totals %>%
 Create a table showing the number of GP Out of Hours consultations for patients with dementia in South Ayrshire HSCP in 2019/20 broken down by type of consultation.
 ```{r}
 # read in data required from slf episode file - filter for year = 2019/20
-sa_1920 <- read_slf_episode(year = "1920",
-                            # select columns
-                            col_select = c("dementia", "smrtype"),
-                            # filter for South Ayrshire HSCP
-                            partnerships = "S37000027",
-                            # Filter for GP OOH data
-                            recids = "OoH")
+sa_1920 <- read_slf_episode(
+  year = "1920",
+  # select columns
+  col_select = c("dementia", "smrtype"),
+  # filter for South Ayrshire HSCP
+  partnerships = "S37000027",
+  # Filter for GP OOH data
+  recids = "OoH"
+)
 
 # select dementia patients
 sa_dementia_1920 <- sa_1920 %>%
-  filter(dementia==1)
+  filter(dementia == 1)
 
 # produce summary table
 output_table_4 <- sa_dementia_1920 %>%
   count(smrtype)
-
 ```
 
 5. Costs in Aberdeen City. 
@@ -249,13 +268,17 @@ output_table_4 <- sa_dementia_1920 %>%
 Produce a table to show the number of patients and the total costs for Aberdeen City HSCP in 2018/19. Include a breakdown of costs for the following services: Acute (inpatients & daycases), GLS, Mental Health and Maternity, Outpatients, A&E, GP Out of Hours, Community Prescribing.
 ```{r}
 # read in data required from slf individual file - filter year = 2018/19
-ab_1819 <- read_slf_individual(year = "1819",
-                               # select columns 
-                               col_select = c("acute_cost", "gls_cost", "mh_cost", "mat_cost",
-                                           "op_cost_attend", "ae_cost", "ooh_cost", "pis_cost",
-                                           "health_net_cost"),
-                               # filter for Aberdeen City
-                               partnerships = "S37000001")
+ab_1819 <- read_slf_individual(
+  year = "1819",
+  # select columns
+  col_select = c(
+    "acute_cost", "gls_cost", "mh_cost", "mat_cost",
+    "op_cost_attend", "ae_cost", "ooh_cost", "pis_cost",
+    "health_net_cost"
+  ),
+  # filter for Aberdeen City
+  partnerships = "S37000001"
+)
 
 # Have used variables which exclude the cost of outpatient attendances which did
 # not attend (DNA) but you could also include this if needed.
@@ -265,11 +288,11 @@ output_table_5 <- ab_1819 %>%
   # rename outatients variable
   rename(op_cost = op_cost_attend) %>%
   # sum of all cost variables and number of patients
-  summarise(across(ends_with("_cost"), ~sum(.x, na.rm=TRUE)),
-            patients = n()) %>%
+  summarise(across(ends_with("_cost"), ~ sum(.x, na.rm = TRUE)),
+    patients = n()
+  ) %>%
   # switch to rows
   pivot_longer(everything())
-
 ```
 
 6. Deaths from Dementia / Alzheimers
@@ -278,26 +301,29 @@ Produce a chart to show the number of deaths from 2015/16 to 2019/20 in Scotland
 
 ```{r}
 # read in data required from slf episode file - filter for years 2015/16 to 2019/20
-deaths <- read_slf_episode(year = c("1516", "1617", "1718", "1819", "1920"),
-                           # select columns
-                           col_select = c("year", "deathdiag1"),
-                           # Filter for death records
-                           recids = "NRS")
+deaths <- read_slf_episode(
+  year = c("1516", "1617", "1718", "1819", "1920"),
+  # select columns
+  col_select = c("year", "deathdiag1"),
+  # Filter for death records
+  recids = "NRS"
+)
 
 # extract 3 & 4 digit codes and select those with dementia
 dementia_deaths <- deaths %>%
   # extract 3 & 4 digit ICD 10 codes
-  mutate(diag_3d = str_sub(deathdiag1, 1, 3),
-         diag_4d = str_sub(deathdiag1, 1, 4)) %>%
+  mutate(
+    diag_3d = str_sub(deathdiag1, 1, 3),
+    diag_4d = str_sub(deathdiag1, 1, 4)
+  ) %>%
   # select dementia codes
-  filter(diag_3d == "G30" | diag_3d == "F00" | diag_3d == "F01"
-         | diag_3d == "F02"| diag_3d == "F03" | diag_4d == "F051")
+  filter(diag_3d == "G30" | diag_3d == "F00" | diag_3d == "F01" |
+    diag_3d == "F02" | diag_3d == "F03" | diag_4d == "F051")
 
 # produce summary table
 output_table_6 <- dementia_deaths %>%
   count(year) %>%
-  rename(deaths=n)
-
+  rename(deaths = n)
 ```
 
 7. Number and cost of prescriptions for MS
@@ -307,12 +333,15 @@ Create a table to compare the number and cost of prescribed items for patients w
 ```{R}
 # read in HSCP names (used in exercises 7 & 9)
 hscp_lookup <- read_csv("/conf/linkage/output/lookups/Unicode/Geography/Scottish Postcode Directory/Codes and Names/Integration Authority 2019 Lookup.csv") %>%
-  select(hscp2019 = IntegrationAuthority2019Code,
-         hscp_desc = IntegrationAuthority2019Name)
+  select(
+    hscp2019 = IntegrationAuthority2019Code,
+    hscp_desc = IntegrationAuthority2019Name
+  )
 
 # read in data required from slf episode file - filter for year = 2018/19
 pis_1819 <- read_slf_individual("1819",
-                           col_select = c("hscp2019", "ms", "pis_paid_items", "pis_cost"))
+  col_select = c("hscp2019", "ms", "pis_paid_items", "pis_cost")
+)
 
 
 # select all patients with MS & add on HSCP name
@@ -325,14 +354,17 @@ output_table_7 <- ms_1819 %>%
   # group by hscp
   group_by(hscp2019, hscp_desc) %>%
   # sum up number of items, costs & patients with MS (not all will have had prescription)
-  summarise(pis_paid_items = sum(pis_paid_items),
-            pis_cost = sum(pis_cost),
-            patients = sum(ms)) %>%
+  summarise(
+    pis_paid_items = sum(pis_paid_items),
+    pis_cost = sum(pis_cost),
+    patients = sum(ms)
+  ) %>%
   ungroup() %>%
   # calculate number of items / cost per patient
-  mutate(items_per_patient = pis_paid_items/patients,
-         cost_per_patient = pis_cost/patients)
-
+  mutate(
+    items_per_patient = pis_paid_items / patients,
+    cost_per_patient = pis_cost / patients
+  )
 ```
 
 8. A&E attendance in last 3 months of life.
@@ -341,24 +373,28 @@ Produce a table to show the number of deaths in Glasgow City HSCP in 2019/20 and
 
 ```{r}
 # extract all deaths in Glasgow City in 1920 - Filter year = 1920
-gc_deaths <- read_slf_episode(year = "1920",
-                              # select columns
-                              col_select = c("anon_chi", "death_date"),
-                              # filter for Glasgow City
-                              partnerships = "S37000015",
-                              # Filter for death records
-                              recids = "NRS") %>%
+gc_deaths <- read_slf_episode(
+  year = "1920",
+  # select columns
+  col_select = c("anon_chi", "death_date"),
+  # filter for Glasgow City
+  partnerships = "S37000015",
+  # Filter for death records
+  recids = "NRS"
+) %>%
   # exclude those with missing chi
   filter(anon_chi != "") %>%
   # exclude duplicates
   distinct(anon_chi, death_date)
 
 # extract all A&E attendances in 1819 & 1920
-ae <- read_slf_episode(year = c("1819", "1920"),
-                       # select columns
-                       col_select = c("anon_chi", "recid", "record_keydate1"),
-                       # filter for A&E data
-                       recids = "AE2") %>%
+ae <- read_slf_episode(
+  year = c("1819", "1920"),
+  # select columns
+  col_select = c("anon_chi", "recid", "record_keydate1"),
+  # filter for A&E data
+  recids = "AE2"
+) %>%
   # exclude those with missing chi
   filter(anon_chi != "") %>%
   # rename date of attendance
@@ -378,7 +414,7 @@ ae_gc_3m <- ae_gc %>%
   # flag if attendance is in 3 month interval
   mutate(att_3m = if_else(attendance_date %within% int_3m, 1, 0)) %>%
   # select only those attendances in 3 months before death
-  filter(att_3m==1)
+  filter(att_3m == 1)
 
 # create list of patients with A&E attendance in 3m period
 pats_ae_3m <- ae_gc_3m %>%
@@ -392,11 +428,12 @@ output_table_8 <- gc_deaths %>%
   # match on attendance flag
   left_join(pats_ae_3m) %>%
   # summarise total deaths and deaths with A&E attendance in last 3 months
-  summarise(deaths=n(),
-            deaths_with_ae_att=sum(att_3m, na.rm=TRUE)) %>%
+  summarise(
+    deaths = n(),
+    deaths_with_ae_att = sum(att_3m, na.rm = TRUE)
+  ) %>%
   # calculate %
-  mutate(prop_ae_3m = deaths_with_ae_att/deaths)
-
+  mutate(prop_ae_3m = deaths_with_ae_att / deaths)
 ```
 
 9. Non elective admissions in Geriatric Medicine.
@@ -405,21 +442,25 @@ Create a table showing the number of non-elective admissions with any part of th
 
 ```{r}
 # extract data required from episode file
-smr_1920 <- read_slf_episode(year = "1920",
-                              col_select = c("anon_chi", "record_keydate1", "record_keydate2",
-                                          "spec", "hscp2019", "yearstay", "cost_total_net",
-                                          "cij_marker", "cij_pattype"),
-                              recids = c("01B", "GLS", "04B")) %>%
+smr_1920 <- read_slf_episode(
+  year = "1920",
+  col_select = c(
+    "anon_chi", "record_keydate1", "record_keydate2",
+    "spec", "hscp2019", "yearstay", "cost_total_net",
+    "cij_marker", "cij_pattype"
+  ),
+  recids = c("01B", "GLS", "04B")
+) %>%
   # exclude those with missing chi
   filter(anon_chi != "")
 
 # flag episodes in Geriatric Medicine specialty AB
-smr_1920 <- smr_1920 %>% 
-  mutate(ger_med = if_else(spec=="AB", 1, 0))
+smr_1920 <- smr_1920 %>%
+  mutate(ger_med = if_else(spec == "AB", 1, 0))
 
 # select only those from non-elective stays
 smr_1920_ne <- smr_1920 %>%
-  filter(cij_pattype=="Non-Elective")
+  filter(cij_pattype == "Non-Elective")
 
 # aggregate to cij level
 # we want to keep eariest admission and latest discharge, keep flag if any episode was in spec AB
@@ -431,12 +472,13 @@ cij_1920 <- smr_1920_ne %>%
     across(record_keydate1, min),
     across(c(record_keydate2, ger_med), max),
     across(c(cij_pattype, hscp2019), last),
-    across(c(yearstay, cost_total_net), sum))%>%
+    across(c(yearstay, cost_total_net), sum)
+  ) %>%
   ungroup()
 
 # select only admissions with part of their stay in Geriatric Medicine specialty
 cij_ger_med <- cij_1920 %>%
-  filter(ger_med==1)
+  filter(ger_med == 1)
 
 # aggregate up to patient level
 # we want to keep eariest admission and latest discharge, keep flag if any episode was in spec AB
@@ -444,7 +486,8 @@ cij_ger_med <- cij_1920 %>%
 pat_1920 <- cij_ger_med %>%
   group_by(anon_chi, hscp2019) %>%
   summarise(
-    across(c(ger_med, yearstay, cost_total_net), sum)) %>%
+    across(c(ger_med, yearstay, cost_total_net), sum)
+  ) %>%
   ungroup()
 
 # produce output
@@ -455,11 +498,12 @@ output_table_9 <- pat_1920 %>%
   # group up to hscp level
   group_by(hscp2019, hscp_desc) %>%
   # sum up measures
-  summarise(admissions=sum(ger_med),
-            beddays = sum(yearstay),
-            cost = sum(cost_total_net),
-            patients = n()) %>%
+  summarise(
+    admissions = sum(ger_med),
+    beddays = sum(yearstay),
+    cost = sum(cost_total_net),
+    patients = n()
+  ) %>%
   ungroup()
-
 ```
 
