@@ -87,7 +87,7 @@ Using arrow’s ‘Arrow Table’ feature, you can speed up analysis efficiently
 #### For example:
 
 Planned and unplanned beddays in Scotland
-```{r}
+```{r, message=FALSE}
 # Filter for year of interest
 slf_extract <- read_slf_episode(c("1819", "1920"),
   # Select recids of interest
@@ -116,7 +116,7 @@ slf_extract <- read_slf_episode(c("1819", "1920"),
 1. A&E attendances in East Lothian by age group. 
 
 Produce a table to compare A&E Attendances for the following age groups (0-17, 18-64, 65-74, 75-84, 85+) for 2018/19 in East Lothian HSCP.
-```{r}
+```{r, message=FALSE}
 # read in data required from slf individual file - filter for year 2018/19
 el_1819 <- read_slf_individual(
   year = "1819",
@@ -147,7 +147,7 @@ output_table_1 <- el_1819 %>%
 
 Create a table to compare the number of outpatient attendances (SMR00) broken down by specialty and gender in 2017/18 in Scotland.  
 
-```{r}
+```{r, message=FALSE}
 # read in specialty lookup with names
 spec_lookup <-
   read_csv("/conf/linkage/output/lookups/Unicode/National Reference Files/Specialty.csv") %>%
@@ -184,9 +184,15 @@ output_table_2 <- op_1718 %>%
 3. Hospital admissions & beddays by HB of residence. 
 
 Produce a table to compare the number of admissions, bed days and average length of stay (split into elective and non-elective) by Health Board of Residence in 2018/19.
+<<<<<<< HEAD
 ```{r}
 # Read in names for Health Boards
 hb_lookup <-
+=======
+```{r, message=FALSE}
+# Read in names for Health Boards 
+hb_lookup <- 
+>>>>>>> 516d5a1 (Hide messages)
   read_csv("/conf/linkage/output/lookups/Unicode/Geography/Scottish Postcode Directory/Codes and Names/Health Board Area 2019 Lookup.csv") %>%
   select(
     hb2019 = HealthBoardArea2019Code,
@@ -242,7 +248,7 @@ output_table_3 <- indiv_1819_inc_totals %>%
 4. GP Out of Hours Consulations in South Ayrshire. 
 
 Create a table showing the number of GP Out of Hours consultations for patients with dementia in South Ayrshire HSCP in 2019/20 broken down by type of consultation.
-```{r}
+```{r, message=FALSE}
 # read in data required from slf episode file - filter for year = 2019/20
 sa_1920 <- read_slf_episode(
   year = "1920",
@@ -266,7 +272,7 @@ output_table_4 <- sa_dementia_1920 %>%
 5. Costs in Aberdeen City. 
 
 Produce a table to show the number of patients and the total costs for Aberdeen City HSCP in 2018/19. Include a breakdown of costs for the following services: Acute (inpatients & daycases), GLS, Mental Health and Maternity, Outpatients, A&E, GP Out of Hours, Community Prescribing.
-```{r}
+```{r, message=FALSE}
 # read in data required from slf individual file - filter year = 2018/19
 ab_1819 <- read_slf_individual(
   year = "1819",
@@ -299,7 +305,7 @@ output_table_5 <- ab_1819 %>%
 
 Produce a chart to show the number of deaths from 2015/16 to 2019/20 in Scotland where the main cause of death was recorded as Dementia/Alzheimers (ICD 10 codes: G30, F01-F03, F05.1).
 
-```{r}
+```{r, message=FALSE}
 # read in data required from slf episode file - filter for years 2015/16 to 2019/20
 deaths <- read_slf_episode(
   year = c("1516", "1617", "1718", "1819", "1920"),
@@ -330,7 +336,7 @@ output_table_6 <- dementia_deaths %>%
 
 Create a table to compare the number and cost of prescribed items for patients with Multiple Sclerosis (MS) by HSCP in 2018/19. Include the number of dispensed items and cost per patient.
 
-```{R}
+```{R, message=FALSE}
 # read in HSCP names (used in exercises 7 & 9)
 hscp_lookup <- read_csv("/conf/linkage/output/lookups/Unicode/Geography/Scottish Postcode Directory/Codes and Names/Integration Authority 2019 Lookup.csv") %>%
   select(
@@ -371,7 +377,7 @@ output_table_7 <- ms_1819 %>%
 
 Produce a table to show the number of deaths in Glasgow City HSCP in 2019/20 and what proportion had an A&E attendance in the last 3 months of life.
 
-```{r}
+```{r, message=FALSE}
 # extract all deaths in Glasgow City in 1920 - Filter year = 1920
 gc_deaths <- read_slf_episode(
   year = "1920",
@@ -440,7 +446,7 @@ output_table_8 <- gc_deaths %>%
 
 Create a table showing the number of non-elective admissions with any part of the stay (Continuous Inpatient Journey, CIJ) in the specialty Geriatric Medicine, by HSCP in 2019/20. Also include the associated bed days, cost and number of patients.
 
-```{r}
+```{r, message=FALSE}
 # extract data required from episode file
 smr_1920 <- read_slf_episode(
   year = "1920",
