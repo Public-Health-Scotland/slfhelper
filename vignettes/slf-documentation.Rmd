@@ -184,15 +184,9 @@ output_table_2 <- op_1718 %>%
 3. Hospital admissions & beddays by HB of residence. 
 
 Produce a table to compare the number of admissions, bed days and average length of stay (split into elective and non-elective) by Health Board of Residence in 2018/19.
-<<<<<<< HEAD
-```{r}
-# Read in names for Health Boards
-hb_lookup <-
-=======
 ```{r, message=FALSE}
 # Read in names for Health Boards 
 hb_lookup <- 
->>>>>>> 516d5a1 (Hide messages)
   read_csv("/conf/linkage/output/lookups/Unicode/Geography/Scottish Postcode Directory/Codes and Names/Health Board Area 2019 Lookup.csv") %>%
   select(
     hb2019 = HealthBoardArea2019Code,
