@@ -185,8 +185,8 @@ output_table_2 <- op_1718 %>%
 
 Produce a table to compare the number of admissions, bed days and average length of stay (split into elective and non-elective) by Health Board of Residence in 2018/19.
 ```{r, message=FALSE}
-# Read in names for Health Boards 
-hb_lookup <- 
+# Read in names for Health Boards
+hb_lookup <-
   read_csv("/conf/linkage/output/lookups/Unicode/Geography/Scottish Postcode Directory/Codes and Names/Health Board Area 2019 Lookup.csv") %>%
   select(
     hb2019 = HealthBoardArea2019Code,
