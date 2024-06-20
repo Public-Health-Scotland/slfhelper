@@ -1,4 +1,6 @@
-# slfhelper (development version)
+# slfhelper 0.10.2
+
+# slfhelper 0.10.1
 
 # slfhelper 0.10.0
 
