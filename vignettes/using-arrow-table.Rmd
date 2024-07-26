@@ -1,0 +1,52 @@
+---
+title: "using-arrow-table"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{using-arrow-table}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(slfhelper)
+```
+
+## Using Parquet files with the arrow package 
+
+The SLFs are available in parquet format. The {arrow} package gives some extra features which can speed up and reduce memory usage even further. You can read only specific columns `read_parquet(file, col_select = c(var1, var2))`. 
+
+Using arrow’s ‘Arrow Table’ feature, you can speed up analysis efficiently. To do this, specify `as_data_frame = FALSE` when using SLFhelper and `dplyr::collect()` to read the data. 
+
+
+#### For example:
+
+Planned and unplanned beddays in Scotland
+```{r chunk1, eval=FALSE, message=FALSE}
+# Filter for year of interest
+slf_extract <- read_slf_episode(c("1819", "1920"),
+  # Select recids of interest
+  recids = c("01B", "GLS", "04B"),
+  # Select columns
+  col_select = c(
+    "year", "anon_chi", "recid",
+    "yearstay", "age", "cij_pattype"
+  ),
+  # return an arrow table
+  as_data_frame = FALSE
+) %>%
+  # Filter for non-elective and elective episodes
+  filter(cij_pattype == "Non-Elective" | cij_pattype == "Elective") %>%
+  # Group by year and cij_pattype for analysis
+  group_by(year, cij_pattype) %>%
+  # summarise bedday totals
+  summarise(beddays = sum(yearstay)) %>%
+  # collect the arrow table
+  dplyr::collect()
+```
