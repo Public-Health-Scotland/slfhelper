@@ -26,7 +26,7 @@ of columns, as used in \code{dplyr::select()}.}
 \item{partnerships}{Optional specify a partnership (hscp2018) or
 partnerships to select.}
 
-\item{as_data_frame}{Should the function return a \code{data.frame} (default) or
+\item{as_data_frame}{Should the function return a \code{tibble} (default) or
 an Arrow \link[arrow]{Table}?}
 
 \item{dev}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}} Whether to get the file from
