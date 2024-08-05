@@ -53,15 +53,23 @@ read_slf <- function(
   # but the column wasn't selected we need to add it (and remove later)
   remove_partnership_var <- FALSE
   remove_recid_var <- FALSE
-  if (!is.null(col_select)) {
-    if (!is.null(partnerships) &
-      !("hscp2018" %in% col_select)) {
+  if (!rlang::quo_is_null(rlang::enquo(col_select))) {
+    if (!is.null(partnerships) &&
+      stringr::str_detect(rlang::quo_text(rlang::enquo(col_select)),
+        stringr::coll("hscp2018"),
+        negate = TRUE
+      )) {
       col_select <- c(col_select, "hscp2018")
+
       remove_partnership_var <- TRUE
     }
-    if (!is.null(recids) & file_version == "episode" &
-      !("recid" %in% col_select)) {
+    if (!is.null(recids) && file_version == "episode" &&
+      stringr::str_detect(rlang::quo_text(rlang::enquo(col_select)),
+        stringr::coll("recid"),
+        negate = TRUE
+      )) {
       col_select <- c(col_select, "recid")
+
       remove_recid_var <- TRUE
     }
   }
@@ -71,7 +79,7 @@ read_slf <- function(
     function(file_path) {
       slf_table <- arrow::read_parquet(
         file = file_path,
-        col_select = !!col_select,
+        col_select = {{ col_select }},
         as_data_frame = FALSE
       )
 
@@ -149,7 +157,7 @@ read_slf_episode <- function(
   return(
     read_slf(
       year = year,
-      col_select = unique(col_select),
+      col_select = {{ col_select }},
       file_version = "episode",
       partnerships = unique(partnerships),
       recids = unique(recids),
@@ -193,7 +201,7 @@ read_slf_individual <- function(
   return(
     read_slf(
       year = year,
-      col_select = unique(col_select),
+      col_select = {{ col_select }},
       file_version = "individual",
       partnerships = unique(partnerships),
       as_data_frame = as_data_frame,
