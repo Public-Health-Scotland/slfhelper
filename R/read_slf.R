@@ -79,8 +79,8 @@ read_slf <- function(
         as_data_frame = FALSE
       )
 
-      if(!is.null(partnerships)){
-        if(remove_partnership_var){
+      if (!is.null(partnerships)) {
+        if (remove_partnership_var) {
           slf_table <- cbind(
             slf_table,
             arrow::read_parquet(
@@ -90,9 +90,11 @@ read_slf <- function(
             )
           )
         }
-        slf_table <- dplyr::filter(slf_table,
-                                   .data$hscp2018 %in% partnerships)
-        if(remove_partnership_var){
+        slf_table <- dplyr::filter(
+          slf_table,
+          .data$hscp2018 %in% partnerships
+        )
+        if (remove_partnership_var) {
           slf_table <- dplyr::select(slf_table, -"hscp2018")
         }
       }
@@ -108,8 +110,10 @@ read_slf <- function(
             )
           )
         }
-        slf_table <- dplyr::filter(slf_table,
-                                   .data$recid %in% recids)
+        slf_table <- dplyr::filter(
+          slf_table,
+          .data$recid %in% recids
+        )
         if (remove_recid_var) {
           slf_table <- dplyr::select(slf_table, -"recid")
         }
