@@ -59,8 +59,6 @@ read_slf <- function(
         stringr::coll("hscp2018"),
         negate = TRUE
       )) {
-      col_select <- c(col_select, "hscp2018")
-
       remove_partnership_var <- TRUE
     }
     if (!is.null(recids) && file_version == "episode" &&
@@ -68,8 +66,6 @@ read_slf <- function(
         stringr::coll("recid"),
         negate = TRUE
       )) {
-      col_select <- c(col_select, "recid")
-
       remove_recid_var <- TRUE
     }
   }
@@ -83,23 +79,40 @@ read_slf <- function(
         as_data_frame = FALSE
       )
 
+      if(!is.null(partnerships)){
+        if(remove_partnership_var){
+          slf_table <- cbind(
+            slf_table,
+            arrow::read_parquet(
+              file = file_path,
+              col_select = "hscp2018",
+              as_data_frame = FALSE
+            )
+          )
+        }
+        slf_table <- dplyr::filter(slf_table,
+                                   .data$hscp2018 %in% partnerships)
+        if(remove_partnership_var){
+          slf_table <- dplyr::select(slf_table, -"hscp2018")
+        }
+      }
+
       if (!is.null(recids)) {
-        slf_table <- dplyr::filter(
-          slf_table,
-          .data$recid %in% recids
-        )
-      }
-      if (!is.null(partnerships)) {
-        slf_table <- dplyr::filter(
-          slf_table,
-          .data$hscp2018 %in% partnerships
-        )
-      }
-      if (remove_partnership_var) {
-        slf_table <- dplyr::select(slf_table, -"hscp2018")
-      }
-      if (remove_recid_var) {
-        slf_table <- dplyr::select(slf_table, -"recid")
+        if (remove_recid_var) {
+          slf_table <- cbind(
+            slf_table,
+            arrow::read_parquet(
+              file = file_path,
+              col_select = "recid",
+              as_data_frame = FALSE
+            )
+          )
+        }
+        slf_table <- dplyr::filter(slf_table,
+                                   .data$recid %in% recids)
+        if (remove_recid_var) {
+          slf_table <- dplyr::select(slf_table, -"recid")
+        }
       }
 
       return(slf_table)
