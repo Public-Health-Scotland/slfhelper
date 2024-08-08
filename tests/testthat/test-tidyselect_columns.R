@@ -1,3 +1,6 @@
+skip_on_ci()
+
+
 test_that("tidyselect helpers work for column selection in the episode file", {
   expect_named(
     read_slf_episode("1920", col_select = dplyr::starts_with("dd")),

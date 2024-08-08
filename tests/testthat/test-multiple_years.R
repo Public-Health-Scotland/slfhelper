@@ -8,7 +8,9 @@ test_that("read multiple years works for individual file", {
   indiv <- read_slf_individual(c("1718", "1819"),
     col_select = c("year", "anon_chi")
   ) %>%
-    dplyr::slice_sample(n = 100)
+    dplyr::group_by(year) %>%
+    dplyr::slice_sample(n = 50) %>%
+    dplyr::ungroup()
 
   # Test for anything odd
   expect_s3_class(indiv, "tbl_df")
@@ -34,7 +36,9 @@ test_that("read multiple years works for episode file", {
   ep <- read_slf_episode(c("1718", "1819"),
     col_select = c("year", "anon_chi")
   ) %>%
-    dplyr::slice_sample(n = 100)
+    dplyr::group_by(year) %>%
+    dplyr::slice_sample(n = 50) %>%
+    dplyr::ungroup()
 
   # Test for anything odd
   expect_s3_class(ep, "tbl_df")

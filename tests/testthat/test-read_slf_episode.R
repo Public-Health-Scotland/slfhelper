@@ -30,6 +30,6 @@ for (year in years) {
 
   test_that("Episode file has the expected number of variables", {
     # Test for correct number of variables (will need updating)
-    expect_length(ep_file, 241)
+    expect_length(ep_file, 251)
   })
 }
