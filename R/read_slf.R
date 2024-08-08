@@ -53,15 +53,19 @@ read_slf <- function(
   # but the column wasn't selected we need to add it (and remove later)
   remove_partnership_var <- FALSE
   remove_recid_var <- FALSE
-  if (!is.null(col_select)) {
-    if (!is.null(partnerships) &
-      !("hscp2018" %in% col_select)) {
-      col_select <- c(col_select, "hscp2018")
+  if (!rlang::quo_is_null(rlang::enquo(col_select))) {
+    if (!is.null(partnerships) &&
+      stringr::str_detect(rlang::quo_text(rlang::enquo(col_select)),
+        stringr::coll("hscp2018"),
+        negate = TRUE
+      )) {
       remove_partnership_var <- TRUE
     }
-    if (!is.null(recids) & file_version == "episode" &
-      !("recid" %in% col_select)) {
-      col_select <- c(col_select, "recid")
+    if (!is.null(recids) && file_version == "episode" &&
+      stringr::str_detect(rlang::quo_text(rlang::enquo(col_select)),
+        stringr::coll("recid"),
+        negate = TRUE
+      )) {
       remove_recid_var <- TRUE
     }
   }
@@ -71,27 +75,48 @@ read_slf <- function(
     function(file_path) {
       slf_table <- arrow::read_parquet(
         file = file_path,
-        col_select = !!col_select,
+        col_select = {{ col_select }},
         as_data_frame = FALSE
       )
 
-      if (!is.null(recids)) {
-        slf_table <- dplyr::filter(
-          slf_table,
-          .data$recid %in% recids
-        )
-      }
       if (!is.null(partnerships)) {
+        if (remove_partnership_var) {
+          slf_table <- cbind(
+            slf_table,
+            arrow::read_parquet(
+              file = file_path,
+              col_select = "hscp2018",
+              as_data_frame = FALSE
+            )
+          )
+        }
         slf_table <- dplyr::filter(
           slf_table,
           .data$hscp2018 %in% partnerships
         )
+        if (remove_partnership_var) {
+          slf_table <- dplyr::select(slf_table, -"hscp2018")
+        }
       }
-      if (remove_partnership_var) {
-        slf_table <- dplyr::select(slf_table, -"hscp2018")
-      }
-      if (remove_recid_var) {
-        slf_table <- dplyr::select(slf_table, -"recid")
+
+      if (!is.null(recids)) {
+        if (remove_recid_var) {
+          slf_table <- cbind(
+            slf_table,
+            arrow::read_parquet(
+              file = file_path,
+              col_select = "recid",
+              as_data_frame = FALSE
+            )
+          )
+        }
+        slf_table <- dplyr::filter(
+          slf_table,
+          .data$recid %in% recids
+        )
+        if (remove_recid_var) {
+          slf_table <- dplyr::select(slf_table, -"recid")
+        }
       }
 
       return(slf_table)
@@ -149,7 +174,7 @@ read_slf_episode <- function(
   return(
     read_slf(
       year = year,
-      col_select = unique(col_select),
+      col_select = {{ col_select }},
       file_version = "episode",
       partnerships = unique(partnerships),
       recids = unique(recids),
@@ -193,7 +218,7 @@ read_slf_individual <- function(
   return(
     read_slf(
       year = year,
-      col_select = unique(col_select),
+      col_select = {{ col_select }},
       file_version = "individual",
       partnerships = unique(partnerships),
       as_data_frame = as_data_frame,
