@@ -39,8 +39,10 @@ It is now allowed to use `tidyselect` functions, such as `contains()` and `start
 ```{r tidyselect, eval=FALSE}
 library(slfhelper)
 ep_data <-
-  read_slf_episode(year = 1920,
-                   col_select = !tidyselect::contains("keytime"))
+  read_slf_episode(
+    year = 1920,
+    col_select = !tidyselect::contains("keytime")
+  )
 
 indiv_data <-
   read_slf_individual(
