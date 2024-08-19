@@ -16,9 +16,10 @@ knitr::opts_chunk$set(
 
 ## Selecting only specified variables
 
-It is recommended to only choose the variables you need when reading in a Source Linkage File. This can be achieved by specifying a `column` argument to the relevant `read_slf_` function.
+It is recommended to only choose the variables you need when reading in a Source Linkage File. This can be achieved by specifying a `col_select` argument to the relevant `read_slf_` function.
 
 This will result in the data being read in much faster as well as being easy to work with. The full episode and individual files have 200+ and 100+ variables respectively!
+
 
 ```{r load-package, include=FALSE}
 library(slfhelper)
@@ -27,9 +28,27 @@ library(slfhelper)
 ```{r column-example, eval=FALSE}
 library(slfhelper)
 
-ep_data <- read_slf_episode(year = 1920, columns = c("year", "anon_chi", "recid"))
+ep_data <- read_slf_episode(year = 1920, col_select = c("year", "anon_chi", "recid"))
 
-indiv_data <- read_slf_individual(year = 1920, columns = c("year", "anon_chi", "nsu"))
+indiv_data <- read_slf_individual(year = 1920, col_select = c("year", "anon_chi", "nsu"))
+```
+
+## Selecting variables using `tidyselect` functions
+It is now allowed to use `tidyselect` functions, such as `contains()` and `start_with()`, to select variables in relevant `read_slf_` function. One can also mix `tidyselect` functions with specified variables when selecting.
+
+```{r tidyselect, eval=FALSE}
+library(slfhelper)
+ep_data <-
+  read_slf_episode(
+    year = 1920,
+    col_select = !tidyselect::contains("keytime")
+  )
+
+indiv_data <-
+  read_slf_individual(
+    year = 1920,
+    col_select = c("year", "anon_chi", "nsu", tidyselect::starts_with("sds"))
+  )
 ```
 
 ## Looking up variable names
@@ -85,7 +104,7 @@ For example to take some demographic data and LTC flags from the individual file
 ```{r use-ltc-indiv, eval=FALSE}
 library(slfhelper)
 
-indiv_ltc_data <- read_slf_individual(year = 1920, columns = c("year", demog_vars, ltc_vars))
+indiv_ltc_data <- read_slf_individual(year = 1920, col_select = c("year", demog_vars, ltc_vars))
 ```
 
 
@@ -95,7 +114,7 @@ library(slfhelper)
 
 acute_beddays <- read_slf_episode(
   year = 1920,
-  columns = c("year", "anon_chi", "hbtreatcode", "recid", ep_file_bedday_vars, "cij_pattype"),
+  col_select = c("year", "anon_chi", "hbtreatcode", "recid", ep_file_bedday_vars, "cij_pattype"),
   recid = c("01B", "GLS")
 )
 ```
