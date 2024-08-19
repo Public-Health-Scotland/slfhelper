@@ -1,102 +1,39 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://public-health-scotland.github.io/slfhelper/404.html</loc>
-  </url>
-  <url>
-    <loc>https://public-health-scotland.github.io/slfhelper/CODE_OF_CONDUCT.html</loc>
-  </url>
-  <url>
-    <loc>https://public-health-scotland.github.io/slfhelper/CONTRIBUTING.html</loc>
-  </url>
-  <url>
-    <loc>https://public-health-scotland.github.io/slfhelper/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>https://public-health-scotland.github.io/slfhelper/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>https://public-health-scotland.github.io/slfhelper/SUPPORT.html</loc>
-  </url>
-  <url>
-    <loc>https://public-health-scotland.github.io/slfhelper/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>https://public-health-scotland.github.io/slfhelper/articles/variable-packs.html</loc>
-  </url>
-  <url>
-    <loc>https://public-health-scotland.github.io/slfhelper/authors.html</loc>
-  </url>
-  <url>
-    <loc>https://public-health-scotland.github.io/slfhelper/index.html</loc>
-  </url>
-  <url>
-    <loc>https://public-health-scotland.github.io/slfhelper/news/index.html</loc>
-  </url>
-  <url>
-    <loc>https://public-health-scotland.github.io/slfhelper/reference/check_has_access.html</loc>
-  </url>
-  <url>
-    <loc>https://public-health-scotland.github.io/slfhelper/reference/check_on_server.html</loc>
-  </url>
-  <url>
-    <loc>https://public-health-scotland.github.io/slfhelper/reference/check_year.html</loc>
-  </url>
-  <url>
-    <loc>https://public-health-scotland.github.io/slfhelper/reference/chi_cohort.html</loc>
-  </url>
-  <url>
-    <loc>https://public-health-scotland.github.io/slfhelper/reference/demog_vars.html</loc>
-  </url>
-  <url>
-    <loc>https://public-health-scotland.github.io/slfhelper/reference/ep_file_bedday_vars.html</loc>
-  </url>
-  <url>
-    <loc>https://public-health-scotland.github.io/slfhelper/reference/ep_file_cost_vars.html</loc>
-  </url>
-  <url>
-    <loc>https://public-health-scotland.github.io/slfhelper/reference/ep_file_vars.html</loc>
-  </url>
-  <url>
-    <loc>https://public-health-scotland.github.io/slfhelper/reference/format_year.html</loc>
-  </url>
-  <url>
-    <loc>https://public-health-scotland.github.io/slfhelper/reference/gen_file_path.html</loc>
-  </url>
-  <url>
-    <loc>https://public-health-scotland.github.io/slfhelper/reference/get_anon_chi.html</loc>
-  </url>
-  <url>
-    <loc>https://public-health-scotland.github.io/slfhelper/reference/get_chi.html</loc>
-  </url>
-  <url>
-    <loc>https://public-health-scotland.github.io/slfhelper/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://public-health-scotland.github.io/slfhelper/reference/indiv_file_vars.html</loc>
-  </url>
-  <url>
-    <loc>https://public-health-scotland.github.io/slfhelper/reference/ltc_vars.html</loc>
-  </url>
-  <url>
-    <loc>https://public-health-scotland.github.io/slfhelper/reference/partnerships.html</loc>
-  </url>
-  <url>
-    <loc>https://public-health-scotland.github.io/slfhelper/reference/pipe.html</loc>
-  </url>
-  <url>
-    <loc>https://public-health-scotland.github.io/slfhelper/reference/read_slf.html</loc>
-  </url>
-  <url>
-    <loc>https://public-health-scotland.github.io/slfhelper/reference/read_slf_episode.html</loc>
-  </url>
-  <url>
-    <loc>https://public-health-scotland.github.io/slfhelper/reference/read_slf_individual.html</loc>
-  </url>
-  <url>
-    <loc>https://public-health-scotland.github.io/slfhelper/reference/recids.html</loc>
-  </url>
-  <url>
-    <loc>https://public-health-scotland.github.io/slfhelper/reference/slfhelper-package.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://public-health-scotland.github.io/slfhelper/404.html</loc></url>
+<url><loc>https://public-health-scotland.github.io/slfhelper/CODE_OF_CONDUCT.html</loc></url>
+<url><loc>https://public-health-scotland.github.io/slfhelper/CONTRIBUTING.html</loc></url>
+<url><loc>https://public-health-scotland.github.io/slfhelper/LICENSE-text.html</loc></url>
+<url><loc>https://public-health-scotland.github.io/slfhelper/LICENSE.html</loc></url>
+<url><loc>https://public-health-scotland.github.io/slfhelper/SUPPORT.html</loc></url>
+<url><loc>https://public-health-scotland.github.io/slfhelper/articles/index.html</loc></url>
+<url><loc>https://public-health-scotland.github.io/slfhelper/articles/slf-documentation.html</loc></url>
+<url><loc>https://public-health-scotland.github.io/slfhelper/articles/slfhelper-applications.html</loc></url>
+<url><loc>https://public-health-scotland.github.io/slfhelper/articles/using-arrow-table.html</loc></url>
+<url><loc>https://public-health-scotland.github.io/slfhelper/articles/variable-packs.html</loc></url>
+<url><loc>https://public-health-scotland.github.io/slfhelper/authors.html</loc></url>
+<url><loc>https://public-health-scotland.github.io/slfhelper/index.html</loc></url>
+<url><loc>https://public-health-scotland.github.io/slfhelper/news/index.html</loc></url>
+<url><loc>https://public-health-scotland.github.io/slfhelper/reference/check_has_access.html</loc></url>
+<url><loc>https://public-health-scotland.github.io/slfhelper/reference/check_on_server.html</loc></url>
+<url><loc>https://public-health-scotland.github.io/slfhelper/reference/check_year.html</loc></url>
+<url><loc>https://public-health-scotland.github.io/slfhelper/reference/chi_cohort.html</loc></url>
+<url><loc>https://public-health-scotland.github.io/slfhelper/reference/demog_vars.html</loc></url>
+<url><loc>https://public-health-scotland.github.io/slfhelper/reference/ep_file_bedday_vars.html</loc></url>
+<url><loc>https://public-health-scotland.github.io/slfhelper/reference/ep_file_cost_vars.html</loc></url>
+<url><loc>https://public-health-scotland.github.io/slfhelper/reference/ep_file_vars.html</loc></url>
+<url><loc>https://public-health-scotland.github.io/slfhelper/reference/format_year.html</loc></url>
+<url><loc>https://public-health-scotland.github.io/slfhelper/reference/gen_file_path.html</loc></url>
+<url><loc>https://public-health-scotland.github.io/slfhelper/reference/get_anon_chi.html</loc></url>
+<url><loc>https://public-health-scotland.github.io/slfhelper/reference/get_chi.html</loc></url>
+<url><loc>https://public-health-scotland.github.io/slfhelper/reference/index.html</loc></url>
+<url><loc>https://public-health-scotland.github.io/slfhelper/reference/indiv_file_vars.html</loc></url>
+<url><loc>https://public-health-scotland.github.io/slfhelper/reference/ltc_vars.html</loc></url>
+<url><loc>https://public-health-scotland.github.io/slfhelper/reference/partnerships.html</loc></url>
+<url><loc>https://public-health-scotland.github.io/slfhelper/reference/pipe.html</loc></url>
+<url><loc>https://public-health-scotland.github.io/slfhelper/reference/read_slf.html</loc></url>
+<url><loc>https://public-health-scotland.github.io/slfhelper/reference/read_slf_episode.html</loc></url>
+<url><loc>https://public-health-scotland.github.io/slfhelper/reference/read_slf_individual.html</loc></url>
+<url><loc>https://public-health-scotland.github.io/slfhelper/reference/recids.html</loc></url>
+<url><loc>https://public-health-scotland.github.io/slfhelper/reference/slfhelper-package.html</loc></url>
 </urlset>
+
