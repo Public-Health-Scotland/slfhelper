@@ -182,6 +182,17 @@ read_slf_episode <- function(
       dev = dev
     )
   )
+
+  if ("keytime1" %in% colnames(data)) {
+    data <- data %>%
+      dplyr::mutate(keytime1 = hms::as_hms(.data$keytime1))
+  }
+  if ("keytime2" %in% colnames(data)) {
+    data <- data %>%
+      dplyr::mutate(keytime2 = hms::as_hms(.data$keytime2))
+  }
+
+  return(data)
 }
 
 #' Read a Source Linkage individual file
