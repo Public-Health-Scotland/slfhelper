@@ -1,0 +1,80 @@
+---
+title: "Using Parquet files with the arrow package"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{using-arrow-table}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Using Parquet files with the arrow package
+
+The SLFs are available in parquet format. The {arrow} package gives some extra features which can speed up and reduce memory usage even further. You can read only specific columns `read_parquet(file, col_select = c(var1, var2))`.
+
+Using arrow's 'Arrow Table' feature, you can speed up analysis efficiently. To do this, specify `as_data_frame = FALSE` when using SLFhelper and `dplyr::collect()` to read the data.
+
+#### For example:
+
+Imagine a scenario of analysing planned and unplanned beddays in Scotland, there are two ways to read the episode files and do analysis by setting `as_data_frame` to be `TRUE` or `FALSE` as follows.
+
+```{r arrow, eval=FALSE, message=FALSE}
+library(slfhelper)
+
+## FAST METHOD
+# Filter for year of interest
+slf_extract1 <- read_slf_episode(c("1819", "1920"),
+  # Select recids of interest
+  recids = c("01B", "GLS", "04B"),
+  # Select columns
+  col_select = c(
+    "year", "anon_chi", "recid",
+    "yearstay", "age", "cij_pattype"
+  ),
+  # return an arrow table
+  as_data_frame = FALSE
+) %>%
+  # Filter for non-elective and elective episodes
+  dplyr::filter(cij_pattype == "Non-Elective" | cij_pattype == "Elective") %>%
+  # Group by year and cij_pattype for analysis
+  dplyr::group_by(year, cij_pattype) %>%
+  # summarise bedday totals
+  dplyr::summarise(beddays = sum(yearstay)) %>%
+  # collect the arrow table
+  dplyr::collect()
+
+## SLOW and DEFAULT Method
+# Filter for year of interest
+slf_extract2 <- read_slf_episode(c("1819", "1920"),
+  # Select recids of interest
+  recids = c("01B", "GLS", "04B"),
+  # Select columns
+  col_select = c(
+    "year", "anon_chi", "recid",
+    "yearstay", "age", "cij_pattype"
+  ),
+  # return an arrow table
+  as_data_frame = TRUE # which is default
+) %>%
+  # Filter for non-elective and elective episodes
+  dplyr::filter(cij_pattype == "Non-Elective" | cij_pattype == "Elective") %>%
+  # Group by year and cij_pattype for analysis
+  dplyr::group_by(year, cij_pattype) %>%
+  # summarise bedday totals
+  dplyr::summarise(beddays = sum(yearstay))
+```
+
+By specifying `as_data_frame = FALSE` when using reading SLF functions, one enjoys great advantages of `parquet` files. One of the advantages is fast query processing by reading only the necessary columns rather than entire rows. The table below demonstrates the huge impact of those advantages.
+
+|                         | Time consumption (seconds) | Memory usage (MiB) |
+|-------------------------|:--------------------------:|:------------------:|
+| `as_data_frame = TRUE`  |            4.46            |        553         |
+| `as_data_frame = FALSE` |            1.82            |        0.43        |
+
+: Comparison of different ways of reading SLF files

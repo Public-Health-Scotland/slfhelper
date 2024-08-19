@@ -28,9 +28,8 @@ for (year in years) {
     expect_equal(nrow(ep_file), 110)
   })
 
-  # Need to come back to this test - some files have different lengths
-  # test_that("Episode file has the expected number of variables", {
-  #   # Test for correct number of variables (will need updating)
-  #   expect_length(ep_file, 241)
-  # })
+  test_that("Episode file has the expected number of variables", {
+    # Test for correct number of variables (will need updating)
+    expect_length(ep_file, 251)
+  })
 }
