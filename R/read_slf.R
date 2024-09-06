@@ -159,7 +159,6 @@ read_slf_episode <- function(
     col_select <- columns
   }
   # TODO add option to drop blank CHIs?
-  # TODO add a filter by recid option
 
   data = read_slf(
       year = year,
