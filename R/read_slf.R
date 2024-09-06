@@ -53,8 +53,9 @@ read_slf <- function(
     file_path,
     function(file_path) {
       slf_table <- arrow::read_parquet(file_path,
-                                       col_select = {{ col_select }},
-                                       as_data_frame = FALSE)
+        col_select = {{ col_select }},
+        as_data_frame = FALSE
+      )
 
       selected_columns <- names(slf_table)
 
@@ -102,10 +103,10 @@ read_slf <- function(
 
       # remove hscp recid
       if (add_extra_recid) {
-        slf_table = slf_table %>% dplyr::select(-c("recid"))
+        slf_table <- slf_table %>% dplyr::select(-c("recid"))
       }
       if (add_extra_hscp) {
-        slf_table = slf_table %>% dplyr::select(-c("hscp2018"))
+        slf_table <- slf_table %>% dplyr::select(-c("hscp2018"))
       }
 
       return(slf_table)
@@ -160,17 +161,17 @@ read_slf_episode <- function(
   }
   # TODO add option to drop blank CHIs?
 
-  data = read_slf(
-      year = year,
-      col_select = {{ col_select }},
-      file_version = "episode",
-      partnerships = unique(partnerships),
-      recids = unique(recids),
-      as_data_frame = as_data_frame,
-      dev = dev
-    )
+  data <- read_slf(
+    year = year,
+    col_select = {{ col_select }},
+    file_version = "episode",
+    partnerships = unique(partnerships),
+    recids = unique(recids),
+    as_data_frame = as_data_frame,
+    dev = dev
+  )
 
-  if(("keytime1" %in% names(data) | "keytime2" %in% names(data)) & !as_data_frame){
+  if (("keytime1" %in% names(data) | "keytime2" %in% names(data)) & !as_data_frame) {
     warning('"keytime1" and "keytime2" does not work with `as_data_frame = FALSE` at the moment. So force as_data_frame = TRUE')
     data <- data %>%
       dplyr::collect()
