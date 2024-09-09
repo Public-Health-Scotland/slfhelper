@@ -49,74 +49,64 @@ read_slf <- function(
     )
   }
 
-  # If the we are trying to filter by partnership or recid
-  # but the column wasn't selected we need to add it (and remove later)
-  remove_partnership_var <- FALSE
-  remove_recid_var <- FALSE
-  if (!rlang::quo_is_null(rlang::enquo(col_select))) {
-    if (!is.null(partnerships) &&
-      stringr::str_detect(rlang::quo_text(rlang::enquo(col_select)),
-        stringr::coll("hscp2018"),
-        negate = TRUE
-      )) {
-      remove_partnership_var <- TRUE
-    }
-    if (!is.null(recids) && file_version == "episode" &&
-      stringr::str_detect(rlang::quo_text(rlang::enquo(col_select)),
-        stringr::coll("recid"),
-        negate = TRUE
-      )) {
-      remove_recid_var <- TRUE
-    }
-  }
-
   slf_table <- purrr::map(
     file_path,
     function(file_path) {
-      slf_table <- arrow::read_parquet(
-        file = file_path,
+      slf_table <- arrow::read_parquet(file_path,
         col_select = {{ col_select }},
         as_data_frame = FALSE
       )
 
-      if (!is.null(partnerships)) {
-        if (remove_partnership_var) {
-          slf_table <- cbind(
-            slf_table,
-            arrow::read_parquet(
-              file = file_path,
-              col_select = "hscp2018",
-              as_data_frame = FALSE
-            )
-          )
-        }
-        slf_table <- dplyr::filter(
-          slf_table,
-          .data$hscp2018 %in% partnerships
-        )
-        if (remove_partnership_var) {
-          slf_table <- dplyr::select(slf_table, -"hscp2018")
-        }
+      selected_columns <- names(slf_table)
+
+      # Check if recid/hscp is among the selected columns
+      recid_present <- "recid" %in% selected_columns
+      hscp_present <- "hscp2018" %in% selected_columns
+
+      # check if we need add extra recid/hscp to do filter
+      # remember to remove recid/hscp later
+      add_extra_recid <- !recid_present && !is.null(recids)
+      add_extra_hscp <- !hscp_present && !is.null(partnerships)
+
+      col_select2 <- if (add_extra_recid && add_extra_hscp) {
+        c("recid", "hscp2018")
+      } else if (add_extra_recid && !add_extra_hscp) {
+        c("recid")
+      } else if (!add_extra_recid && add_extra_hscp) {
+        c("hscp2018")
+      } else {
+        c("")
       }
 
-      if (!is.null(recids)) {
-        if (remove_recid_var) {
-          slf_table <- cbind(
-            slf_table,
-            arrow::read_parquet(
-              file = file_path,
-              col_select = "recid",
-              as_data_frame = FALSE
-            )
+      # If "recid" is not in col_select but was filtered by recids, ensure it's in the dataframe
+      if (col_select2 != "") {
+        # Read the "recid" and/or "hscp2018" column separately and
+        # bind with the filtered dataframe
+        slf_table <- slf_table %>% cbind( # bind_cols does not work
+          arrow::read_parquet(
+            file_path,
+            col_select = dplyr::all_of(col_select2),
+            as_data_frame = FALSE
           )
-        }
-        slf_table <- dplyr::filter(
-          slf_table,
-          .data$recid %in% recids
         )
-        if (remove_recid_var) {
-          slf_table <- dplyr::select(slf_table, -"recid")
-        }
+      }
+
+      # filter
+      if (!is.null(recids)) {
+        slf_table <- slf_table %>%
+          dplyr::filter(recid %in% recids)
+      }
+      if (!is.null(partnerships)) {
+        slf_table <- slf_table %>%
+          dplyr::filter(hscp2018 %in% partnerships)
+      }
+
+      # remove hscp recid
+      if (add_extra_recid) {
+        slf_table <- slf_table %>% dplyr::select(-c("recid"))
+      }
+      if (add_extra_hscp) {
+        slf_table <- slf_table %>% dplyr::select(-c("hscp2018"))
       }
 
       return(slf_table)
@@ -170,26 +160,33 @@ read_slf_episode <- function(
     col_select <- columns
   }
   # TODO add option to drop blank CHIs?
-  # TODO add a filter by recid option
-  return(
-    read_slf(
-      year = year,
-      col_select = {{ col_select }},
-      file_version = "episode",
-      partnerships = unique(partnerships),
-      recids = unique(recids),
-      as_data_frame = as_data_frame,
-      dev = dev
-    )
+
+  data <- read_slf(
+    year = year,
+    col_select = {{ col_select }},
+    file_version = "episode",
+    partnerships = unique(partnerships),
+    recids = unique(recids),
+    as_data_frame = as_data_frame,
+    dev = dev
   )
 
-  if ("keytime1" %in% colnames(data)) {
+  if (("keytime1" %in% names(data) | "keytime2" %in% names(data)) & !as_data_frame) {
+    warning('"keytime1" and "keytime2" does not work with `as_data_frame = FALSE` at the moment. So force as_data_frame = TRUE')
+    data <- data %>%
+      dplyr::collect()
+  }
+  if ("keytime1" %in% names(data)) {
     data <- data %>%
       dplyr::mutate(keytime1 = hms::as_hms(.data$keytime1))
   }
-  if ("keytime2" %in% colnames(data)) {
+  if ("keytime2" %in% names(data)) {
     data <- data %>%
       dplyr::mutate(keytime2 = hms::as_hms(.data$keytime2))
+  }
+  if ("age" %in% names(data)) {
+    data <- data %>%
+      dplyr::mutate(age = as.integer(age))
   }
 
   return(data)

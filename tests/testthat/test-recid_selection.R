@@ -26,7 +26,7 @@ test_that("Can select multiple recids", {
   # Read in a bit of a file selecting Edinburgh and Glasgow
   ep_1718_acute <- read_slf_episode("1718",
     recids = c("01B", "02B", "04B"),
-    col_select = c("recid")
+    col_select = c("anon_chi", "recid", "hscp2018")
   ) %>%
     dplyr::slice_sample(n = 100000)
 

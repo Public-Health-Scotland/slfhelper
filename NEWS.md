@@ -1,8 +1,20 @@
+# slfhelper 0.10.4
+* Bug - Fix build tests
+* New feature - Additional documentation
+* Update README.md 
+* Bug - Fix the `tidyselect` feature bug 
+
 # slfhelper 0.10.3
+* New feature - use `tidyselect` to `col_select`in `read_slf_episode` and `read_slf_individual`. 
 
 # slfhelper 0.10.2
+* Update README.md
+* change in episode file cost variable vector
+* force keytime format to hms
 
 # slfhelper 0.10.1
+* Update README.Rmd
+* Bug - speed up get_chi()
 
 # slfhelper 0.10.0
 
