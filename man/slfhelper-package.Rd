@@ -23,6 +23,8 @@ Useful links:
 Authors:
 \itemize{
   \item James McMahon \email{james.mcmahon@phs.scot} (\href{https://orcid.org/0000-0002-5380-2029}{ORCID})
+  \item Zihao Li \email{zihao.li@phs.scot} (\href{https://orcid.org/0000-0002-5178-2124}{ORCID})
+  \item Jennifer Thom \email{jennifer.thom@phs.scot}
 }
 
 Other contributors:
