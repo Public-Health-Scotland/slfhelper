@@ -62,7 +62,7 @@
       <h1>Using variable packs</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/Public-Health-Scotland/slfhelper/blob/production/vignettes/variable-packs.Rmd" class="external-link"><code>vignettes/variable-packs.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/Public-Health-Scotland/slfhelper/blob/v0.10.4/vignettes/variable-packs.Rmd" class="external-link"><code>vignettes/variable-packs.Rmd</code></a></small>
       <div class="d-none name"><code>variable-packs.Rmd</code></div>
     </div>
 
@@ -116,9 +116,8 @@ of the variable names in the package.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Show the first few variables from the episode file</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">ep_file_vars</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "year"                    "recid"                  </span></span>
-<span><span class="co">#&gt; [3] "anon_chi"                "postcode"               </span></span>
-<span><span class="co">#&gt; [5] "dd_responsible_lca"      "original_admission_date"</span></span>
+<span><span class="co">#&gt; [1] "year"            "recid"           "record_keydate1" "record_keydate2"</span></span>
+<span><span class="co">#&gt; [5] "smrtype"         "anon_chi"</span></span>
 <span></span>
 <span><span class="co"># Do the same for the individual file</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">indiv_file_vars</span><span class="op">)</span></span>
