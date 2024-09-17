@@ -62,6 +62,7 @@ read_slf <- function(
       # Check if recid/hscp is among the selected columns
       recid_present <- "recid" %in% selected_columns
       hscp_present <- "hscp2018" %in% selected_columns
+      age_present <- "age" %in% selected_columns
 
       # check if we need add extra recid/hscp to do filter
       # remember to remove recid/hscp later
@@ -107,6 +108,11 @@ read_slf <- function(
       }
       if (add_extra_hscp) {
         slf_table <- slf_table %>% dplyr::select(-c("hscp2018"))
+      }
+
+      if (age_present){
+        slf_table <- slf_table %>%
+          dplyr::mutate(age = as.integer(.data$age))
       }
 
       return(slf_table)
@@ -183,10 +189,6 @@ read_slf_episode <- function(
   if ("keytime2" %in% names(data)) {
     data <- data %>%
       dplyr::mutate(keytime2 = hms::as_hms(.data$keytime2))
-  }
-  if ("age" %in% names(data)) {
-    data <- data %>%
-      dplyr::mutate(age = as.integer(age))
   }
 
   return(data)
