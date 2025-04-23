@@ -4,15 +4,15 @@ Title: Useful functions for working with the Source Linkage Files
 Version: 0.10.5
 Authors@R: c(
     person("Public Health Scotland", , , "phs.source@phs.scot", role = "cph"),
-    person("James", "McMahon", , "james.mcmahon@phs.scot", role = c("aut"),
+    person("James", "McMahon", , "james.mcmahon@phs.scot", role = "aut",
            comment = c(ORCID = "0000-0002-5380-2029")),
     person("Megan", "McNicol", , "megan.mcnicol2@phs.scot", role = c("cre", "aut")),
-    person("Zihao", "Li", , "zihao.li@phs.scot", role = c("aut"),
+    person("Zihao", "Li", , "zihao.li@phs.scot", role = "aut",
            comment = c(ORCID = "0000-0002-5178-2124")),
-    person("Jennifer", "Thom", , "jennifer.thom@phs.scot", role = c("aut"))
+    person("Jennifer", "Thom", , "jennifer.thom@phs.scot", role = "aut")
   )
-Description: This package provides helper functions for working with
-    the Source Linkage Files (SLFs). The functions are mainly focused on
+Description: This package provides helper functions for working with the
+    Source Linkage Files (SLFs). The functions are mainly focused on
     making the first steps of analysis easier. They can read and filter
     the files efficiently using minimal code.
 License: MIT + file LICENSE
@@ -41,10 +41,10 @@ Imports:
 Suggests:
     covr (>= 3.5.1),
     knitr (>= 1.39),
-    testthat (>= 3.1.4),
     phsmethods (>= 0.2.1),
     rmarkdown (>= 2.14),
-    spelling (>= 2.2)
+    spelling (>= 2.2),
+    testthat (>= 3.1.4)
 VignetteBuilder: 
     knitr
 Remotes: 
