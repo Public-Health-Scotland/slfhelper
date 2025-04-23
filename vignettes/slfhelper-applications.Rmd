@@ -1,6 +1,10 @@
 ---
 title: "slfhelper-applications"
-output: rmarkdown::html_vignette
+output: 
+  rmarkdown::html_vignette
+    toc: true
+    toc_depth: 3
+    toc_float: true
 vignette: >
   %\VignetteIndexEntry{slfhelper-applications}
   %\VignetteEngine{knitr::rmarkdown}
