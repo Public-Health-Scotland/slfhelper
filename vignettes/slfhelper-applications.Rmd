@@ -1,6 +1,10 @@
 ---
 title: "slfhelper-applications"
-output: rmarkdown::html_vignette
+output: 
+  rmarkdown::html_vignette
+    toc: true
+    toc_depth: 3
+    toc_float: true
 vignette: >
   %\VignetteIndexEntry{slfhelper-applications}
   %\VignetteEngine{knitr::rmarkdown}
@@ -14,13 +18,15 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
-library(slfhelper)
-```
-
 ## Examples using SLFhelper 
 
-1. A&E attendances in East Lothian by age group. 
+```{r setup}
+# Load required packages
+library(slfhelper)
+library(dplyr)
+```
+
+### A&E attendances in East Lothian by age group. 
 
 Produce a table to compare A&E Attendances for the following age groups (0-17, 18-64, 65-74, 75-84, 85+) for 2018/19 in East Lothian HSCP.
 ```{r chunk2, eval=FALSE, message=FALSE}
@@ -50,7 +56,7 @@ output_table_1 <- el_1819 %>%
 ```
 
 
-2. Outpatient attendances by specialty and gender. 
+### Outpatient attendances by specialty and gender. 
 
 Create a table to compare the number of outpatient attendances (SMR00) broken down by specialty and gender in 2017/18 in Scotland.  
 
@@ -88,7 +94,7 @@ output_table_2 <- op_1718 %>%
   select(spec, spec_name, Male, Female)
 ```
 
-3. Hospital admissions & beddays by HB of residence. 
+### Hospital admissions & beddays by HB of residence. 
 
 Produce a table to compare the number of admissions, bed days and average length of stay (split into elective and non-elective) by Health Board of Residence in 2018/19.
 ```{r chunk4, eval=FALSE, message=FALSE}
@@ -146,7 +152,7 @@ output_table_3 <- indiv_1819_inc_totals %>%
   )
 ```
 
-4. GP Out of Hours Consulations in South Ayrshire. 
+### GP Out of Hours Consultations in South Ayrshire. 
 
 Create a table showing the number of GP Out of Hours consultations for patients with dementia in South Ayrshire HSCP in 2019/20 broken down by type of consultation.
 ```{r chunk5, eval=FALSE, message=FALSE}
@@ -170,7 +176,7 @@ output_table_4 <- sa_dementia_1920 %>%
   count(smrtype)
 ```
 
-5. Costs in Aberdeen City. 
+### Costs in Aberdeen City. 
 
 Produce a table to show the number of patients and the total costs for Aberdeen City HSCP in 2018/19. Include a breakdown of costs for the following services: Acute (inpatients & daycases), GLS, Mental Health and Maternity, Outpatients, A&E, GP Out of Hours, Community Prescribing.
 ```{r chunk6, eval=FALSE, message=FALSE}
@@ -192,7 +198,7 @@ ab_1819 <- read_slf_individual(
 
 # produce summary table
 output_table_5 <- ab_1819 %>%
-  # rename outatients variable
+  # rename outpatients variable
   rename(op_cost = op_cost_attend) %>%
   # sum of all cost variables and number of patients
   summarise(across(ends_with("_cost"), ~ sum(.x, na.rm = TRUE)),
@@ -202,9 +208,9 @@ output_table_5 <- ab_1819 %>%
   pivot_longer(everything())
 ```
 
-6. Deaths from Dementia / Alzheimers
+### Deaths from Dementia / Alzheimer's
 
-Produce a chart to show the number of deaths from 2015/16 to 2019/20 in Scotland where the main cause of death was recorded as Dementia/Alzheimers (ICD 10 codes: G30, F01-F03, F05.1).
+Produce a chart to show the number of deaths from 2015/16 to 2019/20 in Scotland where the main cause of death was recorded as Dementia/Alzheimer's (ICD 10 codes: G30, F01-F03, F05.1).
 
 ```{r chunk7, eval=FALSE, message=FALSE}
 # read in data required from slf episode file - filter for years 2015/16 to 2019/20
@@ -233,7 +239,7 @@ output_table_6 <- dementia_deaths %>%
   rename(deaths = n)
 ```
 
-7. Number and cost of prescriptions for MS
+### Number and cost of prescriptions for MS
 
 Create a table to compare the number and cost of prescribed items for patients with Multiple Sclerosis (MS) by HSCP in 2018/19. Include the number of dispensed items and cost per patient.
 
@@ -274,7 +280,7 @@ output_table_7 <- ms_1819 %>%
   )
 ```
 
-8. A&E attendance in last 3 months of life.
+### A&E attendance in the last 3 months of life.
 
 Produce a table to show the number of deaths in Glasgow City HSCP in 2019/20 and what proportion had an A&E attendance in the last 3 months of life.
 
@@ -343,7 +349,7 @@ output_table_8 <- gc_deaths %>%
   mutate(prop_ae_3m = deaths_with_ae_att / deaths)
 ```
 
-9. Non elective admissions in Geriatric Medicine.
+### Non-elective admissions in Geriatric Medicine.
 
 Create a table showing the number of non-elective admissions with any part of the stay (Continuous Inpatient Journey, CIJ) in the specialty Geriatric Medicine, by HSCP in 2019/20. Also include the associated bed days, cost and number of patients.
 
@@ -370,7 +376,7 @@ smr_1920_ne <- smr_1920 %>%
   filter(cij_pattype == "Non-Elective")
 
 # aggregate to cij level
-# we want to keep eariest admission and latest discharge, keep flag if any episode was in spec AB
+# we want to keep earliest admission and latest discharge, keep flag if any episode was in spec AB
 # take hscp from the last record and sum beddays & cost
 cij_1920 <- smr_1920_ne %>%
   arrange(anon_chi, cij_marker, record_keydate1, record_keydate2) %>%
@@ -388,7 +394,7 @@ cij_ger_med <- cij_1920 %>%
   filter(ger_med == 1)
 
 # aggregate up to patient level
-# we want to keep eariest admission and latest discharge, keep flag if any episode was in spec AB
+# we want to keep earliest admission and latest discharge, keep flag if any episode was in spec AB
 # take hscp from the last record and sum beddays & cost
 pat_1920 <- cij_ger_med %>%
   group_by(anon_chi, hscp2019) %>%
@@ -398,7 +404,7 @@ pat_1920 <- cij_ger_med %>%
   ungroup()
 
 # produce output
-# note patients may be counted in more than one hscp
+# note patients may be counted in more than one HSCP
 output_table_9 <- pat_1920 %>%
   # match on hscp names
   left_join(hscp_lookup) %>%
