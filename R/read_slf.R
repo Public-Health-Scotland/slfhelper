@@ -177,20 +177,6 @@ read_slf_episode <- function(
     dev = dev
   )
 
-  if (("keytime1" %in% names(data) | "keytime2" %in% names(data)) & !as_data_frame) {
-    warning('"keytime1" and "keytime2" does not work with `as_data_frame = FALSE` at the moment. So force as_data_frame = TRUE')
-    data <- data %>%
-      dplyr::collect()
-  }
-  if ("keytime1" %in% names(data)) {
-    data <- data %>%
-      dplyr::mutate(keytime1 = hms::as_hms(.data$keytime1))
-  }
-  if ("keytime2" %in% names(data)) {
-    data <- data %>%
-      dplyr::mutate(keytime2 = hms::as_hms(.data$keytime2))
-  }
-
   return(data)
 }
 
