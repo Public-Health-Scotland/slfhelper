@@ -16,8 +16,8 @@ test_that("read multiple years works for individual file", {
   expect_s3_class(indiv, "tbl_df")
 
   # Test for the existance of the correct variables
-  expect_named(indiv, c("year", "anon_chi"))
-  expect_length(indiv, 2)
+  expect_named(indiv, c("year", "anon_chi", "age"))
+  expect_length(indiv, 3)
 
   # Test for the correct number of rows (50 * 2)
   expect_equal(nrow(indiv), 100)

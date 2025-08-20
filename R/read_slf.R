@@ -95,11 +95,11 @@ read_slf <- function(
       # filter
       if (!is.null(recids)) {
         slf_table <- slf_table %>%
-          dplyr::filter(recid %in% recids)
+          dplyr::filter(.data$recid %in% recids)
       }
       if (!is.null(partnerships)) {
         slf_table <- slf_table %>%
-          dplyr::filter(hscp2018 %in% partnerships)
+          dplyr::filter(.data$hscp2018 %in% partnerships)
       }
 
       # remove hscp recid
