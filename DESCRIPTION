@@ -4,7 +4,7 @@ Title: Useful functions for working with the Source Linkage Files
 Version: 0.10.5
 Authors@R: c(
     person("Public Health Scotland", , , "phs.source@phs.scot", role = "cph"),
-    person("James", "McMahon", , "james.mcmahon@phs.scot", role = "aut",
+    person("James", "Hayes", , "james.hayes2@phs.scot", role = "aut",
            comment = c(ORCID = "0000-0002-5380-2029")),
     person("Megan", "McNicol", , "megan.mcnicol2@phs.scot", role = c("cre", "aut")),
     person("Zihao", "Li", , "zihao.li@phs.scot", role = "aut",
