@@ -110,7 +110,7 @@ read_slf <- function(
         slf_table <- slf_table %>% dplyr::select(-c("hscp2018"))
       }
 
-      if (age_present){
+      if (age_present) {
         slf_table <- slf_table %>%
           dplyr::mutate(age = as.integer(.data$age))
       }
