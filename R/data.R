@@ -100,3 +100,22 @@
 #' @docType data
 #' @keywords data
 "chi_cohort"
+
+#' Social Care Partnership names / sending location code / LCA code lookup
+#'
+#' A [tibble][tibble::tibble-package]
+#' containing the names and codes (sending location/LCA configuration) of social care
+#' partnerships.
+#'
+#' To be used with the \code{sc_partnerships} parameter when reading files.
+#'
+#' @format A [tibble][tibble::tibble-package] with 32 rows and 3 variables:
+#' \describe{
+#'   \item{partnership_name}{The official name of the Partnership}
+#'   \item{lca}{The coresponding LCA code 05L}
+#'   \item{sending_location}{The sending_location standard code 100L}
+#' }
+#' @name sc_partnerships
+#' @docType data
+#' @keywords data
+"sc_partnerships"
