@@ -5,11 +5,11 @@
 \alias{sc_partnerships}
 \title{Social Care Partnership names / sending location code / LCA code lookup}
 \format{
-A \link[tibble:tibble-package]{tibble} with 31 rows and 2 variables:
+A \link[tibble:tibble-package]{tibble} with 32 rows and 3 variables:
 \describe{
 \item{partnership_name}{The official name of the Partnership}
-\item{sending_location}{The sending_location standard code 100L}
 \item{lca}{The coresponding LCA code 05L}
+\item{sending_location}{The sending_location standard code 100L}
 }
 }
 \usage{
