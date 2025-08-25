@@ -91,6 +91,9 @@ View(ep_file_bedday_vars)
 
 # See a list of cost related variables
 View(ep_file_cost_vars)
+
+# See a lookup of social care partnership names to LCA to Sending location
+View(sc_partnerships)
 ```
 
 ``` r
