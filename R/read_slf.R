@@ -80,7 +80,7 @@ read_slf <- function(
       }
 
       # If "recid" is not in col_select but was filtered by recids, ensure it's in the dataframe
-      if (col_select2 != "") {
+      if (!identical(col_select2, "")) {
         # Read the "recid" and/or "hscp2018" column separately and
         # bind with the filtered dataframe
         slf_table <- slf_table %>% cbind( # bind_cols does not work
