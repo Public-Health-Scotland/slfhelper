@@ -17,7 +17,7 @@ gen_file_path <- function(
     dev = FALSE,
     ext = "parquet") {
   file_version <- match.arg(file_version, c("episode", "individual"))
-  ext <- match.arg(ext, c("fst", "parquet"))
+  ext <- match.arg(ext, "parquet")
 
   # Clean up year
   # We want it in the format 1718
