@@ -1,3 +1,6 @@
+# slfhelper 0.11.0
+* Update - Added sc_lookup (updated variable names)
+
 # slfhelper 0.10.5
 * Bug - fix age as an integer when reading multiple years
 

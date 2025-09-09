@@ -1,7 +1,7 @@
 Type: Package
 Package: slfhelper
 Title: Useful functions for working with the Source Linkage Files
-Version: 0.10.5
+Version: 0.11.0
 Authors@R: c(
     person("Public Health Scotland", , , "phs.source@phs.scot", role = "cph"),
     person("James", "Hayes", , "james.hayes2@phs.scot", role = "aut",
@@ -55,4 +55,4 @@ Language: en-GB
 LazyData: true
 Roxygen: list(markdown = TRUE, roclets = c("collate","namespace", "rd",
     "vignette" ))
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3
