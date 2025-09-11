@@ -24,11 +24,8 @@ jobs:
         run: Rscript -e 'install.packages("pak")'
 
       - name: Install GitHub packages
-        run: Rscript -e 'pak::pkg_install(c(
-          "Public-Health-Scotland/source-linkage-files",
-          "Public-Health-Scotland/slfhelper",
-          "Public-Health-Scotland/phsmethods"
-        ))'
+        run: Rscript -e 'pak::pkg_install(c("Public-Health-Scotland/source-linkage-files","Public-Health-Scotland/phsmethods"))'
+
 
       - name: Install CRAN packages
         run: Rscript -e 'install.packages(c("lintr"))'
