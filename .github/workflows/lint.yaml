@@ -20,6 +20,9 @@ jobs:
         with:
           use-public-rspm: true
 
+      - name: Install pak
+        run: Rscript -e 'install.packages("pak")'
+
       - name: Install createslf manually
         run: Rscript -e 'pak::pkg_install("Public-Health-Scotland/source-linkage-files")'
 
