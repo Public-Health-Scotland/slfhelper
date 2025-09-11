@@ -15,13 +15,14 @@
 #
 ###############################################################################
 
+# Tells github workflow to only run code locally, skip in CI
+if (!identical(Sys.getenv("GITHUB_ACTIONS"), "true")) {
+# There's no need to run the above code. Start from below and run in stages
+
 ## Stage 1 - Specify the year to check with
 #-------------------------------------------------------------------------------
 
 year <- "1920" # Can always edit and change the year
-
-# Only run the following code locally, skip in CI
-if (!identical(Sys.getenv("GITHUB_ACTIONS"), "true")) {
 
 ## Stage 2 - Update Episode File Variables
 #-------------------------------------------------------------------------------
@@ -47,8 +48,6 @@ usethis::use_data(indiv_file_vars, overwrite = TRUE, compress = "xz", version = 
 # Alternative method to save the data
 # save(indiv_file_vars, file = "data/indiv_file_vars.rda")
 
-}
-
 ## Stage 4 - Run package tests and checks
 #-------------------------------------------------------------------------------
 devtools::test()
@@ -66,3 +65,4 @@ usethis::use_version()
 # - Create a PR and merge the branch into development
 # - Merge development to production
 # - Create a release and a tag on GitHub
+}
