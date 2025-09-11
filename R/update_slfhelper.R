@@ -17,52 +17,52 @@
 
 # Tells github workflow to only run code locally, skip in CI
 if (!identical(Sys.getenv("GITHUB_ACTIONS"), "true")) {
-# There's no need to run the above code. Start from below and run in stages
+  # There's no need to run the above code. Start from below and run in stages
 
-## Stage 1 - Specify the year to check with
-#-------------------------------------------------------------------------------
+  ## Stage 1 - Specify the year to check with
+  #-------------------------------------------------------------------------------
 
-year <- "1920" # Can always edit and change the year
+  year <- "1920" # Can always edit and change the year
 
-## Stage 2 - Update Episode File Variables
-#-------------------------------------------------------------------------------
-ep_data <- createslf::get_slf_episode_path(year) %>%
-  createslf::read_file()
-ep_file_vars <- names(ep_data)
+  ## Stage 2 - Update Episode File Variables
+  #-------------------------------------------------------------------------------
+  ep_data <- createslf::get_slf_episode_path(year) %>%
+    createslf::read_file()
+  ep_file_vars <- names(ep_data)
 
-# Save the 'ep_file_vars' object to the package's data directory
-usethis::use_data(ep_file_vars, overwrite = TRUE, compress = "xz", version = 3)
+  # Save the 'ep_file_vars' object to the package's data directory
+  usethis::use_data(ep_file_vars, overwrite = TRUE, compress = "xz", version = 3)
 
-# Alternative method to save the data
-# save(ep_file_vars, file = "data/ep_file_vars.rda")
+  # Alternative method to save the data
+  # save(ep_file_vars, file = "data/ep_file_vars.rda")
 
-## Stage 3 - Update Individual File Variables
-#-------------------------------------------------------------------------------
-indiv_file_vars <- createslf::get_slf_individual_path(year) %>%
-  createslf::read_file() %>%
-  names()
+  ## Stage 3 - Update Individual File Variables
+  #-------------------------------------------------------------------------------
+  indiv_file_vars <- createslf::get_slf_individual_path(year) %>%
+    createslf::read_file() %>%
+    names()
 
-# Save the 'indiv_file_vars' object to the package's data directory
-usethis::use_data(indiv_file_vars, overwrite = TRUE, compress = "xz", version = 3)
+  # Save the 'indiv_file_vars' object to the package's data directory
+  usethis::use_data(indiv_file_vars, overwrite = TRUE, compress = "xz", version = 3)
 
-# Alternative method to save the data
-# save(indiv_file_vars, file = "data/indiv_file_vars.rda")
+  # Alternative method to save the data
+  # save(indiv_file_vars, file = "data/indiv_file_vars.rda")
 
-## Stage 4 - Run package tests and checks
-#-------------------------------------------------------------------------------
-devtools::test()
-devtools::check()
+  ## Stage 4 - Run package tests and checks
+  #-------------------------------------------------------------------------------
+  devtools::test()
+  devtools::check()
 
-## Stage 5 - Set a new version number
-#-------------------------------------------------------------------------------
-usethis::use_version()
+  ## Stage 5 - Set a new version number
+  #-------------------------------------------------------------------------------
+  usethis::use_version()
 
-# Further Instructions
-#-------------------------------------------------------------------------------
-# After running this script, you must manually complete the remaining steps:
-# - Update the NEWS.md file in the slfhelper root folder
-# - Commit the changes to your new branch
-# - Create a PR and merge the branch into development
-# - Merge development to production
-# - Create a release and a tag on GitHub
+  # Further Instructions
+  #-------------------------------------------------------------------------------
+  # After running this script, you must manually complete the remaining steps:
+  # - Update the NEWS.md file in the slfhelper root folder
+  # - Commit the changes to your new branch
+  # - Create a PR and merge the branch into development
+  # - Merge development to production
+  # - Create a release and a tag on GitHub
 }
