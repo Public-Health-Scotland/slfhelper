@@ -20,6 +20,9 @@
 
 year <- "1920" # Can always edit and change the year
 
+# Only run the following code locally, skip in CI
+if (!identical(Sys.getenv("GITHUB_ACTIONS"), "true")) {
+
 ## Stage 2 - Update Episode File Variables
 #-------------------------------------------------------------------------------
 ep_data <- createslf::get_slf_episode_path(year) %>%
@@ -43,6 +46,8 @@ usethis::use_data(indiv_file_vars, overwrite = TRUE, compress = "xz", version = 
 
 # Alternative method to save the data
 # save(indiv_file_vars, file = "data/indiv_file_vars.rda")
+
+}
 
 ## Stage 4 - Run package tests and checks
 #-------------------------------------------------------------------------------

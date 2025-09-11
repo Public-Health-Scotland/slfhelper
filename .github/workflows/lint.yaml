@@ -20,15 +20,9 @@ jobs:
         with:
           use-public-rspm: true
 
-      - name: Install pak
-        run: Rscript -e 'install.packages("pak")'
-
-      - name: Install GitHub packages
-        run: Rscript -e 'pak::pkg_install(c("Public-Health-Scotland/source-linkage-files","Public-Health-Scotland/phsmethods"))'
-
-
-      - name: Install CRAN packages
-        run: Rscript -e 'install.packages(c("lintr"))'
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          extra-packages: any::lintr, local::.
 
       - name: Lint
         run: lintr::lint_package()
