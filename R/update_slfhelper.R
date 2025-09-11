@@ -22,31 +22,29 @@ year <- "1920" # Can always edit and change the year
 
 # Only run the following code locally, skip in CI
 if (!identical(Sys.getenv("GITHUB_ACTIONS"), "true")) {
+  ## Stage 2 - Update Episode File Variables
+  #-------------------------------------------------------------------------------
+  ep_data <- createslf::get_slf_episode_path(year) %>%
+    createslf::read_file()
+  ep_file_vars <- names(ep_data)
 
-## Stage 2 - Update Episode File Variables
-#-------------------------------------------------------------------------------
-ep_data <- createslf::get_slf_episode_path(year) %>%
-  createslf::read_file()
-ep_file_vars <- names(ep_data)
+  # Save the 'ep_file_vars' object to the package's data directory
+  usethis::use_data(ep_file_vars, overwrite = TRUE, compress = "xz", version = 3)
 
-# Save the 'ep_file_vars' object to the package's data directory
-usethis::use_data(ep_file_vars, overwrite = TRUE, compress = "xz", version = 3)
+  # Alternative method to save the data
+  # save(ep_file_vars, file = "data/ep_file_vars.rda")
 
-# Alternative method to save the data
-# save(ep_file_vars, file = "data/ep_file_vars.rda")
+  ## Stage 3 - Update Individual File Variables
+  #-------------------------------------------------------------------------------
+  indiv_file_vars <- createslf::get_slf_individual_path(year) %>%
+    createslf::read_file() %>%
+    names()
 
-## Stage 3 - Update Individual File Variables
-#-------------------------------------------------------------------------------
-indiv_file_vars <- createslf::get_slf_individual_path(year) %>%
-  createslf::read_file() %>%
-  names()
+  # Save the 'indiv_file_vars' object to the package's data directory
+  usethis::use_data(indiv_file_vars, overwrite = TRUE, compress = "xz", version = 3)
 
-# Save the 'indiv_file_vars' object to the package's data directory
-usethis::use_data(indiv_file_vars, overwrite = TRUE, compress = "xz", version = 3)
-
-# Alternative method to save the data
-# save(indiv_file_vars, file = "data/indiv_file_vars.rda")
-
+  # Alternative method to save the data
+  # save(indiv_file_vars, file = "data/indiv_file_vars.rda")
 }
 
 ## Stage 4 - Run package tests and checks
