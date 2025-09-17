@@ -41,22 +41,21 @@ install.packages("pak")
 pak::pak("Public-Health-Scotland/slfhelper")
 ```
 
-## Additional Documentation 
+## Additional Documentation
 
 ### SLFhelper Articles
 
 We have created some additional documentation to help with using
-SLFhelper. The new documentation can be found here: https://public-health-scotland.github.io/slfhelper/
-by selecting the drop down for Articles. 
+SLFhelper. The new documentation can be found here:
+<https://public-health-scotland.github.io/slfhelper/> by selecting the
+drop down for Articles.
 
-This includes: 
-* Memory usage when using SLFs in Posit
-* Using the arrow package with SLFs
-* Example questions which have been answered using the SLFs (full code available)
+This includes: \* Memory usage when using SLFs in Posit \* Using the
+arrow package with SLFs \* Example questions which have been answered
+using the SLFs (full code available)
 
 If you find this useful and would like to see other topics included in
-future documentation, please get in touch with the team. 
-  
+future documentation, please get in touch with the team.
 
 ## Usage
 
