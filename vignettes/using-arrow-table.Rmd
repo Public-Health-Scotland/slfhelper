@@ -2,7 +2,7 @@
 title: "Using Parquet files with the arrow package"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{using-arrow-table}
+  %\VignetteIndexEntry{Using Parquet files with the arrow package}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
