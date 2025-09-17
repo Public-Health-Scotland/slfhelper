@@ -26,7 +26,7 @@ year <- "1920" # Can always edit and change the year
 
 ## Stage 2 - Update Episode File Variables
 #-----------------------------------------------------------------------------
-ep_file_vars <-  createslf::get_slf_episode_path(year) %>%
+ep_file_vars <- createslf::get_slf_episode_path(year) %>%
   arrow::open_dataset(format = "parquet") %>%
   names()
 
