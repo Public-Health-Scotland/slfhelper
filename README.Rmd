@@ -52,6 +52,7 @@ SLFhelper. The new documentation can be found here: https://public-health-scotla
 by selecting the drop down for Articles. 
 
 This includes: 
+
 * Memory usage when using SLFs in Posit
 * Using the arrow package with SLFs
 * Example questions which have been answered using the SLFs (full code available)
