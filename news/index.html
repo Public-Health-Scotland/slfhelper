@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">slfhelper</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.11.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.11.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,6 +39,23 @@
       <small>Source: <a href="https://github.com/Public-Health-Scotland/slfhelper/blob/production/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.11.1" id="slfhelper-0111">slfhelper 0.11.1<a class="anchor" aria-label="anchor" href="#slfhelper-0111"></a></h2>
+<ul><li>Fixed a <strong>fatal bug</strong> introduced in v0.11.0:
+<ul><li>Removed accidental call to <code>devtools::check()</code> during package installation.</li>
+<li>Moved <code>update_slfhelper.R</code> from <code>R/</code> to <code>data-raw/</code> to avoid execution at load time.</li>
+</ul></li>
+<li>Adjusted dependencies:
+<ul><li>Moved <strong>hms</strong> from <em>Imports</em> to <em>Suggests</em> to reduce unnecessary hard dependency.</li>
+</ul></li>
+<li>Documentation and website improvements:
+<ul><li>Added new articles covering memory usage, use of the arrow package, and worked examples.</li>
+<li>Corrected typos and small errors in vignettes.</li>
+</ul></li>
+<li>Updated internal support files:
+<ul><li>Refreshed WORDLIST and internal variable metadata.</li>
+</ul></li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.11.0" id="slfhelper-0110">slfhelper 0.11.0<a class="anchor" aria-label="anchor" href="#slfhelper-0110"></a></h2>
 <ul><li>Update - Added sc_lookup (updated variable names)</li>
