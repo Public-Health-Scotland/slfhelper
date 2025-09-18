@@ -1,8 +1,8 @@
 ---
-title: "Using Parquet files with the arrow package"
+title: "Using parquet files with the arrow package"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Using Parquet files with the arrow package}
+  %\VignetteIndexEntry{Using parquet files with the arrow package}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
