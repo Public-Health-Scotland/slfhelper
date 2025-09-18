@@ -1,3 +1,15 @@
+# slfhelper 0.11.1
+- Fixed a **fatal bug** introduced in v0.11.0:
+  - Removed accidental call to `devtools::check()` during package installation.
+  - Moved `update_slfhelper.R` from `R/` to `data-raw/` to avoid execution at load time.
+- Adjusted dependencies:
+  - Moved **hms** from *Imports* to *Suggests* to reduce unnecessary hard dependency.
+- Documentation and website improvements:
+  - Added new articles covering memory usage, use of the arrow package, and worked examples.
+  - Corrected typos and small errors in vignettes.
+- Updated internal support files:
+  - Refreshed WORDLIST and internal variable metadata.
+
 # slfhelper 0.11.0
 * Update - Added sc_lookup (updated variable names)
 
