@@ -43,6 +43,25 @@ install.packages("pak")
 pak::pak("Public-Health-Scotland/slfhelper")
 ```
 
+## Additional Documentation 
+
+### SLFhelper Articles
+
+We have created some additional documentation to help with using
+SLFhelper. The new documentation can be found here: https://public-health-scotland.github.io/slfhelper/
+by selecting the drop down for Articles. 
+
+This includes: 
+
+* Memory usage when using SLFs in Posit
+* Using the arrow package with SLFs
+* Example questions which have been answered using the SLFs (full code available)
+
+If you find this useful and would like to see other topics included in
+future documentation, please get in touch with the team. 
+
+
+
 ## Usage
 
 ### Read a file
@@ -63,6 +82,34 @@ View(partnerships)
 
 # See a list with descriptions for the recids
 View(recids)
+
+# See a list of Long term conditions
+View(ltc_vars)
+
+# See a list of bedday related variables
+View(ep_file_bedday_vars)
+
+# See a list of cost related variables
+View(ep_file_cost_vars)
+
+# See a lookup of social care partnership names to LCA to Sending location
+View(sc_partnerships)
+```
+
+```{r ep_vars}
+library(slfhelper)
+
+# Read a group of variables e.g. LTCs (arth, asthma, atrialfib etc)
+# A nice 'catch all' for reading in all of the LTC variables
+ep_1718 <- read_slf_episode("1718", col_select = c("anon_chi", ltc_vars))
+
+# Read in a group of variables e.g. bedday related variables (yearstay, stay, apr_beddays etc)
+# A 'catch all' for reading in bedday related variables
+ep_1819 <- read_slf_episode("1819", col_select = c("anon_chi", ep_file_bedday_vars))
+
+# Read in a group of variables e.g. cost related variables (cost_total_net, apr_cost)
+# A 'catch all' for reading in cos related variables
+ep_1920 <- read_slf_episode("1920", col_select = c("anon_chi", ep_file_cost_vars))
 ```
 
 

@@ -43,7 +43,7 @@ library(slfhelper)
 -   Use the function `get_chi()` to easily switch `anon_chi` to `chi`.
 -   Use the function `get_anon_chi()` to easily switch `chi` to `anon_chi`.
 
-### Memory usage in SLFS
+### Memory usage in SLFs
 
 While working with the Source Linkage Files (SLFs), it is recommended to use the features of the SLFhelper package to maximase the memory usage in posit, see [PHS Data Science Knowledge Base](https://public-health-scotland.github.io/knowledge-base/docs/Posit%20Infrastructure?doc=Memory%20Usage%20in%20SMR01.md) for further guidance on memory usage in posit workbench.
 
