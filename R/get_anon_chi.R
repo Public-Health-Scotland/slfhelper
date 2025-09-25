@@ -19,11 +19,10 @@
 #' chi_cohort %>% get_anon_chi(chi_var = "upi_number")
 #' }
 get_anon_chi <- function(
-  chi_cohort,
-  chi_var = "chi",
-  drop = TRUE,
-  check = TRUE
-) {
+    chi_cohort,
+    chi_var = "chi",
+    drop = TRUE,
+    check = TRUE) {
   if (check) {
     # Optional code, if the user has phsmethods installed check the CHIs with it.
     if (rlang::is_installed("phsmethods")) {
