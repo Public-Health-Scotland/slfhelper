@@ -18,7 +18,12 @@
 #' chi_cohort %>% get_anon_chi()
 #' chi_cohort %>% get_anon_chi(chi_var = "upi_number")
 #' }
-get_anon_chi <- function(chi_cohort, chi_var = "chi", drop = TRUE, check = TRUE) {
+get_anon_chi <- function(
+  chi_cohort,
+  chi_var = "chi",
+  drop = TRUE,
+  check = TRUE
+) {
   if (check) {
     # Optional code, if the user has phsmethods installed check the CHIs with it.
     if (rlang::is_installed("phsmethods")) {
@@ -43,7 +48,9 @@ get_anon_chi <- function(chi_cohort, chi_var = "chi", drop = TRUE, check = TRUE)
         )
         print(
           tibble::tibble(
-            {{ chi_var }} := dplyr::pull(chi_cohort, {{ chi_var }})[which_invalid],
+            {{ chi_var }} := dplyr::pull(chi_cohort, {{ chi_var }})[
+              which_invalid
+            ],
             reason = checked_chi[which_invalid]
           )
         )
@@ -57,7 +64,11 @@ get_anon_chi <- function(chi_cohort, chi_var = "chi", drop = TRUE, check = TRUE)
     dplyr::mutate(
       chi = dplyr::if_else(is.na(.data$chi), "", .data$chi),
       anon_chi = purrr::map_chr(.data$chi, openssl::base64_encode),
-      anon_chi = dplyr::if_else(.data$anon_chi == "", NA_character_, .data$anon_chi)
+      anon_chi = dplyr::if_else(
+        .data$anon_chi == "",
+        NA_character_,
+        .data$anon_chi
+      )
     )
 
   chi_cohort <- chi_cohort %>%
@@ -78,7 +89,8 @@ get_anon_chi <- function(chi_cohort, chi_var = "chi", drop = TRUE, check = TRUE)
 convert_chi_to_anon_chi <- function(chi) {
   anon_chi <- purrr::map_chr(
     chi,
-    ~ dplyr::case_match(.x,
+    ~ dplyr::case_match(
+      .x,
       NA_character_ ~ NA_character_,
       "" ~ "",
       .default = openssl::base64_encode(.x)

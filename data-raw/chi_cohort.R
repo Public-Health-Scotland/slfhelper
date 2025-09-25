@@ -15,7 +15,8 @@ chi_cohort <- dplyr::tibble(
     round(runif(n, min = 0, max = 9)),
     round(runif(n, min = 0, max = 9)),
     round(runif(n, min = 0, max = 9))
-  ), chi = paste0(
+  ),
+  chi = paste0(
     round(runif(n, min = 0, max = 3)),
     round(runif(n, min = 0, max = 9)),
     round(runif(n, min = 0, max = 1)),

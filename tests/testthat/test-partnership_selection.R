@@ -5,7 +5,8 @@ test_that("Partnership filtering works", {
   set.seed(50)
 
   # Read in a bit of a file selecting only Edinburgh
-  indiv_1718_edinburgh <- read_slf_individual("1718",
+  indiv_1718_edinburgh <- read_slf_individual(
+    "1718",
     partnerships = "S37000012",
     col_select = c("hscp2018")
   ) %>%
@@ -24,14 +25,17 @@ test_that("Can select multiple partnerships", {
   set.seed(50)
 
   # Read in a bit of a file selecting Edinburgh and Glasgow
-  indiv_1718_edi_gla <- read_slf_individual("1718",
+  indiv_1718_edi_gla <- read_slf_individual(
+    "1718",
     partnerships = c("S37000012", "S37000015"),
     col_select = c("hscp2018")
   ) %>%
     dplyr::slice_sample(n = 1000)
   # Should only have Edinburgh or Glasgow city codes
-  expect_true(all(indiv_1718_edi_gla$hscp2018 == "S37000012" |
-    indiv_1718_edi_gla$hscp2018 == "S37000015"))
+  expect_true(all(
+    indiv_1718_edi_gla$hscp2018 == "S37000012" |
+      indiv_1718_edi_gla$hscp2018 == "S37000015"
+  ))
   # Should be exactly 2 unique codes
   expect_equal(length(unique(indiv_1718_edi_gla$hscp2018)), 2)
   # Should have at least 100 records (checks we're not getting an empty file)
@@ -43,7 +47,8 @@ test_that("Can still do filtering if variable is not selected", {
 
   # Read in a bit of a file selecting only Edinburgh
   # Don't choose to read the partnership variable
-  indiv_1718_edinburgh <- read_slf_individual("1718",
+  indiv_1718_edinburgh <- read_slf_individual(
+    "1718",
     partnerships = "S37000012",
     col_select = c("anon_chi")
   ) %>%
@@ -63,7 +68,8 @@ test_that("Can still do filtering if variable is not selected", {
 test_that("Still reads all variables if just filtering", {
   set.seed(50)
 
-  indiv_1718_edinburgh <- read_slf_individual("1718",
+  indiv_1718_edinburgh <- read_slf_individual(
+    "1718",
     partnerships = "S37000012"
   ) %>%
     dplyr::slice_sample(n = 1000)

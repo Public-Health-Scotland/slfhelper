@@ -20,14 +20,15 @@
 #' [Arrow Table][arrow::arrow-package].
 #' @importFrom rlang .data
 read_slf <- function(
-    year,
-    file_version = c("episode", "individual"),
-    dev = FALSE,
-    col_select = NULL,
-    columns = lifecycle::deprecated(),
-    as_data_frame = TRUE,
-    partnerships = NULL,
-    recids = NULL) {
+  year,
+  file_version = c("episode", "individual"),
+  dev = FALSE,
+  col_select = NULL,
+  columns = lifecycle::deprecated(),
+  as_data_frame = TRUE,
+  partnerships = NULL,
+  recids = NULL
+) {
   file_path <- gen_file_path(
     year,
     file_version,
@@ -52,7 +53,8 @@ read_slf <- function(
   slf_table <- purrr::map(
     file_path,
     function(file_path) {
-      slf_table <- arrow::read_parquet(file_path,
+      slf_table <- arrow::read_parquet(
+        file_path,
         col_select = {{ col_select }},
         as_data_frame = FALSE
       )
@@ -83,13 +85,15 @@ read_slf <- function(
       if (!identical(col_select2, "")) {
         # Read the "recid" and/or "hscp2018" column separately and
         # bind with the filtered dataframe
-        slf_table <- slf_table %>% cbind( # bind_cols does not work
-          arrow::read_parquet(
-            file_path,
-            col_select = dplyr::all_of(col_select2),
-            as_data_frame = FALSE
+        slf_table <- slf_table %>%
+          cbind(
+            # bind_cols does not work
+            arrow::read_parquet(
+              file_path,
+              col_select = dplyr::all_of(col_select2),
+              as_data_frame = FALSE
+            )
           )
-        )
       }
 
       # filter
@@ -150,13 +154,14 @@ read_slf <- function(
 #' )
 #' }
 read_slf_episode <- function(
-    year,
-    col_select = NULL,
-    partnerships = NULL,
-    recids = NULL,
-    as_data_frame = TRUE,
-    dev = FALSE,
-    columns = lifecycle::deprecated()) {
+  year,
+  col_select = NULL,
+  partnerships = NULL,
+  recids = NULL,
+  as_data_frame = TRUE,
+  dev = FALSE,
+  columns = lifecycle::deprecated()
+) {
   if (lifecycle::is_present(columns)) {
     lifecycle::deprecate_soft(
       "0.10.0",
@@ -197,12 +202,13 @@ read_slf_episode <- function(
 #' )
 #' }
 read_slf_individual <- function(
-    year,
-    col_select = NULL,
-    partnerships = NULL,
-    as_data_frame = TRUE,
-    dev = FALSE,
-    columns = lifecycle::deprecated()) {
+  year,
+  col_select = NULL,
+  partnerships = NULL,
+  as_data_frame = TRUE,
+  dev = FALSE,
+  columns = lifecycle::deprecated()
+) {
   if (lifecycle::is_present(columns)) {
     lifecycle::deprecate_soft(
       "0.10.0",
