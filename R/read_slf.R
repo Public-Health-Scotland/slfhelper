@@ -20,14 +20,15 @@
 #' [Arrow Table][arrow::arrow-package].
 #' @importFrom rlang .data
 read_slf <- function(
-    year,
-    file_version = c("episode", "individual"),
-    dev = FALSE,
-    col_select = NULL,
-    columns = lifecycle::deprecated(),
-    as_data_frame = TRUE,
-    partnerships = NULL,
-    recids = NULL) {
+  year,
+  file_version = c("episode", "individual"),
+  dev = FALSE,
+  col_select = NULL,
+  columns = lifecycle::deprecated(),
+  as_data_frame = TRUE,
+  partnerships = NULL,
+  recids = NULL
+) {
   file_path <- gen_file_path(
     year,
     file_version,
@@ -150,13 +151,14 @@ read_slf <- function(
 #' )
 #' }
 read_slf_episode <- function(
-    year,
-    col_select = NULL,
-    partnerships = NULL,
-    recids = NULL,
-    as_data_frame = TRUE,
-    dev = FALSE,
-    columns = lifecycle::deprecated()) {
+  year,
+  col_select = NULL,
+  partnerships = NULL,
+  recids = NULL,
+  as_data_frame = TRUE,
+  dev = FALSE,
+  columns = lifecycle::deprecated()
+) {
   if (lifecycle::is_present(columns)) {
     lifecycle::deprecate_soft(
       "0.10.0",
@@ -197,12 +199,13 @@ read_slf_episode <- function(
 #' )
 #' }
 read_slf_individual <- function(
-    year,
-    col_select = NULL,
-    partnerships = NULL,
-    as_data_frame = TRUE,
-    dev = FALSE,
-    columns = lifecycle::deprecated()) {
+  year,
+  col_select = NULL,
+  partnerships = NULL,
+  as_data_frame = TRUE,
+  dev = FALSE,
+  columns = lifecycle::deprecated()
+) {
   if (lifecycle::is_present(columns)) {
     lifecycle::deprecate_soft(
       "0.10.0",
