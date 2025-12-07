@@ -11,11 +11,12 @@
 #'
 #' @return a [fs_path][fs::fs-package] object.
 gen_file_path <- function(
-    year,
-    file_version,
-    call,
-    dev = FALSE,
-    ext = "parquet") {
+  year,
+  file_version,
+  call,
+  dev = FALSE,
+  ext = "parquet"
+) {
   file_version <- match.arg(file_version, c("episode", "individual"))
   ext <- match.arg(ext, "parquet")
 
