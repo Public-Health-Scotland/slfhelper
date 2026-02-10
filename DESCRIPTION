@@ -31,7 +31,6 @@ Imports:
     openssl (>= 2.0.6),
     purrr (>= 1.0.1),
     rlang (>= 1.1.1),
-    rstudioapi (>= 0.14),
     stats,
     stringr (>= 1.5.0),
     tibble (>= 3.2.1)
