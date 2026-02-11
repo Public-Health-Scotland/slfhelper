@@ -52,7 +52,8 @@ read_slf <- function(
   slf_table <- purrr::map(
     file_path,
     function(file_path) {
-      slf_table <- arrow::read_parquet(file_path,
+      slf_table <- arrow::read_parquet(
+        file_path,
         col_select = {{ col_select }},
         as_data_frame = FALSE
       )
@@ -83,13 +84,15 @@ read_slf <- function(
       if (!identical(col_select2, "")) {
         # Read the "recid" and/or "hscp2018" column separately and
         # bind with the filtered dataframe
-        slf_table <- slf_table %>% cbind( # bind_cols does not work
-          arrow::read_parquet(
-            file_path,
-            col_select = dplyr::all_of(col_select2),
-            as_data_frame = FALSE
+        slf_table <- slf_table %>%
+          cbind(
+            # bind_cols does not work
+            arrow::read_parquet(
+              file_path,
+              col_select = dplyr::all_of(col_select2),
+              as_data_frame = FALSE
+            )
           )
-        )
       }
 
       # filter

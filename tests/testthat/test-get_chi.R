@@ -27,7 +27,8 @@ test_that("Match CHI to individual file", {
   set.seed(50)
 
   # Read 100 records from individual file
-  indiv_1718_small <- read_slf_individual("1718",
+  indiv_1718_small <- read_slf_individual(
+    "1718",
     col_select = c("anon_chi")
   ) %>%
     dplyr::slice_sample(n = 100)
@@ -51,9 +52,7 @@ test_that("Match CHI to episode file", {
   set.seed(50)
 
   # Read 100 records from ep file
-  ep_1718_small <- read_slf_episode("1718",
-    col_select = c("anon_chi")
-  ) %>%
+  ep_1718_small <- read_slf_episode("1718", col_select = c("anon_chi")) %>%
     dplyr::slice_sample(n = 100)
 
   # Match on the chi

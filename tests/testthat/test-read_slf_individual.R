@@ -3,7 +3,16 @@ skip_on_ci()
 
 test_that("Reads individual file correctly", {
   # Read file, test all years
-  years <- years <- c("1415", "1516", "1617", "1718", "1819", "1920", "2021", "2122")
+  years <- years <- c(
+    "1415",
+    "1516",
+    "1617",
+    "1718",
+    "1819",
+    "1920",
+    "2021",
+    "2122"
+  )
   for (year in years) {
     indiv_file <- read_slf_individual(year) %>%
       dplyr::slice_sample(n = 100)
@@ -21,9 +30,7 @@ test_that("Reads individual file correctly", {
 })
 
 test_that("column selection works", {
-  indiv_1718 <- read_slf_individual("1718",
-    col_select = c("anon_chi")
-  ) %>%
+  indiv_1718 <- read_slf_individual("1718", col_select = c("anon_chi")) %>%
     dplyr::slice_sample(n = 100)
 
   # Test for anything odd
