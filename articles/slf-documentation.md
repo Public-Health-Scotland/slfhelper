@@ -1,0 +1,110 @@
+# slf-documentation
+
+## SLFhelper
+
+`SLFhelper` contains some easy to use functions designed to make working
+with the Source Linkage Files (SLFs) as efficient as possible.
+
+### Filter functions:
+
+- `year` returns financial year of interest. You can also select
+  multiple years using `c("1718", "1819", "1920")`
+- `recid` returns recids of interest. Selecting this is beneficial for
+  specific analysis.
+- `partnerships` returns partnerships of interest. Selecting certain
+  partnerships will reduce the SLFs size.
+- `col_select` returns columns of interest. This is the best way to
+  reduce the SLFs size.
+
+### Data snippets:
+
+- `ep_file_vars` returns a list of all variables in the episode files.
+- `indiv_file_vars` returns a list of all variables in the individual
+  files.
+- `partnerships` returns a list of partnership names (HSCP_2018 codes)
+- `recid` returns a list of all recids available in the SLFs.
+- `ep_file_bedday_vars` returns a list of all bedday related variables
+  in the SLFs.
+- `ep_file_cost_vars` returns a list of all cost related variables in
+  the SLFs.
+
+### Anon CHI
+
+- Use the function
+  [`get_chi()`](https://public-health-scotland.github.io/slfhelper/reference/get_chi.md)
+  to easily switch `anon_chi` to `chi`.
+- Use the function
+  [`get_anon_chi()`](https://public-health-scotland.github.io/slfhelper/reference/get_anon_chi.md)
+  to easily switch `chi` to `anon_chi`.
+
+### Memory usage in SLFs
+
+While working with the Source Linkage Files (SLFs), it is recommended to
+use the features of the SLFhelper package to maximase the memory usage
+in posit, see [PHS Data Science Knowledge
+Base](https://public-health-scotland.github.io/knowledge-base/docs/Posit%20Infrastructure?doc=Memory%20Usage%20in%20SMR01.md)
+for further guidance on memory usage in posit workbench.
+
+Reading a full SLF file can be time consuming and take up resources on
+posit workbench. In the episode file there are 266 variables and around
+12 million rows compared to the individual file where there are 206
+variables and around 6 million rows in each file. This can be reduced by
+using available selections in SLFhelper to help reduce the size of the
+SLFs for analysis and to free up resources in posit workbench.
+
+The tables below show the memory usage of each full size SLF.
+
+#### Episode File
+
+| Year | Memory Usage (GiB) |
+|------|:------------------:|
+| 1718 |         22         |
+| 1819 |         22         |
+| 1920 |         22         |
+| 2021 |         19         |
+| 2122 |         21         |
+| 2223 |         21         |
+| 2324 |         18         |
+
+#### Individual File
+
+| Year | Memory Usage (GiB) |
+|------|:------------------:|
+| 1718 |        6.8         |
+| 1819 |        6.8         |
+| 1920 |        7.0         |
+| 2021 |        7.0         |
+| 2122 |        7.0         |
+| 2223 |        7.1         |
+| 2324 |        5.1         |
+
+If one can use selection features in SLFhelper, the session memory
+requirement can be reduced. There are 266 columns for a year episode
+file of size around 20 GiB. Hence, on average, a column with all rows
+takes around 0.1 GiB, which can give a rough estimate on the session
+memory one needs. Taking Year 1920 as a demonstration, the following
+tables present various sizes of extracts from the SLF files, from 5
+columns to all columns, along with the amount of memory required to work
+with the data one reads in. Keep in mind that tables below are just
+recommendations, and that memory usage depends on how one handles data
+and optimises data pipeline.
+
+#### Episode File
+
+| Column Number | Memory usage (GiB) | Session Memory Recommendation                     |
+|---------------|:------------------:|---------------------------------------------------|
+| 5             |        0.5         | 4 GiB (4096 MiB)                                  |
+| 10            |        1.4         | between 4 GiB (4096 MiB) and 8 GiB (8192 MiB)     |
+| 50            |        5.1         | between 8 GiB (8192 MiB) and 16 GiB (16384 MiB)   |
+| 150           |         13         | between 20 GiB (20480 MiB) and 38 GiB (38912 MiB) |
+| 251           |         22         | between 32 GiB (32768 MiB) and 64 GiB (65536 MiB) |
+
+#### Individual File
+
+| Column Number | Memory usage (GiB) | Session Memory Recommendation                     |
+|---------------|:------------------:|---------------------------------------------------|
+| 5             |        0.7         | 4 GiB (4096 MiB)                                  |
+| 10            |        0.8         | 4 GiB (4096 MiB)                                  |
+| 50            |        2.2         | between 4 GiB (4096 MiB) and 8 GiB (8192 MiB)     |
+| 150           |        5.5         | between 8 GiB (8192 MiB) and 16 GiB (16384 MiB)   |
+| 193           |        7.0         | between 11 GiB (11264 MiB) and 21 GiB (21504 MiB) |

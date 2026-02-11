@@ -1,0 +1,128 @@
+# Changelog
+
+## slfhelper 0.11.1
+
+- Fixed a **fatal bug** introduced in v0.11.0:
+  - Removed accidental call to `devtools::check()` during package
+    installation.
+  - Moved `update_slfhelper.R` from `R/` to `data-raw/` to avoid
+    execution at load time.
+- Adjusted dependencies:
+  - Moved **hms** from *Imports* to *Suggests* to reduce unnecessary
+    hard dependency.
+- Documentation and website improvements:
+  - Added new articles covering memory usage, use of the arrow package,
+    and worked examples.
+  - Corrected typos and small errors in vignettes.
+- Updated internal support files:
+  - Refreshed WORDLIST and internal variable metadata.
+
+## slfhelper 0.11.0
+
+- Update - Added sc_lookup (updated variable names)
+
+## slfhelper 0.10.5
+
+- Bug - fix age as an integer when reading multiple years
+
+## slfhelper 0.10.4
+
+- Bug - Fix build tests
+- New feature - Additional documentation
+- Update README.md
+- Bug - Fix the `tidyselect` feature bug
+
+## slfhelper 0.10.3
+
+- New feature - use `tidyselect` to `col_select`in `read_slf_episode`
+  and `read_slf_individual`.
+
+## slfhelper 0.10.2
+
+- Update README.md
+- change in episode file cost variable vector
+- force keytime format to hms
+
+## slfhelper 0.10.1
+
+- Update README.Rmd
+- Bug - speed up get_chi()
+
+## slfhelper 0.10.0
+
+- [`{glue}`](https://glue.tidyverse.org/) is no longer a dependency as
+  the required functionality can be provided by
+  [\`stringr::str_glue()](https://stringr.tidyverse.org/reference/str_glue.html).
+- Dependency versions have been updated to the latest.
+- [`get_chi()`](https://public-health-scotland.github.io/slfhelper/reference/get_chi.md)
+  and
+  [`get_anon_chi()`](https://public-health-scotland.github.io/slfhelper/reference/get_anon_chi.md)
+  now properly match missing (`NA`) and blank (`""`) values.
+- slfhelper now defaults to using the `.parquet` file versions, old
+  versions of slfhelper will no longer work.
+- There is now a `dev` parameter available when using the `read_slf_*`
+  functions which allows reading the file from the development
+  environment.
+
+## slfhelper 0.9.0
+
+- [`{openssl}`](https://cran.r-project.org/web/packages/openssl/index.html)
+  is now required.
+- [`get_chi()`](https://public-health-scotland.github.io/slfhelper/reference/get_chi.md)
+  and
+  [`get_anon_chi()`](https://public-health-scotland.github.io/slfhelper/reference/get_anon_chi.md)
+  are now much faster (\>100X) and use significantly less memory.
+- The `year` parameter is now checked early in the process, and if an
+  invalid year is supplied the error message should be much more
+  informative.
+
+## slfhelper 0.8.2
+
+- `ep_file_vars` and `indiv_file_vars` updated with correct variables.
+
+## slfhelper 0.8.1
+
+- Use [cli](https://cli.r-lib.org) for nicer error messages and warning.
+
+## slfhelper 0.8.0
+
+- Add a number of ‘variable packs’ for easily selecting sets of
+  variables: `demog_vars`, `ltc_vars`, `ep_file_bedday_vars` and
+  `ep_file_cost_vars`.
+- Add [a new
+  vignette](https://public-health-scotland.github.io/slfhelper/articles/variable-packs.html)
+  introducing variable packs.
+
+## slfhelper 0.7.1
+
+- Add check for server and hscdiip access on package load.
+- Add a recid lookup for use with the `recid` filtering parameter.
+- When using
+  [`get_anon_chi()`](https://public-health-scotland.github.io/slfhelper/reference/get_anon_chi.md)
+  it will now use
+  [`phsmethods::chi_check`](https://public-health-scotland.github.io/phsmethods/reference/chi_check.html)
+  (if available) and warn if a lot of CHI numbers return as invalid.
+- Update variable lists for new Home Care related variables.
+
+## slfhelper 0.7.0
+
+- Now depends on R \>= 3.5
+- `ep_file_vars` and `indiv_file_vars` updated with the latest variable
+  names. These now also return a character vector instead of a list.
+- `read_slf_` now returns a [tibble](https://tibble.tidyverse.org/).
+
+## slfhelper 0.6.0
+
+- Fix bug with selecting partnerships/recids when also selecting
+  multiple years
+  ([\#13](https://github.com/Public-Health-Scotland/slfhelper/issues/13))
+  ([\#14](https://github.com/Public-Health-Scotland/slfhelper/issues/14))
+
+## slfhelper 0.5.3
+
+- Added a `NEWS.md` file to track changes to the package.
+- Moved to use Rmd version for the readme.
+- Bump dplyr version requirement to 1.0.0 to enable use of
+  [`across()`](https://dplyr.tidyverse.org/reference/across.html) and
+  other new things.
+- Add checks to the year
