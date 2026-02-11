@@ -41,13 +41,17 @@ gen_file_path <- function(
   } else if (dev) {
     if (!check_has_access(group = "sourcedev")) {
       cli::cli_abort(
-        c("x" = "You must have access to {.path /conf/sourcedev} to use the
+        c(
+          "x" = "You must have access to {.path /conf/sourcedev} to use the
         in-development version of the files. If you think this is a mistake,
-        please contact the SLF team."),
+        please contact the SLF team."
+        ),
         call = call
       )
     }
-    dev_file_message <- c("i" = "You are using the in-development version of the SLFs.")
+    dev_file_message <- c(
+      "i" = "You are using the in-development version of the SLFs."
+    )
     if (check_has_access(group = "hscdiip_sl")) {
       cli::cli_inform(
         message = dev_file_message,
