@@ -1,11 +1,14 @@
 test_that("Produces single episode file path", {
   path <- gen_file_path("1718", "episode")
 
-  expect_equal(path, fs::path(
-    "/conf/hscdiip",
-    "01-Source-linkage-files",
-    "source-episode-file-1718.parquet"
-  ))
+  expect_equal(
+    path,
+    fs::path(
+      "/conf/hscdiip",
+      "01-Source-linkage-files",
+      "source-episode-file-1718.parquet"
+    )
+  )
 
   expect_equal(fs::path_ext(path), "parquet")
 })
@@ -14,11 +17,14 @@ test_that("Produces single episode file path", {
 test_that("Produces single individual file path", {
   path <- gen_file_path("1718", "individual")
 
-  expect_equal(path, fs::path(
-    "/conf/hscdiip",
-    "01-Source-linkage-files",
-    "source-individual-file-1718.parquet"
-  ))
+  expect_equal(
+    path,
+    fs::path(
+      "/conf/hscdiip",
+      "01-Source-linkage-files",
+      "source-individual-file-1718.parquet"
+    )
+  )
 
   expect_equal(fs::path_ext(path), "parquet")
 })
