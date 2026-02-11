@@ -15,7 +15,8 @@ test_that("tidyselect helpers work for column selection in the episode file", {
       year = "1920",
       recids = c("CH", "HC", "DD"),
       col_select = c(ep_file_vars[c(1:5, 100)], "hscp2018")
-    ) %>% nrow(),
+    ) %>%
+      nrow(),
     100
   )
 })
@@ -48,11 +49,25 @@ test_that("col_select works when columns are added", {
 test_that("tidyselect helpers work for column selection in the individual file", {
   expect_named(
     read_slf_individual("1920", col_select = dplyr::starts_with("dd")),
-    c("dd_noncode9_episodes", "dd_noncode9_beddays", "dd_code9_episodes", "dd_code9_beddays")
+    c(
+      "dd_noncode9_episodes",
+      "dd_noncode9_beddays",
+      "dd_code9_episodes",
+      "dd_code9_beddays"
+    )
   )
   expect_named(
-    read_slf_individual("1920", col_select = c("year", dplyr::starts_with("dd"))),
-    c("year", "dd_noncode9_episodes", "dd_noncode9_beddays", "dd_code9_episodes", "dd_code9_beddays")
+    read_slf_individual(
+      "1920",
+      col_select = c("year", dplyr::starts_with("dd"))
+    ),
+    c(
+      "year",
+      "dd_noncode9_episodes",
+      "dd_noncode9_beddays",
+      "dd_code9_episodes",
+      "dd_code9_beddays"
+    )
   )
   expect_named(
     read_slf_individual("1920", col_select = !dplyr::matches("[aeiou]"))

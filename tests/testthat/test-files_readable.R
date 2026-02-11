@@ -16,13 +16,40 @@ test_that("Episode files are readable", {
 
 
 test_that("Individual files are readable", {
-  expect_true(fs::file_access(gen_file_path("1415", "individual"), mode = "read"))
-  expect_true(fs::file_access(gen_file_path("1516", "individual"), mode = "read"))
-  expect_true(fs::file_access(gen_file_path("1617", "individual"), mode = "read"))
-  expect_true(fs::file_access(gen_file_path("1718", "individual"), mode = "read"))
-  expect_true(fs::file_access(gen_file_path("1819", "individual"), mode = "read"))
-  expect_true(fs::file_access(gen_file_path("1920", "individual"), mode = "read"))
-  expect_true(fs::file_access(gen_file_path("2021", "individual"), mode = "read"))
-  expect_true(fs::file_access(gen_file_path("2122", "individual"), mode = "read"))
-  expect_true(fs::file_access(gen_file_path("2223", "individual"), mode = "read"))
+  expect_true(fs::file_access(
+    gen_file_path("1415", "individual"),
+    mode = "read"
+  ))
+  expect_true(fs::file_access(
+    gen_file_path("1516", "individual"),
+    mode = "read"
+  ))
+  expect_true(fs::file_access(
+    gen_file_path("1617", "individual"),
+    mode = "read"
+  ))
+  expect_true(fs::file_access(
+    gen_file_path("1718", "individual"),
+    mode = "read"
+  ))
+  expect_true(fs::file_access(
+    gen_file_path("1819", "individual"),
+    mode = "read"
+  ))
+  expect_true(fs::file_access(
+    gen_file_path("1920", "individual"),
+    mode = "read"
+  ))
+  expect_true(fs::file_access(
+    gen_file_path("2021", "individual"),
+    mode = "read"
+  ))
+  expect_true(fs::file_access(
+    gen_file_path("2122", "individual"),
+    mode = "read"
+  ))
+  expect_true(fs::file_access(
+    gen_file_path("2223", "individual"),
+    mode = "read"
+  ))
 })

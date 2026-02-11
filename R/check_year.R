@@ -15,14 +15,16 @@ check_year <- function(year, call = rlang::caller_env()) {
 
   if (anyNA(formatted_year)) {
     cli::cli_abort(
-      c("The year {.val {year}} is not valid.",
+      c(
+        "The year {.val {year}} is not valid.",
         "i" = "Values to {.arg year} should be supplied in the short financial year format e.g. {.val 1718}"
       ),
       call = call
     )
   } else if (any(year_first_part + 1L != year_last_part)) {
     cli::cli_abort(
-      c("The year {.val {year}} is ambiguous.",
+      c(
+        "The year {.val {year}} is ambiguous.",
         "i" = "Values to {.arg year} should be supplied in the short financial year format e.g. {.val 1718}",
         "v" = "Did you mean {.val {paste0(year_first_part, year_first_part + 1L)}} or {.val {paste0(year_last_part - 1L, year_last_part)}}?"
       ),
@@ -30,7 +32,8 @@ check_year <- function(year, call = rlang::caller_env()) {
     )
   } else if (any(formatted_year < min_year)) {
     cli::cli_abort(
-      c("The year {.val {year}} is not valid.",
+      c(
+        "The year {.val {year}} is not valid.",
         "i" = "The oldest valid {.arg year} is {.val {min_year}}."
       ),
       call = call
