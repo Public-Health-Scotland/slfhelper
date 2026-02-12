@@ -24,9 +24,25 @@ library(dplyr)
 
 year <- "1920" # Can always edit and change the year
 
+get_slf_episode_path <- function(year) {
+  file.path(
+    "/conf/sourcedev/Source_Linkage_File_Updates",
+    year,
+    stringr::str_glue("source-episode-file-{year}.parquet")
+  )
+}
+
+get_slf_individual_path <- function(year) {
+  file.path(
+    "/conf/sourcedev/Source_Linkage_File_Updates",
+    year,
+    stringr::str_glue("source-individual-file-{year}.parquet")
+  )
+}
+
 ## Stage 2 - Update Episode File Variables
 #-----------------------------------------------------------------------------
-ep_file_vars <- createslf::get_slf_episode_path(year) %>%
+ep_file_vars <- get_slf_episode_path(year) %>%
   arrow::open_dataset(format = "parquet") %>%
   names()
 
@@ -43,7 +59,7 @@ usethis::use_data(
 
 ## Stage 3 - Update Individual File Variables
 #-----------------------------------------------------------------------------
-indiv_file_vars <- createslf::get_slf_individual_path(year) %>%
+indiv_file_vars <- get_slf_individual_path(year) %>%
   arrow::open_dataset(format = "parquet") %>%
   names()
 
