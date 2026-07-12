@@ -54,4 +54,4 @@ Language: en-GB
 LazyData: true
 Roxygen: list(markdown = TRUE, roclets = c("collate","namespace", "rd",
     "vignette" ))
-RoxygenNote: 7.3.3
+Config/roxygen2/version: 8.0.0
